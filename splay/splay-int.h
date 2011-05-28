@@ -4,7 +4,7 @@
 /* recursive helper for splay_clear */
 static void clear(splaynode *);
 
-/* the god forsaken splay method */
+/* the method behind everything */
 static void splay(splaytree *, void *);
 
 /* BST rotate methods, needed in splay */

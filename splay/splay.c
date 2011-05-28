@@ -123,10 +123,7 @@ static void clear(splaynode *node) {
            will become the new root of the tree. if the element is not in the
            tree, then the new root will either be the greatest element less
            than the given element, or the least element greater than the given
-           element.
-
-           Note: I have little idea to how this works, I kinda copied
-           Sleator's code */
+           element. */
 static void splay(splaytree *tree, void *elem) {
     splaynode assembler;
     splaynode *left, *right;
