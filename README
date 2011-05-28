@@ -1,0 +1,9 @@
+This is a collection of data structures/types written in ANSI C.
+
+Every folder is a separate data structure that will contain a header
+file of the same name as the folder (e.g. folder rbtree contains file
+rbtree.h). This is the only #include needed in your code, simply
+compile with the same-named .c file in the compiler arg list and you're
+good to go. If the folder also has a "-int.h" file, simply have that
+in the same folder that you are compiling in. You do not need to
+#include it.
