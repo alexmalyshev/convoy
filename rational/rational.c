@@ -182,7 +182,7 @@ static void fix_rat(rat *r) {
 }
 
 /* fix_rats - makes sure both rats maintain denominator > 0 invariant
- * Invariant: *r is not NaN, *s is not NaN */
+ * Invariant: r and s are not NULL, *r and *s are not NaN */
 static void fix_rats(rat *r, rat *s) {
     fix_rat(r);
     fix_rat(s);
