@@ -7,6 +7,7 @@
 int splay_init(splaytree **tree, cmpfun cmp) {
     if (tree == NULL || cmp == NULL)
         return 1;
+
     if ((*tree = malloc(sizeof(splaytree))) == NULL)
         return 1;
     (*tree)->cmp = cmp;
@@ -30,7 +31,7 @@ void *splay_delete(splaytree *tree, void *elem) {
     splaynode *temp, *dead;
     void *data;
 
-    if (tree == NULL || elem == NULL)
+    if (tree == NULL || tree->root == NULL || elem == NULL)
         return NULL;
 
     splay(tree, elem);
@@ -92,7 +93,7 @@ int splay_insert(splaytree *tree, void *elem) {
 /* splay_search - checks if the given element is in the tree
  * Fails: tree is NULL or elem is NULL */
 void *splay_search(splaytree *tree, void *elem) {
-    if (tree == NULL || elem == NULL)
+    if (tree == NULL || tree->root == NULL || elem == NULL)
         return NULL;
 
     splay(tree, elem);
@@ -102,6 +103,8 @@ void *splay_search(splaytree *tree, void *elem) {
 }
 
 /* splay_clear - clears out the splaytree, frees all nodes
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
  * Fails: tree is NULL */
 int splay_clear(splaytree *tree) {
     if (tree == NULL)
@@ -123,7 +126,8 @@ static void clear(splaynode *node) {
            will become the new root of the tree. if the element is not in the
            tree, then the new root will either be the greatest element less
            than the given element, or the least element greater than the given
-           element. */
+           element.
+ * Invariant: tree is not NULL, tree->root is not NULL */
 static void splay(splaytree *tree, void *elem) {
     splaynode assembler;
     splaynode *left, *right;
@@ -198,8 +202,10 @@ static splaynode *rotate_right(splaynode *node) {
 
 /* init_node - allocs a new splaynode with the given element as the data */
 static int init_node(splaynode **node, void *elem) {
-    if ((*node = calloc(1, sizeof(splaynode))) == NULL)
+    if ((*node = malloc(sizeof(splaynode))) == NULL)
         return 1;
     (*node)->data = elem;
+    (*node)->left = NULL;
+    (*node)->right = NULL;
     return 0;
 }
