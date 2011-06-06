@@ -3,7 +3,7 @@
 
 static void clear(rbnode *);
 static rbnode *insert(rbnode *, void *, cmpfun);
-static rbnode *delete(rbnode *, void *, cmpfun);
+static rbnode *delete(rbnode *, void *, cmpfun, void **);
 
 static rbnode *fix(rbnode *);
 static int is_red(rbnode *);

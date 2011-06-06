@@ -27,6 +27,8 @@ int rbtree_destroy(rbtree *tree) {
 
 /* rbtree_clear - empties out the given red black tree and frees all alloc'd
                   nodes
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
  * Fails: tree is NULL */
 int rbtree_clear(rbtree *tree) {
     if (tree == NULL)
@@ -99,48 +101,57 @@ static rbnode *insert(rbnode *node, void *item, cmpfun cmp) {
         node->left = insert(node->left, item, cmp);
     else if (c > 0)
         node->right = insert(node->right, item, cmp);
+    else
+        return node;
 
     return fix(node);
 }
 
-/* rbtree_delete - removes the given item from the given rbtree
+/* rbtree_delete - removes the given item from the given rbtree and
+                   returns it if it exists, otherwise returns NULL
  * Fails: tree is NULL or item is NULL */
-int rbtree_delete(rbtree *tree, void *item) {
-    if (tree == NULL || item == NULL)
-        return 1;
-    if (tree->root == NULL)
-        return 0;
+void *rbtree_delete(rbtree *tree, void *item) {
+    void *data = NULL;
 
-    tree->root = delete(tree->root, item, tree->cmp);
+    if (tree == NULL || item == NULL)
+        return NULL;
+    if (tree->root == NULL)
+        return NULL;
+
+    tree->root = delete(tree->root, item, tree->cmp, &data);
     if (tree->root != NULL)
         tree->root->color = BLACK;
-    return 0;   
+    return data;
 }
 
 /* delete - deletes the given item from the given a red black tree
  * Invariant: node is an alloc'd rbnode */
-static rbnode *delete(rbnode *node, void *item, cmpfun cmp) {
+static rbnode *delete(rbnode *node, void *item, cmpfun cmp, void **data) {
     if (cmp(item, node->data) < 0) {
         if (node->left == NULL)
-            return NULL;
+            return node;
         if (!is_red(node->left) && !is_red(node->left->left))
             node = move_red_left(node);
-        node->left = delete(node->left, item, cmp);
+        node->left = delete(node->left, item, cmp, data);
     } else {
         if (is_red(node->left))
             node = rotate_right(node);
         if (node->right == NULL) {
-            if (cmp(item, node->data) == 0)
+            if (cmp(item, node->data) == 0) {
+                *data = node->data;
                 free(node);
-            return NULL;
+                return NULL;
+            }
+            return node;
         }
         if (!is_red(node->right) && !is_red(node->right->left))
             node = move_red_right(node);
         if (cmp(item, node->data) == 0) {
+            *data = node->data;
             node->data = min(node->right);
             node->right = delete_min(node->right);
         } else
-            node->right = delete(node->right, item, cmp);
+            node->right = delete(node->right, item, cmp, data);
     }
     return fix(node);
 }
@@ -216,9 +227,10 @@ static rbnode *move_red_right(rbnode *node) {
 }
 
 /* delete_min - delete the minimum node in a rbtree by carrying a red link
-                    down the left side
- * Invariant: node is an alloc'd node
-              either node is RED or node->left is RED */
+                down the left side
+ * Invariant: node is an alloc'd node, node is RED or node->left is RED,
+              and we don't need to worry about node->data becoming a memory
+              leak as we've moved it to another node in 'delete' */
 static rbnode *delete_min(rbnode *node) {
     if (node->left == NULL) {
         free(node);

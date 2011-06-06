@@ -21,7 +21,7 @@ typedef struct rbnode_t {
     int color;
 } rbnode;
 
-/* a rbtree just holds onto the root of the red black tree as well as the
+/* an rbtree just holds onto the root of the red black tree as well as the
    compare function passed in through init */
 typedef struct {
     rbnode *root;
@@ -35,7 +35,7 @@ int rbtree_destroy(rbtree *);
 /* standard BST methods */
 void *rbtree_search(rbtree *, void *);
 int rbtree_insert(rbtree *, void *);
-int rbtree_delete(rbtree *, void *);
+void *rbtree_delete(rbtree *, void *);
 
 /* auxiliary */
 int rbtree_clear(rbtree *);
