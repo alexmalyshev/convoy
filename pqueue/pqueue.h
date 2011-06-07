@@ -33,8 +33,8 @@ int pqueue_init(pqueue **, cmpfun);
 int pqueue_destroy(pqueue *);
 
 /* standard pqueue operations */
-void *pqueue_delete(pqueue *);
-int pqueue_enqueue(pqueue *, void *);
+void *pqueue_delete_min(pqueue *);
+int pqueue_insert(pqueue *, void *);
 
 /* auxiliary */
 int pqueue_clear(pqueue *);

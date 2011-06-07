@@ -14,6 +14,8 @@ int queue_init(queue **q) {
 
 /* queue_destroy - clears out the queue of all items, frees all nodes as well
                    as the queue struct itself
+ * Warning: Will cause memory leaks if the elements in the queue were malloc'd
+            and never get free'd after this function call
  * Fails: q is NULL */
 int queue_destroy(queue *q) {
     if (queue_clear(q))
@@ -72,6 +74,8 @@ void *queue_peek(queue *q) {
 
 /* queue_clear - removes all the items from the given queue and frees all
                  corresponding nodes
+ * Warning: Will cause memory leaks if the elements in the queue were malloc'd
+            and never get free'd after this function call
  * Fails: q is NULL */
 int queue_clear(queue *q) {
     qnode *node, *deadnode;

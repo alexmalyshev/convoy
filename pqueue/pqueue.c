@@ -21,6 +21,8 @@ int pqueue_init(pqueue **pq, cmpfun cmp) {
 
 /* pqueue_destroy - removes all elements from pq, frees the dynamic array
                     in pq and pq itself
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
  * Fails: pq is NULL */
 int pqueue_destroy(pqueue *pq) {
     if (pqueue_clear(pq))
@@ -30,20 +32,11 @@ int pqueue_destroy(pqueue *pq) {
     return 0;
 }
 
-/* pqueue_clear - removes all elements from pq
+/* pqueue_delete_min - removes the minimum element from pq (as per the compare
+                       function) and returns it if it exists, returns NULL
+                       otherwise
  * Fails: pq is NULL */
-int pqueue_clear(pqueue *pq) {
-    if (pq == NULL)
-        return 1;
-    pq->size = 0;
-    return 0;
-}
-
-/* pqueue_delete - removes the minimum element from pq (as per the compare
-                   function) and returns it if it exists, returns NULL
-                   otherwise
- * Fails: pq is NULL */
-void *pqueue_delete(pqueue *pq) {
+void *pqueue_delete_min(pqueue *pq) {
     void *min, **items;
 
     if (pq == NULL || pq->size <= 0)
@@ -59,9 +52,9 @@ void *pqueue_delete(pqueue *pq) {
     return min;
 }
 
-/* pqueue_enqueue - adds on the item to pq
+/* pqueue_insert - adds on the item to pq
  * Fails: pq is NULL or item is NULL */
-int pqueue_enqueue(pqueue *pq, void *item) {
+int pqueue_insert(pqueue *pq, void *item) {
     if (pq == NULL || item == NULL)
         return 1;
 
@@ -70,6 +63,17 @@ int pqueue_enqueue(pqueue *pq, void *item) {
     (pq->items)[pq->size] = item;
     ++(pq->size);
     percolate_up(pq);
+    return 0;
+}
+
+/* pqueue_clear - removes all elements from pq
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
+ * Fails: pq is NULL */
+int pqueue_clear(pqueue *pq) {
+    if (pq == NULL)
+        return 1;
+    pq->size = 0;
     return 0;
 }
 

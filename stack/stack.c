@@ -11,8 +11,10 @@ int stack_init(stack **s) {
     return 0;
 }
 
-/* stack_destroy - empties out the given stack, freeing all nodes and frees the
-                   stack struct itself
+/* stack_destroy - empties out the given stack, freeing all nodes and frees
+                   the stack struct itself
+ * Warning: Will cause memory leaks if the elements in the stack were malloc'd
+            and never get free'd after this function call
  * Fails: s is NULL */
 int stack_destroy(stack *s) {
     if (stack_clear(s))
@@ -68,6 +70,8 @@ int stack_push(stack *s, void *item) {
 
 /* stack_clear - removes all items from the stack and frees their
                  corresponding nodes
+ * Warning: Will cause memory leaks if the elements in the stack were malloc'd
+            and never get free'd after this function call
  * Fails: s is NULL */
 int stack_clear(stack *s) {
     snode *node, *dead;

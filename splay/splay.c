@@ -16,6 +16,8 @@ int splay_init(splaytree **tree, cmpfun cmp) {
 }
 
 /* splay_destroy - frees all nodes of splaytree and the tree struct itself
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
  * Fails: tree is NULL */
 int splay_destroy(splaytree *tree) {
     if (splay_clear(tree))

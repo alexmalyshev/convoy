@@ -17,6 +17,8 @@ int rbtree_init(rbtree **tree, cmpfun cmp) {
 
 /* rbtree_destroy - empties out the given red black tree and frees all alloc'd
                     nodes and the tree struct itself
+ * Warning: Will cause memory leaks if the elements in the tree were malloc'd
+            and never get free'd after this function call
  * Fails: tree is NULL */
 int rbtree_destroy(rbtree *tree) {
     if (rbtree_clear(tree))
