@@ -7,8 +7,8 @@
     Alexander Malyshev - binaheap.h
 
     Implementation of a minimum binary heap that is backed by a dynamic array.
-    Priority is handled with a user-defined cmp function that is passed in as
-    an argument to the binaheap_init function. NULL cannot be stored.
+    Comparisons are handled with a user-defined cmp function that is passed in
+    as an argument to the binaheap_init function. NULL cannot be stored.
 */
 
 #define INITIAL_CAPACITY 10

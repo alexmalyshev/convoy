@@ -32,7 +32,7 @@ int binaheap_destroy(binaheap *heap) {
     return 0;
 }
 
-/* binaheap_delete_min - removes the minimum element from heap (as per the
+/* binaheap_deletemin - removes the minimum element from heap (as per the
                          compare function) and returns it if it exists,
                          returns NULL otherwise
  * Fails: heap is NULL */
