@@ -36,7 +36,7 @@ int binaheap_destroy(binaheap *heap) {
                          compare function) and returns it if it exists,
                          returns NULL otherwise
  * Fails: heap is NULL */
-void *binaheap_delete_min(binaheap *heap) {
+void *binaheap_deletemin(binaheap *heap) {
     void *min, **items;
 
     if (heap == NULL || heap->size <= 0)

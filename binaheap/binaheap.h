@@ -4,7 +4,7 @@
 #include <limits.h> /* LONG_MAX */
 
 /*
-    Alexander Malyshev - pqueue.h
+    Alexander Malyshev - binaheap.h
 
     Implementation of a minimum binary heap that is backed by a dynamic array.
     Priority is handled with a user-defined cmp function that is passed in as
@@ -32,7 +32,7 @@ int binaheap_init(binaheap **, cmpfun);
 int binaheap_destroy(binaheap *);
 
 /* standard heap operations */
-void *binaheap_delete_min(binaheap *);
+void *binaheap_deletemin(binaheap *);
 int binaheap_insert(binaheap *, void *);
 
 /* auxiliary */
