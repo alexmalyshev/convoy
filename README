@@ -1,6 +1,6 @@
 --Everything in this repository is in the public domain--
 
-This is a collection of data structures/types written in ANSI C.
+This is a collection of data structures/types written in C89.
 
 Every folder is a separate data structure that will contain a header
 file of the same name as the folder (e.g. folder rbtree contains file
