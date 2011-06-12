@@ -1,6 +1,12 @@
 #ifndef SPLAY_H_
 #define SPLAY_H_
 
+/*
+    Alexander Malyshev - splay.h
+
+    Implementation of a splay tree. NULL cannot be stored.
+*/
+
 typedef int (*cmpfun)(void *, void *);
 
 /* a splaynode holds onto a data pointer, along with pointers to its two

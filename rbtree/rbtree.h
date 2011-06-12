@@ -4,12 +4,11 @@
 /*
     Alexander Malyshev - rbtree.h
 
-    Implementation of a left leaning red black tree.
+    Implementation of a left leaning red black tree. NULL cannot be stored.
 */
 
 #define RED 0
 #define BLACK 1
-#define FLIP(color) (!(color))
 
 typedef int (*cmpfun)(void *, void *);
 

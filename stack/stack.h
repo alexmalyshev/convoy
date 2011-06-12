@@ -4,7 +4,7 @@
 /*
     Alexander Malyshev - stack.h
 
-    Implementation of a stack that is backed by a linked list.
+    Implementation of a stack that is backed by a singly linked list.
     NULL cannot be stored.
 */
 

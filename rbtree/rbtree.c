@@ -2,6 +2,8 @@
 #include "rbtree.h"
 #include "rbtree-int.h"
 
+#define FLIP(color) (!(color))
+
 /* rbtree_init - allocs a new red black tree with the given compare function
  * Fails: tree is NULL or cmp is NULL, or if malloc fails */
 int rbtree_init(rbtree **tree, cmpfun cmp) {
