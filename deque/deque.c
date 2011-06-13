@@ -70,7 +70,7 @@ int deque_insertf(deque *d, void *elem) {
                  empty
  * Fails: d is NULL */
 void *deque_peekb(deque *d) {
-    if (d == NULL || d->back == NUL)
+    if (d == NULL || d->back == NULL)
         return NULL;
     return d->back->data;
 }
