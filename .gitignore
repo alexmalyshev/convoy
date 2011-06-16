@@ -1,2 +1,5 @@
 # ignore any of my test files
 test*
+
+# changes often, and users dont need it
+TODO
