@@ -3,3 +3,6 @@ test*
 
 # changes often, and users dont need it
 TODO
+
+# doxygen
+Doxyfile

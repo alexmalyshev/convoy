@@ -1,31 +1,29 @@
+/** @file stack.c
+ *  @brief A stack library.
+ *
+ *  Implemented as a singly linked list, we malloc a node every time we push
+ *  an new element onto the stack and free the node that wraps around the
+ *  top element when we pop off the top element.
+ *
+ *  @author Alexander Malyshev
+ *  @bug No known bugs.
+ */
+
 #include <stdlib.h>
 #include "stack.h"
 
-/* stack_init - allocs and initializes a new empty stack at *s
- * Fails: s is NULL, or if calloc fails */
-int stack_init(stack **s) {
-    if (s == NULL)
-        return 1;
-    if ((*s = calloc(1, sizeof(stack))) == NULL)
-        return 1;
-    return 0;
+stack *stack_init(void) {   
+    return calloc(1, sizeof(stack));
 }
 
-/* stack_destroy - empties out the given stack, freeing all nodes and frees
-                   the stack struct itself
- * Warning: Will cause memory leaks if the elements in the stack were malloc'd
-            and never get free'd after this function call
- * Fails: s is NULL */
 int stack_destroy(stack *s) {
     if (stack_clear(s))
         return 1;
+
     free(s);
     return 0;
 }
 
-/* stack_peek - returns the top item in the given stack if it exists,
-                returns NULL if the stack is empty
- * Fails: s is NULL */
 void *stack_peek(stack *s) {
     if (s == NULL || s->top == NULL)
         return NULL;
@@ -33,46 +31,36 @@ void *stack_peek(stack *s) {
     return s->top->data;
 }
 
-/* stack_pop - pops off the top item of the given stack and returns it if it
-               exists, returns NULL if the stack is empty
- * Fails: s is NULL */
 void *stack_pop(stack *s) {
-    snode *node;
-    void *item;
+    snode *dead;
+    void *data;
 
     if (s == NULL || s->top == NULL)
         return NULL;
         
-    node = s->top;
+    dead = s->top;
     s->top = s->top->next;
-    item = node->data;
-    free(node);
+    data = dead->data;
+    free(dead);
     --(s->len);
-    return item;
+    return data;
 }
 
-/* stack_push - pushes the given item onto the top of the given stack
- * Fails: s is NULL or item is NULL, or if malloc fails */
-int stack_push(stack *s, void *item) {
-    snode *node;
+int stack_push(stack *s, void *elem) {
+    snode *new;
     
-    if (s == NULL || item == NULL)
+    if (s == NULL || elem == NULL)
         return 1;
-    if ((node = malloc(sizeof(snode))) == NULL)
+    if ((new = malloc(sizeof(snode))) == NULL)
         return 1;
 
-    node->data = item;
-    node->next = s->top;
-    s->top = node;
+    new->data = elem;
+    new->next = s->top;
+    s->top = new;
     ++(s->len);
     return 0;
 }
 
-/* stack_clear - removes all items from the stack and frees their
-                 corresponding nodes
- * Warning: Will cause memory leaks if the elements in the stack were malloc'd
-            and never get free'd after this function call
- * Fails: s is NULL */
 int stack_clear(stack *s) {
     snode *node, *dead;
 
@@ -89,10 +77,9 @@ int stack_clear(stack *s) {
     return 0;
 }
 
-/* stack_len - returns the number of items in the given stack
- * Fails: s is NULL */
 long stack_len(stack *s) {
     if (s == NULL)
         return -1;
+
     return s->len;
 }
