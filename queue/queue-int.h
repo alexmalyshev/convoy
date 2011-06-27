@@ -1,5 +1,5 @@
 /** @file queue-int.h
- *  @brief Function prototypes for helper functions in the queue library.
+ *  @brief Function prototypes for internal functions in the queue library.
  *  @author Alexander Malyshev
  *  @bug No known bugs.
  */

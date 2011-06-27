@@ -3,7 +3,7 @@
  *
  *  Implemented as a singly linked list with a tail reference, we malloc a node
  *  every time we enqueue a new element onto the queue and free the node that
- *  wraps around the front element when we dequeue the front element.
+ *  wraps around the front element when we call queue_dequeue.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.

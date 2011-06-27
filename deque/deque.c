@@ -1,22 +1,22 @@
+/** @file deque.c
+ *  @brief A deque library.
+ *
+ *  Implemented as a doubly linked list, we malloc a node every time we insert
+ *  a new element into the deque and free the node that wraps around the
+ *  front or back element when we call deque_removeb or deque_removef.
+ *
+ *  @author Alexander Malyshev
+ *  @bug No known bugs.
+ */
+
 #include <stdlib.h>
 #include "deque.h"
 #include "deque-int.h"
 
-/* deque_init - allocs a new empty deque at *d
- * Fails: d is NULL, or calloc fails */
-int deque_init(deque **d) {
-    if (d == NULL)
-        return 1;
-    if ((*d = calloc(1, sizeof(deque))) == NULL)
-        return 1;
-    return 0;
+deque *deque_init(void) {
+    return calloc(1, sizeof(deque));
 }
 
-/* deque_destroy - clears out all elements from d and frees their associated
-                   nodes as well as the deque struct itself
- * Warning: Will cause memory leaks if the elements in the deque were malloc'd
-            and never get free'd after this function call
- * Fails: d is NULL */
 int deque_destroy(deque *d) {
     if (deque_clear(d))
         return 1;
@@ -24,15 +24,13 @@ int deque_destroy(deque *d) {
     return 0;
 }
 
-/* deque_insertb - inserts elem as the new back of d
- * Fails: d is NULL or elem is NULL, or if malloc in init_node fails */
 int deque_insertb(deque *d, void *elem) {
     dnode *new;
 
     if (d == NULL || elem == NULL)
         return 1;
 
-    if (init_node(&new, elem))
+    if ((new = init_node(elem)) == NULL)
         return 1;
     new->prev = d->back;
     new->next = NULL;
@@ -45,15 +43,13 @@ int deque_insertb(deque *d, void *elem) {
     return 0;
 }
 
-/* deque_insertf - inserts elem as the new front of d
- * Fails: d is NULL or elem is NULL, or if malloc in init_node fails */
 int deque_insertf(deque *d, void *elem) {
     dnode *new;
 
     if (d == NULL || elem == NULL)
         return 1;
 
-    if (init_node(&new, elem))
+    if ((new = init_node(elem)) == NULL)
         return 1;
     new->next = d->front;
     new->prev = NULL;
@@ -66,27 +62,18 @@ int deque_insertf(deque *d, void *elem) {
     return 0;
 }
 
-/* deque_peekb - returns the back element of d if it exists, NULL if d is
-                 empty
- * Fails: d is NULL */
 void *deque_peekb(deque *d) {
     if (d == NULL || d->back == NULL)
         return NULL;
     return d->back->data;
 }
 
-/* deque_peekf - returns the front element of d if it exists, NULL if d is
-                 empty
- * Fails: d is NULL */
 void *deque_peekf(deque *d) {
     if (d == NULL || d->front == NULL)
         return NULL;
     return d->front->data;
 }
 
-/* deque_removeb - removes the back element of d and returns it if it exists,
-                   returns NULL if d is empty
- * Fails: d is NULL */
 void *deque_removeb(deque *d) {
     dnode *dead;
     void *data;
@@ -105,9 +92,6 @@ void *deque_removeb(deque *d) {
     return data;
 }
 
-/* deque_removef - removes the front element of d and returns it if it exists,
-                   returns NULL if d is empty
- * Fails: d is NULL */
 void *deque_removef(deque *d) {
     dnode *dead;
     void *data;
@@ -126,11 +110,6 @@ void *deque_removef(deque *d) {
     return data;
 }
 
-/* deque_clear - clears out all elements from d and frees their associated
-                 nodes
- * Warning: Will cause memory leaks if the elements in the deque were malloc'd
-            and never get free'd after this function call
- * Fails: d is NULL */
 int deque_clear(deque *d) {
     dnode *dead, *node;
 
@@ -149,13 +128,12 @@ int deque_clear(deque *d) {
     return 0;
 }
 
-/* init_node - allocs a new dnode at *node with elem as the data, does not
-               specify values of prev or next for node
- * Invariant: node is not NULL, elem is not NULL
- * Fails: if malloc fails */
-static int init_node(dnode **node, void *elem) {
-    if ((*node = malloc(sizeof(dnode))) == NULL)
-        return 1;
-    (*node)->data = elem;
-    return 0;
+static dnode *init_node(void *elem) {
+    dnode *node;
+
+    if ((node = malloc(sizeof(dnode))) == NULL)
+        return NULL;
+
+    node->data = elem;
+    return node;
 }

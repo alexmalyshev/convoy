@@ -53,7 +53,7 @@ int stack_destroy(stack *s);
  */
 void *stack_peek(stack *s);
 
-/** @brief Removes the top element from s if it exists and returns it.
+/** @brief Removes the top element of s if it exists and returns it.
  *
  *  Will return NULL if s is NULL.
  *

@@ -46,7 +46,7 @@ queue *queue_init(void);
  */
 int queue_destroy(queue *q);
 
-/** @brief Removes the front element from q if it exists and returns it.
+/** @brief Removes the front element of q if it exists and returns it.
  *
  *  Will fail and return NULL if q is NULL.
  *
@@ -59,7 +59,7 @@ void *queue_dequeue(queue *q);
  *
  *  Will fail and return 1 if q is NULL or elem is NULL.
  *
- *  @param q the address of the queue we want to insert elem onto.
+ *  @param q the address of the queue we want to insert elem into.
  *  @param elem the element we want to insert as the new back of q.
  *  @return Success status.
  */
