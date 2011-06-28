@@ -27,6 +27,7 @@ typedef struct {
 } circbuf;
 
 /** @brief Allocates and initializes a new circbuf.
+ *  @param size the desired size of the circbuf.
  *  @return A pointer to a new circbuf of the given size.
  */
 circbuf *circbuf_init(long size);

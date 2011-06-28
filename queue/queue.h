@@ -76,8 +76,8 @@ void *queue_peek(queue *q);
 
 /** @brief Removes all elements from q.
  *
- *  Frees all nodes in the linked list in q,
- *  but will not free the elements in q.
+ *  Frees all nodes in the linked list in q but will not free the
+ *  elements in the nodes.
  *
  *  @param q the address of the queue we want to clear out.
  *  @return Success status.

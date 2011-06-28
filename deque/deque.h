@@ -105,8 +105,8 @@ void *deque_removef(deque *d);
 
 /** @brief Removes all elements from d.
  *
- *  Frees all nodes in the linked list in d,
- *  but will not free the elements in d.
+ *  Frees all nodes in the linked list in d but will not free the
+ *  elements in the nodes.
  *
  *  @param d the address of the deque we want to clear out.
  *  @return Success status.

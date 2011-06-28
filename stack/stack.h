@@ -1,4 +1,4 @@
-** @file stack.h
+/** @file stack.h
  *  @brief Function prototypes and structs for a stack data structure.
  *
  *  Implementation of a LIFO stack that is backed by a singly linked list.
@@ -74,8 +74,8 @@ int stack_push(stack *s, void *elem);
 
 /** @brief Removes all elements from s.
  *
- *  Frees all nodes in the linked list in s,
- *  but will not free the elements in s.
+ *  Frees all nodes in the linked list in s but will not free the
+ *  elements in the nodes.
  *
  *  @param s the address of the stack we want to clear out.
  *  @return Success status.
