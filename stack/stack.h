@@ -1,4 +1,4 @@
-/** @file stack.h
+** @file stack.h
  *  @brief Function prototypes and structs for a stack data structure.
  *
  *  Implementation of a LIFO stack that is backed by a singly linked list.
@@ -48,7 +48,7 @@ int stack_destroy(stack *s);
  *
  *  Will return NULL if s is NULL.
  *
- *  @param s the address of the stack we're trying to peek into.
+ *  @param s the address of the stack we want to peek into.
  *  @return The top element of s if it exists, NULL if s is empty.
  */
 void *stack_peek(stack *s);
@@ -57,7 +57,7 @@ void *stack_peek(stack *s);
  *
  *  Will return NULL if s is NULL.
  *
- *  @param s the address of the stack we're trying to pop the top off.
+ *  @param s the address of the stack we want to pop the top off.
  *  @return The top element of s if it exists, NULL if s is empty.
  */
 void *stack_pop(stack *s);
@@ -66,7 +66,7 @@ void *stack_pop(stack *s);
  *
  *  Will fail and return 1 if s is NULL or elem is NULL.
  *
- *  @param s the address of the stack we're trying to push elem onto.
+ *  @param s the address of the stack we want to push elem onto.
  *  @param elem the element we want to insert as the new top of s.
  *  @return Success status.
  */
@@ -74,10 +74,10 @@ int stack_push(stack *s, void *elem);
 
 /** @brief Removes all elements from s.
  *
- *  Frees all nodes in the linked list in s, but will not free the
- *  elements in s or s itself.
+ *  Frees all nodes in the linked list in s,
+ *  but will not free the elements in s.
  *
- *  @param s the address of the stack we're trying to clear out.
+ *  @param s the address of the stack we want to clear out.
  *  @return Success status.
  */
 int stack_clear(stack *s);

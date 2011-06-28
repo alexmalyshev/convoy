@@ -69,17 +69,17 @@ int queue_enqueue(queue *q, void *elem);
  *
  *  Will return NULL if q is NULL.
  *
- *  @param q the address of the queue we're trying to peek into.
+ *  @param q the address of the queue we want to peek into.
  *  @return The front element of q if it exists, NULL if q is empty.
  */
 void *queue_peek(queue *q);
 
 /** @brief Removes all elements from q.
  *
- *  Frees all nodes in the linked list in q, but will not free the
- *  elements in q or q itself.
+ *  Frees all nodes in the linked list in q,
+ *  but will not free the elements in q.
  *
- *  @param q the address of the queue we're trying to clear out.
+ *  @param q the address of the queue we want to clear out.
  *  @return Success status.
  */
 int queue_clear(queue *q);
