@@ -26,8 +26,8 @@ typedef struct snode_t {
  *  Implemented as a singly linked list that stores its length.
  */
 typedef struct {
-    snode *top;             /**< the top node in the stack */
-    long len;               /**< the number of elements in the stack */
+    snode *top;     /**< the top node in the stack */
+    long len;       /**< the number of elements in the stack */
 } stack;
 
 /** @brief Allocates and initializes a new stack.
