@@ -27,7 +27,7 @@ typedef struct splaynode_t {
 
 /** @brief A splay tree.
  *
- *  Stores the root node of the tree as well as a generic compare function.
+ *  Stores the root node of the tree as well as a compare function.
  */
 typedef struct splaytree_t {
     splaynode *root;
@@ -35,7 +35,7 @@ typedef struct splaytree_t {
 } splaytree;
 
 /** @brief Allocates and initializes a new splaytree.
- *  @param cmp the generic compare function that will be used by the tree.
+ *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new splaytree.
  */
 splaytree *splay_init(cmpfun cmp);

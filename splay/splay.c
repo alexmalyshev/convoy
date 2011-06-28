@@ -79,7 +79,7 @@ int splay_insert(splaytree *tree, void *elem) {
     if (c == 0)
         return 0;
 
-    if (init_node(&new, elem))
+    if ((new = init_node(elem)) == NULL)
         return 1;
 
     if (c < 0) {
