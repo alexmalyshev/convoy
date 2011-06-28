@@ -1,3 +1,15 @@
+/** @file rational.c
+ *  @brief A rational number library.
+ *
+ *  A simple implementation of a rational number. We pass in rat structs by
+ *  value rather than by address for having neat and concise code, that and
+ *  anyone trying to use this library for performance intensive math operations
+ *  is barking up the wrong tree.
+ *
+ *  @author Alexander Malyshev
+ *  @bug No known bugs.
+ */
+
 #include <stdio.h>
 #include "rational.h"
 #include "rational-int.h"
