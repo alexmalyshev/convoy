@@ -1,24 +1,32 @@
+/** @file splay.c
+ *  @brief A splay tree library.
+ *
+ *  We malloc a node every time we insert a new element into the splay tree
+ *  and free the node that wraps around the element returned by splay_delete.
+ *  We compare elements in the tree using the generic compare function that is
+ *  given as an argument to splay_init.
+ *
+ *  @author Alexander Malyshev
+ *  @bug No known bugs.
+ */
+
 #include <stdlib.h>
 #include "splay.h"
 #include "splay-int.h"
 
-/* splay_init - allocs a new splaytree
- * Fails: tree is NULL or cmp is NULL, or if malloc fails */
-int splay_init(splaytree **tree, cmpfun cmp) {
-    if (tree == NULL || cmp == NULL)
-        return 1;
+splaytree *splay_init(cmpfun cmp) {
+    splaytree *tree;
 
-    if ((*tree = malloc(sizeof(splaytree))) == NULL)
-        return 1;
-    (*tree)->cmp = cmp;
-    (*tree)->root = NULL;
-    return 0;
+    if (cmp == NULL)
+        return NULL;
+
+    if ((tree = malloc(sizeof(splaytree))) == NULL)
+        return NULL;
+    tree->cmp = cmp;
+    tree->root = NULL;
+    return tree;
 }
 
-/* splay_destroy - frees all nodes of splaytree and the tree struct itself
- * Warning: Will cause memory leaks if the elements in the tree were malloc'd
-            and never get free'd after this function call
- * Fails: tree is NULL */
 int splay_destroy(splaytree *tree) {
     if (splay_clear(tree))
         return 1;
@@ -26,9 +34,6 @@ int splay_destroy(splaytree *tree) {
     return 0;
 }
 
-/* splay_delete - will delete the given element from the tree if it exists
-                  and return it, returns NULL if it doesn't
- * Fails: tree is NULL or elem is NULL */
 void *splay_delete(splaytree *tree, void *elem) {
     splaynode *temp, *dead;
     void *data;
@@ -55,8 +60,6 @@ void *splay_delete(splaytree *tree, void *elem) {
     return data;
 }
 
-/* splay_insert - inserts the given element into the splay tree
- * Fails: tree is NULL or elem is NULL, or if calloc fails in init_node */
 int splay_insert(splaytree *tree, void *elem) {
     splaynode *new;
     int c;
@@ -65,7 +68,7 @@ int splay_insert(splaytree *tree, void *elem) {
         return 1;
 
     if (tree->root == NULL) {
-        if (init_node(&new, elem))
+        if ((new = init_node(elem)) == NULL)
             return 1;
         tree->root = new;
         return 0;
@@ -92,8 +95,6 @@ int splay_insert(splaytree *tree, void *elem) {
     return 0;
 }
 
-/* splay_search - checks if the given element is in the tree
- * Fails: tree is NULL or elem is NULL */
 void *splay_search(splaytree *tree, void *elem) {
     if (tree == NULL || tree->root == NULL || elem == NULL)
         return NULL;
@@ -104,32 +105,23 @@ void *splay_search(splaytree *tree, void *elem) {
     return NULL;
 }
 
-/* splay_clear - clears out the splaytree, frees all nodes
- * Warning: Will cause memory leaks if the elements in the tree were malloc'd
-            and never get free'd after this function call
- * Fails: tree is NULL */
 int splay_clear(splaytree *tree) {
     if (tree == NULL)
         return 0;
+
     clear(tree->root);
     return 0;
 }
 
-/* clear - recursively clears out a binary tree by freeing all the nodes */
 static void clear(splaynode *node) {
     if (node == NULL)
         return;
+
     clear(node->left);
     clear(node->right);
     free(node);
 }
 
-/* splay - if the given element exists in the tree, the node containing it
-           will become the new root of the tree. if the element is not in the
-           tree, then the new root will either be the greatest element less
-           than the given element, or the least element greater than the given
-           element.
- * Invariant: tree is not NULL, tree->root is not NULL */
 static void splay(splaytree *tree, void *elem) {
     splaynode assembler;
     splaynode *left, *right;
@@ -184,8 +176,6 @@ static void splay(splaytree *tree, void *elem) {
     tree->root = node;
 }
 
-/* rotate_left - standard BST rotation to the left
- * Invariant: node is an alloc'd node with an alloc'd right child */
 static splaynode *rotate_left(splaynode *node) {
     splaynode *temp = node->right;
     node->right = temp->left;
@@ -193,8 +183,6 @@ static splaynode *rotate_left(splaynode *node) {
     return temp;
 }
 
-/* rotate_right - standard BST rotation to the right
- * Invariant: node is an alloc'd node with an alloc'd left child */
 static splaynode *rotate_right(splaynode *node) {
     splaynode *temp = node->left;
     node->left = temp->right;
@@ -202,12 +190,14 @@ static splaynode *rotate_right(splaynode *node) {
     return temp;
 }
 
-/* init_node - allocs a new splaynode with the given element as the data */
-static int init_node(splaynode **node, void *elem) {
-    if ((*node = malloc(sizeof(splaynode))) == NULL)
-        return 1;
-    (*node)->data = elem;
-    (*node)->left = NULL;
-    (*node)->right = NULL;
-    return 0;
+static splaynode *init_node(void *elem) {
+    splaynode *node;
+
+    if ((node = malloc(sizeof(splaynode))) == NULL)
+        return NULL;
+
+    node->data = elem;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
 }
