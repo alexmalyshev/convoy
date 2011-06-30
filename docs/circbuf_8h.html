@@ -79,16 +79,16 @@ Data Structures</h2></td></tr>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a1fc4ab6be0160c6d85c8d2a81f09c46b">circbuf_init</a> (long size)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new circbuf.  <a href="#a1fc4ab6be0160c6d85c8d2a81f09c46b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a13f01def2a80fbf0f55cdba11998ec8b">circbuf_destroy</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cb)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array in cb and cb itself.  <a href="#a13f01def2a80fbf0f55cdba11998ec8b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#af54bbeec21e6641cb3e583c57220480e">circbuf_dequeue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cb)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of cb if it exists and returns it.  <a href="#af54bbeec21e6641cb3e583c57220480e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a7cee597f48e3ea7ea63480dc33f32143">circbuf_enqueue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cb, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of cb.  <a href="#a7cee597f48e3ea7ea63480dc33f32143"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#ab12437c34beba7fedfceb74f1b0386d7">circbuf_peek</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cb)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of cb if it exists.  <a href="#ab12437c34beba7fedfceb74f1b0386d7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a9ccf5163db038c5a542051a6c8d8e941">circbuf_clear</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cb)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from cb.  <a href="#a9ccf5163db038c5a542051a6c8d8e941"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#aba61e30a1c8e80c7011c6a803a56860b">circbuf_destroy</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array in cbuf and cbuf itself.  <a href="#aba61e30a1c8e80c7011c6a803a56860b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#af60b26a5a5c2dbb74d56a042f977d19f">circbuf_dequeue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of cbuf if it exists and returns it.  <a href="#af60b26a5a5c2dbb74d56a042f977d19f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#abd67253c30ae27fd0888cfb0acf7434e">circbuf_enqueue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of cbuf.  <a href="#abd67253c30ae27fd0888cfb0acf7434e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a043903569ce67d490764ff77cb5c9fd8">circbuf_peek</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of cbuf if it exists.  <a href="#a043903569ce67d490764ff77cb5c9fd8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#abb1e318178f36beba89fb07ec4a0680b">circbuf_clear</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from cbuf.  <a href="#abb1e318178f36beba89fb07ec4a0680b"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and struct for a circular buffer data structure. </p>
@@ -96,7 +96,7 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000005">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a9ccf5163db038c5a542051a6c8d8e941"></a><!-- doxytag: member="circbuf.h::circbuf_clear" ref="a9ccf5163db038c5a542051a6c8d8e941" args="(circbuf *cb)" -->
+<a class="anchor" id="abb1e318178f36beba89fb07ec4a0680b"></a><!-- doxytag: member="circbuf.h::circbuf_clear" ref="abb1e318178f36beba89fb07ec4a0680b" args="(circbuf *cbuf)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -104,18 +104,18 @@ Functions</h2></td></tr>
           <td class="memname">int circbuf_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from cb. </p>
-<p>Will not free the elements in cb.</p>
+<p>Removes all elements from cbuf. </p>
+<p>Will not free the elements in cbuf.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the address of the circbuf we want to clear out. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -123,7 +123,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af54bbeec21e6641cb3e583c57220480e"></a><!-- doxytag: member="circbuf.h::circbuf_dequeue" ref="af54bbeec21e6641cb3e583c57220480e" args="(circbuf *cb)" -->
+<a class="anchor" id="af60b26a5a5c2dbb74d56a042f977d19f"></a><!-- doxytag: member="circbuf.h::circbuf_dequeue" ref="af60b26a5a5c2dbb74d56a042f977d19f" args="(circbuf *cbuf)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -131,26 +131,26 @@ Functions</h2></td></tr>
           <td class="memname">void* circbuf_dequeue </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes the front element of cb if it exists and returns it. </p>
-<p>Will fail and return NULL if cb is NULL.</p>
+<p>Removes the front element of cbuf if it exists and returns it. </p>
+<p>Will fail and return NULL if cbuf is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the address of the circbuf we want to remove the front from. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to remove the front from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of cb if it exists, NULL if cb is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of cbuf if it exists, NULL if cbuf is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a13f01def2a80fbf0f55cdba11998ec8b"></a><!-- doxytag: member="circbuf.h::circbuf_destroy" ref="a13f01def2a80fbf0f55cdba11998ec8b" args="(circbuf *cb)" -->
+<a class="anchor" id="aba61e30a1c8e80c7011c6a803a56860b"></a><!-- doxytag: member="circbuf.h::circbuf_destroy" ref="aba61e30a1c8e80c7011c6a803a56860b" args="(circbuf *cbuf)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -158,18 +158,18 @@ Functions</h2></td></tr>
           <td class="memname">int circbuf_destroy </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Frees the array in cb and cb itself. </p>
-<p>Will not free the elements stored in the nodes of cb.</p>
+<p>Frees the array in cbuf and cbuf itself. </p>
+<p>Will not free the elements stored in the nodes of cbuf.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the address of the circbuf we want to deallocate. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to deallocate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -177,7 +177,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7cee597f48e3ea7ea63480dc33f32143"></a><!-- doxytag: member="circbuf.h::circbuf_enqueue" ref="a7cee597f48e3ea7ea63480dc33f32143" args="(circbuf *cb, void *elem)" -->
+<a class="anchor" id="abd67253c30ae27fd0888cfb0acf7434e"></a><!-- doxytag: member="circbuf.h::circbuf_enqueue" ref="abd67253c30ae27fd0888cfb0acf7434e" args="(circbuf *cbuf, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -185,7 +185,7 @@ Functions</h2></td></tr>
           <td class="memname">int circbuf_enqueue </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
-          <td class="paramname"><em>cb</em>, </td>
+          <td class="paramname"><em>cbuf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -202,12 +202,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new back of cb. </p>
-<p>Will fail and return 1 if cb is NULL or elem is NULL, or if cb is full.</p>
+<p>Inserts elem as the new back of cbuf. </p>
+<p>Will fail and return 1 if cbuf is NULL or elem is NULL, or if cbuf is full.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the address of the circbuf we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of cb. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to insert elem into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of cbuf. </td></tr>
   </table>
   </dd>
 </dl>
@@ -241,7 +241,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab12437c34beba7fedfceb74f1b0386d7"></a><!-- doxytag: member="circbuf.h::circbuf_peek" ref="ab12437c34beba7fedfceb74f1b0386d7" args="(circbuf *cb)" -->
+<a class="anchor" id="a043903569ce67d490764ff77cb5c9fd8"></a><!-- doxytag: member="circbuf.h::circbuf_peek" ref="a043903569ce67d490764ff77cb5c9fd8" args="(circbuf *cbuf)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -249,22 +249,22 @@ Functions</h2></td></tr>
           <td class="memname">void* circbuf_peek </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
-          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td class="paramname"><em>cbuf</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns the front element of cb if it exists. </p>
-<p>Will return NULL if cb is NULL.</p>
+<p>Returns the front element of cbuf if it exists. </p>
+<p>Will return NULL if cbuf is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">cb</td><td>the address of the circbuf we want to peek into. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of cb if it exists, NULL if cb is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of cbuf if it exists, NULL if cbuf is empty. </dd></dl>
 
 </div>
 </div>
@@ -283,7 +283,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 02:21:38 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 05:05:48 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
