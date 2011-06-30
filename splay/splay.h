@@ -73,7 +73,7 @@ int splay_insert(splaytree *tree, void *elem);
  *
  *  Will fail and return NULL if tree is NULL or elem is NULL.
  *
- *  @param tree the address of the splaytree we want to search in for elem.
+ *  @param tree the address of the splaytree we want to search for elem.
  *  @param elem the element we're searching for in tree.
  *  @return The element equal to elem if it exists in tree, NULL otherwise.
  */
