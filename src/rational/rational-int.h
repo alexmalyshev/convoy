@@ -36,4 +36,10 @@ static void fix_rats(rat *r, rat *s);
  */
 static long gcd(long x, long y);
 
+/** @brief Returns the absolute value of an integer.
+ *  @param x the integer.
+ *  @return The absolute value of x.
+ */
+static long abs(long x);
+
 #endif /* RATIONAL_INT_H_ */

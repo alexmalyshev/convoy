@@ -31,6 +31,7 @@ rat rat_add(rat r, rat s) {
 
     r.num = (r.num * s.den + s.num * r.den);
     r.den = (r.den * s.den);
+
     return rat_simp(r);
 }
 
@@ -176,5 +177,9 @@ static long gcd(long x, long y) {
         y = x % y;
         x = t;
     }
-    return x;
+    return abs(x);
+}
+
+static long abs(long x) {
+    return (x < 0 ? -x : x);
 }
