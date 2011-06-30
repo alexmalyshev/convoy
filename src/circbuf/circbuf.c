@@ -22,7 +22,7 @@ circbuf *circbuf_init(long len) {
         return NULL;
     if ((cbuf = malloc(sizeof(circbuf))) == NULL)
         return NULL;
-    if ((cbuf->items = malloc((len + 1) * sizeof(void *))) == NULL)
+    if ((cbuf->elems = malloc((len + 1) * sizeof(void *))) == NULL)
         return NULL;
     cbuf->front = 0;
     cbuf->back = 0;
@@ -33,7 +33,7 @@ circbuf *circbuf_init(long len) {
 int circbuf_destroy(circbuf *cbuf) {
     if (circbuf_clear(cbuf))
         return 1;
-    free(cbuf->items);
+    free(cbuf->elems);
     free(cbuf);
     return 0;
 }
@@ -44,7 +44,7 @@ void *circbuf_dequeue(circbuf *cbuf) {
     if (cbuf == NULL || cbuf->front == cbuf->back)
         return NULL;
 
-    data = cbuf->items[cbuf->front];
+    data = cbuf->elems[cbuf->front];
     cbuf->front = (cbuf->front + 1) % cbuf->len;
     return 0;
 }
@@ -55,7 +55,7 @@ int circbuf_enqueue(circbuf *cbuf, void *elem) {
 
     if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
-    cbuf->items[cbuf->back] = elem;
+    cbuf->elems[cbuf->back] = elem;
     cbuf->back = (cbuf->back + 1) % cbuf->len;
     return 0;
 }
@@ -63,7 +63,7 @@ int circbuf_enqueue(circbuf *cbuf, void *elem) {
 void *circbuf_peek(circbuf *cbuf) {
     if (cbuf == NULL || cbuf->front == cbuf->back)
         return NULL;
-    return cbuf->items[cbuf->front];
+    return cbuf->elems[cbuf->front];
 }
 
 int circbuf_clear(circbuf *cbuf) {
