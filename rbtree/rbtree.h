@@ -2,7 +2,7 @@
  *  @brief Function prototypes and structs for a red black tree data structure.
  *
  *  Implementation of a left leaning red black tree. The nodes in the red black
- *  tree store data as generic pointers (void *) where an element of NULL
+ *  tree store data as generic pointers (void *) where an element value of NULL
  *  cannot be stored. Elements are compared using a generic compare function.
  *
  *  @author Alexander Malyshev
@@ -12,13 +12,13 @@
 #ifndef RBTREE_H_
 #define RBTREE_H_
 
-/** @brief The color value for red nodes */
+/** @brief The color value for red nodes. */
 #define RED 0
 
-/** @brief The color value for black nodes */
+/** @brief The color value for black nodes. */
 #define BLACK 1
 
-/** @brief A generic compare function */
+/** @brief A generic compare function. */
 typedef int (*cmpfun)(void *, void *);
 
 /** @brief A node in a red black tree.
