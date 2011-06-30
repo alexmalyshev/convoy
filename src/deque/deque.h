@@ -18,9 +18,9 @@
  *  node in the list.
  */
 typedef struct dnode_t {
-    struct dnode_t *prev;
-    struct dnode_t *next;
-    void *data;
+    struct dnode_t *prev;   /**< the previous node in the list */
+    struct dnode_t *next;   /**< the next node in the list */
+    void *data;             /**< the element of data stored in the node */
 } dnode;
 
 /** @brief A double-ended queue.
@@ -28,9 +28,9 @@ typedef struct dnode_t {
  *  Implemented as a doubly linked list that stores its length.
  */
 typedef struct {
-    dnode *front;
-    dnode *back;
-    long len;
+    dnode *front;           /**< the first node in the deque */
+    dnode *back;            /**< the last node in the deque */
+    long len;               /**< the number of elements in the deque */
 } deque;
 
 /** @brief Allocates and initializes a new deque.

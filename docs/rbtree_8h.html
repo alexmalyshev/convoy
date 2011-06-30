@@ -87,15 +87,17 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b3b25cba33b07c303f3060fe41887f6"></a><!-- doxytag: member="rbtree.h::BLACK" ref="a7b3b25cba33b07c303f3060fe41887f6" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a7b3b25cba33b07c303f3060fe41887f6">BLACK</a>&#160;&#160;&#160;1</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The color value for black nodes. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9a75e417b59ce869c53276f7f0e57d2"></a><!-- doxytag: member="rbtree.h::CMPFN" ref="ae9a75e417b59ce869c53276f7f0e57d2" args="" -->
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CMPFN</b></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae29155f328aabdef1b6f5e31eaae56e7"></a><!-- doxytag: member="rbtree.h::cmpfun" ref="ae29155f328aabdef1b6f5e31eaae56e7" args=")(void *, void *)" -->
-typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a> )(void *, void *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e392f9d227bf09898dae22d16e2cf52"></a><!-- doxytag: member="rbtree.h::cmpfn" ref="a4e392f9d227bf09898dae22d16e2cf52" args=")(void *, void *)" -->
+typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> )(void *, void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a76427e3230da59d4a4d70338daa3b100">rbtree_init</a> (<a class="el" href="splay_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a> cmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new rbtree.  <a href="#a76427e3230da59d4a4d70338daa3b100"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#acf6ea983f4a5bdf19548c1e734e10932">rbtree_init</a> (<a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new rbtree.  <a href="#acf6ea983f4a5bdf19548c1e734e10932"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#ab3609a181caee9c50b799d8ba44ed5df">rbtree_destroy</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#ab3609a181caee9c50b799d8ba44ed5df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a6178c3266b56f40812ca3a55846e798f">rbtree_delete</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
@@ -205,14 +207,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a76427e3230da59d4a4d70338daa3b100"></a><!-- doxytag: member="rbtree.h::rbtree_init" ref="a76427e3230da59d4a4d70338daa3b100" args="(cmpfun cmp)" -->
+<a class="anchor" id="acf6ea983f4a5bdf19548c1e734e10932"></a><!-- doxytag: member="rbtree.h::rbtree_init" ref="acf6ea983f4a5bdf19548c1e734e10932" args="(cmpfn cmp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structrbtree.html">rbtree</a>* rbtree_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="splay_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
           <td class="paramname"><em>cmp</em></td><td>)</td>
           <td></td>
         </tr>
@@ -322,7 +324,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 01:47:52 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 02:21:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -73,19 +73,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac34d2ce57aca403c085ad094770ef3f1"></a><!-- doxytag: member="rbnode::left" ref="ac34d2ce57aca403c085ad094770ef3f1" args="" -->
-struct rbnode_t *&#160;</td><td class="memItemRight" valign="bottom"><b>left</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada7c891e175f99014a85ead09ca9172a"></a><!-- doxytag: member="rbnode::right" ref="ada7c891e175f99014a85ead09ca9172a" args="" -->
-struct rbnode_t *&#160;</td><td class="memItemRight" valign="bottom"><b>right</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af238e0920ca118f7dae3490c22b1c805"></a><!-- doxytag: member="rbnode::data" ref="af238e0920ca118f7dae3490c22b1c805" args="" -->
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f8eb8bdc8d1ed4e28fdf561a604d338"></a><!-- doxytag: member="rbnode::color" ref="a5f8eb8bdc8d1ed4e28fdf561a604d338" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct rbnode_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">left</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct rbnode_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">right</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">data</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">color</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A node in a red black tree. </p>
 <p>Stores pointers to its left and right child, a data pointer and a color. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a5f8eb8bdc8d1ed4e28fdf561a604d338"></a><!-- doxytag: member="rbnode::color" ref="a5f8eb8bdc8d1ed4e28fdf561a604d338" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">rbnode::color</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the color of the node </p>
+
+</div>
+</div>
+<a class="anchor" id="af238e0920ca118f7dae3490c22b1c805"></a><!-- doxytag: member="rbnode::data" ref="af238e0920ca118f7dae3490c22b1c805" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* <a class="el" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">rbnode::data</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the element of data stored in the node </p>
+
+</div>
+</div>
+<a class="anchor" id="ac34d2ce57aca403c085ad094770ef3f1"></a><!-- doxytag: member="rbnode::left" ref="ac34d2ce57aca403c085ad094770ef3f1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct rbnode_t* <a class="el" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">rbnode::left</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the left child of the node </p>
+
+</div>
+</div>
+<a class="anchor" id="ada7c891e175f99014a85ead09ca9172a"></a><!-- doxytag: member="rbnode::right" ref="ada7c891e175f99014a85ead09ca9172a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct rbnode_t* <a class="el" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">rbnode::right</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the right child of the node </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/rbtree/<a class="el" href="rbtree_8h_source.html">rbtree.h</a></li>
 </ul>
 </div>
@@ -103,7 +156,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 01:47:52 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 02:21:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

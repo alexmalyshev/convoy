@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Defines</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -80,13 +81,13 @@ Data Structures</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A splay tree.  <a href="structsplaytree.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae29155f328aabdef1b6f5e31eaae56e7"></a><!-- doxytag: member="splay.h::cmpfun" ref="ae29155f328aabdef1b6f5e31eaae56e7" args=")(void *, void *)" -->
-typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a> )(void *, void *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e392f9d227bf09898dae22d16e2cf52"></a><!-- doxytag: member="splay.h::cmpfn" ref="a4e392f9d227bf09898dae22d16e2cf52" args=")(void *, void *)" -->
+typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> )(void *, void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a8a7958ed3caaa9cdb639eb05d5837714">splay_init</a> (<a class="el" href="splay_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a> cmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new splaytree.  <a href="#a8a7958ed3caaa9cdb639eb05d5837714"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a94f7fa9066652ccfcc7fac39d2f53e6d">splay_init</a> (<a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new splaytree.  <a href="#a94f7fa9066652ccfcc7fac39d2f53e6d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#aada27ea536d5cebd428aeafab1a12ce0">splay_destroy</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#aada27ea536d5cebd428aeafab1a12ce0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#aba1800fc335a0c780af7e39850b74eb1">splay_delete</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
@@ -196,14 +197,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8a7958ed3caaa9cdb639eb05d5837714"></a><!-- doxytag: member="splay.h::splay_init" ref="a8a7958ed3caaa9cdb639eb05d5837714" args="(cmpfun cmp)" -->
+<a class="anchor" id="a94f7fa9066652ccfcc7fac39d2f53e6d"></a><!-- doxytag: member="splay.h::splay_init" ref="a94f7fa9066652ccfcc7fac39d2f53e6d" args="(cmpfn cmp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structsplaytree.html">splaytree</a>* splay_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="splay_8h.html#ae29155f328aabdef1b6f5e31eaae56e7">cmpfun</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
           <td class="paramname"><em>cmp</em></td><td>)</td>
           <td></td>
         </tr>
@@ -313,7 +314,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 01:47:52 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jun 30 2011 02:21:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

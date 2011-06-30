@@ -17,8 +17,8 @@
  *  Stores a pointer to an element and a pointer to the next node in the list.
  */
 typedef struct snode_t {
-    void *data;             /**< the element of data stored in this node */
-    struct snode_t *next;   /**< pointer to the next node in the list */
+    void *data;             /**< the element of data stored in the node */
+    struct snode_t *next;   /**< the next node in the list */
 } snode;
 
 /** @brief A stack.

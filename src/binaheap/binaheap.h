@@ -36,10 +36,10 @@ typedef int (*cmpfn)(void *, void *);
  *  of elements currently in it, as well as a compare function.
  */
 typedef struct {
-    void **elems;
-    cmpfn cmp;
-    long size;
-    long cap;
+    void **elems;   /**< the array of elements in the binary heap */
+    cmpfn cmp;      /**< the function for comparing elements */
+    long size;      /**< the number of elements in the binary heap */
+    long cap;       /**< the number of elements the array can hold */
 } binaheap;
 
 /** @brief Allocates and initializes a new binaheap.

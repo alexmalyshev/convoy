@@ -20,10 +20,10 @@
  *  and back as well as the length of the array plus one.
  */
 typedef struct {
-    void **items;
-    long front;
-    long back;
-    long len;
+    void **items;   /**< the array of elements in the circular buffer */
+    long front;     /**< the index of the first element in the array */
+    long back;      /**< the index of the last element in the array */
+    long len;       /**< the number of elements in the circular buffer */
 } circbuf;
 
 /** @brief Allocates and initializes a new circbuf.

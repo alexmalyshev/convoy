@@ -17,8 +17,8 @@
  *  Stores a pointer to an element and a pointer to the next node in the list.
  */
 typedef struct qnode_t {
-    void *data;
-    struct qnode_t *next;
+    void *data;             /**< the element of data stored in the node */
+    struct qnode_t *next;   /**< the next node in the list */
 } qnode;
 
 /** @brief A queue.
@@ -27,9 +27,9 @@ typedef struct qnode_t {
  *  also stores its length.
  */
 typedef struct {
-    qnode *front;
-    qnode *back;
-    long len;
+    qnode *front;           /**< the first node in the queue */
+    qnode *back;            /**< the last node in the queue */
+    long len;               /**< the number of elements in the queue */
 } queue;
 
 /** @brief Allocates and initializes a new queue.

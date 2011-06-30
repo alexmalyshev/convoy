@@ -18,8 +18,8 @@
  *  integers.
  */
 typedef struct {
-    long num;
-    long den;
+    long num;   /**< numerator of the rational */
+    long den;   /**< denominator of the rational */
 } rat;
 
 /** @brief Macro for checking if a rat is NaN. */
