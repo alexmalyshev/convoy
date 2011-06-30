@@ -1,5 +1,6 @@
-# ignore any of my test files
+# ignore any of my test files/Makefiles
 test*
+Makefile
 
 # changes often, and users dont need it
 TODO
