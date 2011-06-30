@@ -22,7 +22,7 @@ static void clear(rbnode *node);
  *  @param cmp the compare function used to compare elements in node with elem.
  *  @return The resulting red black tree after inserting elem into node.
  */
-static rbnode *insert(rbnode *node, void *elem, cmpfun cmp);
+static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
 
 /** @brief Removes elem from node if it is in node.
  *
@@ -35,7 +35,7 @@ static rbnode *insert(rbnode *node, void *elem, cmpfun cmp);
  *  @param data the address of the location where to store the removed element.
  *  @return The resulting red black tree after removing elem from node.
  */
-static rbnode *delete(rbnode *node, void *elem, cmpfun cmp, void **data);
+static rbnode *delete(rbnode *node, void *elem, cmpfn cmp, void **data);
 
 /** @brief Maintains the red black tree invariants.
  *

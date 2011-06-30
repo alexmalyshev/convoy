@@ -14,7 +14,7 @@
 #include "binaheap.h"
 #include "binaheap-int.h"
 
-binaheap *binaheap_init(cmpfun cmp) {
+binaheap *binaheap_init(cmpfn cmp) {
     binaheap *heap;
 
     if (cmp == NULL)
@@ -93,7 +93,7 @@ static int resize(binaheap *heap) {
 static void percolate_up(binaheap *heap) {
     long i = heap->size - 1;
     void **elems = heap->elems;
-    cmpfun cmp = heap->cmp;
+    cmpfn cmp = heap->cmp;
 
     for (; i > 0; i /= 2) {
         if (cmp(elems[i], elems[i/2]) >= 0)   
@@ -104,7 +104,7 @@ static void percolate_up(binaheap *heap) {
 
 static void percolate_down(binaheap *heap) {
     void **elems = heap->elems;
-    cmpfun cmp = heap->cmp;
+    cmpfn cmp = heap->cmp;
     long size = heap->size;
     long i, min, left;
 

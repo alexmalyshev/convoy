@@ -24,8 +24,11 @@
 /** @brief The maximum number of items a binaheap can store. */
 #define BINAHEAP_MAX_ITEMS ((long)(BINAHEAP_MAX_BYTES/sizeof(void *)))
 
+#ifndef CMPFN
+#define CMPFN
 /** @brief A generic compare function. */
-typedef int (*cmpfun)(void *, void *);
+typedef int (*cmpfn)(void *, void *);
+#endif /* CMPFN */
 
 /** @brief A binary heap
  *
@@ -34,7 +37,7 @@ typedef int (*cmpfun)(void *, void *);
  */
 typedef struct {
     void **elems;
-    cmpfun cmp;
+    cmpfn cmp;
     long size;
     long cap;
 } binaheap;
@@ -43,7 +46,7 @@ typedef struct {
  *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new binaheap.
  */
-binaheap *binaheap_init(cmpfun cmp);
+binaheap *binaheap_init(cmpfn cmp);
 
 /** @brief Frees the dynamic array in heap and heap itself.
  *

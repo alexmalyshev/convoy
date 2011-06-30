@@ -12,8 +12,11 @@
 #ifndef SPLAY_H_
 #define SPLAY_H_
 
+#ifndef CMPFN
+#define CMPFN
 /** @brief A generic compare function. */
-typedef int (*cmpfun)(void *, void *);
+typedef int (*cmpfn)(void *, void *);
+#endif /* CMPFN */
 
 /** @brief A node in a splay tree.
  *
@@ -31,14 +34,14 @@ typedef struct splaynode_t {
  */
 typedef struct splaytree_t {
     splaynode *root;
-    cmpfun cmp;
+    cmpfn cmp;
 } splaytree;
 
 /** @brief Allocates and initializes a new splaytree.
  *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new splaytree.
  */
-splaytree *splay_init(cmpfun cmp);
+splaytree *splay_init(cmpfn cmp);
 
 /** @brief Frees the nodes in tree and tree itself.
  *

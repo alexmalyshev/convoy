@@ -18,8 +18,11 @@
 /** @brief The color value for black nodes. */
 #define BLACK 1
 
+#ifndef CMPFN
+#define CMPFN
 /** @brief A generic compare function. */
-typedef int (*cmpfun)(void *, void *);
+typedef int (*cmpfn)(void *, void *);
+#endif /* CMPFN */
 
 /** @brief A node in a red black tree.
  *
@@ -38,14 +41,14 @@ typedef struct rbnode_t {
  */
 typedef struct {
     rbnode *root;
-    cmpfun cmp;
+    cmpfn cmp;
 } rbtree;
 
 /** @brief Allocates and initializes a new rbtree.
  *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new rbtree.
  */
-rbtree *rbtree_init(cmpfun cmp);
+rbtree *rbtree_init(cmpfn cmp);
 
 /** @brief Frees the nodes in tree and tree itself.
  *

@@ -17,7 +17,7 @@
 /** @brief Flips RED to BLACK and vice versa. */
 #define FLIP(color) (!(color))
 
-rbtree *rbtree_init(cmpfun cmp) {
+rbtree *rbtree_init(cmpfn cmp) {
     rbtree *tree;
 
     if (cmp == NULL)
@@ -49,7 +49,7 @@ int rbtree_insert(rbtree *tree, void *elem) {
     return 0;
 }
 
-static rbnode *insert(rbnode *node, void *elem, cmpfun cmp) {
+static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     int c;
 
     if (node == NULL)
@@ -80,7 +80,7 @@ void *rbtree_delete(rbtree *tree, void *elem) {
     return data;
 }
 
-static rbnode *delete(rbnode *node, void *elem, cmpfun cmp, void **data) {
+static rbnode *delete(rbnode *node, void *elem, cmpfn cmp, void **data) {
     if (cmp(elem, node->data) < 0) {
         if (node->left == NULL)
             return node;
@@ -112,7 +112,7 @@ static rbnode *delete(rbnode *node, void *elem, cmpfun cmp, void **data) {
 
 void *rbtree_search(rbtree *tree, void *elem) {
     rbnode *node;
-    cmpfun cmp;
+    cmpfn cmp;
     int c;
 
     if (tree == NULL || elem == NULL)

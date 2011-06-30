@@ -14,7 +14,7 @@
 #include "splay.h"
 #include "splay-int.h"
 
-splaytree *splay_init(cmpfun cmp) {
+splaytree *splay_init(cmpfn cmp) {
     splaytree *tree;
 
     if (cmp == NULL)
@@ -128,7 +128,7 @@ static void splay(splaytree *tree, void *elem) {
     splaynode *node;
     int c;
 
-    cmpfun cmp = tree->cmp;
+    cmpfn cmp = tree->cmp;
 
     assembler.left = NULL;
     assembler.right = NULL;
