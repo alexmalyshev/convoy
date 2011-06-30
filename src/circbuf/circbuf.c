@@ -16,60 +16,60 @@
 #include "circbuf.h"
 
 circbuf *circbuf_init(long len) {
-    circbuf *cb;
+    circbuf *cbuf;
 
     if (len <= 0)
         return NULL;
-    if ((cb = malloc(sizeof(circbuf))) == NULL)
+    if ((cbuf = malloc(sizeof(circbuf))) == NULL)
         return NULL;
-    if ((cb->items = malloc((len + 1) * sizeof(void *))) == NULL)
+    if ((cbuf->items = malloc((len + 1) * sizeof(void *))) == NULL)
         return NULL;
-    cb->front = 0;
-    cb->back = 0;
-    cb->len = len + 1;
-    return cb;
+    cbuf->front = 0;
+    cbuf->back = 0;
+    cbuf->len = len + 1;
+    return cbuf;
 }
 
-int circbuf_destroy(circbuf *cb) {
-    if (circbuf_clear(cb))
+int circbuf_destroy(circbuf *cbuf) {
+    if (circbuf_clear(cbuf))
         return 1;
-    free(cb->items);
-    free(cb);
+    free(cbuf->items);
+    free(cbuf);
     return 0;
 }
 
-void *circbuf_dequeue(circbuf *cb) {
+void *circbuf_dequeue(circbuf *cbuf) {
     void *data;
 
-    if (cb == NULL || cb->front == cb->back)
+    if (cbuf == NULL || cbuf->front == cbuf->back)
         return NULL;
 
-    data = cb->items[cb->front];
-    cb->front = (cb->front + 1) % cb->len;
+    data = cbuf->items[cbuf->front];
+    cbuf->front = (cbuf->front + 1) % cbuf->len;
     return 0;
 }
 
-int circbuf_enqueue(circbuf *cb, void *elem) {
-    if (cb == NULL || elem == NULL)
+int circbuf_enqueue(circbuf *cbuf, void *elem) {
+    if (cbuf == NULL || elem == NULL)
         return 1;
 
-    if ((cb->back + 1) % cb->len == cb->front)
+    if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
-    cb->items[cb->back] = elem;
-    cb->back = (cb->back + 1) % cb->len;
+    cbuf->items[cbuf->back] = elem;
+    cbuf->back = (cbuf->back + 1) % cbuf->len;
     return 0;
 }
 
-void *circbuf_peek(circbuf *cb) {
-    if (cb == NULL || cb->front == cb->back)
+void *circbuf_peek(circbuf *cbuf) {
+    if (cbuf == NULL || cbuf->front == cbuf->back)
         return NULL;
-    return cb->items[cb->front];
+    return cbuf->items[cbuf->front];
 }
 
-int circbuf_clear(circbuf *cb) {
-    if (cb == NULL)
+int circbuf_clear(circbuf *cbuf) {
+    if (cbuf == NULL)
         return 1;
-    cb->front = 0;
-    cb->back = 0;
+    cbuf->front = 0;
+    cbuf->back = 0;
     return 0;
 }

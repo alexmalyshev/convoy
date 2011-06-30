@@ -20,10 +20,10 @@
  *  and back as well as the length of the array plus one.
  */
 typedef struct {
-    void **items;   /**< the array of elements in the circular buffer */
-    long front;     /**< the index of the first element in the array */
-    long back;      /**< the index of the last element in the array */
-    long len;       /**< the number of elements in the circular buffer */
+    void **elements;    /**< the array of elements in the circular buffer */
+    long front;         /**< the index of the first element in the array */
+    long back;          /**< the index of the last element in the array */
+    long len;           /**< the number of elements in the circular buffer */
 } circbuf;
 
 /** @brief Allocates and initializes a new circbuf.
@@ -32,50 +32,50 @@ typedef struct {
  */
 circbuf *circbuf_init(long size);
 
-/** @brief Frees the array in cb and cb itself.
+/** @brief Frees the array in cbuf and cbuf itself.
  *
- *  Will not free the elements stored in the nodes of cb.
+ *  Will not free the elements stored in the nodes of cbuf.
  *
- *  @param cb the address of the circbuf we want to deallocate.
+ *  @param cbuf the address of the circbuf we want to deallocate.
  *  @return Success status.
  */
-int circbuf_destroy(circbuf *cb);
+int circbuf_destroy(circbuf *cbuf);
 
-/** @brief Removes the front element of cb if it exists and returns it.
+/** @brief Removes the front element of cbuf if it exists and returns it.
  *
- *  Will fail and return NULL if cb is NULL.
+ *  Will fail and return NULL if cbuf is NULL.
  *
- *  @param cb the address of the circbuf we want to remove the front from.
- *  @return The front element of cb if it exists, NULL if cb is empty.
+ *  @param cbuf the address of the circbuf we want to remove the front from.
+ *  @return The front element of cbuf if it exists, NULL if cbuf is empty.
  */
-void *circbuf_dequeue(circbuf *cb);
+void *circbuf_dequeue(circbuf *cbuf);
 
-/** @brief Inserts elem as the new back of cb.
+/** @brief Inserts elem as the new back of cbuf.
  *
- *  Will fail and return 1 if cb is NULL or elem is NULL, or if cb is full.
+ *  Will fail and return 1 if cbuf is NULL or elem is NULL, or if cbuf is full.
  *
- *  @param cb the address of the circbuf we want to insert elem into.
- *  @param elem the element we want to insert as the new back of cb.
+ *  @param cbuf the address of the circbuf we want to insert elem into.
+ *  @param elem the element we want to insert as the new back of cbuf.
  *  @return Success status.
  */
-int circbuf_enqueue(circbuf *cb, void *elem);
+int circbuf_enqueue(circbuf *cbuf, void *elem);
 
-/** @brief Returns the front element of cb if it exists.
+/** @brief Returns the front element of cbuf if it exists.
  *
- *  Will return NULL if cb is NULL.
+ *  Will return NULL if cbuf is NULL.
  *
- *  @param cb the address of the circbuf we want to peek into.
- *  @return The front element of cb if it exists, NULL if cb is empty.
+ *  @param cbuf the address of the circbuf we want to peek into.
+ *  @return The front element of cbuf if it exists, NULL if cbuf is empty.
  */
-void *circbuf_peek(circbuf *cb);
+void *circbuf_peek(circbuf *cbuf);
 
-/** @brief Removes all elements from cb.
+/** @brief Removes all elements from cbuf.
  *
- *  Will not free the elements in cb.
+ *  Will not free the elements in cbuf.
  *
- *  @param cb the address of the circbuf we want to clear out.
+ *  @param cbuf the address of the circbuf we want to clear out.
  *  @return Success status.
  */
-int circbuf_clear(circbuf *cb);
+int circbuf_clear(circbuf *cbuf);
 
 #endif /* CIRCBUF_H_ */
