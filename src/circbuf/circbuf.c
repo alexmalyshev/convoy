@@ -15,10 +15,10 @@
 #include <stdlib.h>
 #include "circbuf.h"
 
-circbuf *circbuf_init(long len) {
+circbuf *circbuf_init(size_t len) {
     circbuf *cbuf;
 
-    if (len <= 0)
+    if (len == MAX_LEN)
         return NULL;
 
     if ((cbuf = malloc(sizeof(circbuf))) == NULL)
