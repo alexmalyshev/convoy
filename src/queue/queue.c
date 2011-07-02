@@ -98,5 +98,6 @@ static qnode *init_node(void *elem) {
         return NULL;
 
     node->data = elem;
+    node->next = NULL;
     return node;
 }
