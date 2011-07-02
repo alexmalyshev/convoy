@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00029"></a><a class="code" href="structqueue.html">00029</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
 <a name="l00030"></a><a class="code" href="structqueue.html#ac3c54ac14880c002d0412b5750d6f753">00030</a>     <a class="code" href="structqnode.html" title="A node in a linked list.">qnode</a> *<a class="code" href="structqueue.html#ac3c54ac14880c002d0412b5750d6f753">front</a>;           
 <a name="l00031"></a><a class="code" href="structqueue.html#a35d8f4d577f6ce15ebbcdd66046f31bc">00031</a>     <a class="code" href="structqnode.html" title="A node in a linked list.">qnode</a> *<a class="code" href="structqueue.html#a35d8f4d577f6ce15ebbcdd66046f31bc">back</a>;            
-<a name="l00032"></a><a class="code" href="structqueue.html#a0caf20a6d2cf75ddc580aa4bc1e81af1">00032</a>     <span class="keywordtype">long</span> <a class="code" href="structqueue.html#a0caf20a6d2cf75ddc580aa4bc1e81af1">len</a>;               
+<a name="l00032"></a><a class="code" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">00032</a>     <span class="keywordtype">size_t</span> <a class="code" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">len</a>;             
 <a name="l00033"></a>00033 } <a class="code" href="structqueue.html" title="A queue.">queue</a>;
 <a name="l00034"></a>00034 
 <a name="l00038"></a>00038 <a class="code" href="structqueue.html" title="A queue.">queue</a> *<a class="code" href="queue_8c.html#a820c882637c63d00c753148c8299e3c6" title="Allocates and initializes a new queue.">queue_init</a>(<span class="keywordtype">void</span>);
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00076"></a>00076 
 <a name="l00085"></a>00085 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a5e0bb8b4082151c361c539c5952203c8" title="Removes all elements from q.">queue_clear</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
 <a name="l00086"></a>00086 
-<a name="l00094"></a>00094 <span class="keywordtype">long</span> <a class="code" href="queue_8c.html#a1b20dad242da057aaa6dfd0289933b05" title="Returns the number of elements in q.">queue_len</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
+<a name="l00094"></a>00094 <span class="keywordtype">size_t</span> <a class="code" href="queue_8c.html#ac453aa5f41181a5f175a07a98544994e" title="Returns the number of elements in q.">queue_len</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
 <a name="l00095"></a>00095 
 <a name="l00096"></a>00096 <span class="preprocessor">#endif </span><span class="comment">/* QUEUE_H_ */</span>
 </pre></div></div>
@@ -107,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 03:16:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

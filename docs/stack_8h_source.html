@@ -71,8 +71,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00022"></a>00022 } <a class="code" href="structsnode.html" title="A node in a linked list.">snode</a>;
 <a name="l00023"></a>00023 
 <a name="l00028"></a><a class="code" href="structstack.html">00028</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00029"></a><a class="code" href="structstack.html#a463dcca3a0073214752608cbd98629da">00029</a>     <a class="code" href="structsnode.html" title="A node in a linked list.">snode</a> *<a class="code" href="structstack.html#a463dcca3a0073214752608cbd98629da">top</a>;     
-<a name="l00030"></a><a class="code" href="structstack.html#ac3c2d9200345e129f03c39f5e17a1c01">00030</a>     <span class="keywordtype">long</span> <a class="code" href="structstack.html#ac3c2d9200345e129f03c39f5e17a1c01">len</a>;       
+<a name="l00029"></a><a class="code" href="structstack.html#a463dcca3a0073214752608cbd98629da">00029</a>     <a class="code" href="structsnode.html" title="A node in a linked list.">snode</a> *<a class="code" href="structstack.html#a463dcca3a0073214752608cbd98629da">top</a>;             
+<a name="l00030"></a><a class="code" href="structstack.html#aafefde73472c67d5477dcdc6fad345c9">00030</a>     <span class="keywordtype">size_t</span> <a class="code" href="structstack.html#aafefde73472c67d5477dcdc6fad345c9">len</a>;             
 <a name="l00031"></a>00031 } <a class="code" href="structstack.html" title="A stack.">stack</a>;
 <a name="l00032"></a>00032 
 <a name="l00036"></a>00036 <a class="code" href="structstack.html" title="A stack.">stack</a> *<a class="code" href="stack_8c.html#a6a8dc8b79061b68dc2c789847ea284a3" title="Allocates and initializes a new stack.">stack_init</a>(<span class="keywordtype">void</span>);
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00074"></a>00074 
 <a name="l00083"></a>00083 <span class="keywordtype">int</span> <a class="code" href="stack_8c.html#ac52fd136259ce064d90c9bbc1023f2c8" title="Removes all elements from s.">stack_clear</a>(<a class="code" href="structstack.html" title="A stack.">stack</a> *s);
 <a name="l00084"></a>00084 
-<a name="l00092"></a>00092 <span class="keywordtype">long</span> <a class="code" href="stack_8c.html#ae608bf916b22d4b66eb64520e3987895" title="Returns the number of elements in s.">stack_len</a>(<a class="code" href="structstack.html" title="A stack.">stack</a> *s);
+<a name="l00092"></a>00092 <span class="keywordtype">size_t</span> <a class="code" href="stack_8c.html#a94856575037bac33c505cb05c42ffeb5" title="Returns the number of elements in s.">stack_len</a>(<a class="code" href="structstack.html" title="A stack.">stack</a> *s);
 <a name="l00093"></a>00093 
 <a name="l00094"></a>00094 <span class="preprocessor">#endif </span><span class="comment">/* STACK_H_ */</span>
 </pre></div></div>
@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 03:16:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

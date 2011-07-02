@@ -84,8 +84,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new top of s.  <a href="#ae45d099f18181f7afb107c1b1a9301b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ac52fd136259ce064d90c9bbc1023f2c8">stack_clear</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from s.  <a href="#ac52fd136259ce064d90c9bbc1023f2c8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ae608bf916b22d4b66eb64520e3987895">stack_len</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in s.  <a href="#ae608bf916b22d4b66eb64520e3987895"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a94856575037bac33c505cb05c42ffeb5">stack_len</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in s.  <a href="#a94856575037bac33c505cb05c42ffeb5"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A stack library. </p>
@@ -167,12 +167,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae608bf916b22d4b66eb64520e3987895"></a><!-- doxytag: member="stack.c::stack_len" ref="ae608bf916b22d4b66eb64520e3987895" args="(stack *s)" -->
+<a class="anchor" id="a94856575037bac33c505cb05c42ffeb5"></a><!-- doxytag: member="stack.c::stack_len" ref="a94856575037bac33c505cb05c42ffeb5" args="(stack *s)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long stack_len </td>
+          <td class="memname">size_t stack_len </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
           <td class="paramname"><em>s</em></td><td>)</td>
@@ -183,7 +183,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Returns the number of elements in s. </p>
-<p>If s is NULL will return -1, otherwise same behavior as s-&gt;len.</p>
+<p>If s is NULL will return 0, otherwise same behavior as s-&gt;len.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>the address of the stack whose length we want. </td></tr>
@@ -301,7 +301,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 03:16:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

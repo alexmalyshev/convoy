@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Defines</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">src/circbuf/circbuf.h File Reference</div>  </div>
@@ -75,10 +76,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcircbuf.html">circbuf</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A circular buffer.  <a href="structcircbuf.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabf4f709c8199e41cf279c77112345fe"></a><!-- doxytag: member="circbuf.h::MAX_LEN" ref="aabf4f709c8199e41cf279c77112345fe" args="" -->
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#aabf4f709c8199e41cf279c77112345fe">MAX_LEN</a>&#160;&#160;&#160;((size_t)(-1) - 1)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The max number of elements in the circular buffer. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a1fc4ab6be0160c6d85c8d2a81f09c46b">circbuf_init</a> (long size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new circbuf.  <a href="#a1fc4ab6be0160c6d85c8d2a81f09c46b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#a0c283561f490a77fb4769f60e0396cf4">circbuf_init</a> (size_t size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new circbuf.  <a href="#a0c283561f490a77fb4769f60e0396cf4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#aba61e30a1c8e80c7011c6a803a56860b">circbuf_destroy</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array in cbuf and cbuf itself.  <a href="#aba61e30a1c8e80c7011c6a803a56860b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8h.html#af60b26a5a5c2dbb74d56a042f977d19f">circbuf_dequeue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
@@ -215,14 +221,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1fc4ab6be0160c6d85c8d2a81f09c46b"></a><!-- doxytag: member="circbuf.h::circbuf_init" ref="a1fc4ab6be0160c6d85c8d2a81f09c46b" args="(long size)" -->
+<a class="anchor" id="a0c283561f490a77fb4769f60e0396cf4"></a><!-- doxytag: member="circbuf.h::circbuf_init" ref="a0c283561f490a77fb4769f60e0396cf4" args="(size_t size)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structcircbuf.html">circbuf</a>* circbuf_init </td>
           <td>(</td>
-          <td class="paramtype">long&#160;</td>
+          <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
@@ -283,7 +289,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 03:16:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

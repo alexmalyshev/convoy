@@ -91,8 +91,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of q if it exists.  <a href="#a36f9e09efecbf3b5345983d2e6ff47a6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a5e0bb8b4082151c361c539c5952203c8">queue_clear</a> (<a class="el" href="structqueue.html">queue</a> *q)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from q.  <a href="#a5e0bb8b4082151c361c539c5952203c8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#a1b20dad242da057aaa6dfd0289933b05">queue_len</a> (<a class="el" href="structqueue.html">queue</a> *q)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in q.  <a href="#a1b20dad242da057aaa6dfd0289933b05"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8h.html#ac453aa5f41181a5f175a07a98544994e">queue_len</a> (<a class="el" href="structqueue.html">queue</a> *q)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in q.  <a href="#ac453aa5f41181a5f175a07a98544994e"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a queue data structure. </p>
@@ -239,12 +239,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1b20dad242da057aaa6dfd0289933b05"></a><!-- doxytag: member="queue.h::queue_len" ref="a1b20dad242da057aaa6dfd0289933b05" args="(queue *q)" -->
+<a class="anchor" id="ac453aa5f41181a5f175a07a98544994e"></a><!-- doxytag: member="queue.h::queue_len" ref="ac453aa5f41181a5f175a07a98544994e" args="(queue *q)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">long queue_len </td>
+          <td class="memname">size_t queue_len </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structqueue.html">queue</a> *&#160;</td>
           <td class="paramname"><em>q</em></td><td>)</td>
@@ -255,7 +255,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Returns the number of elements in q. </p>
-<p>If q is NULL will return -1, otherwise same behavior as q-&gt;len.</p>
+<p>If q is NULL will return 0, otherwise same behavior as q-&gt;len.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">q</td><td>the address of the queue whose length we want. </td></tr>
@@ -308,7 +308,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 03:16:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
