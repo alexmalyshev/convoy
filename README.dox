@@ -1,3 +1,6 @@
+/** @mainpage Convoy
+ *  @author Alexander Malyshev
+
 --Everything in this repository is in the public domain--
 
 This is a collection of data structures/types written in C89.
@@ -9,4 +12,4 @@ contains rbtree.h and rbtree.c).
 None of the data structures depend upon each other, so feel free to just pull
 out a folder and use it.
 
-Detailed documentation can be found in the docs/ folder courtesy of doxygen.
+*/
