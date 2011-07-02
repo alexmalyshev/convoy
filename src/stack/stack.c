@@ -77,9 +77,9 @@ int stack_clear(stack *s) {
     return 0;
 }
 
-long stack_len(stack *s) {
+size_t stack_len(stack *s) {
     if (s == NULL)
-        return -1;
+        return 0;
 
     return s->len;
 }

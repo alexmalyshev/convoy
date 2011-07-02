@@ -26,8 +26,8 @@ typedef struct snode_t {
  *  Implemented as a singly linked list that stores its length.
  */
 typedef struct {
-    snode *top;     /**< the top node in the stack */
-    long len;       /**< the number of elements in the stack */
+    snode *top;             /**< the top node in the stack */
+    size_t len;             /**< the number of elements in the stack */
 } stack;
 
 /** @brief Allocates and initializes a new stack.
@@ -84,11 +84,11 @@ int stack_clear(stack *s);
 
 /** @brief Returns the number of elements in s
  *
- *  If s is NULL will return -1, otherwise same behavior as s->len.
+ *  If s is NULL will return 0, otherwise same behavior as s->len.
  *
  *  @param s the address of the stack whose length we want.
  *  @return The number of elements in s.
  */
-long stack_len(stack *s);
+size_t stack_len(stack *s);
 
 #endif /* STACK_H_ */

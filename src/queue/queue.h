@@ -29,7 +29,7 @@ typedef struct qnode_t {
 typedef struct {
     qnode *front;           /**< the first node in the queue */
     qnode *back;            /**< the last node in the queue */
-    long len;               /**< the number of elements in the queue */
+    size_t len;             /**< the number of elements in the queue */
 } queue;
 
 /** @brief Allocates and initializes a new queue.
@@ -86,11 +86,11 @@ int queue_clear(queue *q);
 
 /** @brief Returns the number of elements in q.
  *
- *  If q is NULL will return -1, otherwise same behavior as q->len.
+ *  If q is NULL will return 0, otherwise same behavior as q->len.
  *
  *  @param q the address of the queue whose length we want.
  *  @return The number of elements in q.
  */
-long queue_len(queue *q);
+size_t queue_len(queue *q);
 
 #endif /* QUEUE_H_ */

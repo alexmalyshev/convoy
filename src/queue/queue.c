@@ -84,9 +84,9 @@ int queue_clear(queue *q) {
     return 0;
 }
 
-long queue_len(queue *q) {
+size_t queue_len(queue *q) {
     if (q == NULL)
-        return -1;
+        return 0;
 
     return q->len;
 }
