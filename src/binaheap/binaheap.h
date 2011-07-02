@@ -18,12 +18,6 @@
 /** @brief The number of elements a new binaheap can store. */
 #define INITIAL_CAPACITY 10
 
-/** @brief The maximum number of bytes a binaheap's array can take up. */
-#define BINAHEAP_MAX_BYTES LONG_MAX
-
-/** @brief The maximum number of items a binaheap can store. */
-#define BINAHEAP_MAX_ITEMS ((long)(BINAHEAP_MAX_BYTES/sizeof(void *)))
-
 #ifndef CMPFN
 #define CMPFN
 /** @brief A generic compare function. */
@@ -38,8 +32,8 @@ typedef int (*cmpfn)(void *, void *);
 typedef struct {
     void **elems;   /**< the array of elements in the binary heap */
     cmpfn cmp;      /**< the function for comparing elements */
-    long size;      /**< the number of elements in the binary heap */
-    long cap;       /**< the number of elements the array can hold */
+    size_t size;    /**< the number of elements in the binary heap */
+    size_t cap;     /**< the number of elements the array can hold */
 } binaheap;
 
 /** @brief Allocates and initializes a new binaheap.

@@ -76,22 +76,16 @@ int binaheap_clear(binaheap *heap) {
 }
 
 static int resize(binaheap *heap) {
-    long cap = heap->cap;
-    long newcap;
     void *new;
 
-    if (2 * cap < BINAHEAP_MAX_ITEMS)
-        newcap = 2 * cap;
-    else
-        newcap = BINAHEAP_MAX_ITEMS;
-    if ((new = realloc(heap->elems, newcap * sizeof(void *))) == NULL)
+    if ((new = realloc(heap->elems, 2 * heap->cap * sizeof(void *))) == NULL)
         return 1;
-    heap->cap = newcap;
+    heap->cap *= 2;
     return 0;
 }
 
 static void percolate_up(binaheap *heap) {
-    long i = heap->size - 1;
+    size_t i = heap->size - 1;
     void **elems = heap->elems;
     cmpfn cmp = heap->cmp;
 
@@ -105,8 +99,8 @@ static void percolate_up(binaheap *heap) {
 static void percolate_down(binaheap *heap) {
     void **elems = heap->elems;
     cmpfn cmp = heap->cmp;
-    long size = heap->size;
-    long i, min, left;
+    size_t size = heap->size;
+    size_t i, min, left;
 
     for (i = 0; 2*i + 1 <= size; ) {
         left = 2*i + 1;
