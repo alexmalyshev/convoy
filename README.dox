@@ -1,8 +1,6 @@
 /** @mainpage Convoy
  *  @author Alexander Malyshev
 
---Everything in this repository is in the public domain--
-
 This is a collection of data structures/types written in C89.
 
 Every folder in src/ is a separate data structure that will contain a header
