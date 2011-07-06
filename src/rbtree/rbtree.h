@@ -59,16 +59,6 @@ rbtree *rbtree_init(cmpfn cmp);
  */
 int rbtree_destroy(rbtree *tree);
 
-/** @brief Removes elem from tree if it is in tree.
- *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
- *
- *  @param tree the address of the rbtree we want to remove elem from.
- *  @param elem the element we want to remove from tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
- */
-void *rbtree_delete(rbtree *tree, void *elem);
-
 /** @brief Inserts elem into tree.
  *
  *  Will fail and return 1 if tree is NULL or elem is NULL. If elem is already
@@ -79,6 +69,16 @@ void *rbtree_delete(rbtree *tree, void *elem);
  *  @return Success status.
  */
 int rbtree_insert(rbtree *tree, void *elem);
+
+/** @brief Removes elem from tree if it is in tree.
+ *
+ *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *
+ *  @param tree the address of the rbtree we want to remove elem from.
+ *  @param elem the element we want to remove from tree.
+ *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ */
+void *rbtree_remove(rbtree *tree, void *elem);
 
 /** @brief Searches tree for elem.
  *

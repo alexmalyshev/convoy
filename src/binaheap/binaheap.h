@@ -51,15 +51,6 @@ binaheap *binaheap_init(cmpfn cmp);
  */
 int binaheap_destroy(binaheap *heap);
 
-/** @brief Removes the minimum element in heap.
- *
- *  Will fail and return NULL if heap is NULL.
- *
- *  @param heap the address of the binaheap whose min we want to remove.
- *  @return The minimum element in heap if it exists, NULL if heap is empty.
- */
-void *binaheap_deletemin(binaheap *heap);
-
 /** @brief Inserts elem into heap.
  *
  *  Will fail and return 1 if tree is NULL or elem is NULL
@@ -69,6 +60,15 @@ void *binaheap_deletemin(binaheap *heap);
  *  @return Success status.
  */
 int binaheap_insert(binaheap *heap, void *elem);
+
+/** @brief Removes the minimum element in heap.
+ *
+ *  Will fail and return NULL if heap is NULL.
+ *
+ *  @param heap the address of the binaheap whose min we want to remove.
+ *  @return The minimum element in heap if it exists, NULL if heap is empty.
+ */
+void *binaheap_removemin(binaheap *heap);
 
 /** @brief Removes all elements from heap.
  *

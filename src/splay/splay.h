@@ -52,16 +52,6 @@ splaytree *splay_init(cmpfn cmp);
  */
 int splay_destroy(splaytree *tree);
 
-/** @brief Removes elem from tree if it is in tree.
- *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
- *
- *  @param tree the address of the splaytree we want to remove elem from.
- *  @param elem the element we want to remove from tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
- */
-void *splay_delete(splaytree *tree, void *elem);
-
 /** @brief Inserts elem into tree.
  *
  *  Will fail and return 1 if tree is NULL or elem is NULL.
@@ -71,6 +61,16 @@ void *splay_delete(splaytree *tree, void *elem);
  *  @return Success status.
  */
 int splay_insert(splaytree *tree, void *elem);
+
+/** @brief Removes elem from tree if it is in tree.
+ *
+ *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *
+ *  @param tree the address of the splaytree we want to remove elem from.
+ *  @param elem the element we want to remove from tree.
+ *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ */
+void *splay_remove(splaytree *tree, void *elem);
 
 /** @brief Searches tree for elem.
  *

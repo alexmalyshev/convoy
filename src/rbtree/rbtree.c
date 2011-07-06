@@ -2,7 +2,7 @@
  *  @brief A red black tree library.
  *
  *  We malloc a node every time we insert a new element into the red black tree
- *  and free the node that wraps around the element returned by rbtree_delete.
+ *  and free the node that wraps around the element returned by rbtree_remove.
  *  We compare elements in the tree using the generic compare function that is
  *  given as an argument to rbtree_init.
  *
@@ -66,7 +66,7 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     return fix(node);
 }
 
-void *rbtree_delete(rbtree *tree, void *elem) {
+void *rbtree_remove(rbtree *tree, void *elem) {
     void *data = NULL;
 
     if (tree == NULL || elem == NULL)
@@ -74,19 +74,19 @@ void *rbtree_delete(rbtree *tree, void *elem) {
     if (tree->root == NULL)
         return NULL;
 
-    tree->root = delete(tree->root, elem, tree->cmp, &data);
+    tree->root = remove(tree->root, elem, tree->cmp, &data);
     if (tree->root != NULL)
         tree->root->color = BLACK;
     return data;
 }
 
-static rbnode *delete(rbnode *node, void *elem, cmpfn cmp, void **data) {
+static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **data) {
     if (cmp(elem, node->data) < 0) {
         if (node->left == NULL)
             return node;
         if (!is_red(node->left) && !is_red(node->left->left))
             node = move_red_left(node);
-        node->left = delete(node->left, elem, cmp, data);
+        node->left = remove(node->left, elem, cmp, data);
     } else {
         if (is_red(node->left))
             node = rotate_right(node);
@@ -103,9 +103,9 @@ static rbnode *delete(rbnode *node, void *elem, cmpfn cmp, void **data) {
         if (cmp(elem, node->data) == 0) {
             *data = node->data;
             node->data = min(node->right);
-            node->right = delete_min(node->right);
+            node->right = remove_min(node->right);
         } else
-            node->right = delete(node->right, elem, cmp, data);
+            node->right = remove(node->right, elem, cmp, data);
     }
     return fix(node);
 }
@@ -205,14 +205,14 @@ static rbnode *move_red_right(rbnode *node) {
     return node;
 }
 
-static rbnode *delete_min(rbnode *node) {
+static rbnode *remove_min(rbnode *node) {
     if (node->left == NULL) {
         free(node);
         return NULL;
     }
     if (!is_red(node->left) && !is_red(node->left->left))
         node = move_red_left(node);
-    node->left = delete_min(node->left);
+    node->left = remove_min(node->left);
     return fix(node);
 }
 

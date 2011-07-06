@@ -2,7 +2,7 @@
  *  @brief A splay tree library.
  *
  *  We malloc a node every time we insert a new element into the splay tree
- *  and free the node that wraps around the element returned by splay_delete.
+ *  and free the node that wraps around the element returned by splay_remove.
  *  We compare elements in the tree using the generic compare function that is
  *  given as an argument to splay_init.
  *
@@ -32,32 +32,6 @@ int splay_destroy(splaytree *tree) {
         return 1;
     free(tree);
     return 0;
-}
-
-void *splay_delete(splaytree *tree, void *elem) {
-    splaynode *temp, *dead;
-    void *data;
-
-    if (tree == NULL || tree->root == NULL || elem == NULL)
-        return NULL;
-
-    splay(tree, elem);
-
-    if (tree->cmp(elem, tree->root->data) != 0)
-        return NULL;
-
-    dead = tree->root;
-    if (tree->root->left == NULL)
-        tree->root = tree->root->right;
-    else {
-        temp = tree->root->right;
-        tree->root = tree->root->left;
-        splay(tree, elem);
-        tree->root->right = temp;
-    }
-    data = dead->data;
-    free(dead);
-    return data;
 }
 
 int splay_insert(splaytree *tree, void *elem) {
@@ -93,6 +67,32 @@ int splay_insert(splaytree *tree, void *elem) {
     }
     tree->root = new;
     return 0;
+}
+
+void *splay_remove(splaytree *tree, void *elem) {
+    splaynode *temp, *dead;
+    void *data;
+
+    if (tree == NULL || tree->root == NULL || elem == NULL)
+        return NULL;
+
+    splay(tree, elem);
+
+    if (tree->cmp(elem, tree->root->data) != 0)
+        return NULL;
+
+    dead = tree->root;
+    if (tree->root->left == NULL)
+        tree->root = tree->root->right;
+    else {
+        temp = tree->root->right;
+        tree->root = tree->root->left;
+        splay(tree, elem);
+        tree->root->right = temp;
+    }
+    data = dead->data;
+    free(dead);
+    return data;
 }
 
 void *splay_search(splaytree *tree, void *elem) {

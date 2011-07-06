@@ -35,7 +35,7 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
  *  @param data the address of the location where to store the removed element.
  *  @return The resulting red black tree after removing elem from node.
  */
-static rbnode *delete(rbnode *node, void *elem, cmpfn cmp, void **data);
+static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **data);
 
 /** @brief Maintains the red black tree invariants.
  *
@@ -101,16 +101,16 @@ static void *min(rbnode *node);
  */
 static rbnode *move_red_right(rbnode *node);
 
-/** @brief Deletes the minimum node in a red black tree.
+/** @brief Removes the minimum element in node.
  *
  *  node is not NULL, node is red or the left child of node is red.
  *  We don't need to worry about node->data becoming a leak as it's
- *  been moved to another node in 'delete'.
+ *  been moved to another node in 'remove'.
  *
- *  @param node the address of the red black tree whose min we want to delete.
+ *  @param node the address of the red black tree whose min we want to remove.
  *  @return The resulting red black tree after deleting the min from node.
  */
-static rbnode *delete_min(rbnode *node);
+static rbnode *remove_min(rbnode *node);
 
 /** @brief Rotates a red link to the left.
  *

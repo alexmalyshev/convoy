@@ -39,7 +39,19 @@ int binaheap_destroy(binaheap *heap) {
     return 0;
 }
 
-void *binaheap_deletemin(binaheap *heap) {
+int binaheap_insert(binaheap *heap, void *elem) {
+    if (heap == NULL || elem == NULL)
+        return 1;
+
+    if (heap->size == heap->cap)
+        resize(heap);
+    (heap->elems)[heap->size] = elem;
+    ++(heap->size);
+    percolate_up(heap);
+    return 0;
+}
+
+void *binaheap_removemin(binaheap *heap) {
     void *min, **elems;
 
     if (heap == NULL || heap->size <= 0)
@@ -53,18 +65,6 @@ void *binaheap_deletemin(binaheap *heap) {
     elems[0] = elems[heap->size];
     percolate_down(heap);
     return min;
-}
-
-int binaheap_insert(binaheap *heap, void *elem) {
-    if (heap == NULL || elem == NULL)
-        return 1;
-
-    if (heap->size == heap->cap)
-        resize(heap);
-    (heap->elems)[heap->size] = elem;
-    ++(heap->size);
-    percolate_up(heap);
-    return 0;
 }
 
 int binaheap_clear(binaheap *heap) {
