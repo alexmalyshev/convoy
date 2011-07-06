@@ -8,20 +8,28 @@ typedef int (*cmpfn)(void *, void *);
 
 #ifndef HASHFN
 #define HASHFN
-typedef unsigned long (*hashfn)(void *)
+typedef unsigned long (*hashfn)(void *);
 #endif /* HASHFN */
 
-#define LOAD_FACTOR 0.75
+#define DEFAULT_LOAD_FACTOR 0.75
+#define DEFAULT_INITIAL_CAPACITY 64
+
+typedef struct hashentry_t {
+    void *elem;
+    struct hashentry_t *next;
+} hashentry;
 
 typedef struct {
-    void **elems;
+    hashentry **entries;
     hashfn hash;
-    cmpfun cmp;
+    cmpfn cmp;
     size_t size;
     size_t cap;
+    size_t limit;
+    double loadfactor;
 } hashmap;
 
-hashmap *hashmap_init(hashfn hash, cmpfun cmp);
+hashmap *hashmap_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap);
 
 int hashmap_destroy(hashmap *map);
 
@@ -34,4 +42,4 @@ void *hashmap_search(hashmap *map, void *elem);
 int hashmap_clear(hashmap *map);
 
 
-#endif /* HASHMAP_H_
+#endif /* HASHMAP_H_ */
