@@ -18,23 +18,17 @@
 typedef int (*cmpfn)(void *, void *);
 #endif /* CMPFN */
 
-/** @brief A node in a splay tree.
- *
- *  Stores pointers to its left and right child as well as a data pointer.
- */
+/** @brief A node in a splay tree. */
 typedef struct splaynode_t {
-    struct splaynode_t *left;   /**< the left child of the node */
-    struct splaynode_t *right;  /**< the right child of the node */
-    void *data;                 /**< the element of data stored in the node */
+    struct splaynode_t *left;   /**< the left child of the node. */
+    struct splaynode_t *right;  /**< the right child of the node. */
+    void *data;                 /**< the element of data stored in the node. */
 } splaynode;
 
-/** @brief A splay tree.
- *
- *  Stores the root node of the tree as well as a compare function.
- */
+/** @brief A splay tree. */
 typedef struct splaytree_t {
-    splaynode *root;            /**< the root node in the splay tree */
-    cmpfn cmp;                  /**< the function for comparing elements */
+    splaynode *root;            /**< the root node in the splay tree. */
+    cmpfn cmp;                  /**< the function for comparing elements. */
 } splaytree;
 
 /** @brief Allocates and initializes a new splaytree.

@@ -24,24 +24,18 @@
 typedef int (*cmpfn)(void *, void *);
 #endif /* CMPFN */
 
-/** @brief A node in a red black tree.
- *
- *  Stores pointers to its left and right child, a data pointer and a color.
- */
+/** @brief A node in a red black tree. */
 typedef struct rbnode_t {
-    struct rbnode_t *left;  /**< the left child of the node */
-    struct rbnode_t *right; /**< the right child of the node */
-    void *data;             /**< the element of data stored in the node */
-    int color;              /**< the color of the node */
+    struct rbnode_t *left;  /**< the left child of the node. */
+    struct rbnode_t *right; /**< the right child of the node. */
+    void *data;             /**< the element of data stored in the node. */
+    int color;              /**< the color of the node. */
 } rbnode;
 
-/** @brief A red black tree.
- *
- *  Stores the root node of the tree as well as a compare function.
- */
+/** @brief A red black tree. */
 typedef struct {
-    rbnode *root;           /**< the root node in the red black tree */
-    cmpfn cmp;              /**< the function for comparing elements */
+    rbnode *root;           /**< the root node in the red black tree. */
+    cmpfn cmp;              /**< the function for comparing elements. */
 } rbtree;
 
 /** @brief Allocates and initializes a new rbtree.

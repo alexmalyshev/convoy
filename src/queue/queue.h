@@ -12,24 +12,17 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
 
-/** @brief A node in a linked list.
- *
- *  Stores a pointer to an element and a pointer to the next node in the list.
- */
+/** @brief A node in a linked list. */
 typedef struct qnode_t {
-    void *data;             /**< the element of data stored in the node */
-    struct qnode_t *next;   /**< the next node in the list */
+    void *data;             /**< the element of data stored in the node. */
+    struct qnode_t *next;   /**< the next node in the list. */
 } qnode;
 
-/** @brief A queue.
- *
- *  Implemented as a singly linked list with a tail reference that
- *  also stores its length.
- */
+/** @brief A queue. */
 typedef struct {
-    qnode *front;           /**< the first node in the queue */
-    qnode *back;            /**< the last node in the queue */
-    size_t len;             /**< the number of elements in the queue */
+    qnode *front;           /**< the first node in the queue. */
+    qnode *back;            /**< the last node in the queue. */
+    size_t len;             /**< the number of elements in the queue. */
 } queue;
 
 /** @brief Allocates and initializes a new queue.

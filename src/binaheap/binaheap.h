@@ -24,16 +24,12 @@
 typedef int (*cmpfn)(void *, void *);
 #endif /* CMPFN */
 
-/** @brief A binary heap
- *
- *  Stores an array of elements, the capacity of the array and the number
- *  of elements currently in it, as well as a compare function.
- */
+/** @brief A binary heap. */
 typedef struct {
-    void **elems;   /**< the array of elements in the binary heap */
-    cmpfn cmp;      /**< the function for comparing elements */
-    size_t size;    /**< the number of elements in the binary heap */
-    size_t cap;     /**< the number of elements the array can hold */
+    void **elems;   /**< the array of elements in the binary heap. */
+    cmpfn cmp;      /**< the function for comparing elements. */
+    size_t size;    /**< the number of elements in the binary heap. */
+    size_t cap;     /**< the number of elements the array can hold. */
 } binaheap;
 
 /** @brief Allocates and initializes a new binaheap.
@@ -53,7 +49,7 @@ int binaheap_destroy(binaheap *heap);
 
 /** @brief Inserts elem into heap.
  *
- *  Will fail and return 1 if tree is NULL or elem is NULL
+ *  Will fail and return 1 if tree is NULL or elem is NULL.
  *
  *  @param heap the address of the binaheap we want to insert elem into.
  *  @param elem the element we want to insert into heap.

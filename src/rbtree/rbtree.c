@@ -3,7 +3,7 @@
  *
  *  We malloc a node every time we insert a new element into the red black tree
  *  and free the node that wraps around the element returned by rbtree_remove.
- *  We compare elements in the tree using the generic compare function that is
+ *  We compare elements in the tree using the compare function that is
  *  given as an argument to rbtree_init.
  *
  *  @author Alexander Malyshev

@@ -12,25 +12,18 @@
 #ifndef DEQUE_H_
 #define DEQUE_H_
 
-/** @brief A node in a linked list.
- *
- *  Stores a pointer to an element and pointers to the previous node and next
- *  node in the list.
- */
+/** @brief A node in a linked list. */
 typedef struct dnode_t {
-    struct dnode_t *prev;   /**< the previous node in the list */
-    struct dnode_t *next;   /**< the next node in the list */
-    void *data;             /**< the element of data stored in the node */
+    struct dnode_t *prev;   /**< the previous node in the list. */
+    struct dnode_t *next;   /**< the next node in the list. */
+    void *data;             /**< the element of data stored in the node. */
 } dnode;
 
-/** @brief A double-ended queue.
- *
- *  Implemented as a doubly linked list that stores its length.
- */
+/** @brief A double-ended queue. */
 typedef struct {
-    dnode *front;           /**< the first node in the deque */
-    dnode *back;            /**< the last node in the deque */
-    long len;               /**< the number of elements in the deque */
+    dnode *front;           /**< the first node in the deque. */
+    dnode *back;            /**< the last node in the deque. */
+    long len;               /**< the number of elements in the deque. */
 } deque;
 
 /** @brief Allocates and initializes a new deque.

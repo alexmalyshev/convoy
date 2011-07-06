@@ -1,9 +1,25 @@
+/** @file hashmap.c
+ *  @brief A hash table library.
+ *
+ *  We malloc an entry every time we insert a new element into the hash table
+ *  and free the entry that wraps around the element returned by
+ *  hashmap_remove. We compare elements using the compare function that is
+ *  given as an argument to hashmap_init and we hash elements using the hash
+ *  function that is also given as an argument in hashmap_init.
+ *
+ *  @author Alexander Malyshev
+ *  @bug No known bugs.
+ */
+
 #include <stdlib.h>
 #include "hashmap.h"
 #include "hashmap-int.h"
 
 hashmap *hashmap_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap) {
     hashmap *map;
+
+    if (hash == NULL || cmp == NULL || loadfactor <= 0.0)
+        return NULL;
 
     if ((map = malloc(sizeof(hashmap))) == NULL)
         return NULL;

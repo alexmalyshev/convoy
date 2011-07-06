@@ -17,16 +17,12 @@
 /** @brief The max number of elements in the circular buffer */
 #define MAX_LEN ((size_t)(-1) - 1)
 
-/** @brief A circular buffer.
- *
- *  Implemented as an fixed-size array, holding onto the indices for the front
- *  and back as well as the length of the array plus one.
- */
+/** @brief A circular buffer. */
 typedef struct {
-    void **elems;   /**< the array of elements in the circular buffer */
-    size_t front;     /**< the index of the first element in the array */
-    size_t back;    /**< the index of the last element in the array */
-    size_t len;     /**< the number of elements in the circular buffer */
+    void **elems;   /**< the array of elements in the circular buffer. */
+    size_t front;   /**< the index of the first element in the array. */
+    size_t back;    /**< the index of the last element in the array. */
+    size_t len;     /**< the number of elements in the circular buffer. */
 } circbuf;
 
 /** @brief Allocates and initializes a new circbuf.

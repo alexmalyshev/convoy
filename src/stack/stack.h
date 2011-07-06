@@ -12,22 +12,16 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-/** @brief A node in a linked list.
- *
- *  Stores a pointer to an element and a pointer to the next node in the list.
- */
+/** @brief A node in a linked list. */
 typedef struct snode_t {
-    void *data;             /**< the element of data stored in the node */
-    struct snode_t *next;   /**< the next node in the list */
+    void *data;             /**< the element of data stored in the node. */
+    struct snode_t *next;   /**< the next node in the list. */
 } snode;
 
-/** @brief A stack.
- *
- *  Implemented as a singly linked list that stores its length.
- */
+/** @brief A stack. */
 typedef struct {
-    snode *top;             /**< the top node in the stack */
-    size_t len;             /**< the number of elements in the stack */
+    snode *top;             /**< the top node in the stack. */
+    size_t len;             /**< the number of elements in the stack. */
 } stack;
 
 /** @brief Allocates and initializes a new stack.
