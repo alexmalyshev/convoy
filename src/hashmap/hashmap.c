@@ -41,6 +41,7 @@ int hashmap_destroy(hashmap *map) {
 
     free(map->entries);
     free(map);
+    return 0;
 }
 
 int hashmap_insert(hashmap *map, void *elem) {
