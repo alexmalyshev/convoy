@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Convoy: src/splay/splay.h File Reference</title>
+<title>bfvm: src/splay/splay.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -19,8 +19,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Convoy</div>
-   <div id="projectbrief">A collection of useful data structures.</div>
+   <div id="projectname">bfvm</div>
+   <div id="projectbrief">A brainfuck virtual machine</div>
   </td>
  </tr>
  </tbody>
@@ -90,10 +90,10 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new splaytree.  <a href="#a94f7fa9066652ccfcc7fac39d2f53e6d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#aada27ea536d5cebd428aeafab1a12ce0">splay_destroy</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#aada27ea536d5cebd428aeafab1a12ce0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#aba1800fc335a0c780af7e39850b74eb1">splay_delete</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#aba1800fc335a0c780af7e39850b74eb1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a6798a6a0c3cf5808c79b9ffd636b1b29">splay_insert</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#a6798a6a0c3cf5808c79b9ffd636b1b29"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a2013bee6615757af0cd9bbd935ff4dfa">splay_remove</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a2013bee6615757af0cd9bbd935ff4dfa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a952b6c2cb4649210f45b0b38fb1002bb">splay_search</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tree for elem.  <a href="#a952b6c2cb4649210f45b0b38fb1002bb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#ac1defd53dcd3cbdc69c86138cf535409">splay_clear</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
@@ -129,44 +129,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aba1800fc335a0c780af7e39850b74eb1"></a><!-- doxytag: member="splay.h::splay_delete" ref="aba1800fc335a0c780af7e39850b74eb1" args="(splaytree *tree, void *elem)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* splay_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td>
-          <td class="paramname"><em>tree</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>elem</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes elem from tree if it is in tree. </p>
-<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to remove elem from. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to remove from tree. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
 
 </div>
 </div>
@@ -261,6 +223,44 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2013bee6615757af0cd9bbd935ff4dfa"></a><!-- doxytag: member="splay.h::splay_remove" ref="a2013bee6615757af0cd9bbd935ff4dfa" args="(splaytree *tree, void *elem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* splay_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>elem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes elem from tree if it is in tree. </p>
+<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to remove elem from. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to remove from tree. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a952b6c2cb4649210f45b0b38fb1002bb"></a><!-- doxytag: member="splay.h::splay_search" ref="a952b6c2cb4649210f45b0b38fb1002bb" args="(splaytree *tree, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
@@ -314,7 +314,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jul 5 2011 23:23:03 for bfvm by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Convoy: src/rbtree/rbtree.h File Reference</title>
+<title>bfvm: src/rbtree/rbtree.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -19,8 +19,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Convoy</div>
-   <div id="projectbrief">A collection of useful data structures.</div>
+   <div id="projectname">bfvm</div>
+   <div id="projectbrief">A brainfuck virtual machine</div>
   </td>
  </tr>
  </tbody>
@@ -100,10 +100,10 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new rbtree.  <a href="#acf6ea983f4a5bdf19548c1e734e10932"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#ab3609a181caee9c50b799d8ba44ed5df">rbtree_destroy</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#ab3609a181caee9c50b799d8ba44ed5df"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a6178c3266b56f40812ca3a55846e798f">rbtree_delete</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a6178c3266b56f40812ca3a55846e798f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#aab1704e25de371de1b6095b581a6a29b">rbtree_insert</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#aab1704e25de371de1b6095b581a6a29b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a08453b1337c9fba64279625f4342046a">rbtree_remove</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a08453b1337c9fba64279625f4342046a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a940eef033d26d3a1e542ee25ca742c21">rbtree_search</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tree for elem.  <a href="#a940eef033d26d3a1e542ee25ca742c21"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a1a7027b732558e300ded4612752e6ef4">rbtree_clear</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
@@ -139,44 +139,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a6178c3266b56f40812ca3a55846e798f"></a><!-- doxytag: member="rbtree.h::rbtree_delete" ref="a6178c3266b56f40812ca3a55846e798f" args="(rbtree *tree, void *elem)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* rbtree_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td>
-          <td class="paramname"><em>tree</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>elem</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes elem from tree if it is in tree. </p>
-<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to remove elem from. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to remove from tree. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
 
 </div>
 </div>
@@ -271,6 +233,44 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a08453b1337c9fba64279625f4342046a"></a><!-- doxytag: member="rbtree.h::rbtree_remove" ref="a08453b1337c9fba64279625f4342046a" args="(rbtree *tree, void *elem)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* rbtree_remove </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>elem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes elem from tree if it is in tree. </p>
+<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to remove elem from. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to remove from tree. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a940eef033d26d3a1e542ee25ca742c21"></a><!-- doxytag: member="rbtree.h::rbtree_search" ref="a940eef033d26d3a1e542ee25ca742c21" args="(rbtree *tree, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +324,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sat Jul 2 2011 04:54:38 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jul 5 2011 23:23:03 for bfvm by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
