@@ -61,6 +61,7 @@ int hashmap_insert(hashmap *map, void *elem) {
     if (entry == NULL) {
         entry = init_entry(elem);
         map->entries[index] = entry;
+        ++(map->size);
         return 0;
     }
 
@@ -171,8 +172,8 @@ static void rehash(hashmap *map) {
             moving = entry;
             entry = entry->next;
             newindex = hash(moving->elem) % newcap;
-            moving->next = newentries[i];
-            newentries[i] = moving;
+            moving->next = newentries[newindex];
+            newentries[newindex] = moving;
         }
     }
 
