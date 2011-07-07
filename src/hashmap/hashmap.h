@@ -57,7 +57,7 @@ typedef struct {
  *  @param hash the hash function that will be used by the table.
  *  @param cmp the compare function that will be used by the table.
  *  @param loadfactor the load factor of the table.
- *  @param cap the capacity of the table.
+ *  @param cap the starting capacity of the table.
  *  @return A pointer to a new hashmap.
  */
 hashmap *hashmap_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap);
@@ -76,7 +76,7 @@ int hashmap_destroy(hashmap *map);
  *  Will fail and return 1 if map is NULL or elem is NULL.
  *
  *  @param map the address of the hashmap we want to insert elem into.
- *  @elem the element we want to insert into map.
+ *  @param elem the element we want to insert into map.
  *  @return Success status.
  */
 int hashmap_insert(hashmap *map, void *elem);

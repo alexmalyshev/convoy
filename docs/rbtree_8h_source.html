@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>bfvm: src/rbtree/rbtree.h Source File</title>
+<title>Convoy: src/rbtree/rbtree.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -19,8 +19,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">bfvm</div>
-   <div id="projectbrief">A brainfuck virtual machine</div>
+   <div id="projectname">Convoy</div>
+   <div id="projectbrief">A collection of useful data structures.</div>
   </td>
  </tr>
  </tbody>
@@ -75,31 +75,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a><a class="code" href="rbtree_8h.html#a4e392f9d227bf09898dae22d16e2cf52">00024</a> <span class="keyword">typedef</span> int (*<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a>)(<span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);
 <a name="l00025"></a>00025 <span class="preprocessor">#endif </span><span class="comment">/* CMPFN */</span>
 <a name="l00026"></a>00026 
-<a name="l00031"></a><a class="code" href="structrbnode.html">00031</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>rbnode_t {
-<a name="l00032"></a><a class="code" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">00032</a>     <span class="keyword">struct </span>rbnode_t *<a class="code" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">left</a>;  
-<a name="l00033"></a><a class="code" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">00033</a>     <span class="keyword">struct </span>rbnode_t *<a class="code" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">right</a>; 
-<a name="l00034"></a><a class="code" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">00034</a>     <span class="keywordtype">void</span> *<a class="code" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">data</a>;             
-<a name="l00035"></a><a class="code" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">00035</a>     <span class="keywordtype">int</span> <a class="code" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">color</a>;              
-<a name="l00036"></a>00036 } <a class="code" href="structrbnode.html" title="A node in a red black tree.">rbnode</a>;
-<a name="l00037"></a>00037 
-<a name="l00042"></a><a class="code" href="structrbtree.html">00042</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00043"></a><a class="code" href="structrbtree.html#a736975d56fce4254b335b0043124ac7d">00043</a>     <a class="code" href="structrbnode.html" title="A node in a red black tree.">rbnode</a> *<a class="code" href="structrbtree.html#a736975d56fce4254b335b0043124ac7d">root</a>;           
-<a name="l00044"></a><a class="code" href="structrbtree.html#ae45b8452f7d54f3dd7c87021ea161d8c">00044</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structrbtree.html#ae45b8452f7d54f3dd7c87021ea161d8c">cmp</a>;              
-<a name="l00045"></a>00045 } <a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a>;
+<a name="l00028"></a><a class="code" href="structrbnode.html">00028</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>rbnode_t {
+<a name="l00029"></a><a class="code" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">00029</a>     <span class="keyword">struct </span>rbnode_t *<a class="code" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">left</a>;  
+<a name="l00030"></a><a class="code" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">00030</a>     <span class="keyword">struct </span>rbnode_t *<a class="code" href="structrbnode.html#ada7c891e175f99014a85ead09ca9172a">right</a>; 
+<a name="l00031"></a><a class="code" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">00031</a>     <span class="keywordtype">void</span> *<a class="code" href="structrbnode.html#af238e0920ca118f7dae3490c22b1c805">data</a>;             
+<a name="l00032"></a><a class="code" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">00032</a>     <span class="keywordtype">int</span> <a class="code" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">color</a>;              
+<a name="l00033"></a>00033 } <a class="code" href="structrbnode.html" title="A node in a red black tree.">rbnode</a>;
+<a name="l00034"></a>00034 
+<a name="l00036"></a><a class="code" href="structrbtree.html">00036</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00037"></a><a class="code" href="structrbtree.html#a736975d56fce4254b335b0043124ac7d">00037</a>     <a class="code" href="structrbnode.html" title="A node in a red black tree.">rbnode</a> *<a class="code" href="structrbtree.html#a736975d56fce4254b335b0043124ac7d">root</a>;           
+<a name="l00038"></a><a class="code" href="structrbtree.html#ae45b8452f7d54f3dd7c87021ea161d8c">00038</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structrbtree.html#ae45b8452f7d54f3dd7c87021ea161d8c">cmp</a>;              
+<a name="l00039"></a>00039 } <a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a>;
+<a name="l00040"></a>00040 
+<a name="l00045"></a>00045 <a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *<a class="code" href="rbtree_8c.html#acf6ea983f4a5bdf19548c1e734e10932" title="Allocates and initializes a new rbtree.">rbtree_init</a>(<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
 <a name="l00046"></a>00046 
-<a name="l00051"></a>00051 <a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *<a class="code" href="rbtree_8c.html#acf6ea983f4a5bdf19548c1e734e10932" title="Allocates and initializes a new rbtree.">rbtree_init</a>(<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
-<a name="l00052"></a>00052 
-<a name="l00060"></a>00060 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#ab3609a181caee9c50b799d8ba44ed5df" title="Frees the nodes in tree and tree itself.">rbtree_destroy</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree);
-<a name="l00061"></a>00061 
-<a name="l00071"></a>00071 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#aab1704e25de371de1b6095b581a6a29b" title="Inserts elem into tree.">rbtree_insert</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00072"></a>00072 
-<a name="l00081"></a>00081 <span class="keywordtype">void</span> *<a class="code" href="rbtree_8c.html#a08453b1337c9fba64279625f4342046a" title="Removes elem from tree if it is in tree.">rbtree_remove</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00082"></a>00082 
-<a name="l00091"></a>00091 <span class="keywordtype">void</span> *<a class="code" href="rbtree_8c.html#a940eef033d26d3a1e542ee25ca742c21" title="Searches tree for elem.">rbtree_search</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00092"></a>00092 
-<a name="l00100"></a>00100 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#a1a7027b732558e300ded4612752e6ef4" title="Removes all elements from tree.">rbtree_clear</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree);
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="preprocessor">#endif </span><span class="comment">/* RBTREE_H_ */</span>
+<a name="l00054"></a>00054 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#ab3609a181caee9c50b799d8ba44ed5df" title="Frees the nodes in tree and tree itself.">rbtree_destroy</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree);
+<a name="l00055"></a>00055 
+<a name="l00065"></a>00065 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#aab1704e25de371de1b6095b581a6a29b" title="Inserts elem into tree.">rbtree_insert</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00066"></a>00066 
+<a name="l00075"></a>00075 <span class="keywordtype">void</span> *<a class="code" href="rbtree_8c.html#a08453b1337c9fba64279625f4342046a" title="Removes elem from tree if it is in tree.">rbtree_remove</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00076"></a>00076 
+<a name="l00085"></a>00085 <span class="keywordtype">void</span> *<a class="code" href="rbtree_8c.html#a940eef033d26d3a1e542ee25ca742c21" title="Searches tree for elem.">rbtree_search</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00086"></a>00086 
+<a name="l00094"></a>00094 <span class="keywordtype">int</span> <a class="code" href="rbtree_8c.html#a1a7027b732558e300ded4612752e6ef4" title="Removes all elements from tree.">rbtree_clear</a>(<a class="code" href="structrbtree.html" title="A red black tree.">rbtree</a> *tree);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 <span class="preprocessor">#endif </span><span class="comment">/* RBTREE_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -116,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jul 5 2011 23:23:03 for bfvm by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 18:44:25 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

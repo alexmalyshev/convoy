@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>bfvm: Data Fields - Variables</title>
+<title>Convoy: Data Fields - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -19,8 +19,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">bfvm</div>
-   <div id="projectbrief">A brainfuck virtual machine</div>
+   <div id="projectname">Convoy</div>
+   <div id="projectbrief">A collection of useful data structures.</div>
   </td>
  </tr>
  </tbody>
@@ -70,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
@@ -94,11 +95,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>cap
 : <a class="el" href="structbinaheap.html#aa7b91284532c9f92a6d53fc148ec2fda">binaheap</a>
+, <a class="el" href="structhashmap.html#a80f6c06e49a6e1eeaf4c54f4b0dd54a3">hashmap</a>
 </li>
 <li>cmp
-: <a class="el" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">binaheap</a>
-, <a class="el" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">splaytree</a>
+: <a class="el" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">splaytree</a>
 , <a class="el" href="structrbtree.html#ae45b8452f7d54f3dd7c87021ea161d8c">rbtree</a>
+, <a class="el" href="structhashmap.html#ae311d6c4cf8e5d28b2b4eea86158d7ac">hashmap</a>
+, <a class="el" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">binaheap</a>
 </li>
 <li>color
 : <a class="el" href="structrbnode.html#a5f8eb8bdc8d1ed4e28fdf561a604d338">rbnode</a>
@@ -121,9 +124,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>elem
+: <a class="el" href="structhashentry.html#a1a044d3068f7d1f6844b617cbf9cd624">hashentry</a>
+</li>
 <li>elems
 : <a class="el" href="structbinaheap.html#a2b86511ff357a702481095e3906924d1">binaheap</a>
 , <a class="el" href="structcircbuf.html#ab7f87259d05922131491e91db67246f0">circbuf</a>
+</li>
+<li>entries
+: <a class="el" href="structhashmap.html#a032f2accb0df64c48946c3cc66da0d99">hashmap</a>
 </li>
 </ul>
 
@@ -137,16 +146,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>hash
+: <a class="el" href="structhashmap.html#aff92412773cc57212e640146236fb4eb">hashmap</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>left
 : <a class="el" href="structrbnode.html#ac34d2ce57aca403c085ad094770ef3f1">rbnode</a>
 , <a class="el" href="structsplaynode.html#a6b32b03cad23f0ec07404b5848ff9933">splaynode</a>
 </li>
 <li>len
-: <a class="el" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">queue</a>
-, <a class="el" href="structdeque.html#afbb4f8305ddf3f1113f3b4066e2845ea">deque</a>
-, <a class="el" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">circbuf</a>
+: <a class="el" href="structdeque.html#afbb4f8305ddf3f1113f3b4066e2845ea">deque</a>
 , <a class="el" href="structstack.html#aafefde73472c67d5477dcdc6fad345c9">stack</a>
+, <a class="el" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">queue</a>
+, <a class="el" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">circbuf</a>
+</li>
+<li>limit
+: <a class="el" href="structhashmap.html#a3fc3a3d6d53cec45123d6d0c10fcb537">hashmap</a>
+</li>
+<li>loadfactor
+: <a class="el" href="structhashmap.html#a54b09b2270e17e3a234c77b06a5b9084">hashmap</a>
 </li>
 </ul>
 
@@ -154,8 +176,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
 <li>next
 : <a class="el" href="structdnode.html#ada40496566ea33c5664bb57d1e50a6b4">dnode</a>
-, <a class="el" href="structqnode.html#ac006469b676412e77d7ff3637bfc76b3">qnode</a>
+, <a class="el" href="structhashentry.html#ae226a2fb3a224570d01d238dbaa34cb9">hashentry</a>
 , <a class="el" href="structsnode.html#a0cc6d4bb0f7d1d6cc0043f77a9788c47">snode</a>
+, <a class="el" href="structqnode.html#ac006469b676412e77d7ff3637bfc76b3">qnode</a>
 </li>
 <li>num
 : <a class="el" href="structrat.html#a4af0b08dd817e4e8259ce9aa13547211">rat</a>
@@ -185,6 +208,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>size
 : <a class="el" href="structbinaheap.html#ab77ce9ba409276d00adff3c47e5213d6">binaheap</a>
+, <a class="el" href="structhashmap.html#aa490c06ed0bd662b6cb99e73430e097f">hashmap</a>
 </li>
 </ul>
 
@@ -209,7 +233,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jul 5 2011 23:23:03 for bfvm by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 18:44:25 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

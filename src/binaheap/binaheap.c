@@ -14,7 +14,7 @@
 #include "binaheap.h"
 #include "binaheap-int.h"
 
-binaheap *binaheap_init(cmpfn cmp) {
+binaheap *binaheap_init(cmpfn cmp, size_t cap) {
     binaheap *heap;
 
     if (cmp == NULL)
@@ -22,9 +22,9 @@ binaheap *binaheap_init(cmpfn cmp) {
 
     if ((heap = malloc(sizeof(binaheap))) == NULL)
         return NULL;
-    if ((heap->elems = malloc(INITIAL_CAPACITY * sizeof(void *))) == NULL)
+    if ((heap->elems = malloc(cap * sizeof(void *))) == NULL)
         return NULL;
-    heap->cap = INITIAL_CAPACITY;
+    heap->cap = cap;
     heap->size = 0;
     heap->cmp = cmp;
     return heap;

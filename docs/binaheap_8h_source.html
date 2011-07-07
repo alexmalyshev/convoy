@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>bfvm: src/binaheap/binaheap.h Source File</title>
+<title>Convoy: src/binaheap/binaheap.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -19,8 +19,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">bfvm</div>
-   <div id="projectbrief">A brainfuck virtual machine</div>
+   <div id="projectname">Convoy</div>
+   <div id="projectbrief">A collection of useful data structures.</div>
   </td>
  </tr>
  </tbody>
@@ -67,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00015"></a>00015 <span class="preprocessor"></span>
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;limits.h&gt;</span> <span class="comment">/* LONG_MAX */</span>
 <a name="l00017"></a>00017 
-<a name="l00019"></a><a class="code" href="binaheap_8h.html#a5446a5bbb68bb93392b04dfbfa0095af">00019</a> <span class="preprocessor">#define INITIAL_CAPACITY 10</span>
+<a name="l00019"></a><a class="code" href="binaheap_8h.html#a8b928a14929b7aa5d5a0de342557bb65">00019</a> <span class="preprocessor">#define BINAHEAP_DEFAULT_CAPACITY 32</span>
 <a name="l00020"></a>00020 <span class="preprocessor"></span>
 <a name="l00021"></a>00021 <span class="preprocessor">#ifndef CMPFN</span>
 <a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#define CMPFN</span>
@@ -75,24 +75,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a><a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52">00024</a> <span class="keyword">typedef</span> int (*<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a>)(<span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);
 <a name="l00025"></a>00025 <span class="preprocessor">#endif </span><span class="comment">/* CMPFN */</span>
 <a name="l00026"></a>00026 
-<a name="l00032"></a><a class="code" href="structbinaheap.html">00032</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00033"></a><a class="code" href="structbinaheap.html#a2b86511ff357a702481095e3906924d1">00033</a>     <span class="keywordtype">void</span> **<a class="code" href="structbinaheap.html#a2b86511ff357a702481095e3906924d1">elems</a>;   
-<a name="l00034"></a><a class="code" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">00034</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">cmp</a>;      
-<a name="l00035"></a><a class="code" href="structbinaheap.html#ab77ce9ba409276d00adff3c47e5213d6">00035</a>     <span class="keywordtype">size_t</span> <a class="code" href="structbinaheap.html#ab77ce9ba409276d00adff3c47e5213d6">size</a>;    
-<a name="l00036"></a><a class="code" href="structbinaheap.html#aa7b91284532c9f92a6d53fc148ec2fda">00036</a>     <span class="keywordtype">size_t</span> <a class="code" href="structbinaheap.html#aa7b91284532c9f92a6d53fc148ec2fda">cap</a>;     
-<a name="l00037"></a>00037 } <a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a>;
-<a name="l00038"></a>00038 
-<a name="l00043"></a>00043 <a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *<a class="code" href="binaheap_8c.html#ae797acc4c7d46e4917d65344f4627764" title="Allocates and initializes a new binaheap.">binaheap_init</a>(<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
-<a name="l00044"></a>00044 
-<a name="l00052"></a>00052 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#aedc1eb3b90e448f39a82ff365ecb828e" title="Frees the dynamic array in heap and heap itself.">binaheap_destroy</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
-<a name="l00053"></a>00053 
-<a name="l00062"></a>00062 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#ad790a63e41c7a6c06a994b4c3cf44023" title="Inserts elem into heap.">binaheap_insert</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap, <span class="keywordtype">void</span> *elem);
-<a name="l00063"></a>00063 
-<a name="l00071"></a>00071 <span class="keywordtype">void</span> *<a class="code" href="binaheap_8c.html#a3f24ec6ad975a258c8b12143abea5cc7" title="Removes the minimum element in heap.">binaheap_removemin</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
-<a name="l00072"></a>00072 
-<a name="l00080"></a>00080 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#aea668cac56cd9b0f6a5936c2d61d4283" title="Removes all elements from heap.">binaheap_clear</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 <span class="preprocessor">#endif </span><span class="comment">/* BINAHEAP_H_ */</span>
+<a name="l00028"></a><a class="code" href="structbinaheap.html">00028</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00029"></a><a class="code" href="structbinaheap.html#a2b86511ff357a702481095e3906924d1">00029</a>     <span class="keywordtype">void</span> **<a class="code" href="structbinaheap.html#a2b86511ff357a702481095e3906924d1">elems</a>;   
+<a name="l00030"></a><a class="code" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">00030</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structbinaheap.html#afd52b9895b18943c4bc21823e806bfbe">cmp</a>;      
+<a name="l00031"></a><a class="code" href="structbinaheap.html#ab77ce9ba409276d00adff3c47e5213d6">00031</a>     <span class="keywordtype">size_t</span> <a class="code" href="structbinaheap.html#ab77ce9ba409276d00adff3c47e5213d6">size</a>;    
+<a name="l00032"></a><a class="code" href="structbinaheap.html#aa7b91284532c9f92a6d53fc148ec2fda">00032</a>     <span class="keywordtype">size_t</span> <a class="code" href="structbinaheap.html#aa7b91284532c9f92a6d53fc148ec2fda">cap</a>;     
+<a name="l00033"></a>00033 } <a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a>;
+<a name="l00034"></a>00034 
+<a name="l00040"></a>00040 <a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *<a class="code" href="binaheap_8c.html#ae999dd98ad423affef16cbfa3b344005" title="Allocates and initializes a new binaheap.">binaheap_init</a>(<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp, <span class="keywordtype">size_t</span> cap);
+<a name="l00041"></a>00041 
+<a name="l00049"></a>00049 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#aedc1eb3b90e448f39a82ff365ecb828e" title="Frees the dynamic array in heap and heap itself.">binaheap_destroy</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
+<a name="l00050"></a>00050 
+<a name="l00059"></a>00059 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#ad790a63e41c7a6c06a994b4c3cf44023" title="Inserts elem into heap.">binaheap_insert</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap, <span class="keywordtype">void</span> *elem);
+<a name="l00060"></a>00060 
+<a name="l00068"></a>00068 <span class="keywordtype">void</span> *<a class="code" href="binaheap_8c.html#a3f24ec6ad975a258c8b12143abea5cc7" title="Removes the minimum element in heap.">binaheap_removemin</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
+<a name="l00069"></a>00069 
+<a name="l00077"></a>00077 <span class="keywordtype">int</span> <a class="code" href="binaheap_8c.html#aea668cac56cd9b0f6a5936c2d61d4283" title="Removes all elements from heap.">binaheap_clear</a>(<a class="code" href="structbinaheap.html" title="A binary heap.">binaheap</a> *heap);
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 <span class="preprocessor">#endif </span><span class="comment">/* BINAHEAP_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -109,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jul 5 2011 23:23:03 for bfvm by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 18:44:25 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
