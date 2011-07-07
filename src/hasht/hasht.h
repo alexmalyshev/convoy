@@ -1,4 +1,4 @@
-/** @file hashmap.h
+/** @file hasht.h
  *  @brief Function prototypes and structs for a hash table.
  *
  *  Implementation of a hash table that is backed by a dynamic array and
@@ -11,8 +11,8 @@
  *  @bug No known bugs.
  */
 
-#ifndef HASHMAP_H_
-#define HASHMAP_H_
+#ifndef HASHT_H_
+#define HASHT_H_
 
 #ifndef CMPFN
 #define CMPFN
@@ -26,13 +26,13 @@ typedef int (*cmpfn)(void *, void *);
 typedef unsigned long (*hashfn)(void *);
 #endif /* HASHFN */
 
-/** @brief The default load factor for a hashmap. */
-#define HASHMAP_DEFAULT_LOADFACTOR 0.75
+/** @brief The default load factor for a hasht. */
+#define HASHT_DEFAULT_LOADFACTOR 0.75
 
-/** @brief The default initial capacity for a hashmap. */
-#define HASHMAP_DEFAULT_CAPACITY 64
+/** @brief The default initial capacity for a hasht. */
+#define HASHT_DEFAULT_CAPACITY 64
 
-/** @brief An entry in a hashmap. */
+/** @brief An entry in a hasht. */
 typedef struct hashentry_t {
     void *elem;                 /**< the element stored in the entry. */
     struct hashentry_t *next;   /**< the next entry in the current bucket. */
@@ -47,9 +47,9 @@ typedef struct {
     size_t cap;             /**< the number of elements the array can hold. */
     size_t limit;           /**< the size where the array has to be resized. */
     double loadfactor;      /**< the load factor of the table. */
-} hashmap;
+} hasht;
 
-/** @brief Allocates and initializes a new hashmap.
+/** @brief Allocates and initializes a new hasht.
  *
  *  Will fail and return NULL if cmp is NULL, hash is NULL, or if loadfactor
  *  is non-positive.
@@ -58,57 +58,57 @@ typedef struct {
  *  @param cmp the compare function that will be used by the table.
  *  @param loadfactor the load factor of the table.
  *  @param cap the starting capacity of the table.
- *  @return A pointer to a new hashmap.
+ *  @return A pointer to a new hasht.
  */
-hashmap *hashmap_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap);
+hasht *hasht_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap);
 
-/** @brief Frees the dynamic array in map and map itself.
+/** @brief Frees the dynamic array in tab and tab itself.
  *
- *  Will not free the elements stored in map.
+ *  Will not free the elements stored in tab.
  *
- *  @param map the address of the hashmap we want to deallocate.
+ *  @param tab the address of the hasht we want to deallocate.
  *  @return Success status.
  */
-int hashmap_destroy(hashmap *map);
+int hasht_destroy(hasht *tab);
 
-/** @brief Inserts elem into map.
+/** @brief Inserts elem into tab.
  *
- *  Will fail and return 1 if map is NULL or elem is NULL.
+ *  Will fail and return 1 if tab is NULL or elem is NULL.
  *
- *  @param map the address of the hashmap we want to insert elem into.
- *  @param elem the element we want to insert into map.
+ *  @param tab the address of the hasht we want to insert elem into.
+ *  @param elem the element we want to insert into tab.
  *  @return Success status.
  */
-int hashmap_insert(hashmap *map, void *elem);
+int hasht_insert(hasht *tab, void *elem);
 
-/** @brief Removes elem from map if it is in map.
+/** @brief Removes elem from tab if it is in map.
  *
- *  Will fail and return NULL if map is NULL or elem is NULL.
+ *  Will fail and return NULL if tab is NULL or elem is NULL.
  *
- *  @param map the address of the hashmap we want to remove elem from.
- *  @param elem the element we want to remove from map.
- *  @return The element equal to elem if it exists in map, NULL otherwise.
+ *  @param tab the address of the hasht we want to remove elem from.
+ *  @param elem the element we want to remove from tab.
+ *  @return The element equal to elem if it exists in tab, NULL otherwise.
  */
-void *hashmap_remove(hashmap *map, void *elem);
+void *hasht_remove(hasht *tab, void *elem);
 
-/** @brief Searches map for elem.
+/** @brief Searches tab for elem.
  *
- *  Will fail and return NULL if map is NULL or elem is NULL.
+ *  Will fail and return NULL if tab is NULL or elem is NULL.
  *
- *  @param map the address of the hashmap we want to search for elem.
- *  @param elem the element we're searching for in map.
- *  @return The element equal to elem if it exists in map, NULL otherwise.
+ *  @param tab the address of the hasht we want to search for elem.
+ *  @param elem the element we're searching for in tab.
+ *  @return The element equal to elem if it exists in tab, NULL otherwise.
  */
-void *hashmap_search(hashmap *map, void *elem);
+void *hasht_search(hasht *tab, void *elem);
 
-/** @brief Removes all elements from map.
+/** @brief Removes all elements from tab.
  *
- *  Frees all the entries in the buckets of map, but will not free
+ *  Frees all the entries in the buckets of tab, but will not free
  *  the elements in the entries.
  *
- *  @param map the address of the hashmap we want to clear out.
+ *  @param tab the address of the hasht we want to clear out.
  *  @return Success status.
  */
-int hashmap_clear(hashmap *map);
+int hasht_clear(hasht *tab);
 
-#endif /* HASHMAP_H_ */
+#endif /* HASHT_H_ */

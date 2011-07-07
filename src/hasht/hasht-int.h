@@ -1,20 +1,20 @@
-/** @file hashmap-int.h
- *  @brief Function prototypes for internal functions in the hashmap library.
+/** @file hasht-int.h
+ *  @brief Function prototypes for internal functions in the hasht library.
  *  @author Alexander Malyshev
  *  @bug No known bugs.
  */
 
-#ifndef HASHMAP_INT_H_
-#define HASHMAP_INT_H_
+#ifndef HASHT_INT_H_
+#define HASHT_INT_H_
 
-/** @brief Doubles the size of map's array and rehashes all elements.
+/** @brief Doubles the size of tab's array and rehashes all elements.
  *
- *  map is not NULL.
+ *  tab is not NULL.
  *
- *  @param map the address of the hashmap we want to resize and rehash.
+ *  @param tab the address of the hasht we want to resize and rehash.
  *  @return Void.
  */
-static void rehash(hashmap *map);
+static void rehash(hasht *tab);
 
 /** @brief Frees all the entries in a bucket.
  *
@@ -31,4 +31,4 @@ static void destroy_bucket(hashentry *entry);
  */
 static hashentry *init_entry(void *elem);
 
-#endif /* HASHMAP_INT_H_ */
+#endif /* HASHT_INT_H_ */

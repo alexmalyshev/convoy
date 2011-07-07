@@ -1,71 +1,71 @@
-/** @file hashmap.c
+/** @file hasht.c
  *  @brief A hash table library.
  *
  *  We malloc an entry every time we insert a new element into the hash table
  *  and free the entry that wraps around the element returned by
- *  hashmap_remove. We compare elements using the compare function that is
- *  given as an argument to hashmap_init and we hash elements using the hash
- *  function that is also given as an argument in hashmap_init.
+ *  hasht_remove. We compare elements using the compare function that is
+ *  given as an argument to hasht_init and we hash elements using the hash
+ *  function that is also given as an argument in hasht_init.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
  */
 
 #include <stdlib.h>
-#include "hashmap.h"
-#include "hashmap-int.h"
+#include "hasht.h"
+#include "hasht-int.h"
 
-hashmap *hashmap_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap) {
-    hashmap *map;
+hasht *hasht_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap) {
+    hasht *tab;
 
     if (hash == NULL || cmp == NULL || loadfactor <= 0.0)
         return NULL;
 
-    if ((map = malloc(sizeof(hashmap))) == NULL)
+    if ((tab = malloc(sizeof(hasht))) == NULL)
         return NULL;
-    if ((map->entries = calloc(cap, sizeof(hashentry *))) == NULL)
+    if ((tab->entries = calloc(cap, sizeof(hashentry *))) == NULL)
         return NULL;
 
-    map->hash = hash;
-    map->cmp = cmp;
-    map->size = 0;
-    map->cap = cap;
-    map->limit = (size_t)(cap * loadfactor);
-    map->loadfactor = loadfactor;
-    return map;
+    tab->hash = hash;
+    tab->cmp = cmp;
+    tab->size = 0;
+    tab->cap = cap;
+    tab->limit = (size_t)(cap * loadfactor);
+    tab->loadfactor = loadfactor;
+    return tab;
 }
 
-int hashmap_destroy(hashmap *map) {
-    if (hashmap_clear(map))
+int hasht_destroy(hasht *tab) {
+    if (hasht_clear(tab))
         return 1;
 
-    free(map->entries);
-    free(map);
+    free(tab->entries);
+    free(tab);
     return 0;
 }
 
-int hashmap_insert(hashmap *map, void *elem) {
+int hasht_insert(hasht *tab, void *elem) {
     hashentry *entry;
     size_t index;
     cmpfn cmp;
 
-    if (map == NULL || elem == NULL)
+    if (tab == NULL || elem == NULL)
         return 1;
 
-    if (map->size == map->limit)
-        rehash(map);
+    if (tab->size == tab->limit)
+        rehash(tab);
 
-    index = map->hash(elem) % map->cap;
-    entry = map->entries[index];
+    index = tab->hash(elem) % tab->cap;
+    entry = tab->entries[index];
 
     if (entry == NULL) {
         entry = init_entry(elem);
-        map->entries[index] = entry;
-        ++(map->size);
+        tab->entries[index] = entry;
+        ++(tab->size);
         return 0;
     }
 
-    cmp = map->cmp;
+    cmp = tab->cmp;
 
     while (entry->next != NULL) {
         if (cmp(elem, entry->elem) == 0)
@@ -76,31 +76,31 @@ int hashmap_insert(hashmap *map, void *elem) {
         return 0;
 
     entry->next = init_entry(elem);
-    ++(map->size);
+    ++(tab->size);
 
     return 0;
 }
 
-void *hashmap_remove(hashmap *map, void *elem) {
+void *hasht_remove(hasht *tab, void *elem) {
     hashentry *entry;
     hashentry *dead;
     size_t index;
     cmpfn cmp;
     void *found;
 
-    if (map == NULL || elem == NULL)
+    if (tab == NULL || elem == NULL)
         return NULL;
 
-    index = map->hash(elem) % map->cap;
-    entry = map->entries[index];
-    cmp = map->cmp;
+    index = tab->hash(elem) % tab->cap;
+    entry = tab->entries[index];
+    cmp = tab->cmp;
 
     if (entry == NULL)
         return NULL;
 
     if (cmp(elem, entry->elem) == 0) {
         found = entry->elem;
-        map->entries[index] = entry->next;
+        tab->entries[index] = entry->next;
         free(entry);
         return found;
     }
@@ -111,7 +111,7 @@ void *hashmap_remove(hashmap *map, void *elem) {
             entry->next = dead->next;
             found = dead->elem;
             free(dead);
-            --(map->size);
+            --(tab->size);
             return found;
         }
         entry = entry->next;
@@ -120,17 +120,17 @@ void *hashmap_remove(hashmap *map, void *elem) {
     return NULL;
 }
 
-void *hashmap_search(hashmap *map, void *elem) {
+void *hasht_search(hasht *tab, void *elem) {
     hashentry *entry;
     size_t index;
     cmpfn cmp;
 
-    if (map == NULL || elem == NULL)
+    if (tab == NULL || elem == NULL)
         return NULL;
 
-    index = map->hash(elem) % map->cap;
-    entry = map->entries[index];
-    cmp = map->cmp;
+    index = tab->hash(elem) % tab->cap;
+    entry = tab->entries[index];
+    cmp = tab->cmp;
 
     while (entry != NULL) {
         if (cmp(elem, entry->elem) == 0)
@@ -141,22 +141,22 @@ void *hashmap_search(hashmap *map, void *elem) {
     return NULL;
 }
 
-int hashmap_clear(hashmap *map) {
+int hasht_clear(hasht *tab) {
     size_t i;
 
-    if (map == NULL)
+    if (tab == NULL)
         return 1;
 
-    for (i = 0; i < map->cap; ++i)
-        destroy_bucket((map->entries)[i]);
+    for (i = 0; i < tab->cap; ++i)
+        destroy_bucket((tab->entries)[i]);
 
     return 0;
 }
 
-static void rehash(hashmap *map) {
-    hashentry **entries = map->entries;
-    hashfn hash = map->hash;
-    size_t cap = map->cap;
+static void rehash(hasht *tab) {
+    hashentry **entries = tab->entries;
+    hashfn hash = tab->hash;
+    size_t cap = tab->cap;
 
     size_t newcap = cap * 2;
     hashentry **newentries = calloc(newcap, sizeof(hashentry *));
@@ -177,9 +177,9 @@ static void rehash(hashmap *map) {
         }
     }
 
-    map->entries = newentries;
-    map->cap = newcap;
-    map->limit = map->loadfactor * newcap;
+    tab->entries = newentries;
+    tab->cap = newcap;
+    tab->limit = tab->loadfactor * newcap;
     free(entries);
 }
 
