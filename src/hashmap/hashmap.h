@@ -27,10 +27,10 @@ typedef unsigned long (*hashfn)(void *);
 #endif /* HASHFN */
 
 /** @brief The default load factor for a hashmap. */
-#define DEFAULT_LOAD_FACTOR 0.75
+#define HASHMAP_DEFAULT_LOADFACTOR 0.75
 
 /** @brief The default initial capacity for a hashmap. */
-#define DEFAULT_INITIAL_CAPACITY 64
+#define HASHMAP_DEFAULT_CAPACITY 64
 
 /** @brief An entry in a hashmap. */
 typedef struct hashentry_t {
