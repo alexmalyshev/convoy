@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Convoy: src/hashmap/hashmap.h File Reference</title>
+<title>Convoy: src/hasht/hasht.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -64,55 +64,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">src/hashmap/hashmap.h File Reference</div>  </div>
+<div class="title">src/hasht/hasht.h File Reference</div>  </div>
 </div>
 <div class="contents">
 
 <p>Function prototypes and structs for a hash table.  
 <a href="#details">More...</a></p>
 
-<p><a href="hashmap_8h_source.html">Go to the source code of this file.</a></p>
+<p><a href="hasht_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashentry.html">hashentry</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An entry in a hashmap.  <a href="structhashentry.html#details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashmap.html">hashmap</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A hash table.  <a href="structhashmap.html#details">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An entry in a hasht.  <a href="structhashentry.html#details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhasht.html">hasht</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A hash table.  <a href="structhasht.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9a75e417b59ce869c53276f7f0e57d2"></a><!-- doxytag: member="hashmap.h::CMPFN" ref="ae9a75e417b59ce869c53276f7f0e57d2" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9a75e417b59ce869c53276f7f0e57d2"></a><!-- doxytag: member="hasht.h::CMPFN" ref="ae9a75e417b59ce869c53276f7f0e57d2" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CMPFN</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4b891c980e31f8e04d281cd508cc093"></a><!-- doxytag: member="hashmap.h::HASHFN" ref="af4b891c980e31f8e04d281cd508cc093" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4b891c980e31f8e04d281cd508cc093"></a><!-- doxytag: member="hasht.h::HASHFN" ref="af4b891c980e31f8e04d281cd508cc093" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>HASHFN</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab950cacb649a7a8182bd7721cb40c5ef"></a><!-- doxytag: member="hashmap.h::DEFAULT_LOAD_FACTOR" ref="ab950cacb649a7a8182bd7721cb40c5ef" args="" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#ab950cacb649a7a8182bd7721cb40c5ef">DEFAULT_LOAD_FACTOR</a>&#160;&#160;&#160;0.75</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default load factor for a hashmap. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9008fa5ee7d89881b68c4a93b64e007c"></a><!-- doxytag: member="hashmap.h::DEFAULT_INITIAL_CAPACITY" ref="a9008fa5ee7d89881b68c4a93b64e007c" args="" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a9008fa5ee7d89881b68c4a93b64e007c">DEFAULT_INITIAL_CAPACITY</a>&#160;&#160;&#160;64</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default initial capacity for a hashmap. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab861ad5e0b7ebab9b647638277203e41"></a><!-- doxytag: member="hasht.h::HASHT_DEFAULT_LOADFACTOR" ref="ab861ad5e0b7ebab9b647638277203e41" args="" -->
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ab861ad5e0b7ebab9b647638277203e41">HASHT_DEFAULT_LOADFACTOR</a>&#160;&#160;&#160;0.75</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default load factor for a hasht. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a124d09dc36a81d53e8a6a8395707ae94"></a><!-- doxytag: member="hasht.h::HASHT_DEFAULT_CAPACITY" ref="a124d09dc36a81d53e8a6a8395707ae94" args="" -->
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a124d09dc36a81d53e8a6a8395707ae94">HASHT_DEFAULT_CAPACITY</a>&#160;&#160;&#160;64</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default initial capacity for a hasht. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e392f9d227bf09898dae22d16e2cf52"></a><!-- doxytag: member="hashmap.h::cmpfn" ref="a4e392f9d227bf09898dae22d16e2cf52" args=")(void *, void *)" -->
-typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> )(void *, void *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e392f9d227bf09898dae22d16e2cf52"></a><!-- doxytag: member="hasht.h::cmpfn" ref="a4e392f9d227bf09898dae22d16e2cf52" args=")(void *, void *)" -->
+typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> )(void *, void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c5d00c620c027cbd0ed05d47186006"></a><!-- doxytag: member="hashmap.h::hashfn" ref="a05c5d00c620c027cbd0ed05d47186006" args=")(void *)" -->
-typedef unsigned long(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> )(void *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c5d00c620c027cbd0ed05d47186006"></a><!-- doxytag: member="hasht.h::hashfn" ref="a05c5d00c620c027cbd0ed05d47186006" args=")(void *)" -->
+typedef unsigned long(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> )(void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic hash function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#ab084eaf2c737213a462f2d699beb8abd">hashmap_init</a> (<a class="el" href="hashmap_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> hash, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, double loadfactor, size_t cap)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new hashmap.  <a href="#ab084eaf2c737213a462f2d699beb8abd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a52e51407bc783bb0a0e35eb933cf103c">hashmap_destroy</a> (<a class="el" href="structhashmap.html">hashmap</a> *map)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in map and map itself.  <a href="#a52e51407bc783bb0a0e35eb933cf103c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a435761784856c6feb9445214ad4cfa1e">hashmap_insert</a> (<a class="el" href="structhashmap.html">hashmap</a> *map, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into map.  <a href="#a435761784856c6feb9445214ad4cfa1e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#acc2b2fc3c70c3f844e62699e5404d9ba">hashmap_remove</a> (<a class="el" href="structhashmap.html">hashmap</a> *map, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from map if it is in map.  <a href="#acc2b2fc3c70c3f844e62699e5404d9ba"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a62cc86ecf860acb2dc1f9d1046acc7c0">hashmap_search</a> (<a class="el" href="structhashmap.html">hashmap</a> *map, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches map for elem.  <a href="#a62cc86ecf860acb2dc1f9d1046acc7c0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a4adc466cadda1e0dfe0b30e84a65dda8">hashmap_clear</a> (<a class="el" href="structhashmap.html">hashmap</a> *map)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from map.  <a href="#a4adc466cadda1e0dfe0b30e84a65dda8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhasht.html">hasht</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#acf782cfece2e1ce72f3ced7936afe698">hasht_init</a> (<a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> hash, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, double loadfactor, size_t cap)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new hasht.  <a href="#acf782cfece2e1ce72f3ced7936afe698"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ac01db857ebd18f5063f02ad06c559099">hasht_destroy</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in tab and tab itself.  <a href="#ac01db857ebd18f5063f02ad06c559099"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ab39329f0631d7d03d4fbbbb42d8110eb">hasht_insert</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tab.  <a href="#ab39329f0631d7d03d4fbbbb42d8110eb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a769712d0d50dcf0cb5401c3b748afe2f">hasht_remove</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tab if it is in map.  <a href="#a769712d0d50dcf0cb5401c3b748afe2f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ad42f4d814ce9deb3f32d98372ce8611b">hasht_search</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tab for elem.  <a href="#ad42f4d814ce9deb3f32d98372ce8611b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a7afc1a54fdf3413b2f585a4ac1b24299">hasht_clear</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tab.  <a href="#a7afc1a54fdf3413b2f585a4ac1b24299"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a hash table. </p>
@@ -120,26 +120,26 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000011">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a4adc466cadda1e0dfe0b30e84a65dda8"></a><!-- doxytag: member="hashmap.h::hashmap_clear" ref="a4adc466cadda1e0dfe0b30e84a65dda8" args="(hashmap *map)" -->
+<a class="anchor" id="a7afc1a54fdf3413b2f585a4ac1b24299"></a><!-- doxytag: member="hasht.h::hasht_clear" ref="a7afc1a54fdf3413b2f585a4ac1b24299" args="(hasht *tab)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int hashmap_clear </td>
+          <td class="memname">int hasht_clear </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td>
-          <td class="paramname"><em>map</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from map. </p>
-<p>Frees all the entries in the buckets of map, but will not free the elements in the entries.</p>
+<p>Removes all elements from tab. </p>
+<p>Frees all the entries in the buckets of tab, but will not free the elements in the entries.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>the address of the hashmap we want to clear out. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -147,26 +147,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a52e51407bc783bb0a0e35eb933cf103c"></a><!-- doxytag: member="hashmap.h::hashmap_destroy" ref="a52e51407bc783bb0a0e35eb933cf103c" args="(hashmap *map)" -->
+<a class="anchor" id="ac01db857ebd18f5063f02ad06c559099"></a><!-- doxytag: member="hasht.h::hasht_destroy" ref="ac01db857ebd18f5063f02ad06c559099" args="(hasht *tab)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int hashmap_destroy </td>
+          <td class="memname">int hasht_destroy </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td>
-          <td class="paramname"><em>map</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Frees the dynamic array in map and map itself. </p>
-<p>Will not free the elements stored in map.</p>
+<p>Frees the dynamic array in tab and tab itself. </p>
+<p>Will not free the elements stored in tab.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>the address of the hashmap we want to deallocate. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to deallocate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -174,14 +174,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab084eaf2c737213a462f2d699beb8abd"></a><!-- doxytag: member="hashmap.h::hashmap_init" ref="ab084eaf2c737213a462f2d699beb8abd" args="(hashfn hash, cmpfn cmp, double loadfactor, size_t cap)" -->
+<a class="anchor" id="acf782cfece2e1ce72f3ced7936afe698"></a><!-- doxytag: member="hasht.h::hasht_init" ref="acf782cfece2e1ce72f3ced7936afe698" args="(hashfn hash, cmpfn cmp, double loadfactor, size_t cap)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structhashmap.html">hashmap</a>* hashmap_init </td>
+          <td class="memname"><a class="el" href="structhasht.html">hasht</a>* hasht_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="hashmap_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a>&#160;</td>
           <td class="paramname"><em>hash</em>, </td>
         </tr>
         <tr>
@@ -211,7 +211,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new hashmap. </p>
+<p>Allocates and initializes a new hasht. </p>
 <p>Will fail and return NULL if cmp is NULL, hash is NULL, or if loadfactor is non-positive.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -222,19 +222,19 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new hashmap. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new hasht. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a435761784856c6feb9445214ad4cfa1e"></a><!-- doxytag: member="hashmap.h::hashmap_insert" ref="a435761784856c6feb9445214ad4cfa1e" args="(hashmap *map, void *elem)" -->
+<a class="anchor" id="ab39329f0631d7d03d4fbbbb42d8110eb"></a><!-- doxytag: member="hasht.h::hasht_insert" ref="ab39329f0631d7d03d4fbbbb42d8110eb" args="(hasht *tab, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int hashmap_insert </td>
+          <td class="memname">int hasht_insert </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -251,12 +251,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem into map. </p>
-<p>Will fail and return 1 if map is NULL or elem is NULL.</p>
+<p>Inserts elem into tab. </p>
+<p>Will fail and return 1 if tab is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>the address of the hashmap we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert into map. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to insert elem into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert into tab. </td></tr>
   </table>
   </dd>
 </dl>
@@ -264,15 +264,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acc2b2fc3c70c3f844e62699e5404d9ba"></a><!-- doxytag: member="hashmap.h::hashmap_remove" ref="acc2b2fc3c70c3f844e62699e5404d9ba" args="(hashmap *map, void *elem)" -->
+<a class="anchor" id="a769712d0d50dcf0cb5401c3b748afe2f"></a><!-- doxytag: member="hasht.h::hasht_remove" ref="a769712d0d50dcf0cb5401c3b748afe2f" args="(hasht *tab, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* hashmap_remove </td>
+          <td class="memname">void* hasht_remove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -289,28 +289,28 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes elem from map if it is in map. </p>
-<p>Will fail and return NULL if map is NULL or elem is NULL.</p>
+<p>Removes elem from tab if it is in map. </p>
+<p>Will fail and return NULL if tab is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>the address of the hashmap we want to remove elem from. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to remove from map. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to remove elem from. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to remove from tab. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in map, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tab, NULL otherwise. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a62cc86ecf860acb2dc1f9d1046acc7c0"></a><!-- doxytag: member="hashmap.h::hashmap_search" ref="a62cc86ecf860acb2dc1f9d1046acc7c0" args="(hashmap *map, void *elem)" -->
+<a class="anchor" id="ad42f4d814ce9deb3f32d98372ce8611b"></a><!-- doxytag: member="hasht.h::hasht_search" ref="ad42f4d814ce9deb3f32d98372ce8611b" args="(hasht *tab, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* hashmap_search </td>
+          <td class="memname">void* hasht_search </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structhashmap.html">hashmap</a> *&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -327,16 +327,16 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Searches map for elem. </p>
-<p>Will fail and return NULL if map is NULL or elem is NULL.</p>
+<p>Searches tab for elem. </p>
+<p>Will fail and return NULL if tab is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>the address of the hashmap we want to search for elem. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we're searching for in map. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to search for elem. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we're searching for in tab. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in map, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tab, NULL otherwise. </dd></dl>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 18:44:25 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 19:41:30 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

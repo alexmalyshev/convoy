@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Convoy: src/hashmap/hashmap-int.h File Reference</title>
+<title>Convoy: src/hasht/hasht-int.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -56,24 +56,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-</div>
 <div class="header">
   <div class="headertitle">
-<div class="title">src/hashmap/hashmap-int.h File Reference</div>  </div>
+<div class="title">src/hasht/hasht-int.h</div>  </div>
 </div>
 <div class="contents">
-
-<p>Function prototypes for internal functions in the hashmap library.  
-<a href="#details">More...</a></p>
-
-<p><a href="hashmap-int_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Function prototypes for internal functions in the hashmap library. </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
-<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000009">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
-</div></div>
+<a href="hasht-int_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00007"></a>00007 <span class="preprocessor">#ifndef HASHT_INT_H_</span>
+<a name="l00008"></a>00008 <span class="preprocessor"></span><span class="preprocessor">#define HASHT_INT_H_</span>
+<a name="l00009"></a>00009 <span class="preprocessor"></span>
+<a name="l00017"></a>00017 <span class="keyword">static</span> <span class="keywordtype">void</span> rehash(<a class="code" href="structhasht.html" title="A hash table.">hasht</a> *tab);
+<a name="l00018"></a>00018 
+<a name="l00026"></a>00026 <span class="keyword">static</span> <span class="keywordtype">void</span> destroy_bucket(<a class="code" href="structhashentry.html" title="An entry in a hasht.">hashentry</a> *entry);
+<a name="l00027"></a>00027 
+<a name="l00032"></a>00032 <span class="keyword">static</span> <a class="code" href="structhashentry.html" title="An entry in a hasht.">hashentry</a> *init_entry(<span class="keywordtype">void</span> *elem);
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="preprocessor">#endif </span><span class="comment">/* HASHT_INT_H_ */</span>
+</pre></div></div>
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 18:44:25 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 19:41:30 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
