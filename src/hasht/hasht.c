@@ -102,6 +102,7 @@ void *hasht_remove(hasht *tab, void *elem) {
         found = entry->elem;
         tab->entries[index] = entry->next;
         free(entry);
+        --(tab->size);
         return found;
     }
 
@@ -161,7 +162,7 @@ int hasht_trunc(hasht *tab) {
 
     newcap = (size_t)(tab->size / tab->loadfactor);
     rehash(tab, newcap);
-    tab->limit = newcap;
+    tab->limit = tab->size;
     return 0;
 }
 
