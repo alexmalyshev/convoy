@@ -19,9 +19,9 @@ splaytree *splay_init(cmpfn cmp) {
 
     if (cmp == NULL)
         return NULL;
-
     if ((tree = malloc(sizeof(splaytree))) == NULL)
         return NULL;
+
     tree->cmp = cmp;
     tree->root = NULL;
     return tree;

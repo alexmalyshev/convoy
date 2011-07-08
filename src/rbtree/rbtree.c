@@ -22,9 +22,9 @@ rbtree *rbtree_init(cmpfn cmp) {
 
     if (cmp == NULL)
         return NULL;
+
     if ((tree = malloc(sizeof(rbtree))) == NULL)
         return NULL;
-
     tree->root = NULL;
     tree->cmp = cmp;
     return tree;

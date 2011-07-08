@@ -15,7 +15,7 @@
 
 #include <limits.h> /* LONG_MAX */
 
-/** @brief The number of elements a new binaheap can store. */
+/** @brief The default number of elements a new binaheap can store. */
 #define BINAHEAP_DEFAULT_CAPACITY 32
 
 #ifndef CMPFN
@@ -33,6 +33,9 @@ typedef struct {
 } binaheap;
 
 /** @brief Allocates and initializes a new binaheap.
+ *
+ *  Will fail and return NULL if cmp is NULL.
+ *
  *  @param cmp the compare function that will be used by the heap.
  *  @param cap the starting capacity of the table.
  *  @return A pointer to a new binaheap.

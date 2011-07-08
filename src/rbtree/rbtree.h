@@ -39,6 +39,9 @@ typedef struct {
 } rbtree;
 
 /** @brief Allocates and initializes a new rbtree.
+ *
+ *  Will fail and return NULL if cmp is NULL.
+ *
  *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new rbtree.
  */

@@ -32,6 +32,9 @@ typedef struct splaytree_t {
 } splaytree;
 
 /** @brief Allocates and initializes a new splaytree.
+ *
+ *  Will fail and return NULL if cmp is NULL.
+ *
  *  @param cmp the compare function that will be used by the tree.
  *  @return A pointer to a new splaytree.
  */
