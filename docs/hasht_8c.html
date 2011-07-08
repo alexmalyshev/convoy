@@ -85,6 +85,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tab for elem.  <a href="#ad42f4d814ce9deb3f32d98372ce8611b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8c.html#a7afc1a54fdf3413b2f585a4ac1b24299">hasht_clear</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tab.  <a href="#a7afc1a54fdf3413b2f585a4ac1b24299"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8c.html#acf5634657927d74818862f3f8ea5cd04">hasht_trunc</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the capacity of the dynamic array in tab.  <a href="#acf5634657927d74818862f3f8ea5cd04"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A hash table library. </p>
@@ -312,6 +314,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="acf5634657927d74818862f3f8ea5cd04"></a><!-- doxytag: member="hasht.c::hasht_trunc" ref="acf5634657927d74818862f3f8ea5cd04" args="(hasht *tab)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int hasht_trunc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Truncates the capacity of the dynamic array in tab. </p>
+<p>Will fail and return 1 if tab is NULL. Truncates the array in tab so the load factor of the array matches the load factor of the table.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tab</td><td>the address of the hasht we want to truncate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
+
+</div>
+</div>
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -327,7 +356,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 20:05:20 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 21:43:53 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

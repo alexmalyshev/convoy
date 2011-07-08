@@ -83,6 +83,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the minimum element in heap.  <a href="#a3f24ec6ad975a258c8b12143abea5cc7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8c.html#aea668cac56cd9b0f6a5936c2d61d4283">binaheap_clear</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from heap.  <a href="#aea668cac56cd9b0f6a5936c2d61d4283"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8c.html#a0f16a86a68d02a09338965c41e680a48">binaheap_trunc</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the capacity of the dynamic array in heap.  <a href="#a0f16a86a68d02a09338965c41e680a48"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A binary heap library. </p>
@@ -247,6 +249,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0f16a86a68d02a09338965c41e680a48"></a><!-- doxytag: member="binaheap.c::binaheap_trunc" ref="a0f16a86a68d02a09338965c41e680a48" args="(binaheap *heap)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int binaheap_trunc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbinaheap.html">binaheap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Truncates the capacity of the dynamic array in heap. </p>
+<p>Will fail and return 1 if heap is NULL. Truncates the array in heap to hold exactly the number of elements stored in heap.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">heap</td><td>the address of the binaheap we want to truncate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
+
+</div>
+</div>
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -262,7 +291,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 20:05:20 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 21:43:53 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
