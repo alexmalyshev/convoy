@@ -44,7 +44,7 @@ int binaheap_insert(binaheap *heap, void *elem) {
         return 1;
 
     if (heap->size == heap->cap)
-        resize(heap);
+        resize(heap, 2 * heap->cap);
     (heap->elems)[heap->size] = elem;
     ++(heap->size);
     percolate_up(heap);
@@ -75,12 +75,20 @@ int binaheap_clear(binaheap *heap) {
     return 0;
 }
 
-static int resize(binaheap *heap) {
+int binaheap_trunc(binaheap *heap) {
+    if (heap == NULL)
+        return 1;
+
+    resize(heap, heap->size);
+    return 0;
+}
+
+static int resize(binaheap *heap, size_t newcap) {
     void *new;
 
-    if ((new = realloc(heap->elems, 2 * heap->cap * sizeof(void *))) == NULL)
+    if ((new = realloc(heap->elems, newcap * sizeof(void *))) == NULL)
         return 1;
-    heap->cap *= 2;
+    heap->cap = newcap;
     return 0;
 }
 
@@ -104,13 +112,11 @@ static void percolate_down(binaheap *heap) {
 
     for (i = 0; 2*i + 1 <= size; ) {
         left = 2*i + 1;
-        /* check if there is only a left child */
         if (left == size) {
             if (cmp(elems[i], elems[size]) > 0)
                 swap(elems, i, size);
             return;
         }
-        /* find the index of the smaller of items[i]'s children */
         min = left + ((cmp(elems[left], elems[left + 1]) < 0) ? 0 : 1);
         if (cmp(elems[i], elems[min]) <= 0)
             return;

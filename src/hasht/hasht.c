@@ -53,7 +53,7 @@ int hasht_insert(hasht *tab, void *elem) {
         return 1;
 
     if (tab->size == tab->limit)
-        rehash(tab);
+        rehash(tab, 2 * tab->cap);
 
     index = tab->hash(elem) % tab->cap;
     entry = tab->entries[index];
@@ -153,18 +153,31 @@ int hasht_clear(hasht *tab) {
     return 0;
 }
 
-static void rehash(hasht *tab) {
+int hasht_trunc(hasht *tab) {
+    size_t newcap;
+
+    if (tab == NULL)
+        return 1;
+
+    newcap = (size_t)(tab->size / tab->loadfactor);
+    rehash(tab, newcap);
+    tab->limit = newcap;
+    return 0;
+}
+
+static int rehash(hasht *tab, size_t newcap) {
     hashentry **entries = tab->entries;
     hashfn hash = tab->hash;
     size_t cap = tab->cap;
 
-    size_t newcap = cap * 2;
-    hashentry **newentries = calloc(newcap, sizeof(hashentry *));
-
+    hashentry **newentries; 
     hashentry *entry;
     hashentry *moving;
     size_t i;
     size_t newindex;
+
+    if ((newentries = calloc(newcap, sizeof(hashentry *))) == NULL)
+        return 1;
 
     for (i = 0; i < cap; ++i) {
         entry = entries[i];
@@ -179,8 +192,9 @@ static void rehash(hasht *tab) {
 
     tab->entries = newentries;
     tab->cap = newcap;
-    tab->limit = tab->loadfactor * newcap;
+    tab->limit = (size_t)(tab->loadfactor * newcap);
     free(entries);
+    return 0;
 }
 
 static void destroy_bucket(hashentry *entry) {

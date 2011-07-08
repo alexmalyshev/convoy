@@ -7,14 +7,15 @@
 #ifndef BINAHEAP_INT_H_
 #define BINAHEAP_INT_H_
 
-/** @brief Doubles the size of the array in heap.
+/** @brief Resizes the array in heap to hold newcap elements.
  *
- *  heap is not NULL, will only resize until capacity hits BINAHEAP_MAX_ITEMS.
+ *  heap is not NULL.
  *
  *  @param heap the address of the heap we want to resize.
+ *  @param newcap the new capacity of the array in heap.
  *  @return Success status.
  */
-static int resize(binaheap *heap);
+static int resize(binaheap *heap, size_t newcap);
 
 /** @brief Percolates the last item in heap up until invariants are met.
  *

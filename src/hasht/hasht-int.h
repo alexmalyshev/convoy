@@ -7,14 +7,15 @@
 #ifndef HASHT_INT_H_
 #define HASHT_INT_H_
 
-/** @brief Doubles the size of tab's array and rehashes all elements.
+/** @brief Resizes tab's array and rehashes all elements.
  *
  *  tab is not NULL.
  *
  *  @param tab the address of the hasht we want to resize and rehash.
- *  @return Void.
+ *  @param newcap the new capacity of the array in tab.
+ *  @return Success status.
  */
-static void rehash(hasht *tab);
+static int rehash(hasht *tab, size_t newcap);
 
 /** @brief Frees all the entries in a bucket.
  *

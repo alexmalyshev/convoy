@@ -79,4 +79,14 @@ void *binaheap_removemin(binaheap *heap);
  */
 int binaheap_clear(binaheap *heap);
 
+/** @brief Truncates the capacity of the dynamic array in heap.
+ *
+ *  Will fail and return 1 if heap is NULL. Truncates the array in
+ *  heap to hold exactly the number of elements stored in heap.
+ *
+ *  @param heap the address of the binaheap we want to truncate.
+ *  @return Success status.
+ */
+int binaheap_trunc(binaheap *heap);
+
 #endif /* BINAHEAP_H_ */

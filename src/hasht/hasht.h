@@ -111,4 +111,14 @@ void *hasht_search(hasht *tab, void *elem);
  */
 int hasht_clear(hasht *tab);
 
+/** @brief Truncates the capacity of the dynamic array in tab.
+ *
+ *  Will fail and return 1 if tab is NULL. Truncates the array in tab
+ *  so the load factor of the array matches the load factor of the table.
+ *
+ *  @param tab the address of the hasht we want to truncate.
+ *  @return Success status.
+ */
+int hasht_trunc(hasht *tab);
+
 #endif /* HASHT_H_ */
