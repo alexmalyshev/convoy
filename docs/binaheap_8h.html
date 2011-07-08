@@ -82,7 +82,7 @@ Data Structures</h2></td></tr>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b928a14929b7aa5d5a0de342557bb65"></a><!-- doxytag: member="binaheap.h::BINAHEAP_DEFAULT_CAPACITY" ref="a8b928a14929b7aa5d5a0de342557bb65" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#a8b928a14929b7aa5d5a0de342557bb65">BINAHEAP_DEFAULT_CAPACITY</a>&#160;&#160;&#160;32</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of elements a new binaheap can store. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default number of elements a new binaheap can store. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9a75e417b59ce869c53276f7f0e57d2"></a><!-- doxytag: member="binaheap.h::CMPFN" ref="ae9a75e417b59ce869c53276f7f0e57d2" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>CMPFN</b></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
@@ -189,6 +189,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Allocates and initializes a new binaheap. </p>
+<p>Will fail and return NULL if cmp is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">cmp</td><td>the compare function that will be used by the heap. </td></tr>
@@ -280,7 +281,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 19:41:30 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 20:05:20 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
