@@ -53,7 +53,7 @@ int hasht_insert(hasht *tab, void *elem) {
         return 1;
 
     if (tab->size == tab->limit)
-        rehash(tab, 2 * tab->cap);
+        resize(tab, 2 * tab->cap);
 
     index = tab->hash(elem) % tab->cap;
     entry = tab->entries[index];
@@ -161,12 +161,12 @@ int hasht_trunc(hasht *tab) {
         return 1;
 
     newcap = (size_t)(tab->size / tab->loadfactor);
-    rehash(tab, newcap);
+    resize(tab, newcap);
     tab->limit = tab->size;
     return 0;
 }
 
-static int rehash(hasht *tab, size_t newcap) {
+static int resize(hasht *tab, size_t newcap) {
     hashentry **entries = tab->entries;
     hashfn hash = tab->hash;
     size_t cap = tab->cap;

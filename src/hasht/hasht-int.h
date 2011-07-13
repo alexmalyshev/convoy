@@ -15,7 +15,7 @@
  *  @param newcap the new capacity of the array in tab.
  *  @return Success status.
  */
-static int rehash(hasht *tab, size_t newcap);
+static int resize(hasht *tab, size_t newcap);
 
 /** @brief Frees all the entries in a bucket.
  *
