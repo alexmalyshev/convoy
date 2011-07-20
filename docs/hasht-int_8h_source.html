@@ -65,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor">#ifndef HASHT_INT_H_</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span><span class="preprocessor">#define HASHT_INT_H_</span>
 <a name="l00009"></a>00009 <span class="preprocessor"></span>
-<a name="l00018"></a>00018 <span class="keyword">static</span> <span class="keywordtype">int</span> rehash(<a class="code" href="structhasht.html" title="A hash table.">hasht</a> *tab, <span class="keywordtype">size_t</span> newcap);
+<a name="l00018"></a>00018 <span class="keyword">static</span> <span class="keywordtype">int</span> resize(<a class="code" href="structhasht.html" title="A hash table.">hasht</a> *tab, <span class="keywordtype">size_t</span> newcap);
 <a name="l00019"></a>00019 
 <a name="l00027"></a>00027 <span class="keyword">static</span> <span class="keywordtype">void</span> destroy_bucket(<a class="code" href="structhashentry.html" title="An entry in a hasht.">hashentry</a> *entry);
 <a name="l00028"></a>00028 
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 21:43:53 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
