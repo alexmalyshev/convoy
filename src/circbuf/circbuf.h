@@ -35,7 +35,7 @@ typedef struct {
  *
  *  @param cbuf the address of the circbuf we want to initialize.
  *  @param len the desired length of the circbuf.
- *  @return A pointer to a new circbuf of the given size.
+ *  @return Success status.
  */
 int circbuf_init(circbuf *cbuf, size_t len);
 

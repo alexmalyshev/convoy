@@ -38,7 +38,7 @@ typedef struct {
  *
  *  @param heap the address of the binaheap to initialize.
  *  @param cmp the compare function that will be used by the heap.
- *  @param cap the starting capacity of the table.
+ *  @param cap the starting capacity of the heap.
  *  @return Success status.
  */
 int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap);
