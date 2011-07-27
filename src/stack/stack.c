@@ -41,22 +41,22 @@ void *stack_peek(stack *stk) {
     if (stk == NULL || stk->top == NULL)
         return NULL;
 
-    return stk->top->data;
+    return stk->top->elem;
 }
 
 void *stack_pop(stack *stk) {
     snode *dead;
-    void *data;
+    void *elem;
 
     if (stk == NULL || stk->top == NULL)
         return NULL;
         
     dead = stk->top;
     stk->top = stk->top->next;
-    data = dead->data;
+    elem = dead->elem;
     free(dead);
     --(stk->len);
-    return data;
+    return elem;
 }
 
 int stack_push(stack *stk, void *elem) {
@@ -67,7 +67,7 @@ int stack_push(stack *stk, void *elem) {
     if ((new = malloc(sizeof(snode))) == NULL)
         return 1;
 
-    new->data = elem;
+    new->elem = elem;
     new->next = stk->top;
     stk->top = new;
     ++(stk->len);

@@ -14,8 +14,8 @@
 
 /** @brief A node in a linked list. */
 typedef struct snode_t {
-    void *data;             /**< the element of data stored in the node. */
     struct snode_t *next;   /**< the next node in the list. */
+    void *elem;             /**< the element stored in the node. */
 } snode;
 
 /** @brief A stack. */
