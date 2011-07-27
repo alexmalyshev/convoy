@@ -75,8 +75,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a477b0198ab3f8bd4a7e7330c06af3fd1">queue_init</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new queue.  <a href="#a477b0198ab3f8bd4a7e7330c06af3fd1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a69db019cff58606fe737063588abe30a">queue_destroy</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in qu.  <a href="#a69db019cff58606fe737063588abe30a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#ac1dc51451a311246ee3fd9d7b33904d7">queue_clear</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all the elements from qu.  <a href="#ac1dc51451a311246ee3fd9d7b33904d7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a5b46643ece8b539f511ad31af1388f47">queue_dequeue</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of qu if it exists and returns it.  <a href="#a5b46643ece8b539f511ad31af1388f47"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a907ade5b541d7e5aa787896eea20fb7d">queue_enqueue</a> (<a class="el" href="structqueue.html">queue</a> *qu, void *elem)</td></tr>
@@ -90,6 +90,33 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000013">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ac1dc51451a311246ee3fd9d7b33904d7"></a><!-- doxytag: member="queue.c::queue_clear" ref="ac1dc51451a311246ee3fd9d7b33904d7" args="(queue *qu)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int queue_clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structqueue.html">queue</a> *&#160;</td>
+          <td class="paramname"><em>qu</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes all the elements from qu. </p>
+<p>Frees all nodes in the linked list in qu but will not free the elements in the nodes.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qu</td><td>the address of the queue we want to clear out. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a5b46643ece8b539f511ad31af1388f47"></a><!-- doxytag: member="queue.c::queue_dequeue" ref="a5b46643ece8b539f511ad31af1388f47" args="(queue *qu)" -->
 <div class="memitem">
 <div class="memproto">
@@ -114,33 +141,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The front element of qu if it exists, NULL if qu is empty. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a69db019cff58606fe737063588abe30a"></a><!-- doxytag: member="queue.c::queue_destroy" ref="a69db019cff58606fe737063588abe30a" args="(queue *qu)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int queue_destroy </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structqueue.html">queue</a> *&#160;</td>
-          <td class="paramname"><em>qu</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Frees the linked list in qu. </p>
-<p>Will not free the elements stored in the nodes of qu.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to deallocate. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
@@ -251,7 +251,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

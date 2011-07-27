@@ -75,8 +75,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8c.html#a2bb1eef8e97f294e53bbef4ccc89fd8e">splay_init</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new splaytree.  <a href="#a2bb1eef8e97f294e53bbef4ccc89fd8e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8c.html#aada27ea536d5cebd428aeafab1a12ce0">splay_destroy</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree.  <a href="#aada27ea536d5cebd428aeafab1a12ce0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8c.html#ac1defd53dcd3cbdc69c86138cf535409">splay_clear</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tree.  <a href="#ac1defd53dcd3cbdc69c86138cf535409"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8c.html#a6798a6a0c3cf5808c79b9ffd636b1b29">splay_insert</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#a6798a6a0c3cf5808c79b9ffd636b1b29"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8c.html#a2013bee6615757af0cd9bbd935ff4dfa">splay_remove</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
@@ -90,12 +90,12 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000019">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="aada27ea536d5cebd428aeafab1a12ce0"></a><!-- doxytag: member="splay.c::splay_destroy" ref="aada27ea536d5cebd428aeafab1a12ce0" args="(splaytree *tree)" -->
+<a class="anchor" id="ac1defd53dcd3cbdc69c86138cf535409"></a><!-- doxytag: member="splay.c::splay_clear" ref="ac1defd53dcd3cbdc69c86138cf535409" args="(splaytree *tree)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int splay_destroy </td>
+          <td class="memname">int splay_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
@@ -105,11 +105,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the nodes in tree. </p>
-<p>Will not free the elements stored in the nodes of tree.</p>
+<p>Removes all elements from tree. </p>
+<p>Frees all nodes in tree but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to deallocate. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,7 +284,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

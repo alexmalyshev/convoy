@@ -81,8 +81,8 @@ Data Structures</h2></td></tr>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8h.html#a419c30ab691c579a6fe01af323624c72">stack_init</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new stack.  <a href="#a419c30ab691c579a6fe01af323624c72"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8h.html#a33019c8bc82d5a3fde67bbb1e5f49f2b">stack_destroy</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in stk.  <a href="#a33019c8bc82d5a3fde67bbb1e5f49f2b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8h.html#a4bfd064c1010b14c97edd17a26037710">stack_clear</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from stk.  <a href="#a4bfd064c1010b14c97edd17a26037710"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8h.html#a3ef90f48ca7090bc5ebc8143ebcd33a6">stack_peek</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the top element of stk if it exists.  <a href="#a3ef90f48ca7090bc5ebc8143ebcd33a6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8h.html#a1269c1811c6fdb780cb3a9a2be6e958f">stack_pop</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
@@ -96,12 +96,12 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000022">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a33019c8bc82d5a3fde67bbb1e5f49f2b"></a><!-- doxytag: member="stack.h::stack_destroy" ref="a33019c8bc82d5a3fde67bbb1e5f49f2b" args="(stack *stk)" -->
+<a class="anchor" id="a4bfd064c1010b14c97edd17a26037710"></a><!-- doxytag: member="stack.h::stack_clear" ref="a4bfd064c1010b14c97edd17a26037710" args="(stack *stk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int stack_destroy </td>
+          <td class="memname">int stack_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
           <td class="paramname"><em>stk</em></td><td>)</td>
@@ -111,11 +111,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the linked list in stk. </p>
-<p>Will not free the elements stored in the nodes of stk.</p>
+<p>Removes all elements from stk. </p>
+<p>Frees all the nodes in the linkde list in stk but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to deallocate. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -257,7 +257,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

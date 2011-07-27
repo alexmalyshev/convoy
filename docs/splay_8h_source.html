@@ -71,20 +71,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00018"></a><a class="code" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">00018</a> <span class="keyword">typedef</span> int (*<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a>)(<span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);
 <a name="l00019"></a>00019 <span class="preprocessor">#endif </span><span class="comment">/* CMPFN */</span>
 <a name="l00020"></a>00020 
-<a name="l00022"></a><a class="code" href="structsplaynode.html">00022</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>splaynode_t {
-<a name="l00023"></a><a class="code" href="structsplaynode.html#a6b32b03cad23f0ec07404b5848ff9933">00023</a>     <span class="keyword">struct </span>splaynode_t *<a class="code" href="structsplaynode.html#a6b32b03cad23f0ec07404b5848ff9933">left</a>;   
-<a name="l00024"></a><a class="code" href="structsplaynode.html#a7d2e4c18a3bc15ef953649f65e4481ca">00024</a>     <span class="keyword">struct </span>splaynode_t *<a class="code" href="structsplaynode.html#a7d2e4c18a3bc15ef953649f65e4481ca">right</a>;  
-<a name="l00025"></a><a class="code" href="structsplaynode.html#a25228a55e8503a8a9e1ea3ea007d4f19">00025</a>     <span class="keywordtype">void</span> *<a class="code" href="structsplaynode.html#a25228a55e8503a8a9e1ea3ea007d4f19">data</a>;                 
-<a name="l00026"></a>00026 } <a class="code" href="structsplaynode.html" title="A node in a splay tree.">splaynode</a>;
+<a name="l00022"></a><a class="code" href="structspnode.html">00022</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>spnode_t {
+<a name="l00023"></a><a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">00023</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">left</a>;  
+<a name="l00024"></a><a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">00024</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">right</a>; 
+<a name="l00025"></a><a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">00025</a>     <span class="keywordtype">void</span> *<a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">elem</a>;             
+<a name="l00026"></a>00026 } <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a>;
 <a name="l00027"></a>00027 
 <a name="l00029"></a><a class="code" href="structsplaytree.html">00029</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>splaytree_t {
-<a name="l00030"></a><a class="code" href="structsplaytree.html#ab2cdf1c91c9824f2bb2bf53b570f9626">00030</a>     <a class="code" href="structsplaynode.html" title="A node in a splay tree.">splaynode</a> *<a class="code" href="structsplaytree.html#ab2cdf1c91c9824f2bb2bf53b570f9626">root</a>;            
-<a name="l00031"></a><a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">00031</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">cmp</a>;                  
+<a name="l00030"></a><a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">00030</a>     <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a> *<a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">root</a>;           
+<a name="l00031"></a><a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">00031</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">cmp</a>;              
 <a name="l00032"></a>00032 } <a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a>;
 <a name="l00033"></a>00033 
 <a name="l00042"></a>00042 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a2bb1eef8e97f294e53bbef4ccc89fd8e" title="Initializes a new splaytree.">splay_init</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
 <a name="l00043"></a>00043 
-<a name="l00051"></a>00051 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#aada27ea536d5cebd428aeafab1a12ce0" title="Frees the nodes in tree.">splay_destroy</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree);
+<a name="l00051"></a>00051 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#ac1defd53dcd3cbdc69c86138cf535409" title="Removes all elements from tree.">splay_clear</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree);
 <a name="l00052"></a>00052 
 <a name="l00061"></a>00061 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a6798a6a0c3cf5808c79b9ffd636b1b29" title="Inserts elem into tree.">splay_insert</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
 <a name="l00062"></a>00062 
@@ -109,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

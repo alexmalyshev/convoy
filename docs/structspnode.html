@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Convoy: hashentry Struct Reference</title>
+<title>Convoy: spnode Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
@@ -62,53 +62,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">hashentry Struct Reference</div>  </div>
+<div class="title">spnode Struct Reference</div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="hashentry" -->
-<p>An entry in a hasht.  
- <a href="structhashentry.html#details">More...</a></p>
+<!-- doxytag: class="spnode" -->
+<p>A node in a splay tree.  
+ <a href="structspnode.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="hasht_8h_source.html">hasht.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="splay_8h_source.html">splay.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashentry.html#a1a044d3068f7d1f6844b617cbf9cd624">elem</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct hashentry_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashentry.html#ae226a2fb3a224570d01d238dbaa34cb9">next</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct spnode_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">left</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct spnode_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">right</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">elem</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>An entry in a hasht. </p>
+<div class="textblock"><p>A node in a splay tree. </p>
 </div><hr/><h2>Field Documentation</h2>
-<a class="anchor" id="a1a044d3068f7d1f6844b617cbf9cd624"></a><!-- doxytag: member="hashentry::elem" ref="a1a044d3068f7d1f6844b617cbf9cd624" args="" -->
+<a class="anchor" id="a78d96b080d396d447099a23aec73d7f0"></a><!-- doxytag: member="spnode::elem" ref="a78d96b080d396d447099a23aec73d7f0" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void* <a class="el" href="structhashentry.html#a1a044d3068f7d1f6844b617cbf9cd624">hashentry::elem</a></td>
+          <td class="memname">void* <a class="el" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">spnode::elem</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the element stored in the entry. </p>
+<p>the element stored in the node. </p>
 
 </div>
 </div>
-<a class="anchor" id="ae226a2fb3a224570d01d238dbaa34cb9"></a><!-- doxytag: member="hashentry::next" ref="ae226a2fb3a224570d01d238dbaa34cb9" args="" -->
+<a class="anchor" id="a6cdfb2f64079cda97c1ec7906072c27d"></a><!-- doxytag: member="spnode::left" ref="a6cdfb2f64079cda97c1ec7906072c27d" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct hashentry_t* <a class="el" href="structhashentry.html#ae226a2fb3a224570d01d238dbaa34cb9">hashentry::next</a></td>
+          <td class="memname">struct spnode_t* <a class="el" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">spnode::left</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>the next entry in the current bucket. </p>
+<p>the left child of the node. </p>
+
+</div>
+</div>
+<a class="anchor" id="afac27707e6e6b59194fd63576b6d1d0c"></a><!-- doxytag: member="spnode::right" ref="afac27707e6e6b59194fd63576b6d1d0c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct spnode_t* <a class="el" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">spnode::right</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>the right child of the node. </p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/hasht/<a class="el" href="hasht_8h_source.html">hasht.h</a></li>
+<li>src/splay/<a class="el" href="splay_8h_source.html">splay.h</a></li>
 </ul>
 </div>
 <!-- window showing the filter options -->
@@ -125,7 +140,7 @@ Data Fields</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

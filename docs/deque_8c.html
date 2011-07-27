@@ -75,8 +75,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8c.html#acbbcb02fbe135fd5bdc6211beec7ee25">deque_init</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new deque.  <a href="#acbbcb02fbe135fd5bdc6211beec7ee25"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8c.html#a82ab394c3a91aac6e86839e928ec77ba">deque_destroy</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in deq and deq itself.  <a href="#a82ab394c3a91aac6e86839e928ec77ba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8c.html#a8ec622c421e142545b6d9c18dc9b2fdc">deque_clear</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from deq.  <a href="#a8ec622c421e142545b6d9c18dc9b2fdc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8c.html#a0a64b138bed812b1c2edaa751ae4237b">deque_insertb</a> (<a class="el" href="structdeque.html">deque</a> *deq, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of deq.  <a href="#a0a64b138bed812b1c2edaa751ae4237b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8c.html#a5948002048de935ae7345da97e6ab08e">deque_insertf</a> (<a class="el" href="structdeque.html">deque</a> *deq, void *elem)</td></tr>
@@ -96,12 +96,12 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000007">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a82ab394c3a91aac6e86839e928ec77ba"></a><!-- doxytag: member="deque.c::deque_destroy" ref="a82ab394c3a91aac6e86839e928ec77ba" args="(deque *deq)" -->
+<a class="anchor" id="a8ec622c421e142545b6d9c18dc9b2fdc"></a><!-- doxytag: member="deque.c::deque_clear" ref="a8ec622c421e142545b6d9c18dc9b2fdc" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int deque_destroy </td>
+          <td class="memname">int deque_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
           <td class="paramname"><em>deq</em></td><td>)</td>
@@ -111,11 +111,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the linked list in deq and deq itself. </p>
-<p>Will not free the elements stored in the nodes of deq.</p>
+<p>Removes all elements from deq. </p>
+<p>Frees all nodes in the linked list in deq but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">deq</td><td>the address of the deque we want to deallocate. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -269,7 +269,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Returns the front element of deq if it exists. </p>
-<p>Will return NULL if d is NULL.</p>
+<p>Will return NULL if deq is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">deq</td><td>the address of the deque we want to peek into. </td></tr>
@@ -349,7 +349,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

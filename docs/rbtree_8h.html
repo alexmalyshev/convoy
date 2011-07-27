@@ -98,8 +98,8 @@ typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a2805a3f00ae499ea9d61e982028e03e6">rbtree_init</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new rbtree.  <a href="#a2805a3f00ae499ea9d61e982028e03e6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#ab3609a181caee9c50b799d8ba44ed5df">rbtree_destroy</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree.  <a href="#ab3609a181caee9c50b799d8ba44ed5df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a1a7027b732558e300ded4612752e6ef4">rbtree_clear</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tree.  <a href="#a1a7027b732558e300ded4612752e6ef4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#aab1704e25de371de1b6095b581a6a29b">rbtree_insert</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#aab1704e25de371de1b6095b581a6a29b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a08453b1337c9fba64279625f4342046a">rbtree_remove</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
@@ -113,12 +113,12 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000017">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ab3609a181caee9c50b799d8ba44ed5df"></a><!-- doxytag: member="rbtree.h::rbtree_destroy" ref="ab3609a181caee9c50b799d8ba44ed5df" args="(rbtree *tree)" -->
+<a class="anchor" id="a1a7027b732558e300ded4612752e6ef4"></a><!-- doxytag: member="rbtree.h::rbtree_clear" ref="a1a7027b732558e300ded4612752e6ef4" args="(rbtree *tree)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int rbtree_destroy </td>
+          <td class="memname">int rbtree_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
@@ -128,11 +128,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the nodes in tree. </p>
-<p>Will not free the elements stored in the nodes of tree.</p>
+<p>Removes all elements from tree. </p>
+<p>Frees all the nodes in tree but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to deallocate. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -307,7 +307,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 03:47:24 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 06:05:40 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
