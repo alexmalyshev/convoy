@@ -14,20 +14,16 @@
 #include "binaheap.h"
 #include "binaheap-int.h"
 
-binaheap *binaheap_init(cmpfn cmp, size_t cap) {
-    binaheap *heap;
+int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
+    if (heap == NULL || cmp == NULL)
+        return 1;
 
-    if (cmp == NULL)
-        return NULL;
-
-    if ((heap = malloc(sizeof(binaheap))) == NULL)
-        return NULL;
     if ((heap->elems = malloc(cap * sizeof(void *))) == NULL)
-        return NULL;
+        return 1;
     heap->cap = cap;
     heap->size = 0;
     heap->cmp = cmp;
-    return heap;
+    return 0;
 }
 
 int binaheap_destroy(binaheap *heap) {
@@ -35,7 +31,6 @@ int binaheap_destroy(binaheap *heap) {
         return 1;
 
     free(heap->elems);
-    free(heap);
     return 0;
 }
 

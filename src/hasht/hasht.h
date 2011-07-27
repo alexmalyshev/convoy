@@ -49,20 +49,21 @@ typedef struct {
     double loadfactor;      /**< the load factor of the table. */
 } hasht;
 
-/** @brief Allocates and initializes a new hasht.
+/** @brief Initializes a new hasht.
  *
- *  Will fail and return NULL if cmp is NULL, hash is NULL, or if loadfactor
- *  is non-positive.
+ *  Will fail and return NULL if tab is NULL, cmp is NULL, hash is NULL,
+ *  or if loadfactor is non-positive.
  *
+ *  @param tab the address of the table we want to initialize.
  *  @param hash the hash function that will be used by the table.
  *  @param cmp the compare function that will be used by the table.
- *  @param loadfactor the load factor of the table.
+ *  @param lf the load factor of the table.
  *  @param cap the starting capacity of the table.
- *  @return A pointer to a new hasht.
+ *  @return Success status.
  */
-hasht *hasht_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap);
+int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap);
 
-/** @brief Frees the dynamic array in tab and tab itself.
+/** @brief Frees the dynamic array in tab.
  *
  *  Will not free the elements stored in tab.
  *

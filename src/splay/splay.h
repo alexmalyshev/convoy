@@ -31,16 +31,17 @@ typedef struct splaytree_t {
     cmpfn cmp;                  /**< the function for comparing elements. */
 } splaytree;
 
-/** @brief Allocates and initializes a new splaytree.
+/** @brief Initializes a new splaytree.
  *
- *  Will fail and return NULL if cmp is NULL.
+ *  Will fail and return NULL if tree is NULL or cmp is NULL.
  *
+ *  @param tree the address of the splaytree we want to initialize.
  *  @param cmp the compare function that will be used by the tree.
- *  @return A pointer to a new splaytree.
+ *  @return Success status.
  */
-splaytree *splay_init(cmpfn cmp);
+int splay_init(splaytree *tree, cmpfn cmp);
 
-/** @brief Frees the nodes in tree and tree itself.
+/** @brief Frees the nodes in tree.
  *
  *  Will not free the elements stored in the nodes of tree.
  *
@@ -78,14 +79,5 @@ void *splay_remove(splaytree *tree, void *elem);
  *  @return The element equal to elem if it exists in tree, NULL otherwise.
  */
 void *splay_search(splaytree *tree, void *elem);
-
-/** @brief Removes all elements from tree.
- *
- *  Frees all nodes in tree but will not free the elements in the nodes.
- *
- *  @param tree the address of the splaytree we want to clear out.
- *  @return Success status.
- */
-int splay_clear(splaytree *tree);
 
 #endif /* SPLAY_H_ */

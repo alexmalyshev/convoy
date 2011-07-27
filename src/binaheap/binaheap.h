@@ -32,19 +32,20 @@ typedef struct {
     size_t cap;     /**< the number of elements the array can hold. */
 } binaheap;
 
-/** @brief Allocates and initializes a new binaheap.
+/** @brief Initializes a new binaheap.
  *
- *  Will fail and return NULL if cmp is NULL.
+ *  Will fail and return 1 if heap is NULL or cmp is NULL.
  *
+ *  @param heap the address of the binaheap to initialize.
  *  @param cmp the compare function that will be used by the heap.
  *  @param cap the starting capacity of the table.
- *  @return A pointer to a new binaheap.
+ *  @return Success status.
  */
-binaheap *binaheap_init(cmpfn cmp, size_t cap);
+int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap);
 
-/** @brief Frees the dynamic array in heap and heap itself.
+/** @brief Frees the dynamic array in heap.
  *
- *  Will not free the elements stored in heap's array.
+ *  Will not free the elements stored in heap's array or heap itself.
  *
  *  @param heap the address of the binaheap we want to deallocate.
  *  @return Success status.

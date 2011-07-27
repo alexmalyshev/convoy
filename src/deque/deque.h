@@ -23,96 +23,91 @@ typedef struct dnode_t {
 typedef struct {
     dnode *front;           /**< the first node in the deque. */
     dnode *back;            /**< the last node in the deque. */
-    long len;               /**< the number of elements in the deque. */
+    size_t len;             /**< the number of elements in the deque. */
 } deque;
 
-/** @brief Allocates and initializes a new deque.
- *  @return A pointer to a new deque.
- */
-deque *deque_init(void);
-
-/** @brief Frees the linked list in d and d itself.
+/** @brief Initializes a new deque.
  *
- *  Will not free the elements stored in the nodes of d.
+ *  Will fail and return 1 if deq is NULL.
  *
- *  @param d the address of the deque we want to deallocate.
+ *  @param deq the address of the deque we want to initialize.
  *  @return Success status.
  */
-int deque_destroy(deque *d);
+int deque_init(deque *deq);
 
-/** @brief Inserts elem as the new back of d.
+/** @brief Frees the linked list in deq and deq itself.
  *
- *  Will fail and return 1 if d is NULL or elem is NULL.
+ *  Will not free the elements stored in the nodes of deq.
  *
- *  @param d the address of the deque we want to insert elem into.
- *  @param elem the element we want to insert as the new back of d.
+ *  @param deq the address of the deque we want to deallocate.
  *  @return Success status.
  */
-int deque_insertb(deque *d, void *elem);
+int deque_destroy(deque *deq);
 
-/** @brief Inserts elem as the new front of d.
+/** @brief Inserts elem as the new back of deq.
  *
- *  Will fail and return 1 if d is NULL or elem is NULL.
+ *  Will fail and return 1 if deq is NULL or elem is NULL.
  *
- *  @param d the address of the deque we want to insert elem into.
- *  @param elem the element we want to insert as the new front of d.
+ *  @param deq the address of the deque we want to insert elem into.
+ *  @param elem the element we want to insert as the new back of deq.
  *  @return Success status.
  */
-int deque_insertf(deque *d, void *elem);
+int deque_insertb(deque *deq, void *elem);
 
-/** @brief Returns the back element of d if it exists.
+/** @brief Inserts elem as the new front of deq.
+ *
+ *  Will fail and return 1 if deq is NULL or elem is NULL.
+ *
+ *  @param deq the address of the deque we want to insert elem into.
+ *  @param elem the element we want to insert as the new front of deq.
+ *  @return Success status.
+ */
+int deque_insertf(deque *deq, void *elem);
+
+/** @brief Returns the back element of deq if it exists.
+ *
+ *  Will return NULL if deq is NULL.
+ *
+ *  @param deq the address of the deque we want to peek into.
+ *  @return The back element of deq if it exists, NULL if deq is empty.
+ */
+void *deque_peekb(deque *deq);
+
+/** @brief Returns the front element of deq if it exists.
  *
  *  Will return NULL if d is NULL.
  *
- *  @param d the address of the deque we want to peek into.
- *  @return The back element of d if it exists, NULL if d is empty.
+ *  @param deq the address of the deque we want to peek into.
+ *  @return The front element of deq if it exists, NULL if deq is empty.
  */
-void *deque_peekb(deque *d);
+void *deque_peekf(deque *deq);
 
-/** @brief Returns the front element of d if it exists.
+/** @brief Removes the back element of deq if it exists and returns it.
  *
- *  Will return NULL if d is NULL.
+ *  Will fail and return NULL if deq is NULL.
  *
- *  @param d the address of the deque we want to peek into.
- *  @return The front element of d if it exists, NULL if d is empty.
+ *  @param deq the address of the deque we want to remove the back from.
+ *  @return The back element of deq if it exists, NULL if deq is empty.
  */
-void *deque_peekf(deque *d);
+void *deque_removeb(deque *deq);
 
-/** @brief Removes the back element of d if it exists and returns it.
+/** @brief Removes the front element of deq if it exists and returns it.
  *
- *  Will fail and return NULL if d is NULL.
+ *  Will fail and return NULL if deq is NULL.
  *
- *  @param d the address of the deque we want to remove the back element from.
- *  @return The back element of d if it exists, NULL if d is empty.
+ *  @param deq the address of the deque we want to remove the front from.
+ *  @return The front element of deq if it exists, NULL if deq is empty.
  */
-void *deque_removeb(deque *d);
+void *deque_removef(deque *deq);
 
-/** @brief Removes the front element of d if it exists and returns it.
+/** @brief Removes all elements from deq.
  *
- *  Will fail and return NULL if d is NULL.
- *
- *  @param d the address of the deque we want to remove the front element from.
- *  @return The front element of d if it exists, NULL if d is empty.
- */
-void *deque_removef(deque *d);
-
-/** @brief Removes all elements from d.
- *
- *  Frees all nodes in the linked list in d but will not free the
+ *  Frees all nodes in the linked list in deq but will not free the
  *  elements in the nodes.
  *
- *  @param d the address of the deque we want to clear out.
+ *  @param deq the address of the deque we want to clear out.
  *  @return Success status.
  */
-int deque_clear(deque *d);
-
-/** @brief Returns the number of elements in d.
- *
- *  If d is NULL will return -1, otherwise same behavior as d->len.
- *
- *  @param d the address of the deque whose length we want.
- *  @return The number of elements in d.
- */
-long deque_len(deque *d);
+int deque_clear(deque *deq);
 
 #endif /* DEQUE_H_ */

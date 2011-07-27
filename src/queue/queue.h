@@ -25,65 +25,50 @@ typedef struct {
     size_t len;             /**< the number of elements in the queue. */
 } queue;
 
-/** @brief Allocates and initializes a new queue.
- *  @return A pointer to a new queue.
- */
-queue *queue_init(void);
-
-/** @brief Frees the linked list in q and q itself.
+/** @brief Initializes a new queue.
  *
- *  Will not free the elements stored in the nodes of q.
+ *  Will fail and return 1 if qu is NULL.
  *
- *  @param q the address of the queue we want to deallocate.
+ *  @param qu the address of the queue we want to initialize.
  *  @return Success status.
  */
-int queue_destroy(queue *q);
+int queue_init(queue *qu);
 
-/** @brief Removes the front element of q if it exists and returns it.
+/** @brief Frees the linked list in qu.
  *
- *  Will fail and return NULL if q is NULL.
+ *  Will not free the elements stored in the nodes of qu.
  *
- *  @param q the address of the queue we want to remove the front element from.
- *  @return The front element of q if it exists, NULL if q is empty.
- */
-void *queue_dequeue(queue *q);
-
-/** @brief Inserts elem as the new back of q.
- *
- *  Will fail and return 1 if q is NULL or elem is NULL.
- *
- *  @param q the address of the queue we want to insert elem into.
- *  @param elem the element we want to insert as the new back of q.
+ *  @param qu the address of the queue we want to deallocate.
  *  @return Success status.
  */
-int queue_enqueue(queue *q, void *elem);
+int queue_destroy(queue *qu);
 
-/** @brief Returns the front element of q if it exists.
+/** @brief Removes the front element of qu if it exists and returns it.
  *
- *  Will return NULL if q is NULL.
+ *  Will fail and return NULL if qu is NULL.
  *
- *  @param q the address of the queue we want to peek into.
- *  @return The front element of q if it exists, NULL if q is empty.
+ *  @param qu the address of the queue we want to remove the front from.
+ *  @return The front element of qu if it exists, NULL if qu is empty.
  */
-void *queue_peek(queue *q);
+void *queue_dequeue(queue *qu);
 
-/** @brief Removes all elements from q.
+/** @brief Inserts elem as the new back of qu.
  *
- *  Frees all nodes in the linked list in q but will not free the
- *  elements in the nodes.
+ *  Will fail and return 1 if qu is NULL or elem is NULL.
  *
- *  @param q the address of the queue we want to clear out.
+ *  @param qu the address of the queue we want to insert elem into.
+ *  @param elem the element we want to insert as the new back of qu.
  *  @return Success status.
  */
-int queue_clear(queue *q);
+int queue_enqueue(queue *qu, void *elem);
 
-/** @brief Returns the number of elements in q.
+/** @brief Returns the front element of qu if it exists.
  *
- *  If q is NULL will return 0, otherwise same behavior as q->len.
+ *  Will return NULL if qu is NULL.
  *
- *  @param q the address of the queue whose length we want.
- *  @return The number of elements in q.
+ *  @param qu the address of the queue we want to peek into.
+ *  @return The front element of qu if it exists, NULL if qu is empty.
  */
-size_t queue_len(queue *q);
+void *queue_peek(queue *qu);
 
 #endif /* QUEUE_H_ */

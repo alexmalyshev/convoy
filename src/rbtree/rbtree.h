@@ -38,16 +38,17 @@ typedef struct {
     cmpfn cmp;              /**< the function for comparing elements. */
 } rbtree;
 
-/** @brief Allocates and initializes a new rbtree.
+/** @brief Initializes a new rbtree.
  *
- *  Will fail and return NULL if cmp is NULL.
+ *  Will fail and return NULL if tree is NULL or cmp is NULL.
  *
+ *  @param tree the address of the rbtree we want to initialize.
  *  @param cmp the compare function that will be used by the tree.
- *  @return A pointer to a new rbtree.
+ *  @return Success status.
  */
-rbtree *rbtree_init(cmpfn cmp);
+int rbtree_init(rbtree *tree, cmpfn cmp);
 
-/** @brief Frees the nodes in tree and tree itself.
+/** @brief Frees the nodes in tree.
  *
  *  Will not free the elements stored in the nodes of tree.
  *
@@ -86,14 +87,5 @@ void *rbtree_remove(rbtree *tree, void *elem);
  *  @return The element equal to elem if it exists in tree, NULL otherwise.
  */
 void *rbtree_search(rbtree *tree, void *elem);
-
-/** @brief Removes all elements from tree.
- *
- *  Frees all nodes in tree but will not free the elements in the nodes.
- *
- *  @param tree the address of the rbtree we want to clear out.
- *  @return Success status.
- */
-int rbtree_clear(rbtree *tree);
 
 #endif /* RBTREE_H_ */

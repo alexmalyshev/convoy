@@ -14,24 +14,31 @@
 #include "splay.h"
 #include "splay-int.h"
 
-splaytree *splay_init(cmpfn cmp) {
-    splaytree *tree;
-
-    if (cmp == NULL)
-        return NULL;
-    if ((tree = malloc(sizeof(splaytree))) == NULL)
-        return NULL;
+int splay_init(splaytree *tree, cmpfn cmp) {
+    if (tree == NULL || cmp == NULL)
+        return 1;
 
     tree->cmp = cmp;
     tree->root = NULL;
-    return tree;
+    return 0;
 }
 
 int splay_destroy(splaytree *tree) {
-    if (splay_clear(tree))
-        return 1;
-    free(tree);
+    if (tree == NULL)
+        return 0;
+
+    clear(tree->root);
+    tree->root = NULL;
     return 0;
+}
+
+static void clear(splaynode *node) {
+    if (node == NULL)
+        return;
+
+    clear(node->left);
+    clear(node->right);
+    free(node);
 }
 
 int splay_insert(splaytree *tree, void *elem) {
@@ -103,23 +110,6 @@ void *splay_search(splaytree *tree, void *elem) {
     if (tree->cmp(tree->root, elem) == 0)
         return tree->root->data;
     return NULL;
-}
-
-int splay_clear(splaytree *tree) {
-    if (tree == NULL)
-        return 0;
-
-    clear(tree->root);
-    return 0;
-}
-
-static void clear(splaynode *node) {
-    if (node == NULL)
-        return;
-
-    clear(node->left);
-    clear(node->right);
-    free(node);
 }
 
 static void splay(splaytree *tree, void *elem) {

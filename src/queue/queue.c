@@ -13,82 +13,73 @@
 #include "queue.h"
 #include "queue-int.h"
 
-queue *queue_init(void) {
-    return calloc(1, sizeof(queue));
-}
-
-int queue_destroy(queue *q) {
-    if (queue_clear(q))
+int queue_init(queue *qu) {
+    if (qu == NULL)
         return 1;
 
-    free(q);
+    qu->front = NULL;
+    qu->back = NULL;
+    qu->len = 0;
     return 0;
 }
 
-void *queue_dequeue(queue *q) {
-    qnode *dead;
-    void *data;
-
-    if (q == NULL || q->front == NULL)
-        return NULL;
-
-    dead = q->front;
-    q->front = dead->next;
-    if (q->front == NULL)
-        q->back = NULL;
-    data = dead->data;
-    free(dead);
-    --(q->len);
-    return data;
-}
-
-int queue_enqueue(queue *q, void *elem) {
-    qnode *new;
-
-    if (q == NULL || elem == NULL)
-        return 1;
-
-    if ((new = init_node(elem)) == NULL)
-        return 1;
-    if (q->front != NULL)
-        q->back->next = new;
-    else
-        q->front = new;
-    q->back = new;
-    ++(q->len);
-    return 0;
-}
-
-void *queue_peek(queue *q) {
-    if (q == NULL || q->front == NULL)
-        return NULL;
-
-    return q->front->data;
-}
-
-int queue_clear(queue *q) {
+int queue_destroy(queue *qu) {
     qnode *node, *dead;
 
-    if (q == NULL)
+    if (qu == NULL)
         return 1;
 
-    node = q->front;
+    node = qu->front;
     while (node != NULL) {
         dead = node;
         node = node->next;
         free(dead);
     }
-    q->front = NULL;
-    q->back = NULL;
-    q->len = 0;
+    qu->front = NULL;
+    qu->back = NULL;
+    qu->len = 0;
     return 0;
 }
 
-size_t queue_len(queue *q) {
-    if (q == NULL)
-        return 0;
+void *queue_dequeue(queue *qu) {
+    qnode *dead;
+    void *data;
 
-    return q->len;
+    if (qu == NULL || qu->front == NULL)
+        return NULL;
+
+    dead = qu->front;
+    qu->front = dead->next;
+    if (qu->front == NULL)
+        qu->back = NULL;
+    data = dead->data;
+    free(dead);
+    --(qu->len);
+    return data;
+}
+
+int queue_enqueue(queue *qu, void *elem) {
+    qnode *new;
+
+    if (qu == NULL || elem == NULL)
+        return 1;
+
+    if ((new = init_node(elem)) == NULL)
+        return 1;
+    if (qu->front != NULL)
+        qu->back->next = new;
+    else
+        qu->front = new;
+    qu->back = new;
+    ++(qu->len);
+    return 0;
+}
+
+void *queue_peek(queue *qu) {
+    if (qu == NULL || qu->front == NULL)
+        return NULL;
+
+    return qu->front->data;
 }
 
 static qnode *init_node(void *elem) {

@@ -12,74 +12,64 @@
 #include <stdlib.h>
 #include "stack.h"
 
-stack *stack_init(void) {   
-    return calloc(1, sizeof(stack));
-}
-
-int stack_destroy(stack *s) {
-    if (stack_clear(s))
+int stack_init(stack *stk) {
+    if (stk == NULL)
         return 1;
 
-    free(s);
+    stk->top = NULL;
+    stk->len = 0;
     return 0;
 }
 
-void *stack_peek(stack *s) {
-    if (s == NULL || s->top == NULL)
+void *stack_peek(stack *stk) {
+    if (stk == NULL || stk->top == NULL)
         return NULL;
 
-    return s->top->data;
+    return stk->top->data;
 }
 
-void *stack_pop(stack *s) {
+void *stack_pop(stack *stk) {
     snode *dead;
     void *data;
 
-    if (s == NULL || s->top == NULL)
+    if (stk == NULL || stk->top == NULL)
         return NULL;
         
-    dead = s->top;
-    s->top = s->top->next;
+    dead = stk->top;
+    stk->top = stk->top->next;
     data = dead->data;
     free(dead);
-    --(s->len);
+    --(stk->len);
     return data;
 }
 
-int stack_push(stack *s, void *elem) {
+int stack_push(stack *stk, void *elem) {
     snode *new;
     
-    if (s == NULL || elem == NULL)
+    if (stk == NULL || elem == NULL)
         return 1;
     if ((new = malloc(sizeof(snode))) == NULL)
         return 1;
 
     new->data = elem;
-    new->next = s->top;
-    s->top = new;
-    ++(s->len);
+    new->next = stk->top;
+    stk->top = new;
+    ++(stk->len);
     return 0;
 }
 
-int stack_clear(stack *s) {
+int stack_destroy(stack *stk) {
     snode *node, *dead;
 
-    if (s == NULL)
+    if (stk == NULL)
         return 1;
 
-    node = s->top;
+    node = stk->top;
     while (node != NULL) {
         dead = node;
         node = node->next;
         free(dead);
     }
-    s->len = 0;
+    stk->len = 0;
     return 0;
-}
-
-size_t stack_len(stack *s) {
-    if (s == NULL)
-        return 0;
-
-    return s->len;
 }

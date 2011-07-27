@@ -24,65 +24,50 @@ typedef struct {
     size_t len;             /**< the number of elements in the stack. */
 } stack;
 
-/** @brief Allocates and initializes a new stack.
- *  @return A pointer to a new stack.
- */
-stack *stack_init(void);
-
-/** @brief Frees the linked list in s and s itself.
+/** @brief Initializes a new stack.
  *
- *  Will not free the elements stored in the nodes of s.
+ *  Will fail and return 1 if stk is NULL.
  *
- *  @param s the address of the stack we want to deallocate.
+ *  @param stk the address of the stack we want to initialize.
  *  @return Success status.
  */
-int stack_destroy(stack *s);
+int stack_init(stack *stk);
 
-/** @brief Returns the top element of s if it exists.
+/** @brief Frees the linked list in stk.
  *
- *  Will return NULL if s is NULL.
+ *  Will not free the elements stored in the nodes of stk.
  *
- *  @param s the address of the stack we want to peek into.
- *  @return The top element of s if it exists, NULL if s is empty.
- */
-void *stack_peek(stack *s);
-
-/** @brief Removes the top element of s if it exists and returns it.
- *
- *  Will return NULL if s is NULL.
- *
- *  @param s the address of the stack we want to pop the top off.
- *  @return The top element of s if it exists, NULL if s is empty.
- */
-void *stack_pop(stack *s);
-
-/** @brief Inserts elem as the new top of s.
- *
- *  Will fail and return 1 if s is NULL or elem is NULL.
- *
- *  @param s the address of the stack we want to push elem onto.
- *  @param elem the element we want to insert as the new top of s.
+ *  @param stk the address of the stack we want to deallocate.
  *  @return Success status.
  */
-int stack_push(stack *s, void *elem);
+int stack_destroy(stack *stk);
 
-/** @brief Removes all elements from s.
+/** @brief Returns the top element of stk if it exists.
  *
- *  Frees all nodes in the linked list in s but will not free the
- *  elements in the nodes.
+ *  Will return NULL if stk is NULL.
  *
- *  @param s the address of the stack we want to clear out.
+ *  @param stk the address of the stack we want to peek into.
+ *  @return The top element of stk if it exists, NULL if stk is empty.
+ */
+void *stack_peek(stack *stk);
+
+/** @brief Removes the top element of stk if it exists and returns it.
+ *
+ *  Will return NULL if stk is NULL.
+ *
+ *  @param stk the address of the stack we want to pop the top off.
+ *  @return The top element of stk if it exists, NULL if stk is empty.
+ */
+void *stack_pop(stack *stk);
+
+/** @brief Inserts elem as the new top of stk.
+ *
+ *  Will fail and return 1 if stk is NULL or elem is NULL.
+ *
+ *  @param stk the address of the stack we want to push elem onto.
+ *  @param elem the element we want to insert as the new top of stk.
  *  @return Success status.
  */
-int stack_clear(stack *s);
-
-/** @brief Returns the number of elements in s
- *
- *  If s is NULL will return 0, otherwise same behavior as s->len.
- *
- *  @param s the address of the stack whose length we want.
- *  @return The number of elements in s.
- */
-size_t stack_len(stack *s);
+int stack_push(stack *stk, void *elem);
 
 #endif /* STACK_H_ */

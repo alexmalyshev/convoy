@@ -17,25 +17,32 @@
 /** @brief Flips RED to BLACK and vice versa. */
 #define FLIP(color) (!(color))
 
-rbtree *rbtree_init(cmpfn cmp) {
-    rbtree *tree;
+int rbtree_init(rbtree *tree, cmpfn cmp) {
+    if (tree == NULL || cmp == NULL)
+        return 1;
 
-    if (cmp == NULL)
-        return NULL;
-
-    if ((tree = malloc(sizeof(rbtree))) == NULL)
-        return NULL;
     tree->root = NULL;
     tree->cmp = cmp;
-    return tree;
+    return 0;
 }
 
 int rbtree_destroy(rbtree *tree) {
-    if (rbtree_clear(tree))
+    if (tree == NULL)
         return 1;
 
-    free(tree);
+    clear(tree->root);
+    tree->root = NULL;
     return 0;
+}
+
+static void clear(rbnode *node) {
+    if (node == NULL)
+        return;
+    if (node->left != NULL)
+        clear(node->left);
+    if (node->right != NULL)
+        clear(node->right);
+    free(node);
 }
 
 int rbtree_insert(rbtree *tree, void *elem) {
@@ -130,24 +137,6 @@ void *rbtree_search(rbtree *tree, void *elem) {
             return node->data;
     }
     return NULL;
-}
-
-int rbtree_clear(rbtree *tree) {
-    if (tree == NULL)
-        return 1;
-
-    clear(tree->root);
-    return 0;
-}
-
-static void clear(rbnode *node) {
-    if (node == NULL)
-        return;
-    if (node->left != NULL)
-        clear(node->left);
-    if (node->right != NULL)
-        clear(node->right);
-    free(node);
 }
 
 static void *min(rbnode *node) {

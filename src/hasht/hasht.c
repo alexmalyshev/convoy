@@ -15,24 +15,20 @@
 #include "hasht.h"
 #include "hasht-int.h"
 
-hasht *hasht_init(hashfn hash, cmpfn cmp, double loadfactor, size_t cap) {
-    hasht *tab;
+int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
+    if (tab == NULL || hash == NULL || cmp == NULL || lf <= 0.0)
+        return 1;
 
-    if (hash == NULL || cmp == NULL || loadfactor <= 0.0)
-        return NULL;
-
-    if ((tab = malloc(sizeof(hasht))) == NULL)
-        return NULL;
     if ((tab->entries = calloc(cap, sizeof(hashentry *))) == NULL)
-        return NULL;
+        return 1;
 
     tab->hash = hash;
     tab->cmp = cmp;
     tab->size = 0;
     tab->cap = cap;
-    tab->limit = (size_t)(cap * loadfactor);
-    tab->loadfactor = loadfactor;
-    return tab;
+    tab->limit = (size_t)(cap * lf);
+    tab->loadfactor = lf;
+    return 0;
 }
 
 int hasht_destroy(hasht *tab) {
@@ -40,7 +36,6 @@ int hasht_destroy(hasht *tab) {
         return 1;
 
     free(tab->entries);
-    free(tab);
     return 0;
 }
 

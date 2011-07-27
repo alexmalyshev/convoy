@@ -1,7 +1,7 @@
 /** @file circbuf.c
  *  @brief A circular buffer library.
  *
- *  Implemented as a dynamic array with two indices to track the front and
+ *  Implemented as an array with two indices to track the front and
  *  back of the circular buffer. We malloc an array with an extra slot so
  *  as to simplify checking for empty and full circbufs. The circbuf is empty
  *  if its front index is equal to its back index, and it is full if its
@@ -15,20 +15,16 @@
 #include <stdlib.h>
 #include "circbuf.h"
 
-circbuf *circbuf_init(size_t len) {
-    circbuf *cbuf;
+int circbuf_init(circbuf *cbuf, size_t len) {
+    if (cbuf == NULL || len == MAX_LEN)
+        return 1;
 
-    if (len == MAX_LEN)
-        return NULL;
-
-    if ((cbuf = malloc(sizeof(circbuf))) == NULL)
-        return NULL;
     if ((cbuf->elems = malloc((len + 1) * sizeof(void *))) == NULL)
-        return NULL;
+        return 1;
     cbuf->front = 0;
     cbuf->back = 0;
     cbuf->len = len + 1;
-    return cbuf;
+    return 0;
 }
 
 int circbuf_destroy(circbuf *cbuf) {
@@ -36,7 +32,6 @@ int circbuf_destroy(circbuf *cbuf) {
         return 1;
 
     free(cbuf->elems);
-    free(cbuf);
     return 0;
 }
 

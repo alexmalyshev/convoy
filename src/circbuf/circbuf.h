@@ -14,8 +14,12 @@
 #ifndef CIRCBUF_H_
 #define CIRCBUF_H_
 
+#ifndef SIZE_MAX
 /** @brief The max number of elements in the circular buffer */
 #define MAX_LEN ((size_t)(-1) - 1)
+#else
+#define MAX_LEN (SIZE_MAX)
+#endif
 
 /** @brief A circular buffer. */
 typedef struct {
@@ -25,13 +29,17 @@ typedef struct {
     size_t len;     /**< the number of elements in the circular buffer. */
 } circbuf;
 
-/** @brief Allocates and initializes a new circbuf.
- *  @param size the desired size of the circbuf.
+/** @brief Initializes a new circbuf.
+ *
+ *  Will fail and return 1 if cbuf is NULL or if len is MAX_LEN.
+ *
+ *  @param cbuf the address of the circbuf we want to initialize.
+ *  @param len the desired length of the circbuf.
  *  @return A pointer to a new circbuf of the given size.
  */
-circbuf *circbuf_init(size_t size);
+int circbuf_init(circbuf *cbuf, size_t len);
 
-/** @brief Frees the array in cbuf and cbuf itself.
+/** @brief Frees the array in cbuf.
  *
  *  Will not free the elements stored in the nodes of cbuf.
  *
