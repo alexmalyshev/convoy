@@ -79,26 +79,24 @@ Data Structures</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A double-ended queue.  <a href="structdeque.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdeque.html">deque</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a4c4ec24f113c0afc60bf8d431f0289bf">deque_init</a> (void)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new deque.  <a href="#a4c4ec24f113c0afc60bf8d431f0289bf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#afe14fd044438764e2eb20da045e04009">deque_destroy</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in d and d itself.  <a href="#afe14fd044438764e2eb20da045e04009"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a27ef2aab6871e50659ea6024d0416e65">deque_insertb</a> (<a class="el" href="structdeque.html">deque</a> *d, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of d.  <a href="#a27ef2aab6871e50659ea6024d0416e65"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#ad4abbed4a93d0a6bebffe1212b3c4681">deque_insertf</a> (<a class="el" href="structdeque.html">deque</a> *d, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new front of d.  <a href="#ad4abbed4a93d0a6bebffe1212b3c4681"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a4c540686827c4d28d4af399f5b896eff">deque_peekb</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the back element of d if it exists.  <a href="#a4c540686827c4d28d4af399f5b896eff"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#ae76c8f79acc7d11bb63cb320991c8f15">deque_peekf</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of d if it exists.  <a href="#ae76c8f79acc7d11bb63cb320991c8f15"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#aee8766374b5a563fcae304decc155b32">deque_removeb</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the back element of d if it exists and returns it.  <a href="#aee8766374b5a563fcae304decc155b32"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a03826c390c4e27ace45ba9bceb07db56">deque_removef</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of d if it exists and returns it.  <a href="#a03826c390c4e27ace45ba9bceb07db56"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a52239827ebf16d6e4662a5656bd7ec27">deque_clear</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from d.  <a href="#a52239827ebf16d6e4662a5656bd7ec27"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a8dafe9fbb1a996bc7fb869d5fc7eef39">deque_len</a> (<a class="el" href="structdeque.html">deque</a> *d)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in d.  <a href="#a8dafe9fbb1a996bc7fb869d5fc7eef39"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#acbbcb02fbe135fd5bdc6211beec7ee25">deque_init</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new deque.  <a href="#acbbcb02fbe135fd5bdc6211beec7ee25"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a82ab394c3a91aac6e86839e928ec77ba">deque_destroy</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in deq and deq itself.  <a href="#a82ab394c3a91aac6e86839e928ec77ba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a0a64b138bed812b1c2edaa751ae4237b">deque_insertb</a> (<a class="el" href="structdeque.html">deque</a> *deq, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of deq.  <a href="#a0a64b138bed812b1c2edaa751ae4237b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a5948002048de935ae7345da97e6ab08e">deque_insertf</a> (<a class="el" href="structdeque.html">deque</a> *deq, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new front of deq.  <a href="#a5948002048de935ae7345da97e6ab08e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a6f175ae48a2cdac2f6bb52afd43b5d6a">deque_peekb</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the back element of deq if it exists.  <a href="#a6f175ae48a2cdac2f6bb52afd43b5d6a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#ae3c8b0850de40acc05f01e109333e2a6">deque_peekf</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of deq if it exists.  <a href="#ae3c8b0850de40acc05f01e109333e2a6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#aaa041ecf995aaa80b44a8ae7c2b198a6">deque_removeb</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the back element of deq if it exists and returns it.  <a href="#aaa041ecf995aaa80b44a8ae7c2b198a6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a738a51be3ecb654d3ed28275ad39d27d">deque_removef</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of deq if it exists and returns it.  <a href="#a738a51be3ecb654d3ed28275ad39d27d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deque_8h.html#a8ec622c421e142545b6d9c18dc9b2fdc">deque_clear</a> (<a class="el" href="structdeque.html">deque</a> *deq)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from deq.  <a href="#a8ec622c421e142545b6d9c18dc9b2fdc"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a deque data structure. </p>
@@ -106,7 +104,7 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000008">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a52239827ebf16d6e4662a5656bd7ec27"></a><!-- doxytag: member="deque.h::deque_clear" ref="a52239827ebf16d6e4662a5656bd7ec27" args="(deque *d)" -->
+<a class="anchor" id="a8ec622c421e142545b6d9c18dc9b2fdc"></a><!-- doxytag: member="deque.h::deque_clear" ref="a8ec622c421e142545b6d9c18dc9b2fdc" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -114,18 +112,18 @@ Functions</h2></td></tr>
           <td class="memname">int deque_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from d. </p>
-<p>Frees all nodes in the linked list in d but will not free the elements in the nodes.</p>
+<p>Removes all elements from deq. </p>
+<p>Frees all nodes in the linked list in deq but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to clear out. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -133,7 +131,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afe14fd044438764e2eb20da045e04009"></a><!-- doxytag: member="deque.h::deque_destroy" ref="afe14fd044438764e2eb20da045e04009" args="(deque *d)" -->
+<a class="anchor" id="a82ab394c3a91aac6e86839e928ec77ba"></a><!-- doxytag: member="deque.h::deque_destroy" ref="a82ab394c3a91aac6e86839e928ec77ba" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -141,18 +139,18 @@ Functions</h2></td></tr>
           <td class="memname">int deque_destroy </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Frees the linked list in d and d itself. </p>
-<p>Will not free the elements stored in the nodes of d.</p>
+<p>Frees the linked list in deq and deq itself. </p>
+<p>Will not free the elements stored in the nodes of deq.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to deallocate. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to deallocate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -160,27 +158,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4c4ec24f113c0afc60bf8d431f0289bf"></a><!-- doxytag: member="deque.h::deque_init" ref="a4c4ec24f113c0afc60bf8d431f0289bf" args="(void)" -->
+<a class="anchor" id="acbbcb02fbe135fd5bdc6211beec7ee25"></a><!-- doxytag: member="deque.h::deque_init" ref="acbbcb02fbe135fd5bdc6211beec7ee25" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structdeque.html">deque</a>* deque_init </td>
+          <td class="memname">int deque_init </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new deque. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new deque. </dd></dl>
+<p>Initializes a new deque. </p>
+<p>Will fail and return 1 if deq is NULL.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to initialize. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a27ef2aab6871e50659ea6024d0416e65"></a><!-- doxytag: member="deque.h::deque_insertb" ref="a27ef2aab6871e50659ea6024d0416e65" args="(deque *d, void *elem)" -->
+<a class="anchor" id="a0a64b138bed812b1c2edaa751ae4237b"></a><!-- doxytag: member="deque.h::deque_insertb" ref="a0a64b138bed812b1c2edaa751ae4237b" args="(deque *deq, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -188,7 +193,7 @@ Functions</h2></td></tr>
           <td class="memname">int deque_insertb </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
+          <td class="paramname"><em>deq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -205,12 +210,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new back of d. </p>
-<p>Will fail and return 1 if d is NULL or elem is NULL.</p>
+<p>Inserts elem as the new back of deq. </p>
+<p>Will fail and return 1 if deq is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of d. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to insert elem into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of deq. </td></tr>
   </table>
   </dd>
 </dl>
@@ -218,7 +223,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad4abbed4a93d0a6bebffe1212b3c4681"></a><!-- doxytag: member="deque.h::deque_insertf" ref="ad4abbed4a93d0a6bebffe1212b3c4681" args="(deque *d, void *elem)" -->
+<a class="anchor" id="a5948002048de935ae7345da97e6ab08e"></a><!-- doxytag: member="deque.h::deque_insertf" ref="a5948002048de935ae7345da97e6ab08e" args="(deque *deq, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -226,7 +231,7 @@ Functions</h2></td></tr>
           <td class="memname">int deque_insertf </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
+          <td class="paramname"><em>deq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -243,12 +248,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new front of d. </p>
-<p>Will fail and return 1 if d is NULL or elem is NULL.</p>
+<p>Inserts elem as the new front of deq. </p>
+<p>Will fail and return 1 if deq is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new front of d. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to insert elem into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new front of deq. </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,34 +261,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8dafe9fbb1a996bc7fb869d5fc7eef39"></a><!-- doxytag: member="deque.h::deque_len" ref="a8dafe9fbb1a996bc7fb869d5fc7eef39" args="(deque *d)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">long deque_len </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Returns the number of elements in d. </p>
-<p>If d is NULL will return -1, otherwise same behavior as d-&gt;len.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque whose length we want. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The number of elements in d. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4c540686827c4d28d4af399f5b896eff"></a><!-- doxytag: member="deque.h::deque_peekb" ref="a4c540686827c4d28d4af399f5b896eff" args="(deque *d)" -->
+<a class="anchor" id="a6f175ae48a2cdac2f6bb52afd43b5d6a"></a><!-- doxytag: member="deque.h::deque_peekb" ref="a6f175ae48a2cdac2f6bb52afd43b5d6a" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -291,26 +269,26 @@ Functions</h2></td></tr>
           <td class="memname">void* deque_peekb </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns the back element of d if it exists. </p>
-<p>Will return NULL if d is NULL.</p>
+<p>Returns the back element of deq if it exists. </p>
+<p>Will return NULL if deq is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to peek into. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The back element of d if it exists, NULL if d is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The back element of deq if it exists, NULL if deq is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ae76c8f79acc7d11bb63cb320991c8f15"></a><!-- doxytag: member="deque.h::deque_peekf" ref="ae76c8f79acc7d11bb63cb320991c8f15" args="(deque *d)" -->
+<a class="anchor" id="ae3c8b0850de40acc05f01e109333e2a6"></a><!-- doxytag: member="deque.h::deque_peekf" ref="ae3c8b0850de40acc05f01e109333e2a6" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -318,26 +296,26 @@ Functions</h2></td></tr>
           <td class="memname">void* deque_peekf </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns the front element of d if it exists. </p>
+<p>Returns the front element of deq if it exists. </p>
 <p>Will return NULL if d is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to peek into. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of d if it exists, NULL if d is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of deq if it exists, NULL if deq is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aee8766374b5a563fcae304decc155b32"></a><!-- doxytag: member="deque.h::deque_removeb" ref="aee8766374b5a563fcae304decc155b32" args="(deque *d)" -->
+<a class="anchor" id="aaa041ecf995aaa80b44a8ae7c2b198a6"></a><!-- doxytag: member="deque.h::deque_removeb" ref="aaa041ecf995aaa80b44a8ae7c2b198a6" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -345,26 +323,26 @@ Functions</h2></td></tr>
           <td class="memname">void* deque_removeb </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes the back element of d if it exists and returns it. </p>
-<p>Will fail and return NULL if d is NULL.</p>
+<p>Removes the back element of deq if it exists and returns it. </p>
+<p>Will fail and return NULL if deq is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to remove the back element from. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to remove the back from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The back element of d if it exists, NULL if d is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The back element of deq if it exists, NULL if deq is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a03826c390c4e27ace45ba9bceb07db56"></a><!-- doxytag: member="deque.h::deque_removef" ref="a03826c390c4e27ace45ba9bceb07db56" args="(deque *d)" -->
+<a class="anchor" id="a738a51be3ecb654d3ed28275ad39d27d"></a><!-- doxytag: member="deque.h::deque_removef" ref="a738a51be3ecb654d3ed28275ad39d27d" args="(deque *deq)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -372,22 +350,22 @@ Functions</h2></td></tr>
           <td class="memname">void* deque_removef </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structdeque.html">deque</a> *&#160;</td>
-          <td class="paramname"><em>d</em></td><td>)</td>
+          <td class="paramname"><em>deq</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes the front element of d if it exists and returns it. </p>
-<p>Will fail and return NULL if d is NULL.</p>
+<p>Removes the front element of deq if it exists and returns it. </p>
+<p>Will fail and return NULL if deq is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">d</td><td>the address of the deque we want to remove the front element from. </td></tr>
+    <tr><td class="paramname">deq</td><td>the address of the deque we want to remove the front from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of d if it exists, NULL if d is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of deq if it exists, NULL if deq is empty. </dd></dl>
 
 </div>
 </div>
@@ -406,7 +384,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

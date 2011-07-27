@@ -86,18 +86,16 @@ typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a94f7fa9066652ccfcc7fac39d2f53e6d">splay_init</a> (<a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new splaytree.  <a href="#a94f7fa9066652ccfcc7fac39d2f53e6d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a2bb1eef8e97f294e53bbef4ccc89fd8e">splay_init</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new splaytree.  <a href="#a2bb1eef8e97f294e53bbef4ccc89fd8e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#aada27ea536d5cebd428aeafab1a12ce0">splay_destroy</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#aada27ea536d5cebd428aeafab1a12ce0"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree.  <a href="#aada27ea536d5cebd428aeafab1a12ce0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a6798a6a0c3cf5808c79b9ffd636b1b29">splay_insert</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#a6798a6a0c3cf5808c79b9ffd636b1b29"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a2013bee6615757af0cd9bbd935ff4dfa">splay_remove</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a2013bee6615757af0cd9bbd935ff4dfa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a952b6c2cb4649210f45b0b38fb1002bb">splay_search</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tree for elem.  <a href="#a952b6c2cb4649210f45b0b38fb1002bb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#ac1defd53dcd3cbdc69c86138cf535409">splay_clear</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tree.  <a href="#ac1defd53dcd3cbdc69c86138cf535409"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a splay tree data structure. </p>
@@ -105,33 +103,6 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000020">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ac1defd53dcd3cbdc69c86138cf535409"></a><!-- doxytag: member="splay.h::splay_clear" ref="ac1defd53dcd3cbdc69c86138cf535409" args="(splaytree *tree)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int splay_clear </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td>
-          <td class="paramname"><em>tree</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes all elements from tree. </p>
-<p>Frees all nodes in tree but will not free the elements in the nodes.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to clear out. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="aada27ea536d5cebd428aeafab1a12ce0"></a><!-- doxytag: member="splay.h::splay_destroy" ref="aada27ea536d5cebd428aeafab1a12ce0" args="(splaytree *tree)" -->
 <div class="memitem">
 <div class="memproto">
@@ -147,7 +118,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the nodes in tree and tree itself. </p>
+<p>Frees the nodes in tree. </p>
 <p>Will not free the elements stored in the nodes of tree.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -159,30 +130,41 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a94f7fa9066652ccfcc7fac39d2f53e6d"></a><!-- doxytag: member="splay.h::splay_init" ref="a94f7fa9066652ccfcc7fac39d2f53e6d" args="(cmpfn cmp)" -->
+<a class="anchor" id="a2bb1eef8e97f294e53bbef4ccc89fd8e"></a><!-- doxytag: member="splay.h::splay_init" ref="a2bb1eef8e97f294e53bbef4ccc89fd8e" args="(splaytree *tree, cmpfn cmp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structsplaytree.html">splaytree</a>* splay_init </td>
+          <td class="memname">int splay_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
-          <td class="paramname"><em>cmp</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structsplaytree.html">splaytree</a> *&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new splaytree. </p>
-<p>Will fail and return NULL if cmp is NULL.</p>
+<p>Initializes a new splaytree. </p>
+<p>Will fail and return NULL if tree is NULL or cmp is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to initialize. </td></tr>
     <tr><td class="paramname">cmp</td><td>the compare function that will be used by the tree. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new splaytree. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
@@ -315,7 +297,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

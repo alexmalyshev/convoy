@@ -72,20 +72,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structstack.html">stack</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a6a8dc8b79061b68dc2c789847ea284a3">stack_init</a> (void)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new stack.  <a href="#a6a8dc8b79061b68dc2c789847ea284a3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a5f160e87012d83574657476d47a6766c">stack_destroy</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in s and s itself.  <a href="#a5f160e87012d83574657476d47a6766c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ade35131fce9b8ab992e9e7ecb4cc7b37">stack_peek</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the top element of s if it exists.  <a href="#ade35131fce9b8ab992e9e7ecb4cc7b37"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ab507498e59aa85a017be7afc6ddaec87">stack_pop</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the top element of s if it exists and returns it.  <a href="#ab507498e59aa85a017be7afc6ddaec87"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ae45d099f18181f7afb107c1b1a9301b2">stack_push</a> (<a class="el" href="structstack.html">stack</a> *s, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new top of s.  <a href="#ae45d099f18181f7afb107c1b1a9301b2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#ac52fd136259ce064d90c9bbc1023f2c8">stack_clear</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from s.  <a href="#ac52fd136259ce064d90c9bbc1023f2c8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a94856575037bac33c505cb05c42ffeb5">stack_len</a> (<a class="el" href="structstack.html">stack</a> *s)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in s.  <a href="#a94856575037bac33c505cb05c42ffeb5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a419c30ab691c579a6fe01af323624c72">stack_init</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new stack.  <a href="#a419c30ab691c579a6fe01af323624c72"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a3ef90f48ca7090bc5ebc8143ebcd33a6">stack_peek</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the top element of stk if it exists.  <a href="#a3ef90f48ca7090bc5ebc8143ebcd33a6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a1269c1811c6fdb780cb3a9a2be6e958f">stack_pop</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the top element of stk if it exists and returns it.  <a href="#a1269c1811c6fdb780cb3a9a2be6e958f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a0e9a62f740b44303d02a7ebba3415210">stack_push</a> (<a class="el" href="structstack.html">stack</a> *stk, void *elem)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new top of stk.  <a href="#a0e9a62f740b44303d02a7ebba3415210"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a33019c8bc82d5a3fde67bbb1e5f49f2b">stack_destroy</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the linked list in stk.  <a href="#a33019c8bc82d5a3fde67bbb1e5f49f2b"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A stack library. </p>
@@ -93,34 +89,7 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000021">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ac52fd136259ce064d90c9bbc1023f2c8"></a><!-- doxytag: member="stack.c::stack_clear" ref="ac52fd136259ce064d90c9bbc1023f2c8" args="(stack *s)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int stack_clear </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes all elements from s. </p>
-<p>Frees all nodes in the linked list in s but will not free the elements in the nodes.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack we want to clear out. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5f160e87012d83574657476d47a6766c"></a><!-- doxytag: member="stack.c::stack_destroy" ref="a5f160e87012d83574657476d47a6766c" args="(stack *s)" -->
+<a class="anchor" id="a33019c8bc82d5a3fde67bbb1e5f49f2b"></a><!-- doxytag: member="stack.c::stack_destroy" ref="a33019c8bc82d5a3fde67bbb1e5f49f2b" args="(stack *stk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -128,18 +97,18 @@ Functions</h2></td></tr>
           <td class="memname">int stack_destroy </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>stk</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Frees the linked list in s and s itself. </p>
-<p>Will not free the elements stored in the nodes of s.</p>
+<p>Frees the linked list in stk. </p>
+<p>Will not free the elements stored in the nodes of stk.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack we want to deallocate. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to deallocate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -147,54 +116,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6a8dc8b79061b68dc2c789847ea284a3"></a><!-- doxytag: member="stack.c::stack_init" ref="a6a8dc8b79061b68dc2c789847ea284a3" args="(void)" -->
+<a class="anchor" id="a419c30ab691c579a6fe01af323624c72"></a><!-- doxytag: member="stack.c::stack_init" ref="a419c30ab691c579a6fe01af323624c72" args="(stack *stk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structstack.html">stack</a>* stack_init </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Allocates and initializes a new stack. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new stack. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a94856575037bac33c505cb05c42ffeb5"></a><!-- doxytag: member="stack.c::stack_len" ref="a94856575037bac33c505cb05c42ffeb5" args="(stack *s)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t stack_len </td>
+          <td class="memname">int stack_init </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>stk</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns the number of elements in s. </p>
-<p>If s is NULL will return 0, otherwise same behavior as s-&gt;len.</p>
+<p>Initializes a new stack. </p>
+<p>Will fail and return 1 if stk is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack whose length we want. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to initialize. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The number of elements in s. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ade35131fce9b8ab992e9e7ecb4cc7b37"></a><!-- doxytag: member="stack.c::stack_peek" ref="ade35131fce9b8ab992e9e7ecb4cc7b37" args="(stack *s)" -->
+<a class="anchor" id="a3ef90f48ca7090bc5ebc8143ebcd33a6"></a><!-- doxytag: member="stack.c::stack_peek" ref="a3ef90f48ca7090bc5ebc8143ebcd33a6" args="(stack *stk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -202,26 +151,26 @@ Functions</h2></td></tr>
           <td class="memname">void* stack_peek </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>stk</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns the top element of s if it exists. </p>
-<p>Will return NULL if s is NULL.</p>
+<p>Returns the top element of stk if it exists. </p>
+<p>Will return NULL if stk is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack we want to peek into. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of s if it exists, NULL if s is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of stk if it exists, NULL if stk is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ab507498e59aa85a017be7afc6ddaec87"></a><!-- doxytag: member="stack.c::stack_pop" ref="ab507498e59aa85a017be7afc6ddaec87" args="(stack *s)" -->
+<a class="anchor" id="a1269c1811c6fdb780cb3a9a2be6e958f"></a><!-- doxytag: member="stack.c::stack_pop" ref="a1269c1811c6fdb780cb3a9a2be6e958f" args="(stack *stk)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -229,26 +178,26 @@ Functions</h2></td></tr>
           <td class="memname">void* stack_pop </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em></td><td>)</td>
+          <td class="paramname"><em>stk</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Removes the top element of s if it exists and returns it. </p>
-<p>Will return NULL if s is NULL.</p>
+<p>Removes the top element of stk if it exists and returns it. </p>
+<p>Will return NULL if stk is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack we want to pop the top off. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to pop the top off. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of s if it exists, NULL if s is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of stk if it exists, NULL if stk is empty. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ae45d099f18181f7afb107c1b1a9301b2"></a><!-- doxytag: member="stack.c::stack_push" ref="ae45d099f18181f7afb107c1b1a9301b2" args="(stack *s, void *elem)" -->
+<a class="anchor" id="a0e9a62f740b44303d02a7ebba3415210"></a><!-- doxytag: member="stack.c::stack_push" ref="a0e9a62f740b44303d02a7ebba3415210" args="(stack *stk, void *elem)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -256,7 +205,7 @@ Functions</h2></td></tr>
           <td class="memname">int stack_push </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structstack.html">stack</a> *&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramname"><em>stk</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -273,12 +222,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new top of s. </p>
-<p>Will fail and return 1 if s is NULL or elem is NULL.</p>
+<p>Inserts elem as the new top of stk. </p>
+<p>Will fail and return 1 if stk is NULL or elem is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>the address of the stack we want to push elem onto. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new top of s. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the stack we want to push elem onto. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new top of stk. </td></tr>
   </table>
   </dd>
 </dl>
@@ -301,7 +250,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

@@ -72,10 +72,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8c.html#aafddf29d43fdbc363faa32b2ab5d4e68">circbuf_init</a> (size_t len)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new circbuf.  <a href="#aafddf29d43fdbc363faa32b2ab5d4e68"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8c.html#a8e586b4586d91e0a70aa892e8a476f33">circbuf_init</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf, size_t len)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new circbuf.  <a href="#a8e586b4586d91e0a70aa892e8a476f33"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8c.html#aba61e30a1c8e80c7011c6a803a56860b">circbuf_destroy</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array in cbuf and cbuf itself.  <a href="#aba61e30a1c8e80c7011c6a803a56860b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the array in cbuf.  <a href="#aba61e30a1c8e80c7011c6a803a56860b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8c.html#af60b26a5a5c2dbb74d56a042f977d19f">circbuf_dequeue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of cbuf if it exists and returns it.  <a href="#af60b26a5a5c2dbb74d56a042f977d19f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circbuf_8c.html#abd67253c30ae27fd0888cfb0acf7434e">circbuf_enqueue</a> (<a class="el" href="structcircbuf.html">circbuf</a> *cbuf, void *elem)</td></tr>
@@ -87,7 +87,7 @@ Functions</h2></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A circular buffer library. </p>
-<p>Implemented as a dynamic array with two indices to track the front and back of the circular buffer. We malloc an array with an extra slot so as to simplify checking for empty and full circbufs. The circbuf is empty if its front index is equal to its back index, and it is full if its back index plus one (with wraparound courtesy of mod) is equal to its front index.</p>
+<p>Implemented as an array with two indices to track the front and back of the circular buffer. We malloc an array with an extra slot so as to simplify checking for empty and full circbufs. The circbuf is empty if its front index is equal to its back index, and it is full if its back index plus one (with wraparound courtesy of mod) is equal to its front index.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000004">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
@@ -160,7 +160,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the array in cbuf and cbuf itself. </p>
+<p>Frees the array in cbuf. </p>
 <p>Will not free the elements stored in the nodes of cbuf.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -210,25 +210,37 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aafddf29d43fdbc363faa32b2ab5d4e68"></a><!-- doxytag: member="circbuf.c::circbuf_init" ref="aafddf29d43fdbc363faa32b2ab5d4e68" args="(size_t len)" -->
+<a class="anchor" id="a8e586b4586d91e0a70aa892e8a476f33"></a><!-- doxytag: member="circbuf.c::circbuf_init" ref="a8e586b4586d91e0a70aa892e8a476f33" args="(circbuf *cbuf, size_t len)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structcircbuf.html">circbuf</a>* circbuf_init </td>
+          <td class="memname">int circbuf_init </td>
           <td>(</td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>size</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structcircbuf.html">circbuf</a> *&#160;</td>
+          <td class="paramname"><em>cbuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new circbuf. </p>
+<p>Initializes a new circbuf. </p>
+<p>Will fail and return 1 if cbuf is NULL or if len is MAX_LEN.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>the desired size of the circbuf. </td></tr>
+    <tr><td class="paramname">cbuf</td><td>the address of the circbuf we want to initialize. </td></tr>
+    <tr><td class="paramname">len</td><td>the desired length of the circbuf. </td></tr>
   </table>
   </dd>
 </dl>
@@ -278,7 +290,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

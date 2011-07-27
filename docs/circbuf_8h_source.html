@@ -65,28 +65,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00014"></a>00014 <span class="preprocessor">#ifndef CIRCBUF_H_</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#define CIRCBUF_H_</span>
 <a name="l00016"></a>00016 <span class="preprocessor"></span>
-<a name="l00018"></a><a class="code" href="circbuf_8h.html#aabf4f709c8199e41cf279c77112345fe">00018</a> <span class="preprocessor">#define MAX_LEN ((size_t)(-1) - 1)</span>
-<a name="l00019"></a>00019 <span class="preprocessor"></span>
-<a name="l00021"></a><a class="code" href="structcircbuf.html">00021</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00022"></a><a class="code" href="structcircbuf.html#ab7f87259d05922131491e91db67246f0">00022</a>     <span class="keywordtype">void</span> **<a class="code" href="structcircbuf.html#ab7f87259d05922131491e91db67246f0">elems</a>;   
-<a name="l00023"></a><a class="code" href="structcircbuf.html#a206c732a5a18eecaba9cdb11d94ddb78">00023</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#a206c732a5a18eecaba9cdb11d94ddb78">front</a>;   
-<a name="l00024"></a><a class="code" href="structcircbuf.html#a3a96970a9707425b93a6662f62fbab84">00024</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#a3a96970a9707425b93a6662f62fbab84">back</a>;    
-<a name="l00025"></a><a class="code" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">00025</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">len</a>;     
-<a name="l00026"></a>00026 } <a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a>;
-<a name="l00027"></a>00027 
-<a name="l00032"></a>00032 <a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *<a class="code" href="circbuf_8c.html#aafddf29d43fdbc363faa32b2ab5d4e68" title="Allocates and initializes a new circbuf.">circbuf_init</a>(<span class="keywordtype">size_t</span> size);
-<a name="l00033"></a>00033 
-<a name="l00041"></a>00041 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#aba61e30a1c8e80c7011c6a803a56860b" title="Frees the array in cbuf and cbuf itself.">circbuf_destroy</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
-<a name="l00042"></a>00042 
-<a name="l00050"></a>00050 <span class="keywordtype">void</span> *<a class="code" href="circbuf_8c.html#af60b26a5a5c2dbb74d56a042f977d19f" title="Removes the front element of cbuf if it exists and returns it.">circbuf_dequeue</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
-<a name="l00051"></a>00051 
-<a name="l00060"></a>00060 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#abd67253c30ae27fd0888cfb0acf7434e" title="Inserts elem as the new back of cbuf.">circbuf_enqueue</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf, <span class="keywordtype">void</span> *elem);
-<a name="l00061"></a>00061 
-<a name="l00069"></a>00069 <span class="keywordtype">void</span> *<a class="code" href="circbuf_8c.html#a043903569ce67d490764ff77cb5c9fd8" title="Returns the front element of cbuf if it exists.">circbuf_peek</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
-<a name="l00070"></a>00070 
-<a name="l00078"></a>00078 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#abb1e318178f36beba89fb07ec4a0680b" title="Removes all elements from cbuf.">circbuf_clear</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="preprocessor">#endif </span><span class="comment">/* CIRCBUF_H_ */</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#ifndef SIZE_MAX</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a><a class="code" href="circbuf_8h.html#aabf4f709c8199e41cf279c77112345fe">00019</a> <span class="preprocessor">#define MAX_LEN ((size_t)(-1) - 1)</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define MAX_LEN (SIZE_MAX)</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span>
+<a name="l00025"></a><a class="code" href="structcircbuf.html">00025</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00026"></a><a class="code" href="structcircbuf.html#ab7f87259d05922131491e91db67246f0">00026</a>     <span class="keywordtype">void</span> **<a class="code" href="structcircbuf.html#ab7f87259d05922131491e91db67246f0">elems</a>;   
+<a name="l00027"></a><a class="code" href="structcircbuf.html#a206c732a5a18eecaba9cdb11d94ddb78">00027</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#a206c732a5a18eecaba9cdb11d94ddb78">front</a>;   
+<a name="l00028"></a><a class="code" href="structcircbuf.html#a3a96970a9707425b93a6662f62fbab84">00028</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#a3a96970a9707425b93a6662f62fbab84">back</a>;    
+<a name="l00029"></a><a class="code" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">00029</a>     <span class="keywordtype">size_t</span> <a class="code" href="structcircbuf.html#abc1ca7c128a7fcd372cf3c17e3fc715e">len</a>;     
+<a name="l00030"></a>00030 } <a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a>;
+<a name="l00031"></a>00031 
+<a name="l00040"></a>00040 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#a8e586b4586d91e0a70aa892e8a476f33" title="Initializes a new circbuf.">circbuf_init</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf, <span class="keywordtype">size_t</span> len);
+<a name="l00041"></a>00041 
+<a name="l00049"></a>00049 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#aba61e30a1c8e80c7011c6a803a56860b" title="Frees the array in cbuf.">circbuf_destroy</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
+<a name="l00050"></a>00050 
+<a name="l00058"></a>00058 <span class="keywordtype">void</span> *<a class="code" href="circbuf_8c.html#af60b26a5a5c2dbb74d56a042f977d19f" title="Removes the front element of cbuf if it exists and returns it.">circbuf_dequeue</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
+<a name="l00059"></a>00059 
+<a name="l00068"></a>00068 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#abd67253c30ae27fd0888cfb0acf7434e" title="Inserts elem as the new back of cbuf.">circbuf_enqueue</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf, <span class="keywordtype">void</span> *elem);
+<a name="l00069"></a>00069 
+<a name="l00077"></a>00077 <span class="keywordtype">void</span> *<a class="code" href="circbuf_8c.html#a043903569ce67d490764ff77cb5c9fd8" title="Returns the front element of cbuf if it exists.">circbuf_peek</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
+<a name="l00078"></a>00078 
+<a name="l00086"></a>00086 <span class="keywordtype">int</span> <a class="code" href="circbuf_8c.html#abb1e318178f36beba89fb07ec4a0680b" title="Removes all elements from cbuf.">circbuf_clear</a>(<a class="code" href="structcircbuf.html" title="A circular buffer.">circbuf</a> *cbuf);
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="preprocessor">#endif </span><span class="comment">/* CIRCBUF_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -103,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

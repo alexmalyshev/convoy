@@ -92,10 +92,10 @@ typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbinaheap.html">binaheap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#ae999dd98ad423affef16cbfa3b344005">binaheap_init</a> (<a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, size_t cap)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new binaheap.  <a href="#ae999dd98ad423affef16cbfa3b344005"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#a36bc1431d15e846977d4d953effff25a">binaheap_init</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, size_t cap)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new binaheap.  <a href="#a36bc1431d15e846977d4d953effff25a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#aedc1eb3b90e448f39a82ff365ecb828e">binaheap_destroy</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in heap and heap itself.  <a href="#aedc1eb3b90e448f39a82ff365ecb828e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in heap.  <a href="#aedc1eb3b90e448f39a82ff365ecb828e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#ad790a63e41c7a6c06a994b4c3cf44023">binaheap_insert</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into heap.  <a href="#ad790a63e41c7a6c06a994b4c3cf44023"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="binaheap_8h.html#a3f24ec6ad975a258c8b12143abea5cc7">binaheap_removemin</a> (<a class="el" href="structbinaheap.html">binaheap</a> *heap)</td></tr>
@@ -153,8 +153,8 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the dynamic array in heap and heap itself. </p>
-<p>Will not free the elements stored in heap's array.</p>
+<p>Frees the dynamic array in heap. </p>
+<p>Will not free the elements stored in heap's array or heap itself.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">heap</td><td>the address of the binaheap we want to deallocate. </td></tr>
@@ -165,13 +165,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae999dd98ad423affef16cbfa3b344005"></a><!-- doxytag: member="binaheap.h::binaheap_init" ref="ae999dd98ad423affef16cbfa3b344005" args="(cmpfn cmp, size_t cap)" -->
+<a class="anchor" id="a36bc1431d15e846977d4d953effff25a"></a><!-- doxytag: member="binaheap.h::binaheap_init" ref="a36bc1431d15e846977d4d953effff25a" args="(binaheap *heap, cmpfn cmp, size_t cap)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structbinaheap.html">binaheap</a>* binaheap_init </td>
+          <td class="memname">int binaheap_init </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="structbinaheap.html">binaheap</a> *&#160;</td>
+          <td class="paramname"><em>heap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
           <td class="paramname"><em>cmp</em>, </td>
         </tr>
@@ -190,16 +196,17 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new binaheap. </p>
-<p>Will fail and return NULL if cmp is NULL.</p>
+<p>Initializes a new binaheap. </p>
+<p>Will fail and return 1 if heap is NULL or cmp is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">heap</td><td>the address of the binaheap to initialize. </td></tr>
     <tr><td class="paramname">cmp</td><td>the compare function that will be used by the heap. </td></tr>
     <tr><td class="paramname">cap</td><td>the starting capacity of the table. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new binaheap. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
@@ -310,7 +317,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

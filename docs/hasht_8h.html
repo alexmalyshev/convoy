@@ -101,10 +101,10 @@ typedef unsigned long(*&#160;</td><td class="memItemRight" valign="bottom"><a cl
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic hash function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhasht.html">hasht</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#acf782cfece2e1ce72f3ced7936afe698">hasht_init</a> (<a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> hash, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, double loadfactor, size_t cap)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new hasht.  <a href="#acf782cfece2e1ce72f3ced7936afe698"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ad0cd922f053e761b438232043ebbdd35">hasht_init</a> (<a class="el" href="structhasht.html">hasht</a> *tab, <a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> hash, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, double lf, size_t cap)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new hasht.  <a href="#ad0cd922f053e761b438232043ebbdd35"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ac01db857ebd18f5063f02ad06c559099">hasht_destroy</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in tab and tab itself.  <a href="#ac01db857ebd18f5063f02ad06c559099"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in tab.  <a href="#ac01db857ebd18f5063f02ad06c559099"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ab39329f0631d7d03d4fbbbb42d8110eb">hasht_insert</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tab.  <a href="#ab39329f0631d7d03d4fbbbb42d8110eb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a769712d0d50dcf0cb5401c3b748afe2f">hasht_remove</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
@@ -164,7 +164,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the dynamic array in tab and tab itself. </p>
+<p>Frees the dynamic array in tab. </p>
 <p>Will not free the elements stored in tab.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -176,13 +176,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acf782cfece2e1ce72f3ced7936afe698"></a><!-- doxytag: member="hasht.h::hasht_init" ref="acf782cfece2e1ce72f3ced7936afe698" args="(hashfn hash, cmpfn cmp, double loadfactor, size_t cap)" -->
+<a class="anchor" id="ad0cd922f053e761b438232043ebbdd35"></a><!-- doxytag: member="hasht.h::hasht_init" ref="ad0cd922f053e761b438232043ebbdd35" args="(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structhasht.html">hasht</a>* hasht_init </td>
+          <td class="memname">int hasht_init </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="structhasht.html">hasht</a> *&#160;</td>
+          <td class="paramname"><em>tab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a>&#160;</td>
           <td class="paramname"><em>hash</em>, </td>
         </tr>
@@ -196,7 +202,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>loadfactor</em>, </td>
+          <td class="paramname"><em>lf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -213,18 +219,19 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new hasht. </p>
-<p>Will fail and return NULL if cmp is NULL, hash is NULL, or if loadfactor is non-positive.</p>
+<p>Initializes a new hasht. </p>
+<p>Will fail and return NULL if tab is NULL, cmp is NULL, hash is NULL, or if loadfactor is non-positive.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">tab</td><td>the address of the table we want to initialize. </td></tr>
     <tr><td class="paramname">hash</td><td>the hash function that will be used by the table. </td></tr>
     <tr><td class="paramname">cmp</td><td>the compare function that will be used by the table. </td></tr>
-    <tr><td class="paramname">loadfactor</td><td>the load factor of the table. </td></tr>
+    <tr><td class="paramname">lf</td><td>the load factor of the table. </td></tr>
     <tr><td class="paramname">cap</td><td>the starting capacity of the table. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new hasht. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
@@ -384,7 +391,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

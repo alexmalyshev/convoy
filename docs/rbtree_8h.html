@@ -96,18 +96,16 @@ typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic compare function. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#acf6ea983f4a5bdf19548c1e734e10932">rbtree_init</a> (<a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes a new rbtree.  <a href="#acf6ea983f4a5bdf19548c1e734e10932"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a2805a3f00ae499ea9d61e982028e03e6">rbtree_init</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new rbtree.  <a href="#a2805a3f00ae499ea9d61e982028e03e6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#ab3609a181caee9c50b799d8ba44ed5df">rbtree_destroy</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree and tree itself.  <a href="#ab3609a181caee9c50b799d8ba44ed5df"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the nodes in tree.  <a href="#ab3609a181caee9c50b799d8ba44ed5df"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#aab1704e25de371de1b6095b581a6a29b">rbtree_insert</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#aab1704e25de371de1b6095b581a6a29b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a08453b1337c9fba64279625f4342046a">rbtree_remove</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a08453b1337c9fba64279625f4342046a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a940eef033d26d3a1e542ee25ca742c21">rbtree_search</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree, void *elem)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tree for elem.  <a href="#a940eef033d26d3a1e542ee25ca742c21"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rbtree_8h.html#a1a7027b732558e300ded4612752e6ef4">rbtree_clear</a> (<a class="el" href="structrbtree.html">rbtree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tree.  <a href="#a1a7027b732558e300ded4612752e6ef4"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a red black tree data structure. </p>
@@ -115,33 +113,6 @@ Functions</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000017">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a1a7027b732558e300ded4612752e6ef4"></a><!-- doxytag: member="rbtree.h::rbtree_clear" ref="a1a7027b732558e300ded4612752e6ef4" args="(rbtree *tree)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int rbtree_clear </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td>
-          <td class="paramname"><em>tree</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes all elements from tree. </p>
-<p>Frees all nodes in tree but will not free the elements in the nodes.</p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to clear out. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="ab3609a181caee9c50b799d8ba44ed5df"></a><!-- doxytag: member="rbtree.h::rbtree_destroy" ref="ab3609a181caee9c50b799d8ba44ed5df" args="(rbtree *tree)" -->
 <div class="memitem">
 <div class="memproto">
@@ -157,7 +128,7 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the nodes in tree and tree itself. </p>
+<p>Frees the nodes in tree. </p>
 <p>Will not free the elements stored in the nodes of tree.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -169,30 +140,41 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acf6ea983f4a5bdf19548c1e734e10932"></a><!-- doxytag: member="rbtree.h::rbtree_init" ref="acf6ea983f4a5bdf19548c1e734e10932" args="(cmpfn cmp)" -->
+<a class="anchor" id="a2805a3f00ae499ea9d61e982028e03e6"></a><!-- doxytag: member="rbtree.h::rbtree_init" ref="a2805a3f00ae499ea9d61e982028e03e6" args="(rbtree *tree, cmpfn cmp)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structrbtree.html">rbtree</a>* rbtree_init </td>
+          <td class="memname">int rbtree_init </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
-          <td class="paramname"><em>cmp</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structrbtree.html">rbtree</a> *&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a>&#160;</td>
+          <td class="paramname"><em>cmp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Allocates and initializes a new rbtree. </p>
-<p>Will fail and return NULL if cmp is NULL.</p>
+<p>Initializes a new rbtree. </p>
+<p>Will fail and return NULL if tree is NULL or cmp is NULL.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">tree</td><td>the address of the rbtree we want to initialize. </td></tr>
     <tr><td class="paramname">cmp</td><td>the compare function that will be used by the tree. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a new rbtree. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Success status. </dd></dl>
 
 </div>
 </div>
@@ -325,7 +307,7 @@ Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

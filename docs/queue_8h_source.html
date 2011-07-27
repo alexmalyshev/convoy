@@ -76,21 +76,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00025"></a><a class="code" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">00025</a>     <span class="keywordtype">size_t</span> <a class="code" href="structqueue.html#a0a2543ce32392c9dde46a2b28c2c8937">len</a>;             
 <a name="l00026"></a>00026 } <a class="code" href="structqueue.html" title="A queue.">queue</a>;
 <a name="l00027"></a>00027 
-<a name="l00031"></a>00031 <a class="code" href="structqueue.html" title="A queue.">queue</a> *<a class="code" href="queue_8c.html#a820c882637c63d00c753148c8299e3c6" title="Allocates and initializes a new queue.">queue_init</a>(<span class="keywordtype">void</span>);
-<a name="l00032"></a>00032 
-<a name="l00040"></a>00040 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a09e24b1e64a51e8487b04057e5a71ae6" title="Frees the linked list in q and q itself.">queue_destroy</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
-<a name="l00041"></a>00041 
-<a name="l00049"></a>00049 <span class="keywordtype">void</span> *<a class="code" href="queue_8c.html#a23a7033f88e9e049dc14f16f4bbb9508" title="Removes the front element of q if it exists and returns it.">queue_dequeue</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
-<a name="l00050"></a>00050 
-<a name="l00059"></a>00059 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#aa5079d7085389dcac3ed26a90d5286a5" title="Inserts elem as the new back of q.">queue_enqueue</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q, <span class="keywordtype">void</span> *elem);
-<a name="l00060"></a>00060 
-<a name="l00068"></a>00068 <span class="keywordtype">void</span> *<a class="code" href="queue_8c.html#a36f9e09efecbf3b5345983d2e6ff47a6" title="Returns the front element of q if it exists.">queue_peek</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
-<a name="l00069"></a>00069 
-<a name="l00078"></a>00078 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a5e0bb8b4082151c361c539c5952203c8" title="Removes all elements from q.">queue_clear</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
-<a name="l00079"></a>00079 
-<a name="l00087"></a>00087 <span class="keywordtype">size_t</span> <a class="code" href="queue_8c.html#ac453aa5f41181a5f175a07a98544994e" title="Returns the number of elements in q.">queue_len</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *q);
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 <span class="preprocessor">#endif </span><span class="comment">/* QUEUE_H_ */</span>
+<a name="l00035"></a>00035 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a477b0198ab3f8bd4a7e7330c06af3fd1" title="Initializes a new queue.">queue_init</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *qu);
+<a name="l00036"></a>00036 
+<a name="l00044"></a>00044 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a69db019cff58606fe737063588abe30a" title="Frees the linked list in qu.">queue_destroy</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *qu);
+<a name="l00045"></a>00045 
+<a name="l00053"></a>00053 <span class="keywordtype">void</span> *<a class="code" href="queue_8c.html#a5b46643ece8b539f511ad31af1388f47" title="Removes the front element of qu if it exists and returns it.">queue_dequeue</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *qu);
+<a name="l00054"></a>00054 
+<a name="l00063"></a>00063 <span class="keywordtype">int</span> <a class="code" href="queue_8c.html#a907ade5b541d7e5aa787896eea20fb7d" title="Inserts elem as the new back of qu.">queue_enqueue</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *qu, <span class="keywordtype">void</span> *elem);
+<a name="l00064"></a>00064 
+<a name="l00072"></a>00072 <span class="keywordtype">void</span> *<a class="code" href="queue_8c.html#a1c238d97a8f0fb96ffda2945fd49a091" title="Returns the front element of qu if it exists.">queue_peek</a>(<a class="code" href="structqueue.html" title="A queue.">queue</a> *qu);
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="preprocessor">#endif </span><span class="comment">/* QUEUE_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -107,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 20 2011 04:42:08 for Convoy by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jul 27 2011 02:50:45 for Convoy by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
