@@ -100,12 +100,12 @@ void *deque_removeb(deque *deq) {
 
     dead = deq->back;
     elem = dead->elem;
-    free(dead);
     deq->back = dead->prev;
     if (deq->back == NULL)
         deq->front = NULL;
     else
         deq->back->next = NULL;
+    free(dead);
     --(deq->len);
     return elem;
 }
@@ -119,12 +119,12 @@ void *deque_removef(deque *deq) {
 
     dead = deq->front;
     elem = dead->elem;
-    free(dead);
     deq->front = dead->next;
     if (deq->front == NULL)
         deq->back = NULL;
     else
         deq->front->prev = NULL;
+    free(dead);
     --(deq->len);
     return elem;
 }
