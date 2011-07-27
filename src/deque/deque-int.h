@@ -7,8 +7,8 @@
 #ifndef DEQUE_INT_H_
 #define DEQUE_INT_H_
 
-/** @brief Allocates a new dnode with elem as its data.
- *  @param elem the address of the data we want the new node to store.
+/** @brief Allocates a new dnode with elem as its element.
+ *  @param elem the address of the element we want the new node to store.
  *  @return A pointer to a new dnode.
  */
 static dnode *init_node(void *elem);

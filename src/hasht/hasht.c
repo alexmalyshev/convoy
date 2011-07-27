@@ -19,7 +19,7 @@ int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
     if (tab == NULL || hash == NULL || cmp == NULL || lf <= 0.0)
         return 1;
 
-    if ((tab->entries = calloc(cap, sizeof(hashentry *))) == NULL)
+    if ((tab->entries = calloc(cap, sizeof(hashent *))) == NULL)
         return 1;
 
     tab->hash = hash;
@@ -40,7 +40,7 @@ int hasht_destroy(hasht *tab) {
 }
 
 int hasht_insert(hasht *tab, void *elem) {
-    hashentry *entry;
+    hashent *entry;
     size_t index;
     cmpfn cmp;
 
@@ -77,8 +77,8 @@ int hasht_insert(hasht *tab, void *elem) {
 }
 
 void *hasht_remove(hasht *tab, void *elem) {
-    hashentry *entry;
-    hashentry *dead;
+    hashent *entry;
+    hashent *dead;
     size_t index;
     cmpfn cmp;
     void *found;
@@ -117,7 +117,7 @@ void *hasht_remove(hasht *tab, void *elem) {
 }
 
 void *hasht_search(hasht *tab, void *elem) {
-    hashentry *entry;
+    hashent *entry;
     size_t index;
     cmpfn cmp;
 
@@ -162,17 +162,17 @@ int hasht_trunc(hasht *tab) {
 }
 
 static int resize(hasht *tab, size_t newcap) {
-    hashentry **entries = tab->entries;
+    hashent **entries = tab->entries;
     hashfn hash = tab->hash;
     size_t cap = tab->cap;
 
-    hashentry **newentries; 
-    hashentry *entry;
-    hashentry *moving;
+    hashent **newentries; 
+    hashent *entry;
+    hashent *moving;
     size_t i;
     size_t newindex;
 
-    if ((newentries = calloc(newcap, sizeof(hashentry *))) == NULL)
+    if ((newentries = calloc(newcap, sizeof(hashent *))) == NULL)
         return 1;
 
     for (i = 0; i < cap; ++i) {
@@ -193,8 +193,8 @@ static int resize(hasht *tab, size_t newcap) {
     return 0;
 }
 
-static void destroy_bucket(hashentry *entry) {
-    hashentry *dead;
+static void destroy_bucket(hashent *entry) {
+    hashent *dead;
 
     while (entry != NULL) {
         dead = entry;
@@ -203,8 +203,8 @@ static void destroy_bucket(hashentry *entry) {
     }
 }
 
-static hashentry *init_entry(void *elem) {
-    hashentry *entry;
+static hashent *init_entry(void *elem) {
+    hashent *entry;
 
     if ((entry = malloc(sizeof(entry))) == NULL)
         return NULL;

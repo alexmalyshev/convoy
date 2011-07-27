@@ -16,7 +16,7 @@
 typedef struct dnode_t {
     struct dnode_t *prev;   /**< the previous node in the list. */
     struct dnode_t *next;   /**< the next node in the list. */
-    void *data;             /**< the element of data stored in the node. */
+    void *elem;             /**< the element stored in the node. */
 } dnode;
 
 /** @brief A double-ended queue. */

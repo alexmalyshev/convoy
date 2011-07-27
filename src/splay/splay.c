@@ -56,7 +56,7 @@ int splay_insert(splaytree *tree, void *elem) {
     }
 
     splay(tree, elem);
-    c = tree->cmp(elem, tree->root->data);
+    c = tree->cmp(elem, tree->root->elem);
     if (c == 0)
         return 0;
 
@@ -78,14 +78,14 @@ int splay_insert(splaytree *tree, void *elem) {
 
 void *splay_remove(splaytree *tree, void *elem) {
     spnode *temp, *dead;
-    void *data;
+    void *removed;
 
     if (tree == NULL || tree->root == NULL || elem == NULL)
         return NULL;
 
     splay(tree, elem);
 
-    if (tree->cmp(elem, tree->root->data) != 0)
+    if (tree->cmp(elem, tree->root->elem) != 0)
         return NULL;
 
     dead = tree->root;
@@ -97,9 +97,9 @@ void *splay_remove(splaytree *tree, void *elem) {
         splay(tree, elem);
         tree->root->right = temp;
     }
-    data = dead->data;
+    removed = dead->elem;
     free(dead);
-    return data;
+    return removed;
 }
 
 void *splay_search(splaytree *tree, void *elem) {
@@ -107,8 +107,8 @@ void *splay_search(splaytree *tree, void *elem) {
         return NULL;
 
     splay(tree, elem);
-    if (tree->cmp(tree->root, elem) == 0)
-        return tree->root->data;
+    if (tree->cmp(tree->root->elem, elem) == 0)
+        return tree->root->elem;
     return NULL;
 }
 
@@ -127,12 +127,12 @@ static void splay(splaytree *tree, void *elem) {
     right = &assembler;
 
     node = tree->root;
-    while (1) {
-        c = cmp(elem, node->data);
+    for (;;) {
+        c = cmp(elem, node->elem);
         if (c < 0) {
             if (node->left == NULL)
                 break;
-            if (cmp(elem, node->left->data) < 0) {
+            if (cmp(elem, node->left->elem) < 0) {
                 node = rotate_right(node);
                 if (node->left == NULL)
                     break;
@@ -145,7 +145,7 @@ static void splay(splaytree *tree, void *elem) {
         else if (c > 0) {
             if (node->right == NULL)
                 break;
-            if (cmp(elem, node->right->data) > 0) {
+            if (cmp(elem, node->right->elem) > 0) {
                 node = rotate_left(node);
                 if (node->right == NULL)
                     break;
@@ -186,7 +186,7 @@ static spnode *init_node(void *elem) {
     if ((node = malloc(sizeof(spnode))) == NULL)
         return NULL;
 
-    node->data = elem;
+    node->elem = elem;
     node->left = NULL;
     node->right = NULL;
     return node;

@@ -7,8 +7,8 @@
 #ifndef QUEUE_INT_H_
 #define QUEUE_INT_H_
 
-/** @brief Allocates a new qnode with elem as its data.
- *  @param elem the address of the data we want the new node to store.
+/** @brief Allocates a new qnode with elem as its element.
+ *  @param elem the address of the element we want the new node to store.
  *  @return A pointer to a new qnode.
  */
 static qnode *init_node(void *elem);

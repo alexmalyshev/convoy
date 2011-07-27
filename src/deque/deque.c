@@ -82,49 +82,51 @@ int deque_insertf(deque *deq, void *elem) {
 void *deque_peekb(deque *deq) {
     if (deq == NULL || deq->back == NULL)
         return NULL;
-    return deq->back->data;
+    return deq->back->elem;
 }
 
 void *deque_peekf(deque *deq) {
     if (deq == NULL || deq->front == NULL)
         return NULL;
-    return deq->front->data;
+    return deq->front->elem;
 }
 
 void *deque_removeb(deque *deq) {
     dnode *dead;
-    void *data;
+    void *elem;
 
     if (deq == NULL || deq->back == NULL)
         return NULL;
 
     dead = deq->back;
-    data = dead->data;
+    elem = dead->elem;
+    free(dead);
     deq->back = dead->prev;
     if (deq->back == NULL)
         deq->front = NULL;
     else
         deq->back->next = NULL;
     --(deq->len);
-    return data;
+    return elem;
 }
 
 void *deque_removef(deque *deq) {
     dnode *dead;
-    void *data;
+    void *elem;
 
     if (deq == NULL || deq->front == NULL)
         return NULL;
 
     dead = deq->front;
-    data = dead->data;
+    elem = dead->elem;
+    free(dead);
     deq->front = dead->next;
     if (deq->front == NULL)
         deq->back = NULL;
     else
         deq->front->prev = NULL;
     --(deq->len);
-    return data;
+    return elem;
 }
 
 static dnode *init_node(void *elem) {
@@ -133,6 +135,6 @@ static dnode *init_node(void *elem) {
     if ((node = malloc(sizeof(dnode))) == NULL)
         return NULL;
 
-    node->data = elem;
+    node->elem = elem;
     return node;
 }

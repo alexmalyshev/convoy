@@ -62,7 +62,7 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     if (node == NULL)
         return init_node(elem);
 
-    c = cmp(elem, node->data);
+    c = cmp(elem, node->elem);
     if (c < 0)
         node->left = insert(node->left, elem, cmp);
     else if (c > 0)
@@ -74,32 +74,32 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
 }
 
 void *rbtree_remove(rbtree *tree, void *elem) {
-    void *data = NULL;
+    void *removed = NULL;
 
     if (tree == NULL || elem == NULL)
         return NULL;
     if (tree->root == NULL)
         return NULL;
 
-    tree->root = remove(tree->root, elem, tree->cmp, &data);
+    tree->root = remove(tree->root, elem, tree->cmp, &removed);
     if (tree->root != NULL)
         tree->root->color = BLACK;
-    return data;
+    return removed;
 }
 
-static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **data) {
-    if (cmp(elem, node->data) < 0) {
+static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
+    if (cmp(elem, node->elem) < 0) {
         if (node->left == NULL)
             return node;
         if (!is_red(node->left) && !is_red(node->left->left))
             node = move_red_left(node);
-        node->left = remove(node->left, elem, cmp, data);
+        node->left = remove(node->left, elem, cmp, removed);
     } else {
         if (is_red(node->left))
             node = rotate_right(node);
         if (node->right == NULL) {
-            if (cmp(elem, node->data) == 0) {
-                *data = node->data;
+            if (cmp(elem, node->elem) == 0) {
+                *removed = node->elem;
                 free(node);
                 return NULL;
             }
@@ -107,12 +107,12 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **data) {
         }
         if (!is_red(node->right) && !is_red(node->right->left))
             node = move_red_right(node);
-        if (cmp(elem, node->data) == 0) {
-            *data = node->data;
-            node->data = min(node->right);
+        if (cmp(elem, node->elem) == 0) {
+            *removed = node->elem;
+            node->elem = min(node->right);
             node->right = remove_min(node->right);
         } else
-            node->right = remove(node->right, elem, cmp, data);
+            node->right = remove(node->right, elem, cmp, removed);
     }
     return fix(node);
 }
@@ -128,13 +128,13 @@ void *rbtree_search(rbtree *tree, void *elem) {
     node = tree->root;
     cmp = tree->cmp;
     while (node != NULL) {
-        c = cmp(elem, node->data);
+        c = cmp(elem, node->elem);
         if (c < 0)
             node = node->left;
         else if (c > 0)
             node = node->right;
         else
-            return node->data;
+            return node->elem;
     }
     return NULL;
 }
@@ -142,7 +142,7 @@ void *rbtree_search(rbtree *tree, void *elem) {
 static void *min(rbnode *node) {
     while (node->left != NULL)
         node = node->left;
-    return node->data;
+    return node->elem;
 }
 
 static rbnode *fix(rbnode *node) {
@@ -220,7 +220,7 @@ static rbnode *init_node(void *elem) {
 
     if ((node = malloc(sizeof(rbnode))) == NULL)
         return NULL;
-    node->data = elem;
+    node->elem = elem;
     node->color = RED;
     node->left = NULL;
     node->right = NULL;

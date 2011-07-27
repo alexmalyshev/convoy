@@ -28,7 +28,7 @@ typedef int (*cmpfn)(void *, void *);
 typedef struct rbnode_t {
     struct rbnode_t *left;  /**< the left child of the node. */
     struct rbnode_t *right; /**< the right child of the node. */
-    void *data;             /**< the element of data stored in the node. */
+    void *elem;             /**< the element stored in the node. */
     int color;              /**< the color of the node. */
 } rbnode;
 

@@ -43,7 +43,7 @@ int queue_clear(queue *qu) {
 
 void *queue_dequeue(queue *qu) {
     qnode *dead;
-    void *data;
+    void *elem;
 
     if (qu == NULL || qu->front == NULL)
         return NULL;
@@ -52,10 +52,10 @@ void *queue_dequeue(queue *qu) {
     qu->front = dead->next;
     if (qu->front == NULL)
         qu->back = NULL;
-    data = dead->data;
+    elem = dead->elem;
     free(dead);
     --(qu->len);
-    return data;
+    return elem;
 }
 
 int queue_enqueue(queue *qu, void *elem) {
@@ -79,7 +79,7 @@ void *queue_peek(queue *qu) {
     if (qu == NULL || qu->front == NULL)
         return NULL;
 
-    return qu->front->data;
+    return qu->front->elem;
 }
 
 static qnode *init_node(void *elem) {
@@ -88,7 +88,7 @@ static qnode *init_node(void *elem) {
     if ((node = malloc(sizeof(qnode))) == NULL)
         return NULL;
 
-    node->data = elem;
+    node->elem = elem;
     node->next = NULL;
     return node;
 }

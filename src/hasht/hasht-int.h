@@ -24,12 +24,12 @@ static int resize(hasht *tab, size_t newcap);
  *  @param entry the address of the first entry in the bucket.
  *  @return Void.
  */
-static void destroy_bucket(hashentry *entry);
+static void destroy_bucket(hashent *entry);
 
-/** @brief Allocates a new hashentry with elem as it's element.
+/** @brief Allocates a new hashent with elem as it's element.
  *  @param elem the address of the element we want the new entry to store.
- *  @return A pointer to a new hashentry.
+ *  @return A pointer to a new hashent.
  */
-static hashentry *init_entry(void *elem);
+static hashent *init_entry(void *elem);
 
 #endif /* HASHT_INT_H_ */

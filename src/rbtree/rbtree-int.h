@@ -32,10 +32,10 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
  *  @param node the address of the red black tree we want to remove elem from.
  *  @param elem the element we want to remove from node.
  *  @param cmp the compare function used to compare elements in node with elem.
- *  @param data the address of the location where to store the removed element.
+ *  @param removed the address where to store the removed element.
  *  @return The resulting red black tree after removing elem from node.
  */
-static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **data);
+static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed);
 
 /** @brief Maintains the red black tree invariants.
  *
@@ -121,9 +121,9 @@ static rbnode *remove_min(rbnode *node);
  */
 static rbnode *move_red_left(rbnode *node);
 
-/** @brief Allocates a new rbnode with elem as its data.
- *  @param elem the address of the data we want the new node to store.
- *  @return A pointer to a new splaynode.
+/** @brief Allocates a new rbnode with elem as its element.
+ *  @param elem the address of the element we want the new node to store.
+ *  @return A pointer to a new rbnode.
  */
 static rbnode *init_node(void *elem);
 

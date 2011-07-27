@@ -33,14 +33,14 @@ typedef unsigned long (*hashfn)(void *);
 #define HASHT_DEFAULT_CAPACITY 64
 
 /** @brief An entry in a hasht. */
-typedef struct hashentry_t {
-    void *elem;                 /**< the element stored in the entry. */
-    struct hashentry_t *next;   /**< the next entry in the current bucket. */
-} hashentry;
+typedef struct hashent_t {
+    struct hashent_t *next; /**< the next entry in the current bucket. */
+    void *elem;             /**< the element stored in the entry. */
+} hashent;
 
 /** @brief A hash table. */
 typedef struct {
-    hashentry **entries;    /**< the array of elements in the hash table. */
+    hashent **entries;      /**< the array of elements in the hash table. */
     hashfn hash;            /**< the function for hashing elements. */
     cmpfn cmp;              /**< the function for comparing elements. */
     size_t size;            /**< the number of elements in the table. */

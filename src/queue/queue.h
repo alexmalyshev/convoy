@@ -14,8 +14,8 @@
 
 /** @brief A node in a linked list. */
 typedef struct qnode_t {
-    void *data;             /**< the element of data stored in the node. */
     struct qnode_t *next;   /**< the next node in the list. */
+    void *elem;             /**< the element stored in the node. */
 } qnode;
 
 /** @brief A queue. */

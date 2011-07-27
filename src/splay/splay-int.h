@@ -45,7 +45,7 @@ static spnode *rotate_left(spnode *node);
 static spnode *rotate_right(spnode *node);
 
 /** @brief Allocates a new spnode with elem as its element.
- *  @param elem the address of the data we want the new node to store.
+ *  @param elem the address of the element we want the new node to store.
  *  @return A pointer to a new spnode.
  */
 static spnode *init_node(void *elem);
