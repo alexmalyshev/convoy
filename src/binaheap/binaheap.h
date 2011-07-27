@@ -13,8 +13,6 @@
 #ifndef BINAHEAP_H_
 #define BINAHEAP_H_
 
-#include <limits.h> /* LONG_MAX */
-
 /** @brief The default number of elements a new binaheap can store. */
 #define BINAHEAP_DEFAULT_CAPACITY 32
 
