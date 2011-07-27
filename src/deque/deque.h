@@ -35,14 +35,15 @@ typedef struct {
  */
 int deque_init(deque *deq);
 
-/** @brief Frees the linked list in deq and deq itself.
+/** @brief Removes all elements from deq.
  *
- *  Will not free the elements stored in the nodes of deq.
+ *  Frees all nodes in the linked list in deq but will not free the
+ *  elements in the nodes.
  *
- *  @param deq the address of the deque we want to deallocate.
+ *  @param deq the address of the deque we want to clear out.
  *  @return Success status.
  */
-int deque_destroy(deque *deq);
+int deque_clear(deque *deq);
 
 /** @brief Inserts elem as the new back of deq.
  *
@@ -75,7 +76,7 @@ void *deque_peekb(deque *deq);
 
 /** @brief Returns the front element of deq if it exists.
  *
- *  Will return NULL if d is NULL.
+ *  Will return NULL if deq is NULL.
  *
  *  @param deq the address of the deque we want to peek into.
  *  @return The front element of deq if it exists, NULL if deq is empty.
@@ -99,15 +100,5 @@ void *deque_removeb(deque *deq);
  *  @return The front element of deq if it exists, NULL if deq is empty.
  */
 void *deque_removef(deque *deq);
-
-/** @brief Removes all elements from deq.
- *
- *  Frees all nodes in the linked list in deq but will not free the
- *  elements in the nodes.
- *
- *  @param deq the address of the deque we want to clear out.
- *  @return Success status.
- */
-int deque_clear(deque *deq);
 
 #endif /* DEQUE_H_ */

@@ -23,7 +23,7 @@ int deque_init(deque *deq) {
     return 0;
 }
 
-int deque_destroy(deque *deq) {
+int deque_clear(deque *deq) {
     dnode *dead, *node;
 
     if (deq == NULL)

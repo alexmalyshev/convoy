@@ -23,7 +23,7 @@ int splay_init(splaytree *tree, cmpfn cmp) {
     return 0;
 }
 
-int splay_destroy(splaytree *tree) {
+int splay_clear(splaytree *tree) {
     if (tree == NULL)
         return 0;
 
@@ -32,7 +32,7 @@ int splay_destroy(splaytree *tree) {
     return 0;
 }
 
-static void clear(splaynode *node) {
+static void clear(spnode *node) {
     if (node == NULL)
         return;
 
@@ -42,7 +42,7 @@ static void clear(splaynode *node) {
 }
 
 int splay_insert(splaytree *tree, void *elem) {
-    splaynode *new;
+    spnode *new;
     int c;
 
     if (tree == NULL || elem == NULL)
@@ -77,7 +77,7 @@ int splay_insert(splaytree *tree, void *elem) {
 }
 
 void *splay_remove(splaytree *tree, void *elem) {
-    splaynode *temp, *dead;
+    spnode *temp, *dead;
     void *data;
 
     if (tree == NULL || tree->root == NULL || elem == NULL)
@@ -113,9 +113,9 @@ void *splay_search(splaytree *tree, void *elem) {
 }
 
 static void splay(splaytree *tree, void *elem) {
-    splaynode assembler;
-    splaynode *left, *right;
-    splaynode *node;
+    spnode assembler;
+    spnode *left, *right;
+    spnode *node;
     int c;
 
     cmpfn cmp = tree->cmp;
@@ -166,24 +166,24 @@ static void splay(splaytree *tree, void *elem) {
     tree->root = node;
 }
 
-static splaynode *rotate_left(splaynode *node) {
-    splaynode *temp = node->right;
+static spnode *rotate_left(spnode *node) {
+    spnode *temp = node->right;
     node->right = temp->left;
     temp->left = node;
     return temp;
 }
 
-static splaynode *rotate_right(splaynode *node) {
-    splaynode *temp = node->left;
+static spnode *rotate_right(spnode *node) {
+    spnode *temp = node->left;
     node->left = temp->right;
     temp->right = node;
     return temp;
 }
 
-static splaynode *init_node(void *elem) {
-    splaynode *node;
+static spnode *init_node(void *elem) {
+    spnode *node;
 
-    if ((node = malloc(sizeof(splaynode))) == NULL)
+    if ((node = malloc(sizeof(spnode))) == NULL)
         return NULL;
 
     node->data = elem;

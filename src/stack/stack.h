@@ -33,14 +33,15 @@ typedef struct {
  */
 int stack_init(stack *stk);
 
-/** @brief Frees the linked list in stk.
+/** @brief Removes all elements from stk.
  *
- *  Will not free the elements stored in the nodes of stk.
+ *  Frees all the nodes in the linkde list in stk but will not free the
+ *  elements in the nodes.
  *
- *  @param stk the address of the stack we want to deallocate.
+ *  @param stk the address of the stack we want to clear out.
  *  @return Success status.
  */
-int stack_destroy(stack *stk);
+int stack_clear(stack *stk);
 
 /** @brief Returns the top element of stk if it exists.
  *

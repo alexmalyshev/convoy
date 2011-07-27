@@ -48,14 +48,14 @@ typedef struct {
  */
 int rbtree_init(rbtree *tree, cmpfn cmp);
 
-/** @brief Frees the nodes in tree.
+/** @brief Removes all elements from tree.
  *
- *  Will not free the elements stored in the nodes of tree.
+ *  Frees all the nodes in tree but will not free the elements in the nodes.
  *
- *  @param tree the address of the rbtree we want to deallocate.
+ *  @param tree the address of the rbtree we want to clear out.
  *  @return Success status.
  */
-int rbtree_destroy(rbtree *tree);
+int rbtree_clear(rbtree *tree);
 
 /** @brief Inserts elem into tree.
  *

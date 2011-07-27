@@ -19,16 +19,16 @@ typedef int (*cmpfn)(void *, void *);
 #endif /* CMPFN */
 
 /** @brief A node in a splay tree. */
-typedef struct splaynode_t {
-    struct splaynode_t *left;   /**< the left child of the node. */
-    struct splaynode_t *right;  /**< the right child of the node. */
-    void *data;                 /**< the element of data stored in the node. */
-} splaynode;
+typedef struct spnode_t {
+    struct spnode_t *left;  /**< the left child of the node. */
+    struct spnode_t *right; /**< the right child of the node. */
+    void *data;             /**< the element of data stored in the node. */
+} spnode;
 
 /** @brief A splay tree. */
 typedef struct splaytree_t {
-    splaynode *root;            /**< the root node in the splay tree. */
-    cmpfn cmp;                  /**< the function for comparing elements. */
+    spnode *root;           /**< the root node in the splay tree. */
+    cmpfn cmp;              /**< the function for comparing elements. */
 } splaytree;
 
 /** @brief Initializes a new splaytree.
@@ -41,14 +41,14 @@ typedef struct splaytree_t {
  */
 int splay_init(splaytree *tree, cmpfn cmp);
 
-/** @brief Frees the nodes in tree.
+/** @brief Removes all elements from tree.
  *
- *  Will not free the elements stored in the nodes of tree.
+ *  Frees all nodes in tree but will not free the elements in the nodes.
  *
- *  @param tree the address of the splaytree we want to deallocate.
+ *  @param tree the address of the splaytree we want to clear out.
  *  @return Success status.
  */
-int splay_destroy(splaytree *tree);
+int splay_clear(splaytree *tree);
 
 /** @brief Inserts elem into tree.
  *

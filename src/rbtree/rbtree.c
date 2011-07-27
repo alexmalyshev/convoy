@@ -26,7 +26,7 @@ int rbtree_init(rbtree *tree, cmpfn cmp) {
     return 0;
 }
 
-int rbtree_destroy(rbtree *tree) {
+int rbtree_clear(rbtree *tree) {
     if (tree == NULL)
         return 1;
 

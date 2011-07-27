@@ -23,7 +23,7 @@ int queue_init(queue *qu) {
     return 0;
 }
 
-int queue_destroy(queue *qu) {
+int queue_clear(queue *qu) {
     qnode *node, *dead;
 
     if (qu == NULL)

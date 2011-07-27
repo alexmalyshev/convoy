@@ -11,7 +11,7 @@
  *  @param node the address of the splay tree we want to clear out.
  *  @return Void.
  */
-static void clear(splaynode *node);
+static void clear(spnode *node);
 
 /** @brief Moves the node in tree with the element closest to elem as the root.
  *
@@ -33,7 +33,7 @@ static void splay(splaytree *tree, void *elem);
  *  @param node the address of the splay tree we want to rotate.
  *  @return The new splay tree resulting from rotating node to the left.
  */
-static splaynode *rotate_left(splaynode *node);
+static spnode *rotate_left(spnode *node);
 
 /** @brief Rotates node over to the right.
  *
@@ -42,12 +42,12 @@ static splaynode *rotate_left(splaynode *node);
  *  @param node the address of the splay tree we want to rotate.
  *  @return The new splay tree resulting from rotating node to the right.
  */
-static splaynode *rotate_right(splaynode *node);
+static spnode *rotate_right(spnode *node);
 
-/** @brief Allocates a new splaynode with elem as its data.
+/** @brief Allocates a new spnode with elem as its element.
  *  @param elem the address of the data we want the new node to store.
- *  @return A pointer to a new splaynode.
+ *  @return A pointer to a new spnode.
  */
-static splaynode *init_node(void *elem);
+static spnode *init_node(void *elem);
 
 #endif /* SPLAY_INT_H_ */

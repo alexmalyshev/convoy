@@ -21,6 +21,22 @@ int stack_init(stack *stk) {
     return 0;
 }
 
+int stack_clear(stack *stk) {
+    snode *node, *dead;
+
+    if (stk == NULL)
+        return 1;
+
+    node = stk->top;
+    while (node != NULL) {
+        dead = node;
+        node = node->next;
+        free(dead);
+    }
+    stk->len = 0;
+    return 0;
+}
+
 void *stack_peek(stack *stk) {
     if (stk == NULL || stk->top == NULL)
         return NULL;
@@ -55,21 +71,5 @@ int stack_push(stack *stk, void *elem) {
     new->next = stk->top;
     stk->top = new;
     ++(stk->len);
-    return 0;
-}
-
-int stack_destroy(stack *stk) {
-    snode *node, *dead;
-
-    if (stk == NULL)
-        return 1;
-
-    node = stk->top;
-    while (node != NULL) {
-        dead = node;
-        node = node->next;
-        free(dead);
-    }
-    stk->len = 0;
     return 0;
 }

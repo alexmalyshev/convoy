@@ -34,14 +34,15 @@ typedef struct {
  */
 int queue_init(queue *qu);
 
-/** @brief Frees the linked list in qu.
+/** @brief Removes all the elements from qu.
  *
- *  Will not free the elements stored in the nodes of qu.
+ *  Frees all nodes in the linked list in qu but will not free the
+ *  elements in the nodes.
  *
- *  @param qu the address of the queue we want to deallocate.
+ *  @param qu the address of the queue we want to clear out.
  *  @return Success status.
  */
-int queue_destroy(queue *qu);
+int queue_clear(queue *qu);
 
 /** @brief Removes the front element of qu if it exists and returns it.
  *
