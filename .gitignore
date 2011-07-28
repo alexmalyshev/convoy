@@ -2,6 +2,11 @@
 test*
 Makefile
 
+# files that could accidentally get staged+commited
+*.o
+*.a
+*.swp
+
 # changes often, and users dont need it
 TODO
 
