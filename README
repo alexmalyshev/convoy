@@ -7,4 +7,7 @@ contains rbtree.h and rbtree.c).
 None of the data structures depend upon each other, so feel free to just pull
 out a folder and use it.
 
+All files in the src/ folder are released under the terms listed in the
+LICENSE file found in the top level convoy folder (3-clause BSD license).
+
 Detailed documentation can be found in the docs/ folder courtesy of doxygen.
