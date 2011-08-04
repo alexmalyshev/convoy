@@ -43,7 +43,7 @@ void *circbuf_dequeue(circbuf *cbuf) {
 
     data = cbuf->elems[cbuf->front];
     cbuf->front = (cbuf->front + 1) % cbuf->len;
-    return 0;
+    return data;
 }
 
 int circbuf_enqueue(circbuf *cbuf, void *elem) {
