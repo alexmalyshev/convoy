@@ -4,7 +4,7 @@
  *  Implementation of a minimum binary heap backed by a dynamic array.
  *  Elements are stored as generic pointers (void *) where an element value 
  *  of NULL cannot be stored. Elements are compared using a generic compare
- *  function
+ *  function.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.

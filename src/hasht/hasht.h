@@ -40,7 +40,7 @@ typedef struct hashent_t {
 
 /** @brief A hash table. */
 typedef struct {
-    hashent **entries;      /**< the array of elements in the hash table. */
+    hashent **entries;      /**< the array of entries in the hash table. */
     hashfn hash;            /**< the function for hashing elements. */
     cmpfn cmp;              /**< the function for comparing elements. */
     size_t size;            /**< the number of elements in the table. */
