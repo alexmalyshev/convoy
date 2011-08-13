@@ -32,7 +32,7 @@ typedef struct {
 
 /** @brief Initializes a new binaheap.
  *
- *  Will fail and return 1 if heap is NULL or cmp is NULL.
+ *  Will fail and return 1 if heap is NULL, cmp is NULL, or if cap is 0.
  *
  *  @param heap the address of the binaheap to initialize.
  *  @param cmp the compare function that will be used by the heap.
@@ -52,7 +52,7 @@ int binaheap_destroy(binaheap *heap);
 
 /** @brief Inserts elem into heap.
  *
- *  Will fail and return 1 if tree is NULL or elem is NULL.
+ *  Will fail and return 1 if heap is NULL or elem is NULL.
  *
  *  @param heap the address of the binaheap we want to insert elem into.
  *  @param elem the element we want to insert into heap.
