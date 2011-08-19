@@ -2,9 +2,9 @@
  *  @brief A splay tree library.
  *
  *  We malloc a node every time we insert a new element into the splay tree
- *  and free the node that wraps around the element returned by splay_remove.
- *  We compare elements in the tree using the generic compare function that is
- *  given as an argument to splay_init.
+ *  and free the node that wraps around the element returned by
+ *  <tt>splay_remove</tt>.  We compare elements in the tree using the generic
+ *  compare function that is given as an argument to <tt>splay_init</tt>.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.

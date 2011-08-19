@@ -87,19 +87,19 @@ typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a2bb1eef8e97f294e53bbef4ccc89fd8e">splay_init</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new splaytree.  <a href="#a2bb1eef8e97f294e53bbef4ccc89fd8e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new <code>splaytree</code>.  <a href="#a2bb1eef8e97f294e53bbef4ccc89fd8e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#ac1defd53dcd3cbdc69c86138cf535409">splay_clear</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tree.  <a href="#ac1defd53dcd3cbdc69c86138cf535409"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from <code>tree</code>.  <a href="#ac1defd53dcd3cbdc69c86138cf535409"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a6798a6a0c3cf5808c79b9ffd636b1b29">splay_insert</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tree.  <a href="#a6798a6a0c3cf5808c79b9ffd636b1b29"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts <code>elem</code> into <code>tree</code>.  <a href="#a6798a6a0c3cf5808c79b9ffd636b1b29"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a2013bee6615757af0cd9bbd935ff4dfa">splay_remove</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tree if it is in tree.  <a href="#a2013bee6615757af0cd9bbd935ff4dfa"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes <code>elem</code> from <code>tree</code> if it is in <code>tree</code>.  <a href="#a2013bee6615757af0cd9bbd935ff4dfa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="splay_8h.html#a952b6c2cb4649210f45b0b38fb1002bb">splay_search</a> (<a class="el" href="structsplaytree.html">splaytree</a> *tree, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tree for elem.  <a href="#a952b6c2cb4649210f45b0b38fb1002bb"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches <code>tree</code> for <code>elem</code>.  <a href="#a952b6c2cb4649210f45b0b38fb1002bb"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a splay tree data structure. </p>
-<p>Implementation of a splay tree. The nodes in the splay tree store data as generic pointers (void *) where an element value of NULL cannot be stored. Elements are compared using a generic compare function.</p>
+<p>Implementation of a splay tree. The nodes in the splay tree store data as generic pointers (<code>void *</code>) where an element value of <code>NULL</code> cannot be stored. Elements are compared using a generic compare function.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000020">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
@@ -118,11 +118,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from tree. </p>
-<p>Frees all nodes in tree but will not free the elements in the nodes.</p>
+<p>Removes all elements from <code>tree</code>. </p>
+<p>Frees all nodes in <code>tree</code> but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to clear out. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the <code>splaytree</code> we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -155,12 +155,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Initializes a new splaytree. </p>
-<p>Will fail and return NULL if tree is NULL or cmp is NULL.</p>
+<p>Initializes a new <code>splaytree</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tree</code> is <code>NULL</code> or <code>cmp</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to initialize. </td></tr>
-    <tr><td class="paramname">cmp</td><td>the compare function that will be used by the tree. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the <code>splaytree</code> we want to initialize. </td></tr>
+    <tr><td class="paramname">cmp</td><td>the compare function that will be used by <code>tree</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -193,12 +193,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem into tree. </p>
-<p>Will fail and return 1 if tree is NULL or elem is NULL.</p>
+<p>Inserts <code>elem</code> into <code>tree</code>. </p>
+<p>Will fail and return <code>1</code> if <code>tree</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert into tree. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the <code>splaytree</code> we want to insert <code>elem</code> into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert into <code>tree</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -231,16 +231,16 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes elem from tree if it is in tree. </p>
-<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
+<p>Removes <code>elem</code> from <code>tree</code> if it is in <code>tree</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tree</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to remove elem from. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to remove from tree. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the <code>splaytree</code> we want to remove <code>elem</code> from. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to remove from <code>tree</code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to <code>elem</code> if it exists in <code>tree</code>, <code>NULL</code> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -269,16 +269,16 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Searches tree for elem. </p>
-<p>Will fail and return NULL if tree is NULL or elem is NULL.</p>
+<p>Searches <code>tree</code> for <code>elem</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tree</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tree</td><td>the address of the splaytree we want to search for elem. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we're searching for in tree. </td></tr>
+    <tr><td class="paramname">tree</td><td>the address of the <code>splaytree</code> we want to search for <code>elem</code>. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we're searching for in <code>tree</code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tree, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to <code>elem</code> if it exists in <code>tree</code>, <code>NULL</code> otherwise. </dd></dl>
 
 </div>
 </div>

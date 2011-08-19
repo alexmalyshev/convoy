@@ -3,7 +3,7 @@
  *
  *  Implemented as a singly linked list, we malloc a node every time we push
  *  an new element onto the stack and free the node that wraps around the
- *  top element when we call stack_pop.
+ *  top element when we call <tt>stack_pop</tt>.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.

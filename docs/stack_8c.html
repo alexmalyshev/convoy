@@ -73,19 +73,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a419c30ab691c579a6fe01af323624c72">stack_init</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new stack.  <a href="#a419c30ab691c579a6fe01af323624c72"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new <code>stack</code>.  <a href="#a419c30ab691c579a6fe01af323624c72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a4bfd064c1010b14c97edd17a26037710">stack_clear</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from stk.  <a href="#a4bfd064c1010b14c97edd17a26037710"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from <code>stk</code>.  <a href="#a4bfd064c1010b14c97edd17a26037710"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a3ef90f48ca7090bc5ebc8143ebcd33a6">stack_peek</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the top element of stk if it exists.  <a href="#a3ef90f48ca7090bc5ebc8143ebcd33a6"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the top element of <code>stk</code> if it exists.  <a href="#a3ef90f48ca7090bc5ebc8143ebcd33a6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a1269c1811c6fdb780cb3a9a2be6e958f">stack_pop</a> (<a class="el" href="structstack.html">stack</a> *stk)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the top element of stk if it exists and returns it.  <a href="#a1269c1811c6fdb780cb3a9a2be6e958f"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the top element of <code>stk</code> if it exists and returns it.  <a href="#a1269c1811c6fdb780cb3a9a2be6e958f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stack_8c.html#a0e9a62f740b44303d02a7ebba3415210">stack_push</a> (<a class="el" href="structstack.html">stack</a> *stk, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new top of stk.  <a href="#a0e9a62f740b44303d02a7ebba3415210"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts <code>elem</code> as the new top of <code>stk</code>.  <a href="#a0e9a62f740b44303d02a7ebba3415210"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A stack library. </p>
-<p>Implemented as a singly linked list, we malloc a node every time we push an new element onto the stack and free the node that wraps around the top element when we call stack_pop.</p>
+<p>Implemented as a singly linked list, we malloc a node every time we push an new element onto the stack and free the node that wraps around the top element when we call <code>stack_pop</code>.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000021">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
@@ -104,11 +104,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from stk. </p>
-<p>Frees all the nodes in the linkde list in stk but will not free the elements in the nodes.</p>
+<p>Removes all elements from <code>stk</code>. </p>
+<p>Frees all the nodes in the linked list in <code>stk</code> but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to clear out. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the <code>stack</code> we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -131,11 +131,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Initializes a new stack. </p>
-<p>Will fail and return 1 if stk is NULL.</p>
+<p>Initializes a new <code>stack</code>. </p>
+<p>Will fail and return <code>1</code> if <code>stk</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to initialize. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the <code>stack</code> we want to initialize. </td></tr>
   </table>
   </dd>
 </dl>
@@ -158,15 +158,15 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Returns the top element of stk if it exists. </p>
-<p>Will return NULL if stk is NULL.</p>
+<p>Returns the top element of <code>stk</code> if it exists. </p>
+<p>Will return <code>NULL</code> if <code>stk</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to peek into. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the <code>stack</code> we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of stk if it exists, NULL if stk is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of <code>stk</code> if it exists, <code>NULL</code> if <code>stk</code> is empty. </dd></dl>
 
 </div>
 </div>
@@ -185,15 +185,15 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes the top element of stk if it exists and returns it. </p>
-<p>Will return NULL if stk is NULL.</p>
+<p>Removes the top element of <code>stk</code> if it exists and returns it. </p>
+<p>Will return <code>NULL</code> if <code>stk</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to pop the top off. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the <code>stack</code> we want to pop the top off. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of stk if it exists, NULL if stk is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The top element of <code>stk</code> if it exists, <code>NULL</code> if <code>stk</code> is empty. </dd></dl>
 
 </div>
 </div>
@@ -222,12 +222,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new top of stk. </p>
-<p>Will fail and return 1 if stk is NULL or elem is NULL.</p>
+<p>Inserts <code>elem</code> as the new top of <code>stk</code>. </p>
+<p>Will fail and return <code>1</code> if <code>stk</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">stk</td><td>the address of the stack we want to push elem onto. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new top of stk. </td></tr>
+    <tr><td class="paramname">stk</td><td>the address of the <code>stack</code> we want to push <code>elem</code> onto. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new top of <code>stk</code>. </td></tr>
   </table>
   </dd>
 </dl>

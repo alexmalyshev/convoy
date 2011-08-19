@@ -2,8 +2,9 @@
  *  @brief Function prototypes and structs for a splay tree data structure.
  *
  *  Implementation of a splay tree. The nodes in the splay tree store data
- *  as generic pointers (void *) where an element value of NULL cannot be
- *  stored. Elements are compared using a generic compare function.
+ *  as generic pointers (<tt>void *</tt>) where an element value of
+ *  <tt>NULL</tt> cannot be stored. Elements are compared using a generic
+ *  compare function.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -31,52 +32,62 @@ typedef struct splaytree_t {
     cmpfn cmp;              /**< the function for comparing elements. */
 } splaytree;
 
-/** @brief Initializes a new splaytree.
+/** @brief Initializes a new <tt>splaytree</tt>.
  *
- *  Will fail and return NULL if tree is NULL or cmp is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>cmp</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the splaytree we want to initialize.
- *  @param cmp the compare function that will be used by the tree.
+ *  @param tree the address of the <tt>splaytree</tt> we want to initialize.
+ *  @param cmp the compare function that will be used by <tt>tree</tt>.
  *  @return Success status.
  */
 int splay_init(splaytree *tree, cmpfn cmp);
 
-/** @brief Removes all elements from tree.
+/** @brief Removes all elements from <tt>tree</tt>.
  *
- *  Frees all nodes in tree but will not free the elements in the nodes.
+ *  Frees all nodes in <tt>tree</tt> but will not free the elements in the
+ *  nodes.
  *
- *  @param tree the address of the splaytree we want to clear out.
+ *  @param tree the address of the <tt>splaytree</tt> we want to clear out.
  *  @return Success status.
  */
 int splay_clear(splaytree *tree);
 
-/** @brief Inserts elem into tree.
+/** @brief Inserts <tt>elem</tt> into <tt>tree</tt>.
  *
- *  Will fail and return 1 if tree is NULL or elem is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the splaytree we want to insert elem into.
- *  @param elem the element we want to insert into tree.
+ *  @param tree the address of the <tt>splaytree</tt> we want to insert
+ *              <tt>elem</tt> into.
+ *  @param elem the element we want to insert into <tt>tree</tt>.
  *  @return Success status.
  */
 int splay_insert(splaytree *tree, void *elem);
 
-/** @brief Removes elem from tree if it is in tree.
+/** @brief Removes <tt>elem</tt> from <tt>tree</tt> if it is in <tt>tree</tt>.
  *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the splaytree we want to remove elem from.
- *  @param elem the element we want to remove from tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ *  @param tree the address of the <tt>splaytree</tt> we want to remove
+ *              <tt>elem</tt> from.
+ *  @param elem the element we want to remove from <tt>tree</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tree</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *splay_remove(splaytree *tree, void *elem);
 
-/** @brief Searches tree for elem.
+/** @brief Searches <tt>tree</tt> for <tt>elem</tt>.
  *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the splaytree we want to search for elem.
- *  @param elem the element we're searching for in tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ *  @param tree the address of the <tt>splaytree</tt> we want to search for
+ *              <tt>elem</tt>.
+ *  @param elem the element we're searching for in <tt>tree</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tree</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *splay_search(splaytree *tree, void *elem);
 

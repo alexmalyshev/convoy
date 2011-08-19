@@ -62,37 +62,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <a href="splay_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00012"></a>00012 <span class="preprocessor">#ifndef SPLAY_H_</span>
-<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define SPLAY_H_</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00015"></a>00015 <span class="preprocessor">#ifndef CMPFN</span>
-<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor">#define CMPFN</span>
-<a name="l00017"></a>00017 <span class="preprocessor"></span>
-<a name="l00018"></a><a class="code" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">00018</a> <span class="keyword">typedef</span> int (*<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a>)(<span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);
-<a name="l00019"></a>00019 <span class="preprocessor">#endif </span><span class="comment">/* CMPFN */</span>
-<a name="l00020"></a>00020 
-<a name="l00022"></a><a class="code" href="structspnode.html">00022</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>spnode_t {
-<a name="l00023"></a><a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">00023</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">left</a>;  
-<a name="l00024"></a><a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">00024</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">right</a>; 
-<a name="l00025"></a><a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">00025</a>     <span class="keywordtype">void</span> *<a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">elem</a>;             
-<a name="l00026"></a>00026 } <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a>;
-<a name="l00027"></a>00027 
-<a name="l00029"></a><a class="code" href="structsplaytree.html">00029</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>splaytree_t {
-<a name="l00030"></a><a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">00030</a>     <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a> *<a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">root</a>;           
-<a name="l00031"></a><a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">00031</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">cmp</a>;              
-<a name="l00032"></a>00032 } <a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a>;
-<a name="l00033"></a>00033 
-<a name="l00042"></a>00042 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a2bb1eef8e97f294e53bbef4ccc89fd8e" title="Initializes a new splaytree.">splay_init</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
-<a name="l00043"></a>00043 
-<a name="l00051"></a>00051 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#ac1defd53dcd3cbdc69c86138cf535409" title="Removes all elements from tree.">splay_clear</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree);
-<a name="l00052"></a>00052 
-<a name="l00061"></a>00061 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a6798a6a0c3cf5808c79b9ffd636b1b29" title="Inserts elem into tree.">splay_insert</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00062"></a>00062 
-<a name="l00071"></a>00071 <span class="keywordtype">void</span> *<a class="code" href="splay_8c.html#a2013bee6615757af0cd9bbd935ff4dfa" title="Removes elem from tree if it is in tree.">splay_remove</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00072"></a>00072 
-<a name="l00081"></a>00081 <span class="keywordtype">void</span> *<a class="code" href="splay_8c.html#a952b6c2cb4649210f45b0b38fb1002bb" title="Searches tree for elem.">splay_search</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#endif </span><span class="comment">/* SPLAY_H_ */</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef SPLAY_H_</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define SPLAY_H_</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#ifndef CMPFN</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#define CMPFN</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a><a class="code" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">00019</a> <span class="keyword">typedef</span> int (*<a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a>)(<span class="keywordtype">void</span> *, <span class="keywordtype">void</span> *);
+<a name="l00020"></a>00020 <span class="preprocessor">#endif </span><span class="comment">/* CMPFN */</span>
+<a name="l00021"></a>00021 
+<a name="l00023"></a><a class="code" href="structspnode.html">00023</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>spnode_t {
+<a name="l00024"></a><a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">00024</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#a6cdfb2f64079cda97c1ec7906072c27d">left</a>;  
+<a name="l00025"></a><a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">00025</a>     <span class="keyword">struct </span>spnode_t *<a class="code" href="structspnode.html#afac27707e6e6b59194fd63576b6d1d0c">right</a>; 
+<a name="l00026"></a><a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">00026</a>     <span class="keywordtype">void</span> *<a class="code" href="structspnode.html#a78d96b080d396d447099a23aec73d7f0">elem</a>;             
+<a name="l00027"></a>00027 } <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a>;
+<a name="l00028"></a>00028 
+<a name="l00030"></a><a class="code" href="structsplaytree.html">00030</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>splaytree_t {
+<a name="l00031"></a><a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">00031</a>     <a class="code" href="structspnode.html" title="A node in a splay tree.">spnode</a> *<a class="code" href="structsplaytree.html#adad56c8a36bded03990e7d6d1f2a5911">root</a>;           
+<a name="l00032"></a><a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">00032</a>     <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> <a class="code" href="structsplaytree.html#aec81cb2dc94b13d65762cfda0d648616">cmp</a>;              
+<a name="l00033"></a>00033 } <a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a>;
+<a name="l00034"></a>00034 
+<a name="l00044"></a>00044 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a2bb1eef8e97f294e53bbef4ccc89fd8e" title="Initializes a new splaytree.">splay_init</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <a class="code" href="binaheap_8h.html#a4e392f9d227bf09898dae22d16e2cf52" title="A generic compare function.">cmpfn</a> cmp);
+<a name="l00045"></a>00045 
+<a name="l00054"></a>00054 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#ac1defd53dcd3cbdc69c86138cf535409" title="Removes all elements from tree.">splay_clear</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree);
+<a name="l00055"></a>00055 
+<a name="l00066"></a>00066 <span class="keywordtype">int</span> <a class="code" href="splay_8c.html#a6798a6a0c3cf5808c79b9ffd636b1b29" title="Inserts elem into tree.">splay_insert</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00067"></a>00067 
+<a name="l00079"></a>00079 <span class="keywordtype">void</span> *<a class="code" href="splay_8c.html#a2013bee6615757af0cd9bbd935ff4dfa" title="Removes elem from tree if it is in tree.">splay_remove</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00080"></a>00080 
+<a name="l00092"></a>00092 <span class="keywordtype">void</span> *<a class="code" href="splay_8c.html#a952b6c2cb4649210f45b0b38fb1002bb" title="Searches tree for elem.">splay_search</a>(<a class="code" href="structsplaytree.html" title="A splay tree.">splaytree</a> *tree, <span class="keywordtype">void</span> *elem);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="preprocessor">#endif </span><span class="comment">/* SPLAY_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->

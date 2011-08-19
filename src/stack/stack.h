@@ -2,8 +2,8 @@
  *  @brief Function prototypes and structs for a stack data structure.
  *
  *  Implementation of a LIFO stack that is backed by a singly linked list.
- *  The nodes in the linked list store data as generic pointers (void *)
- *  where an element value of NULL cannot be stored.
+ *  The nodes in the linked list store data as generic pointers
+ *  (<tt>void *</tt>) where an element value of <tt>NULL</tt> cannot be stored.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -24,49 +24,53 @@ typedef struct {
     size_t len;             /**< the number of elements in the stack. */
 } stack;
 
-/** @brief Initializes a new stack.
+/** @brief Initializes a new <tt>stack</tt>.
  *
- *  Will fail and return 1 if stk is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>stk</tt> is <tt>NULL</tt>.
  *
- *  @param stk the address of the stack we want to initialize.
+ *  @param stk the address of the <tt>stack</tt> we want to initialize.
  *  @return Success status.
  */
 int stack_init(stack *stk);
 
-/** @brief Removes all elements from stk.
+/** @brief Removes all elements from <tt>stk</tt>.
  *
- *  Frees all the nodes in the linkde list in stk but will not free the
- *  elements in the nodes.
+ *  Frees all the nodes in the linked list in <tt>stk</tt> but will not free
+ *  the elements in the nodes.
  *
- *  @param stk the address of the stack we want to clear out.
+ *  @param stk the address of the <tt>stack</tt> we want to clear out.
  *  @return Success status.
  */
 int stack_clear(stack *stk);
 
-/** @brief Returns the top element of stk if it exists.
+/** @brief Returns the top element of <tt>stk</tt> if it exists.
  *
- *  Will return NULL if stk is NULL.
+ *  Will return <tt>NULL</tt> if <tt>stk</tt> is <tt>NULL</tt>.
  *
- *  @param stk the address of the stack we want to peek into.
- *  @return The top element of stk if it exists, NULL if stk is empty.
+ *  @param stk the address of the <tt>stack</tt> we want to peek into.
+ *  @return The top element of <tt>stk</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>stk</tt> is empty.
  */
 void *stack_peek(stack *stk);
 
-/** @brief Removes the top element of stk if it exists and returns it.
+/** @brief Removes the top element of <tt>stk</tt> if it exists and returns it.
  *
- *  Will return NULL if stk is NULL.
+ *  Will return <tt>NULL</tt> if <tt>stk</tt> is <tt>NULL</tt>.
  *
- *  @param stk the address of the stack we want to pop the top off.
- *  @return The top element of stk if it exists, NULL if stk is empty.
+ *  @param stk the address of the <tt>stack</tt> we want to pop the top off.
+ *  @return The top element of <tt>stk</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>stk</tt> is empty.
  */
 void *stack_pop(stack *stk);
 
-/** @brief Inserts elem as the new top of stk.
+/** @brief Inserts <tt>elem</tt> as the new top of <tt>stk</tt>.
  *
- *  Will fail and return 1 if stk is NULL or elem is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>stk</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param stk the address of the stack we want to push elem onto.
- *  @param elem the element we want to insert as the new top of stk.
+ *  @param stk the address of the <tt>stack</tt> we want to push <tt>elem</tt>
+ *             onto.
+ *  @param elem the element we want to insert as the new top of <tt>stk</tt>.
  *  @return Success status.
  */
 int stack_push(stack *stk, void *elem);
