@@ -3,9 +3,9 @@
  *
  *  Implementation of a hash table that is backed by a dynamic array and
  *  uses separate chaining to resolve collisions. Elements are stored as
- *  generic pointers (void *) where an element value of NULL cannot be
- *  stored. Elements are compared using a user-specified compare function
- *  and hashed using a user-specified hash function.
+ *  generic pointers (<tt>void *</tt>) where an element value of <tt>NULL</tt>
+ *  cannot be stored. Elements are compared using a user-specified compare
+ *  function and hashed using a user-specified hash function.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -26,13 +26,13 @@ typedef int (*cmpfn)(void *, void *);
 typedef unsigned long (*hashfn)(void *);
 #endif /* HASHFN */
 
-/** @brief The default load factor for a hasht. */
+/** @brief The default load factor for a <tt>hasht</tt>. */
 #define HASHT_DEFAULT_LOADFACTOR 0.75
 
-/** @brief The default initial capacity for a hasht. */
+/** @brief The default initial capacity for a <tt>hasht</tt>. */
 #define HASHT_DEFAULT_CAPACITY 64
 
-/** @brief An entry in a hasht. */
+/** @brief An entry in a <tt>hasht</tt>. */
 typedef struct hashent_t {
     struct hashent_t *next; /**< the next entry in the current bucket. */
     void *elem;             /**< the element stored in the entry. */
@@ -49,75 +49,86 @@ typedef struct {
     double loadfactor;      /**< the load factor of the table. */
 } hasht;
 
-/** @brief Initializes a new hasht.
+/** @brief Initializes a new <tt>hasht</tt>.
  *
- *  Will fail and return NULL if tab is NULL, cmp is NULL, hash is NULL,
- *  or if loadfactor is non-positive.
+ *  Will fail and return <tt>NULL</tt> if <tt>tab</tt> is <tt>NULL</tt>,
+ *  <tt>cmp</tt> is <tt>NULL</tt>, <tt>hash</tt> is <tt>NULL</tt>, or if
+ *  lf is non-positive.
  *
- *  @param tab the address of the table we want to initialize.
- *  @param hash the hash function that will be used by the table.
- *  @param cmp the compare function that will be used by the table.
- *  @param lf the load factor of the table.
- *  @param cap the starting capacity of the table.
+ *  @param tab the address of the <tt>hasht</tt> we want to initialize.
+ *  @param hash the hash function that will be used by the <tt>tab</tt>.
+ *  @param cmp the compare function that will be used by the <tt>tab</tt>.
+ *  @param lf the load factor of the <tt>tab</tt>.
+ *  @param cap the starting capacity of the <tt>tab</tt>.
  *  @return Success status.
  */
 int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap);
 
-/** @brief Frees the dynamic array in tab.
+/** @brief Frees the dynamic array in <tt>tab</tt>.
  *
- *  Will not free the elements stored in tab.
+ *  Will not free the elements stored in <tt>tab</tt>.
  *
- *  @param tab the address of the hasht we want to deallocate.
+ *  @param tab the address of the <tt>hasht</tt> we want to deallocate.
  *  @return Success status.
  */
 int hasht_destroy(hasht *tab);
 
-/** @brief Inserts elem into tab.
+/** @brief Inserts <tt>elem</tt> into <tt>tab</tt>.
  *
- *  Will fail and return 1 if tab is NULL or elem is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>tab</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>. If <tt>elem</tt> is already in <tt>tab</tt>
+ *  then will simply return <tt>0</tt>.
  *
- *  @param tab the address of the hasht we want to insert elem into.
- *  @param elem the element we want to insert into tab.
+ *  @param tab the address of the <tt>hasht</tt> we want to insert
+ *             <tt>elem</tt> into.
+ *  @param elem the element we want to insert into <tt>tab</tt>.
  *  @return Success status.
  */
 int hasht_insert(hasht *tab, void *elem);
 
-/** @brief Removes elem from tab if it is in map.
+/** @brief Removes elem from <tt>tab</tt>.
  *
- *  Will fail and return NULL if tab is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tab</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tab the address of the hasht we want to remove elem from.
- *  @param elem the element we want to remove from tab.
- *  @return The element equal to elem if it exists in tab, NULL otherwise.
+ *  @param tab the address of the <tt>hasht</tt> we want to remove
+ *             <tt>elem</tt> from.
+ *  @param elem the element we want to remove from <tt>tab</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tab</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *hasht_remove(hasht *tab, void *elem);
 
-/** @brief Searches tab for elem.
+/** @brief Searches <tt>tab</tt> for <tt>elem</tt>.
  *
- *  Will fail and return NULL if tab is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tab</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tab the address of the hasht we want to search for elem.
- *  @param elem the element we're searching for in tab.
- *  @return The element equal to elem if it exists in tab, NULL otherwise.
+ *  @param tab the address of the <tt>hasht</tt> we want to search for
+ *             <tt>elem</tt>.
+ *  @param elem the element we're searching for in <tt>tab</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tab</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *hasht_search(hasht *tab, void *elem);
 
-/** @brief Removes all elements from tab.
+/** @brief Removes all elements from <tt>tab</tt>.
  *
- *  Frees all the entries in the buckets of tab, but will not free
+ *  Frees all the entries in the buckets of <tt>tab</tt>, but will not free
  *  the elements in the entries.
  *
- *  @param tab the address of the hasht we want to clear out.
+ *  @param tab the address of the <tt>hasht</tt> we want to clear out.
  *  @return Success status.
  */
 int hasht_clear(hasht *tab);
 
-/** @brief Truncates the capacity of the dynamic array in tab.
+/** @brief Truncates the capacity of the dynamic array in <tt>tab</tt>.
  *
- *  Will fail and return 1 if tab is NULL. Truncates the array in tab
- *  so the load factor of the array matches the load factor of the table.
+ *  Will fail and return <tt>1</tt> if <tt>tab</tt> is <tt>NULL</tt>.
+ *  Truncates the array in <tt>tab</tt> so the load factor of the array
+ *  matches the load factor set for the <tt>tab</tt>.
  *
- *  @param tab the address of the hasht we want to truncate.
+ *  @param tab the address of the <tt>hasht</tt> we want to truncate.
  *  @return Success status.
  */
 int hasht_trunc(hasht *tab);

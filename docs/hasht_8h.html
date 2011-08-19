@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhashent.html">hashent</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An entry in a hasht.  <a href="structhashent.html#details">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An entry in a <code>hasht</code>.  <a href="structhashent.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhasht.html">hasht</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A hash table.  <a href="structhasht.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
@@ -87,10 +87,10 @@ Defines</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>HASHFN</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab861ad5e0b7ebab9b647638277203e41"></a><!-- doxytag: member="hasht.h::HASHT_DEFAULT_LOADFACTOR" ref="ab861ad5e0b7ebab9b647638277203e41" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ab861ad5e0b7ebab9b647638277203e41">HASHT_DEFAULT_LOADFACTOR</a>&#160;&#160;&#160;0.75</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default load factor for a hasht. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default load factor for a <code>hasht</code>. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a124d09dc36a81d53e8a6a8395707ae94"></a><!-- doxytag: member="hasht.h::HASHT_DEFAULT_CAPACITY" ref="a124d09dc36a81d53e8a6a8395707ae94" args="" -->
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a124d09dc36a81d53e8a6a8395707ae94">HASHT_DEFAULT_CAPACITY</a>&#160;&#160;&#160;64</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default initial capacity for a hasht. <br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The default initial capacity for a <code>hasht</code>. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e392f9d227bf09898dae22d16e2cf52"></a><!-- doxytag: member="hasht.h::cmpfn" ref="a4e392f9d227bf09898dae22d16e2cf52" args=")(void *, void *)" -->
@@ -102,23 +102,23 @@ typedef unsigned long(*&#160;</td><td class="memItemRight" valign="bottom"><a cl
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ad0cd922f053e761b438232043ebbdd35">hasht_init</a> (<a class="el" href="structhasht.html">hasht</a> *tab, <a class="el" href="hasht_8h.html#a05c5d00c620c027cbd0ed05d47186006">hashfn</a> hash, <a class="el" href="splay_8h.html#a4e392f9d227bf09898dae22d16e2cf52">cmpfn</a> cmp, double lf, size_t cap)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new hasht.  <a href="#ad0cd922f053e761b438232043ebbdd35"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new <code>hasht</code>.  <a href="#ad0cd922f053e761b438232043ebbdd35"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ac01db857ebd18f5063f02ad06c559099">hasht_destroy</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in tab.  <a href="#ac01db857ebd18f5063f02ad06c559099"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the dynamic array in <code>tab</code>.  <a href="#ac01db857ebd18f5063f02ad06c559099"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ab39329f0631d7d03d4fbbbb42d8110eb">hasht_insert</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem into tab.  <a href="#ab39329f0631d7d03d4fbbbb42d8110eb"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts <code>elem</code> into <code>tab</code>.  <a href="#ab39329f0631d7d03d4fbbbb42d8110eb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a769712d0d50dcf0cb5401c3b748afe2f">hasht_remove</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from tab if it is in map.  <a href="#a769712d0d50dcf0cb5401c3b748afe2f"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes elem from <code>tab</code>.  <a href="#a769712d0d50dcf0cb5401c3b748afe2f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#ad42f4d814ce9deb3f32d98372ce8611b">hasht_search</a> (<a class="el" href="structhasht.html">hasht</a> *tab, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches tab for elem.  <a href="#ad42f4d814ce9deb3f32d98372ce8611b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches <code>tab</code> for <code>elem</code>.  <a href="#ad42f4d814ce9deb3f32d98372ce8611b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#a7afc1a54fdf3413b2f585a4ac1b24299">hasht_clear</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from tab.  <a href="#a7afc1a54fdf3413b2f585a4ac1b24299"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements from <code>tab</code>.  <a href="#a7afc1a54fdf3413b2f585a4ac1b24299"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hasht_8h.html#acf5634657927d74818862f3f8ea5cd04">hasht_trunc</a> (<a class="el" href="structhasht.html">hasht</a> *tab)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the capacity of the dynamic array in tab.  <a href="#acf5634657927d74818862f3f8ea5cd04"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates the capacity of the dynamic array in <code>tab</code>.  <a href="#acf5634657927d74818862f3f8ea5cd04"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Function prototypes and structs for a hash table. </p>
-<p>Implementation of a hash table that is backed by a dynamic array and uses separate chaining to resolve collisions. Elements are stored as generic pointers (void *) where an element value of NULL cannot be stored. Elements are compared using a user-specified compare function and hashed using a user-specified hash function.</p>
+<p>Implementation of a hash table that is backed by a dynamic array and uses separate chaining to resolve collisions. Elements are stored as generic pointers (<code>void *</code>) where an element value of <code>NULL</code> cannot be stored. Elements are compared using a user-specified compare function and hashed using a user-specified hash function.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000011">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
@@ -137,11 +137,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes all elements from tab. </p>
-<p>Frees all the entries in the buckets of tab, but will not free the elements in the entries.</p>
+<p>Removes all elements from <code>tab</code>. </p>
+<p>Frees all the entries in the buckets of <code>tab</code>, but will not free the elements in the entries.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to clear out. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -164,11 +164,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Frees the dynamic array in tab. </p>
-<p>Will not free the elements stored in tab.</p>
+<p>Frees the dynamic array in <code>tab</code>. </p>
+<p>Will not free the elements stored in <code>tab</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to deallocate. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to deallocate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -219,15 +219,15 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Initializes a new hasht. </p>
-<p>Will fail and return NULL if tab is NULL, cmp is NULL, hash is NULL, or if loadfactor is non-positive.</p>
+<p>Initializes a new <code>hasht</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tab</code> is <code>NULL</code>, <code>cmp</code> is <code>NULL</code>, <code>hash</code> is <code>NULL</code>, or if lf is non-positive.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the table we want to initialize. </td></tr>
-    <tr><td class="paramname">hash</td><td>the hash function that will be used by the table. </td></tr>
-    <tr><td class="paramname">cmp</td><td>the compare function that will be used by the table. </td></tr>
-    <tr><td class="paramname">lf</td><td>the load factor of the table. </td></tr>
-    <tr><td class="paramname">cap</td><td>the starting capacity of the table. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to initialize. </td></tr>
+    <tr><td class="paramname">hash</td><td>the hash function that will be used by the <code>tab</code>. </td></tr>
+    <tr><td class="paramname">cmp</td><td>the compare function that will be used by the <code>tab</code>. </td></tr>
+    <tr><td class="paramname">lf</td><td>the load factor of the <code>tab</code>. </td></tr>
+    <tr><td class="paramname">cap</td><td>the starting capacity of the <code>tab</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -260,12 +260,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem into tab. </p>
-<p>Will fail and return 1 if tab is NULL or elem is NULL.</p>
+<p>Inserts <code>elem</code> into <code>tab</code>. </p>
+<p>Will fail and return <code>1</code> if <code>tab</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>. If <code>elem</code> is already in <code>tab</code> then will simply return <code>0</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert into tab. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to insert <code>elem</code> into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert into <code>tab</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,16 +298,16 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes elem from tab if it is in map. </p>
-<p>Will fail and return NULL if tab is NULL or elem is NULL.</p>
+<p>Removes elem from <code>tab</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tab</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to remove elem from. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to remove from tab. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to remove <code>elem</code> from. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to remove from <code>tab</code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tab, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to <code>elem</code> if it exists in <code>tab</code>, <code>NULL</code> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -336,16 +336,16 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Searches tab for elem. </p>
-<p>Will fail and return NULL if tab is NULL or elem is NULL.</p>
+<p>Searches <code>tab</code> for <code>elem</code>. </p>
+<p>Will fail and return <code>NULL</code> if <code>tab</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to search for elem. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we're searching for in tab. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to search for <code>elem</code>. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we're searching for in <code>tab</code>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to elem if it exists in tab, NULL otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The element equal to <code>elem</code> if it exists in <code>tab</code>, <code>NULL</code> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -364,11 +364,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Truncates the capacity of the dynamic array in tab. </p>
-<p>Will fail and return 1 if tab is NULL. Truncates the array in tab so the load factor of the array matches the load factor of the table.</p>
+<p>Truncates the capacity of the dynamic array in <code>tab</code>. </p>
+<p>Will fail and return <code>1</code> if <code>tab</code> is <code>NULL</code>. Truncates the array in <code>tab</code> so the load factor of the array matches the load factor set for the <code>tab</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">tab</td><td>the address of the hasht we want to truncate. </td></tr>
+    <tr><td class="paramname">tab</td><td>the address of the <code>hasht</code> we want to truncate. </td></tr>
   </table>
   </dd>
 </dl>

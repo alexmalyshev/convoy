@@ -3,7 +3,8 @@
  *
  *  Implementation of a double-ended queue(deque) that is backed by a
  *  doubly linked list. The nodes in the linked list store data as
- *  generic pointers (void *) where an element value of NULL cannot be stored.
+ *  generic pointers (<tt>void *</tt>) where an element value of <tt>NULL</tt>
+ *  cannot be stored.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -26,78 +27,90 @@ typedef struct {
     size_t len;             /**< the number of elements in the deque. */
 } deque;
 
-/** @brief Initializes a new deque.
+/** @brief Initializes a new <tt>deque</tt>.
  *
- *  Will fail and return 1 if deq is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>deq</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to initialize.
+ *  @param deq the address of the <tt>deque</tt> we want to initialize.
  *  @return Success status.
  */
 int deque_init(deque *deq);
 
-/** @brief Removes all elements from deq.
+/** @brief Removes all elements from <tt>deq</tt>.
  *
- *  Frees all nodes in the linked list in deq but will not free the
+ *  Frees all nodes in the linked list in <tt>deq</tt> but will not free the
  *  elements in the nodes.
  *
- *  @param deq the address of the deque we want to clear out.
+ *  @param deq the address of the <tt>deque</tt> we want to clear out.
  *  @return Success status.
  */
 int deque_clear(deque *deq);
 
-/** @brief Inserts elem as the new back of deq.
+/** @brief Inserts <tt>elem</tt> as the new back of <tt>deq</tt>.
  *
- *  Will fail and return 1 if deq is NULL or elem is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>deq</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to insert elem into.
- *  @param elem the element we want to insert as the new back of deq.
+ *  @param deq the address of the <tt>deque</tt> we want to insert
+ *             <tt>elem</tt> into.
+ *  @param elem the element we want to insert as the new back of <tt>deq</tt>.
  *  @return Success status.
  */
 int deque_insertb(deque *deq, void *elem);
 
-/** @brief Inserts elem as the new front of deq.
+/** @brief Inserts <tt>elem</tt> as the new front element of <tt>deq</tt>.
  *
- *  Will fail and return 1 if deq is NULL or elem is NULL.
+ *  Will fail and return <tt>1</tt> if <tt>deq</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to insert elem into.
- *  @param elem the element we want to insert as the new front of deq.
+ *  @param deq the address of the <tt>deque</tt> we want to insert
+ *             <tt>elem</tt> into.
+ *  @param elem the element we want to insert as the new front of <tt>deq</tt>.
  *  @return Success status.
  */
 int deque_insertf(deque *deq, void *elem);
 
-/** @brief Returns the back element of deq if it exists.
+/** @brief Returns the back element of <tt>deq</tt> if it exists.
  *
- *  Will return NULL if deq is NULL.
+ *  Will return <tt>NULL</tt> if <tt>deq</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to peek into.
- *  @return The back element of deq if it exists, NULL if deq is empty.
+ *  @param deq the address of the <tt>deque</tt> we want to peek into.
+ *  @return The back element of <tt>deq</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>deq</tt> is empty.
  */
 void *deque_peekb(deque *deq);
 
-/** @brief Returns the front element of deq if it exists.
+/** @brief Returns the front element of <tt>deq</tt> if it exists.
  *
- *  Will return NULL if deq is NULL.
+ *  Will return <tt>NULL</tt> if <tt>deq</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to peek into.
- *  @return The front element of deq if it exists, NULL if deq is empty.
+ *  @param deq the address of the <tt>deque</tt> we want to peek into.
+ *  @return The front element of <tt>deq</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>deq</tt> is empty.
  */
 void *deque_peekf(deque *deq);
 
-/** @brief Removes the back element of deq if it exists and returns it.
+/** @brief Removes the back element of <tt>deq</tt> if it exists and returns
+ *         it.
  *
- *  Will fail and return NULL if deq is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>deq</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to remove the back from.
- *  @return The back element of deq if it exists, NULL if deq is empty.
+ *  @param deq the address of the <tt>deque</tt> we want to remove the back
+ *             from.
+ *  @return The back element of <tt>deq</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>deq</tt> is empty.
  */
 void *deque_removeb(deque *deq);
 
-/** @brief Removes the front element of deq if it exists and returns it.
+/** @brief Removes the front element of <tt>deq</tt> if it exists and returns
+ *         it.
  *
- *  Will fail and return NULL if deq is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>deq</tt> is <tt>NULL</tt>.
  *
- *  @param deq the address of the deque we want to remove the front from.
- *  @return The front element of deq if it exists, NULL if deq is empty.
+ *  @param deq the address of the <tt>deque</tt> we want to remove the front
+ *             from.
+ *  @return The front element of <tt>deq</tt> if it exists, <tt>NULL</tt> if
+ *          <tt>deq</tt> is empty.
  */
 void *deque_removef(deque *deq);
 

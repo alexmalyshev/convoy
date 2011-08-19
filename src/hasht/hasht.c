@@ -3,9 +3,9 @@
  *
  *  We malloc an entry every time we insert a new element into the hash table
  *  and free the entry that wraps around the element returned by
- *  hasht_remove. We compare elements using the compare function that is
- *  given as an argument to hasht_init and we hash elements using the hash
- *  function that is also given as an argument in hasht_init.
+ *  <tt>hasht_remove</tt>. We compare elements using the compare function that
+ *  is given as an argument to <tt>hasht_init</tt> and we hash elements using
+ *  the hash function that is also given as an argument in <tt>hasht_init</tt>.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.

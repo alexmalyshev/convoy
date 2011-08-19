@@ -1,5 +1,6 @@
 /** @file binaheap-int.h
- *  @brief Function prototypes for internal functions in the binaheap library.
+ *  @brief Function prototypes for internal functions in the <tt>binaheap</tt>
+ *         library.
  *  @author Alexander Malyshev
  *  @bug No known bugs.
  */

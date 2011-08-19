@@ -1,5 +1,6 @@
 /** @file hasht-int.h
- *  @brief Function prototypes for internal functions in the hasht library.
+ *  @brief Function prototypes for internal functions in the <tt>hasht</tt>
+ *         library.
  *  @author Alexander Malyshev
  *  @bug No known bugs.
  */
@@ -7,12 +8,12 @@
 #ifndef HASHT_INT_H_
 #define HASHT_INT_H_
 
-/** @brief Resizes tab's array and rehashes all elements.
+/** @brief Resizes <tt>tab</tt>'s array and rehashes all elements.
  *
- *  tab is not NULL.
+ *  <tt>tab</tt> is not <tt>NULL</tt>.
  *
- *  @param tab the address of the hasht we want to resize and rehash.
- *  @param newcap the new capacity of the array in tab.
+ *  @param tab the address of the <tt>hasht</tt> we want to resize and rehash.
+ *  @param newcap the new capacity of the array in <tt>tab</tt>.
  *  @return Success status.
  */
 static int resize(hasht *tab, size_t newcap);
@@ -26,9 +27,9 @@ static int resize(hasht *tab, size_t newcap);
  */
 static void destroy_bucket(hashent *entry);
 
-/** @brief Allocates a new hashent with elem as it's element.
+/** @brief Allocates a new <tt>hashent</tt> with <tt>elem</tt> as it's element.
  *  @param elem the address of the element we want the new entry to store.
- *  @return A pointer to a new hashent.
+ *  @return A pointer to a new <tt>hashent</tt>.
  */
 static hashent *init_entry(void *elem);
 

@@ -62,38 +62,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <a href="deque_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00012"></a>00012 <span class="preprocessor">#ifndef DEQUE_H_</span>
-<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor">#define DEQUE_H_</span>
-<a name="l00014"></a>00014 <span class="preprocessor"></span>
-<a name="l00016"></a><a class="code" href="structdnode.html">00016</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>dnode_t {
-<a name="l00017"></a><a class="code" href="structdnode.html#a626e1108feeb8d8006b5d3bdeaae7ec1">00017</a>     <span class="keyword">struct </span>dnode_t *<a class="code" href="structdnode.html#a626e1108feeb8d8006b5d3bdeaae7ec1">prev</a>;   
-<a name="l00018"></a><a class="code" href="structdnode.html#ada40496566ea33c5664bb57d1e50a6b4">00018</a>     <span class="keyword">struct </span>dnode_t *<a class="code" href="structdnode.html#ada40496566ea33c5664bb57d1e50a6b4">next</a>;   
-<a name="l00019"></a><a class="code" href="structdnode.html#a42a0492268eb9da5e5dd8d4ad20a2c8b">00019</a>     <span class="keywordtype">void</span> *<a class="code" href="structdnode.html#a42a0492268eb9da5e5dd8d4ad20a2c8b">elem</a>;             
-<a name="l00020"></a>00020 } <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a>;
-<a name="l00021"></a>00021 
-<a name="l00023"></a><a class="code" href="structdeque.html">00023</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-<a name="l00024"></a><a class="code" href="structdeque.html#a27212898148b95f7533b57e4bc951ca0">00024</a>     <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a> *<a class="code" href="structdeque.html#a27212898148b95f7533b57e4bc951ca0">front</a>;           
-<a name="l00025"></a><a class="code" href="structdeque.html#ae8613bc8556165dd7d81d3700aa115de">00025</a>     <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a> *<a class="code" href="structdeque.html#ae8613bc8556165dd7d81d3700aa115de">back</a>;            
-<a name="l00026"></a><a class="code" href="structdeque.html#abe1fd5a8795d0196450057d33be188a8">00026</a>     <span class="keywordtype">size_t</span> <a class="code" href="structdeque.html#abe1fd5a8795d0196450057d33be188a8">len</a>;             
-<a name="l00027"></a>00027 } <a class="code" href="structdeque.html" title="A double-ended queue.">deque</a>;
-<a name="l00028"></a>00028 
-<a name="l00036"></a>00036 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#acbbcb02fbe135fd5bdc6211beec7ee25" title="Initializes a new deque.">deque_init</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00037"></a>00037 
-<a name="l00046"></a>00046 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a8ec622c421e142545b6d9c18dc9b2fdc" title="Removes all elements from deq.">deque_clear</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00047"></a>00047 
-<a name="l00056"></a>00056 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a0a64b138bed812b1c2edaa751ae4237b" title="Inserts elem as the new back of deq.">deque_insertb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq, <span class="keywordtype">void</span> *elem);
-<a name="l00057"></a>00057 
-<a name="l00066"></a>00066 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a5948002048de935ae7345da97e6ab08e" title="Inserts elem as the new front of deq.">deque_insertf</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq, <span class="keywordtype">void</span> *elem);
-<a name="l00067"></a>00067 
-<a name="l00075"></a>00075 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#a6f175ae48a2cdac2f6bb52afd43b5d6a" title="Returns the back element of deq if it exists.">deque_peekb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00076"></a>00076 
-<a name="l00084"></a>00084 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#ae3c8b0850de40acc05f01e109333e2a6" title="Returns the front element of deq if it exists.">deque_peekf</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00085"></a>00085 
-<a name="l00093"></a>00093 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#aaa041ecf995aaa80b44a8ae7c2b198a6" title="Removes the back element of deq if it exists and returns it.">deque_removeb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00094"></a>00094 
-<a name="l00102"></a>00102 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#a738a51be3ecb654d3ed28275ad39d27d" title="Removes the front element of deq if it exists and returns it.">deque_removef</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="preprocessor">#endif </span><span class="comment">/* DEQUE_H_ */</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef DEQUE_H_</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define DEQUE_H_</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00017"></a><a class="code" href="structdnode.html">00017</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>dnode_t {
+<a name="l00018"></a><a class="code" href="structdnode.html#a626e1108feeb8d8006b5d3bdeaae7ec1">00018</a>     <span class="keyword">struct </span>dnode_t *<a class="code" href="structdnode.html#a626e1108feeb8d8006b5d3bdeaae7ec1">prev</a>;   
+<a name="l00019"></a><a class="code" href="structdnode.html#ada40496566ea33c5664bb57d1e50a6b4">00019</a>     <span class="keyword">struct </span>dnode_t *<a class="code" href="structdnode.html#ada40496566ea33c5664bb57d1e50a6b4">next</a>;   
+<a name="l00020"></a><a class="code" href="structdnode.html#a42a0492268eb9da5e5dd8d4ad20a2c8b">00020</a>     <span class="keywordtype">void</span> *<a class="code" href="structdnode.html#a42a0492268eb9da5e5dd8d4ad20a2c8b">elem</a>;             
+<a name="l00021"></a>00021 } <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a>;
+<a name="l00022"></a>00022 
+<a name="l00024"></a><a class="code" href="structdeque.html">00024</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+<a name="l00025"></a><a class="code" href="structdeque.html#a27212898148b95f7533b57e4bc951ca0">00025</a>     <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a> *<a class="code" href="structdeque.html#a27212898148b95f7533b57e4bc951ca0">front</a>;           
+<a name="l00026"></a><a class="code" href="structdeque.html#ae8613bc8556165dd7d81d3700aa115de">00026</a>     <a class="code" href="structdnode.html" title="A node in a linked list.">dnode</a> *<a class="code" href="structdeque.html#ae8613bc8556165dd7d81d3700aa115de">back</a>;            
+<a name="l00027"></a><a class="code" href="structdeque.html#abe1fd5a8795d0196450057d33be188a8">00027</a>     <span class="keywordtype">size_t</span> <a class="code" href="structdeque.html#abe1fd5a8795d0196450057d33be188a8">len</a>;             
+<a name="l00028"></a>00028 } <a class="code" href="structdeque.html" title="A double-ended queue.">deque</a>;
+<a name="l00029"></a>00029 
+<a name="l00037"></a>00037 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#acbbcb02fbe135fd5bdc6211beec7ee25" title="Initializes a new deque.">deque_init</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00038"></a>00038 
+<a name="l00047"></a>00047 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a8ec622c421e142545b6d9c18dc9b2fdc" title="Removes all elements from deq.">deque_clear</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00048"></a>00048 
+<a name="l00059"></a>00059 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a0a64b138bed812b1c2edaa751ae4237b" title="Inserts elem as the new back of deq.">deque_insertb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq, <span class="keywordtype">void</span> *elem);
+<a name="l00060"></a>00060 
+<a name="l00071"></a>00071 <span class="keywordtype">int</span> <a class="code" href="deque_8c.html#a5948002048de935ae7345da97e6ab08e" title="Inserts elem as the new front element of deq.">deque_insertf</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq, <span class="keywordtype">void</span> *elem);
+<a name="l00072"></a>00072 
+<a name="l00081"></a>00081 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#a6f175ae48a2cdac2f6bb52afd43b5d6a" title="Returns the back element of deq if it exists.">deque_peekb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00082"></a>00082 
+<a name="l00091"></a>00091 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#ae3c8b0850de40acc05f01e109333e2a6" title="Returns the front element of deq if it exists.">deque_peekf</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00092"></a>00092 
+<a name="l00103"></a>00103 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#aaa041ecf995aaa80b44a8ae7c2b198a6" title="Removes the back element of deq if it exists and returns it.">deque_removeb</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00104"></a>00104 
+<a name="l00115"></a>00115 <span class="keywordtype">void</span> *<a class="code" href="deque_8c.html#a738a51be3ecb654d3ed28275ad39d27d" title="Removes the front element of deq if it exists and returns it.">deque_removef</a>(<a class="code" href="structdeque.html" title="A double-ended queue.">deque</a> *deq);
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 <span class="preprocessor">#endif </span><span class="comment">/* DEQUE_H_ */</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->

@@ -3,7 +3,8 @@
  *
  *  Implemented as a doubly linked list, we malloc a node every time we insert
  *  a new element into the deque and free the node that wraps around the
- *  front or back element when we call deque_removeb or deque_removef.
+ *  front or back element when we call <tt>deque_removeb</tt> or
+ *  <tt>deque_removef</tt>.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
