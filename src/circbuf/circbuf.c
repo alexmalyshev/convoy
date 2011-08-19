@@ -3,10 +3,9 @@
  *
  *  Implemented as an array with two indices to track the front and
  *  back of the circular buffer. We malloc an array with an extra slot so
- *  as to simplify checking for empty and full circbufs. The circbuf is empty
- *  if its front index is equal to its back index, and it is full if its
- *  back index plus one (with wraparound courtesy of mod) is equal to its
- *  front index.
+ *  as to simplify checking for empty and full <tt>circbuf</tt>s. The
+ *  <tt>circbuf</tt> is empty if its front index is equal to its back index,
+ *  and it is full if its back index plus one (with wraparound courtesy of mod)  *  is equal to its front index.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
