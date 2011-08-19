@@ -74,19 +74,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a477b0198ab3f8bd4a7e7330c06af3fd1">queue_init</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new queue.  <a href="#a477b0198ab3f8bd4a7e7330c06af3fd1"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new <code>queue</code>.  <a href="#a477b0198ab3f8bd4a7e7330c06af3fd1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#ac1dc51451a311246ee3fd9d7b33904d7">queue_clear</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all the elements from qu.  <a href="#ac1dc51451a311246ee3fd9d7b33904d7"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all the elements from <code>qu</code>.  <a href="#ac1dc51451a311246ee3fd9d7b33904d7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a5b46643ece8b539f511ad31af1388f47">queue_dequeue</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of qu if it exists and returns it.  <a href="#a5b46643ece8b539f511ad31af1388f47"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the front element of <code>qu</code> if it exists and returns it.  <a href="#a5b46643ece8b539f511ad31af1388f47"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a907ade5b541d7e5aa787896eea20fb7d">queue_enqueue</a> (<a class="el" href="structqueue.html">queue</a> *qu, void *elem)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts elem as the new back of qu.  <a href="#a907ade5b541d7e5aa787896eea20fb7d"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts <code>elem</code> as the new back of <code>qu</code>.  <a href="#a907ade5b541d7e5aa787896eea20fb7d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="queue_8c.html#a1c238d97a8f0fb96ffda2945fd49a091">queue_peek</a> (<a class="el" href="structqueue.html">queue</a> *qu)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of qu if it exists.  <a href="#a1c238d97a8f0fb96ffda2945fd49a091"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the front element of <code>qu</code> if it exists.  <a href="#a1c238d97a8f0fb96ffda2945fd49a091"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A queue library. </p>
-<p>Implemented as a singly linked list with a tail reference, we malloc a node every time we enqueue a new element onto the queue and free the node that wraps around the front element when we call queue_dequeue.</p>
+<p>Implemented as a singly linked list with a tail reference, we malloc a node every time we enqueue a new element onto the queue and free the node that wraps around the front element when we call <code>queue_dequeue</code>.</p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Alexander Malyshev </dd></dl>
 <dl class="bug"><dt><b><a class="el" href="bug.html#_bug000013">Bug:</a></b></dt><dd>No known bugs. </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
@@ -105,11 +105,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes all the elements from qu. </p>
-<p>Frees all nodes in the linked list in qu but will not free the elements in the nodes.</p>
+<p>Removes all the elements from <code>qu</code>. </p>
+<p>Frees all nodes in the linked list in <code>qu</code> but will not free the elements in the nodes.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to clear out. </td></tr>
+    <tr><td class="paramname">qu</td><td>the address of the <code>queue</code> we want to clear out. </td></tr>
   </table>
   </dd>
 </dl>
@@ -132,15 +132,15 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Removes the front element of qu if it exists and returns it. </p>
-<p>Will fail and return NULL if qu is NULL.</p>
+<p>Removes the front element of <code>qu</code> if it exists and returns it. </p>
+<p>Will fail and return <code>NULL</code> if <code>qu</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to remove the front from. </td></tr>
+    <tr><td class="paramname">qu</td><td>the address of the <code>queue</code> we want to remove the front from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of qu if it exists, NULL if qu is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of <code>qu</code> if it exists, <code>NULL</code> if <code>qu</code> is empty. </dd></dl>
 
 </div>
 </div>
@@ -169,12 +169,12 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Inserts elem as the new back of qu. </p>
-<p>Will fail and return 1 if qu is NULL or elem is NULL.</p>
+<p>Inserts <code>elem</code> as the new back of <code>qu</code>. </p>
+<p>Will fail and return <code>1</code> if <code>qu</code> is <code>NULL</code> or <code>elem</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to insert elem into. </td></tr>
-    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of qu. </td></tr>
+    <tr><td class="paramname">qu</td><td>the address of the <code>queue</code> we want to insert <code>elem</code> into. </td></tr>
+    <tr><td class="paramname">elem</td><td>the element we want to insert as the new back of <code>qu</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -197,11 +197,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Initializes a new queue. </p>
-<p>Will fail and return 1 if qu is NULL.</p>
+<p>Initializes a new <code>queue</code>. </p>
+<p>Will fail and return <code>1</code> if <code>qu</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to initialize. </td></tr>
+    <tr><td class="paramname">qu</td><td>the address of the <code>queue</code> we want to initialize. </td></tr>
   </table>
   </dd>
 </dl>
@@ -224,15 +224,15 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Returns the front element of qu if it exists. </p>
-<p>Will return NULL if qu is NULL.</p>
+<p>Returns the front element of <code>qu</code> if it exists. </p>
+<p>Will return <code>NULL</code> if <code>qu</code> is <code>NULL</code>.</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">qu</td><td>the address of the queue we want to peek into. </td></tr>
+    <tr><td class="paramname">qu</td><td>the address of the <code>queue</code> we want to peek into. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of qu if it exists, NULL if qu is empty. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The front element of <code>qu</code> if it exists, <code>NULL</code> if <code>qu</code> is empty. </dd></dl>
 
 </div>
 </div>

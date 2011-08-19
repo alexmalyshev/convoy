@@ -2,9 +2,9 @@
  *  @brief A red black tree library.
  *
  *  We malloc a node every time we insert a new element into the red black tree
- *  and free the node that wraps around the element returned by rbtree_remove.
- *  We compare elements in the tree using the compare function that is
- *  given as an argument to rbtree_init.
+ *  and free the node that wraps around the element returned by
+ *  <tt>rbtree_remove</tt>. We compare elements in the tree using the compare
+ *  function that is given as an argument to <tt>rbtree_init</tt>.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -14,7 +14,7 @@
 #include "rbtree.h"
 #include "rbtree-int.h"
 
-/** @brief Flips RED to BLACK and vice versa. */
+/** @brief Flips <tt>RED</tt> to <tt>BLACK</tt> and vice versa. */
 #define FLIP(color) (!(color))
 
 int rbtree_init(rbtree *tree, cmpfn cmp) {

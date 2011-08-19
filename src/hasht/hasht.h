@@ -53,13 +53,13 @@ typedef struct {
  *
  *  Will fail and return <tt>NULL</tt> if <tt>tab</tt> is <tt>NULL</tt>,
  *  <tt>cmp</tt> is <tt>NULL</tt>, <tt>hash</tt> is <tt>NULL</tt>, or if
- *  lf is non-positive.
+ *  <tt>lf</tt> is non-positive.
  *
  *  @param tab the address of the <tt>hasht</tt> we want to initialize.
- *  @param hash the hash function that will be used by the <tt>tab</tt>.
- *  @param cmp the compare function that will be used by the <tt>tab</tt>.
- *  @param lf the load factor of the <tt>tab</tt>.
- *  @param cap the starting capacity of the <tt>tab</tt>.
+ *  @param hash the hash function that will be used by <tt>tab</tt>.
+ *  @param cmp the compare function that will be used by <tt>tab</tt>.
+ *  @param lf the load factor of <tt>tab</tt>.
+ *  @param cap the starting capacity of <tt>tab</tt>.
  *  @return Success status.
  */
 int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap);

@@ -2,8 +2,9 @@
  *  @brief Function prototypes and structs for a red black tree data structure.
  *
  *  Implementation of a left leaning red black tree. The nodes in the red black
- *  tree store data as generic pointers (void *) where an element value of NULL
- *  cannot be stored. Elements are compared using a generic compare function.
+ *  tree store data as generic pointers (<tt>void *</tt>) where an element
+ *  value of <tt>NULL</tt> cannot be stored. Elements are compared using a
+ *  generic compare function.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
@@ -38,53 +39,63 @@ typedef struct {
     cmpfn cmp;              /**< the function for comparing elements. */
 } rbtree;
 
-/** @brief Initializes a new rbtree.
+/** @brief Initializes a new <tt>rbtree</tt>.
  *
- *  Will fail and return NULL if tree is NULL or cmp is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt>
+ *  or <tt>cmp</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the rbtree we want to initialize.
- *  @param cmp the compare function that will be used by the tree.
+ *  @param tree the address of the <tt>rbtree</tt> we want to initialize.
+ *  @param cmp the compare function that will be used by <tt>tree</tt>.
  *  @return Success status.
  */
 int rbtree_init(rbtree *tree, cmpfn cmp);
 
-/** @brief Removes all elements from tree.
+/** @brief Removes all elements from <tt>tree</tt>.
  *
- *  Frees all the nodes in tree but will not free the elements in the nodes.
+ *  Frees all the nodes in <tt>tree</tt> but will not free the elements in
+ *  the nodes.
  *
- *  @param tree the address of the rbtree we want to clear out.
+ *  @param tree the address of the <tt>rbtree</tt> we want to clear out.
  *  @return Success status.
  */
 int rbtree_clear(rbtree *tree);
 
-/** @brief Inserts elem into tree.
+/** @brief Inserts <tt>elem</tt> into <tt>tree</tt>.
  *
- *  Will fail and return 1 if tree is NULL or elem is NULL. If elem is already
- *  in tree will do nothing but return successfully.
+ *  Will fail and return <tt>1</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>. If <tt>elem</tt> is already in
+ *  <tt>tree</tt> will simply return <tt>0</tt>.
  *
- *  @param tree the address of the rbtree we want to insert elem into.
- *  @param elem the element we want to insert into tree.
+ *  @param tree the address of the <tt>rbtree</tt> we want to insert
+ *              <tt>elem</tt> into.
+ *  @param elem the element we want to insert into <tt>tree</tt>.
  *  @return Success status.
  */
 int rbtree_insert(rbtree *tree, void *elem);
 
-/** @brief Removes elem from tree if it is in tree.
+/** @brief Removes <tt>elem</tt> from <tt>tree</tt> if it is in <tt>tree</tt>.
  *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the rbtree we want to remove elem from.
- *  @param elem the element we want to remove from tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ *  @param tree the address of the <tt>rbtree</tt> we want to remove
+ *              <tt>elem</tt> from.
+ *  @param elem the element we want to remove from <tt>tree</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tree</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *rbtree_remove(rbtree *tree, void *elem);
 
-/** @brief Searches tree for elem.
+/** @brief Searches <tt>tree</tt> for <tt>elem</tt>.
  *
- *  Will fail and return NULL if tree is NULL or elem is NULL.
+ *  Will fail and return <tt>NULL</tt> if <tt>tree</tt> is <tt>NULL</tt> or
+ *  <tt>elem</tt> is <tt>NULL</tt>.
  *
- *  @param tree the address of the rbtree we want to search for elem.
- *  @param elem the element we're searching for in tree.
- *  @return The element equal to elem if it exists in tree, NULL otherwise.
+ *  @param tree the address of the <tt>rbtree</tt> we want to search for
+ *              <tt>elem</tt>.
+ *  @param elem the element we're searching for in <tt>tree</tt>.
+ *  @return The element equal to <tt>elem</tt> if it exists in <tt>tree</tt>,
+ *          <tt>NULL</tt> otherwise.
  */
 void *rbtree_search(rbtree *tree, void *elem);
 

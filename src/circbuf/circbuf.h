@@ -38,7 +38,7 @@ typedef struct {
  *  <tt>len + 1</tt>.
  *
  *  @param cbuf the address of the <tt>circbuf</tt> we want to initialize.
- *  @param len the desired length of the <tt>circbuf</tt>.
+ *  @param len the length of <tt>cbuf</tt>.
  *  @return Success status.
  */
 int circbuf_init(circbuf *cbuf, size_t len);
