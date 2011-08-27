@@ -4,7 +4,7 @@
  *  Implementation of a FIFO queue that is backed by a singly linked list
  *  with a tail reference. The nodes in the linked list store data as
  *  generic pointers (<tt>void *</tt>) where an element value of <tt>NULL</tt>
- *   cannot be stored.
+ *  cannot be stored.
  *
  *  @author Alexander Malyshev
  *  @bug No known bugs.
