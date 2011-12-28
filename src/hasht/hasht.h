@@ -14,6 +14,8 @@
 #ifndef HASHT_H_
 #define HASHT_H_
 
+#include <stddef.h>
+
 #ifndef CMPFN
 #define CMPFN
 /** @brief A generic compare function. */

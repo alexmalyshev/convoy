@@ -13,6 +13,8 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
 
+#include <stddef.h>
+
 /** @brief A node in a linked list. */
 typedef struct qnode_t {
     struct qnode_t *next;   /**< the next node in the list. */

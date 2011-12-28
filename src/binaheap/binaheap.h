@@ -13,6 +13,8 @@
 #ifndef BINAHEAP_H_
 #define BINAHEAP_H_
 
+#include <stddef.h>
+
 /** @brief The default number of elements a new <tt>binaheap</tt> can store. */
 #define BINAHEAP_DEFAULT_CAPACITY 32
 

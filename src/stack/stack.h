@@ -12,6 +12,8 @@
 #ifndef STACK_H_
 #define STACK_H_
 
+#include <stddef.h>
+
 /** @brief A node in a linked list. */
 typedef struct snode_t {
     struct snode_t *next;   /**< the next node in the list. */

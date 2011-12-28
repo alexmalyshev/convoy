@@ -15,6 +15,8 @@
 #ifndef CIRCBUF_H_
 #define CIRCBUF_H_
 
+#include <stddef.h>
+
 #ifndef SIZE_MAX
 /** @brief The max number of elements in the circular buffer. */
 #define MAX_LEN ((size_t)(-1) - 1)

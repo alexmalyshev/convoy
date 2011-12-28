@@ -13,6 +13,8 @@
 #ifndef DEQUE_H_
 #define DEQUE_H_
 
+#include <stddef.h>
+
 /** @brief A node in a linked list. */
 typedef struct dnode_t {
     struct dnode_t *prev;   /**< the previous node in the list. */
