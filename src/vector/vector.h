@@ -1,5 +1,5 @@
 /** @file vector.h
- *  @brief Header for a dynamic array data structure.
+ *  @brief Header for a dynamic array data structure library.
  *
  *  A <tt>vector</tt> is a dynamic array. Inserts and pushes into the
  *  <tt>vector</tt> will always succeed provided there is enough memory on the

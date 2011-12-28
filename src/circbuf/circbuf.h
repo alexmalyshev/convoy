@@ -1,5 +1,5 @@
 /** @file circbuf.h
- *  @brief Function prototypes and struct for a circular buffer data structure.
+ *  @brief Header for a circular buffer data structure library.
  *
  *  Implementation of a fixed-size circular buffer. Elements are stored as
  *  generic pointers (<tt>void *</tt>) where <tt>NULL</tt> cannot be stored,
@@ -9,7 +9,6 @@
  *  element.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef CIRCBUF_H_

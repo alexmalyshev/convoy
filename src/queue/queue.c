@@ -6,7 +6,6 @@
  *  wraps around the front element when we call <tt>queue_dequeue</tt>.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

@@ -7,7 +7,6 @@
  *  <tt>deque_removef</tt>.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

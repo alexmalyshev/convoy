@@ -8,7 +8,6 @@
  *  and it is full if its back index plus one (with wraparound courtesy of mod)  *  is equal to its front index.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

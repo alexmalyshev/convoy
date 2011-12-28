@@ -1,5 +1,5 @@
 /** @file splay.h
- *  @brief Function prototypes and structs for a splay tree data structure.
+ *  @brief Header for a splay tree data structure library.
  *
  *  Implementation of a splay tree. The nodes in the splay tree store data
  *  as generic pointers (<tt>void *</tt>) where an element value of
@@ -7,7 +7,6 @@
  *  compare function.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef SPLAY_H_

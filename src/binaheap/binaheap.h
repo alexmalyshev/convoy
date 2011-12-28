@@ -1,5 +1,5 @@
 /** @file binaheap.h
- *  @brief Function prototypes and struct for a binary heap data structure.
+ *  @brief Header for a binary heap data structure library.
  *
  *  Implementation of a minimum binary heap backed by a dynamic array.
  *  Elements are stored as generic pointers (<tt>void *</tt>) where an element
@@ -7,7 +7,6 @@
  *  generic compare function.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef BINAHEAP_H_

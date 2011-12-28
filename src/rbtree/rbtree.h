@@ -1,5 +1,5 @@
 /** @file rbtree.h
- *  @brief Function prototypes and structs for a red black tree data structure.
+ *  @brief Header for a red black tree data structure library.
  *
  *  Implementation of a left leaning red black tree. The nodes in the red black
  *  tree store data as generic pointers (<tt>void *</tt>) where an element
@@ -7,7 +7,6 @@
  *  generic compare function.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef RBTREE_H_

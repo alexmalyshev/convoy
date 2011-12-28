@@ -1,12 +1,11 @@
 /** @file stack.h
- *  @brief Function prototypes and structs for a stack data structure.
+ *  @brief Header for a stack data structure library.
  *
  *  Implementation of a LIFO stack that is backed by a singly linked list.
  *  The nodes in the linked list store data as generic pointers
  *  (<tt>void *</tt>) where an element value of <tt>NULL</tt> cannot be stored.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef STACK_H_

@@ -1,5 +1,5 @@
 /** @file deque.h
- *  @brief Function prototypes and structs for a deque data structure.
+ *  @brief Header for a deque data structure library.
  *
  *  Implementation of a double-ended queue(deque) that is backed by a
  *  doubly linked list. The nodes in the linked list store data as
@@ -7,7 +7,6 @@
  *  cannot be stored.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef DEQUE_H_

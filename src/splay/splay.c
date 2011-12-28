@@ -7,7 +7,6 @@
  *  compare function that is given as an argument to <tt>splay_init</tt>.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

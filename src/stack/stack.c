@@ -6,7 +6,6 @@
  *  top element when we call <tt>stack_pop</tt>.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

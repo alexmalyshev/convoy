@@ -8,7 +8,6 @@
  *  the hash function that is also given as an argument in <tt>hasht_init</tt>.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

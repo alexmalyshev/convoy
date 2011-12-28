@@ -1,5 +1,5 @@
 /** @file queue.h
- *  @brief Function prototypes and structs for a queue data structure.
+ *  @brief Header for a queue data structure library.
  *
  *  Implementation of a FIFO queue that is backed by a singly linked list
  *  with a tail reference. The nodes in the linked list store data as
@@ -7,7 +7,6 @@
  *  cannot be stored.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef QUEUE_H_

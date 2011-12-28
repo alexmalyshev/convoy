@@ -7,7 +7,6 @@
  *  given as an argument to binaheap_init.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #include <stdlib.h>

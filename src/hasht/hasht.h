@@ -1,5 +1,5 @@
 /** @file hasht.h
- *  @brief Function prototypes and structs for a hash table.
+ *  @brief Header for a hash table library.
  *
  *  Implementation of a hash table that is backed by a dynamic array and
  *  uses separate chaining to resolve collisions. Elements are stored as
@@ -8,7 +8,6 @@
  *  function and hashed using a user-specified hash function.
  *
  *  @author Alexander Malyshev
- *  @bug No known bugs.
  */
 
 #ifndef HASHT_H_
