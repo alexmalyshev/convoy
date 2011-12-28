@@ -1,3 +1,8 @@
+/** @file vector.c
+ *  @brief A dynamic array library.
+ *  @author Alexander Malyshev
+ */
+
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
