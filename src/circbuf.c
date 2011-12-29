@@ -18,6 +18,7 @@
 void circbuf_init(circbuf *cbuf, size_t len) {
     assert(cbuf != NULL);
 
+    /* allocate one extra slot */
     cbuf->elems = malloc((len + 1) * sizeof(void *));
     assert(cbuf->elems != NULL);
 
@@ -47,6 +48,7 @@ int circbuf_enqueue(circbuf *cbuf, void *elem) {
     assert(cbuf != NULL);
     assert(elem != NULL);
 
+    /* if cbuf is full just return 1 */
     if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
     cbuf->elems[cbuf->back] = elem;

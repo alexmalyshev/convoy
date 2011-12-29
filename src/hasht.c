@@ -175,6 +175,13 @@ static void resize(hasht *tab, size_t newcap) {
     newentries = calloc(newcap, sizeof(hashent *));
     assert(newentries != NULL);
 
+    if (entries == NULL) {
+        tab->entries = newentries;
+        tab->cap = newcap;
+        tab->limit = (size_t)(tab->loadfactor * newcap);
+        return;
+    }
+
     for (i = 0; i < cap; ++i) {
         entry = entries[i];
         while (entry != NULL) {
