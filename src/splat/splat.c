@@ -1,4 +1,4 @@
-/** @file splay.c
+/** @file splat.c
  *  @brief A splay tree library.
  *
  *  We malloc a node every time we insert a new element into the splay tree
@@ -9,26 +9,29 @@
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
-#include "splay.h"
-#include "splay-int.h"
+#include "splat.h"
 
-int splay_init(splaytree *tree, cmpfn cmp) {
-    if (tree == NULL || cmp == NULL)
-        return 1;
+static void clear(spnode *node);
+static void splay(splat *tree, void *elem);
+static spnode *rotate_left(spnode *node);
+static spnode *rotate_right(spnode *node);
+static spnode *init_node(void *elem);
+
+void splat_init(splat *tree, cmpfn cmp) {
+    assert(tree != NULL);
+    assert(cmp != NULL);
 
     tree->cmp = cmp;
     tree->root = NULL;
-    return 0;
 }
 
-int splay_clear(splaytree *tree) {
-    if (tree == NULL)
-        return 0;
+void splat_clear(splat *tree) {
+    assert(tree != NULL);
 
     clear(tree->root);
     tree->root = NULL;
-    return 0;
 }
 
 static void clear(spnode *node) {
@@ -40,27 +43,25 @@ static void clear(spnode *node) {
     free(node);
 }
 
-int splay_insert(splaytree *tree, void *elem) {
+void splat_insert(splat *tree, void *elem) {
     spnode *new;
     int c;
 
-    if (tree == NULL || elem == NULL)
-        return 1;
+    assert(tree != NULL);
+    assert(elem != NULL);
 
     if (tree->root == NULL) {
-        if ((new = init_node(elem)) == NULL)
-            return 1;
+        new = init_node(elem);
         tree->root = new;
-        return 0;
+        return;
     }
 
     splay(tree, elem);
     c = tree->cmp(elem, tree->root->elem);
     if (c == 0)
-        return 0;
+        return;
 
-    if ((new = init_node(elem)) == NULL)
-        return 1;
+    new = init_node(elem);
 
     if (c < 0) {
         new->left = tree->root->left;
@@ -72,14 +73,16 @@ int splay_insert(splaytree *tree, void *elem) {
         tree->root->right = NULL;
     }
     tree->root = new;
-    return 0;
 }
 
-void *splay_remove(splaytree *tree, void *elem) {
+void *splat_remove(splat *tree, void *elem) {
     spnode *temp, *dead;
     void *removed;
 
-    if (tree == NULL || tree->root == NULL || elem == NULL)
+    assert(tree != NULL);
+    assert(elem != NULL);
+
+    if (tree->root == NULL)
         return NULL;
 
     splay(tree, elem);
@@ -101,8 +104,11 @@ void *splay_remove(splaytree *tree, void *elem) {
     return removed;
 }
 
-void *splay_search(splaytree *tree, void *elem) {
-    if (tree == NULL || tree->root == NULL || elem == NULL)
+void *splat_search(splat *tree, void *elem) {
+    assert(tree != NULL);
+    assert(elem != NULL);
+
+    if (tree->root == NULL)
         return NULL;
 
     splay(tree, elem);
@@ -111,7 +117,7 @@ void *splay_search(splaytree *tree, void *elem) {
     return NULL;
 }
 
-static void splay(splaytree *tree, void *elem) {
+static void splay(splat *tree, void *elem) {
     spnode assembler;
     spnode *left, *right;
     spnode *node;
@@ -180,10 +186,8 @@ static spnode *rotate_right(spnode *node) {
 }
 
 static spnode *init_node(void *elem) {
-    spnode *node;
-
-    if ((node = malloc(sizeof(spnode))) == NULL)
-        return NULL;
+    spnode *node = malloc(sizeof(spnode));
+    assert(node != NULL);
 
     node->elem = elem;
     node->left = NULL;
