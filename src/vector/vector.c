@@ -1,5 +1,13 @@
 /** @file vector.c
  *  @brief A dynamic array library.
+ *
+ *  Indices that are out-of-bounds are considered as containing <tt>NULL</tt>.
+ *  Inserting into an index that is out-of-bounds will resize the dynamic
+ *  array, either by the vector grow macro or up to the index itself if it is
+ *  very far away. We don't resize when reading values that are out-of-bounds
+ *  or when we swap two values that are out-of-bounds (they're both
+ *  <tt>NULL</tt> anyway).
+ *
  *  @author Alexander Malyshev
  */
 

@@ -1,9 +1,11 @@
 /** @file stack.h
  *  @brief Header for a stack data structure library.
  *
- *  Implementation of a LIFO stack that is backed by a singly linked list.
- *  The nodes in the linked list store data as generic pointers
- *  (<tt>void *</tt>) where an element value of <tt>NULL</tt> cannot be stored.
+ *  A <tt>stack</tt> is a singly linked list. Elements are stored as generic
+ *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
+ *  Inserting into a <tt>stack</tt> will always succeed provided there is
+ *  enough memory on the system. Getting a <tt>ULL</tt> back as an element from
+ *  a <tt>stack</tt> means that the <tt>stack</tt> is empty.
  *
  *  @author Alexander Malyshev
  */
@@ -13,67 +15,61 @@
 
 #include <stddef.h>
 
-/** @brief A node in a linked list. */
+/** @brief A node in a singly linked list. */
 typedef struct snode_t {
-    struct snode_t *next;   /**< the next node in the list. */
-    void *elem;             /**< the element stored in the node. */
+    struct snode_t *next;   /**< the next node. */
+    void *elem;             /**< the element. */
 } snode;
 
 /** @brief A stack. */
 typedef struct {
-    snode *top;             /**< the top node in the stack. */
-    size_t len;             /**< the number of elements in the stack. */
+    snode *top;             /**< the top node. */
+    size_t len;             /**< the number of elements. */
 } stack;
 
 /** @brief Initializes a new <tt>stack</tt>.
  *
- *  Will fail and return <tt>1</tt> if <tt>stk</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
  *
- *  @param stk the address of the <tt>stack</tt> we want to initialize.
- *  @return Success status.
+ *  @param stk the address of the <tt>stack</tt>.
  */
-int stack_init(stack *stk);
+void stack_init(stack *stk);
 
 /** @brief Removes all elements from <tt>stk</tt>.
  *
- *  Frees all the nodes in the linked list in <tt>stk</tt> but will not free
- *  the elements in the nodes.
+ *  Asserts that <tt>stack</tt> is not <tt>NULL</tt>.
  *
- *  @param stk the address of the <tt>stack</tt> we want to clear out.
- *  @return Success status.
+ *  @param stk the address of the <tt>stack</tt>.
  */
-int stack_clear(stack *stk);
+void stack_clear(stack *stk);
 
-/** @brief Returns the top element of <tt>stk</tt> if it exists.
+/** @brief Returns the top element of <tt>stk</tt>.
  *
- *  Will return <tt>NULL</tt> if <tt>stk</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
+ *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty.
  *
- *  @param stk the address of the <tt>stack</tt> we want to peek into.
- *  @return The top element of <tt>stk</tt> if it exists, <tt>NULL</tt> if
- *          <tt>stk</tt> is empty.
+ *  @param stk the address of the <tt>stack</tt>.
+ *  @return The top element of <tt>stk</tt>.
  */
 void *stack_peek(stack *stk);
 
-/** @brief Removes the top element of <tt>stk</tt> if it exists and returns it.
+/** @brief Removes the top element of <tt>stk</tt>.
  *
- *  Will return <tt>NULL</tt> if <tt>stk</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
+ *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty.
  *
- *  @param stk the address of the <tt>stack</tt> we want to pop the top off.
- *  @return The top element of <tt>stk</tt> if it exists, <tt>NULL</tt> if
- *          <tt>stk</tt> is empty.
+ *  @param stk the address of the <tt>stack</tt>.
+ *  @return The top element of <tt>stk</tt>.
  */
 void *stack_pop(stack *stk);
 
 /** @brief Inserts <tt>elem</tt> as the new top of <tt>stk</tt>.
  *
- *  Will fail and return <tt>1</tt> if <tt>stk</tt> is <tt>NULL</tt> or
- *  <tt>elem</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>stk</tt> and <tt>elem</tt> are not <tt>NULL</tt>.
  *
- *  @param stk the address of the <tt>stack</tt> we want to push <tt>elem</tt>
- *             onto.
- *  @param elem the element we want to insert as the new top of <tt>stk</tt>.
- *  @return Success status.
+ *  @param stk the address of the <tt>stack</tt>.
+ *  @param elem the element.
  */
-int stack_push(stack *stk, void *elem);
+void stack_push(stack *stk, void *elem);
 
 #endif /* STACK_H_ */
