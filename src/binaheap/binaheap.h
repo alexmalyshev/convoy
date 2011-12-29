@@ -1,11 +1,11 @@
 /** @file binaheap.h
  *  @brief Header for a binary heap data structure library.
  *
- *  Implementation of a minimum binary heap backed by a dynamic array.
- *  Elements are stored as generic pointers (<tt>void *</tt>), however
- *  <tt>NULL</tt> cannot be stored. Elements are compared using a generic
- *  compare function. Inserting into a <tt>binaheap</tt> will always succeed
- *  provided there is enough memory on the system.
+ *  A <tt>binaheap</tt> is a dynamic array. Elements are stored as generic
+ *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
+ *  Elements are compared using a generic compare function. Inserting into a
+ *  <tt>binaheap</tt> will always succeed provided there is enough memory on
+ *  the system.
  *
  *  @author Alexander Malyshev
  */
