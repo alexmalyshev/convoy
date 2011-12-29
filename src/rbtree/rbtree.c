@@ -4,55 +4,66 @@
  *  We malloc a node every time we insert a new element into the red black tree
  *  and free the node that wraps around the element returned by
  *  <tt>rbtree_remove</tt>. We compare elements in the tree using the compare
- *  function that is given as an argument to <tt>rbtree_init</tt>.
+ *  function that is given as an argument to <tt>rbtree_init</tt>. This is a
+ *  left-leaning red black tree there are fewer cases than usual.
  *
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include "rbtree.h"
-#include "rbtree-int.h"
 
-/** @brief Flips <tt>RED</tt> to <tt>BLACK</tt> and vice versa. */
-#define FLIP(color) (!(color))
+static void clear(rbnode *node);
+static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
+static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed);
+static rbnode *fix(rbnode *node);
+static int is_red(rbnode *node);
+static rbnode *rotate_left(rbnode *node);
+static rbnode *rotate_right(rbnode *node);
+static void color_flip(rbnode *node);
+static void *min(rbnode *node);
+static rbnode *move_red_right(rbnode *node);
+static rbnode *remove_min(rbnode *node);
+static rbnode *move_red_left(rbnode *node);
+static int flip(int color);
+static rbnode *init_node(void *elem);
 
-int rbtree_init(rbtree *tree, cmpfn cmp) {
-    if (tree == NULL || cmp == NULL)
-        return 1;
+void rbtree_init(rbtree *tree, cmpfn cmp) {
+    assert(tree != NULL);
+    assert(cmp != NULL);
 
     tree->root = NULL;
     tree->cmp = cmp;
-    return 0;
 }
 
-int rbtree_clear(rbtree *tree) {
-    if (tree == NULL)
-        return 1;
+void rbtree_clear(rbtree *tree) {
+    assert(tree != NULL);
 
     clear(tree->root);
     tree->root = NULL;
-    return 0;
 }
 
 static void clear(rbnode *node) {
+    void *left;
+    void *right;
+
     if (node == NULL)
         return;
-    if (node->left != NULL)
-        clear(node->left);
-    if (node->right != NULL)
-        clear(node->right);
+
+    left = node->left;
+    right = node->right;
     free(node);
+    clear(left);
+    clear(right);
 }
 
-int rbtree_insert(rbtree *tree, void *elem) {
-    if (tree == NULL || elem == NULL)
-        return 1;
+void rbtree_insert(rbtree *tree, void *elem) {
+    assert(tree != NULL);
+    assert(elem != NULL);
 
     tree->root = insert(tree->root, elem, tree->cmp);
-    if (tree->root == NULL)
-        return 1;
     tree->root->color = BLACK;
-    return 0;
 }
 
 static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
@@ -75,8 +86,9 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
 void *rbtree_remove(rbtree *tree, void *elem) {
     void *removed = NULL;
 
-    if (tree == NULL || elem == NULL)
-        return NULL;
+    assert(tree != NULL);
+    assert(elem != NULL);
+
     if (tree->root == NULL)
         return NULL;
 
@@ -121,8 +133,8 @@ void *rbtree_search(rbtree *tree, void *elem) {
     cmpfn cmp;
     int c;
 
-    if (tree == NULL || elem == NULL)
-        return NULL;
+    assert(tree != NULL);
+    assert(elem != NULL);
 
     node = tree->root;
     cmp = tree->cmp;
@@ -179,9 +191,9 @@ static rbnode *rotate_right(rbnode *node) {
 }
 
 static void color_flip(rbnode *node) {
-    node->color = FLIP(node->color);
-    node->left->color = FLIP(node->left->color);
-    node->right->color = FLIP(node->right->color);
+    node->color = flip(node->color);
+    node->left->color = flip(node->left->color);
+    node->right->color = flip(node->right->color);
 }
 
 static rbnode *move_red_right(rbnode *node) {
@@ -214,11 +226,14 @@ static rbnode *move_red_left(rbnode *node) {
     return node;
 }
 
-static rbnode *init_node(void *elem) {
-    rbnode *node;
+static int flip(int color) {
+    return !color;
+}
 
-    if ((node = malloc(sizeof(rbnode))) == NULL)
-        return NULL;
+static rbnode *init_node(void *elem) {
+    rbnode *node = malloc(sizeof(rbnode));
+    assert(node != NULL);
+
     node->elem = elem;
     node->color = RED;
     node->left = NULL;

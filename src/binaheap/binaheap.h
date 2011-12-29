@@ -5,7 +5,8 @@
  *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
  *  Elements are compared using a generic compare function. Inserting into a
  *  <tt>binaheap</tt> will always succeed provided there is enough memory on
- *  the system.
+ *  the system. Getting a <tt>NULL</tt> back as an element from a
+ *  <tt>binaheap</tt> means that the <tt>binaheap</tt> is empty.
  *
  *  @author Alexander Malyshev
  */
