@@ -11,6 +11,7 @@
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include "circbuf.h"
 
