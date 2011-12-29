@@ -78,7 +78,7 @@ void deque_insertf(deque *deq, void *elem) {
 void *deque_peekb(deque *deq) {
     assert(deq != NULL);
 
-    if (deq->back != NULL)
+    if (deq->back == NULL)
         return NULL;
     return deq->back->elem;
 }
