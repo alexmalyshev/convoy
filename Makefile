@@ -9,7 +9,7 @@ static: libconvoy.a
 shared: libconvoy.so
 
 alex-install: libconvoy.a
-	cp $^ /usr/local/lib/
+	cp $^ /usr/local/lib/; cp include/* /usr/local/include/convoy
 
 libconvoy.a: folder $(OBJS)
 	$(AR) rcs $@ $(OBJS)
