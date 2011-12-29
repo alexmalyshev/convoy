@@ -10,16 +10,26 @@
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include "hasht.h"
-#include "hasht-int.h"
 
-int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
-    if (tab == NULL || hash == NULL || cmp == NULL || lf <= 0.0)
-        return 1;
+static void resize(hasht *tab, size_t newcap);
+static void destroy_bucket(hashent *entry);
+static hashent *init_entry(void *elem);
 
-    if ((tab->entries = calloc(cap, sizeof(hashent *))) == NULL)
-        return 1;
+void hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
+    assert(tab != NULL);
+    assert(hash != NULL);
+    assert(cmp != NULL);
+    assert(lf > 0.0);
+
+    if (cap != 0) {
+        tab->entries = calloc(cap, sizeof(hashent *));
+        assert(tab->entries != NULL);
+    } else {
+        tab->entries = NULL;
+    }
 
     tab->hash = hash;
     tab->cmp = cmp;
@@ -27,24 +37,20 @@ int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
     tab->cap = cap;
     tab->limit = (size_t)(cap * lf);
     tab->loadfactor = lf;
-    return 0;
 }
 
-int hasht_destroy(hasht *tab) {
-    if (hasht_clear(tab))
-        return 1;
-
+void hasht_destroy(hasht *tab) {
+    hasht_clear(tab);
     free(tab->entries);
-    return 0;
 }
 
-int hasht_insert(hasht *tab, void *elem) {
+void hasht_insert(hasht *tab, void *elem) {
     hashent *entry;
     size_t index;
     cmpfn cmp;
 
-    if (tab == NULL || elem == NULL)
-        return 1;
+    assert(tab != NULL);
+    assert(elem != NULL);
 
     if (tab->size == tab->limit)
         resize(tab, 2 * tab->cap);
@@ -56,23 +62,23 @@ int hasht_insert(hasht *tab, void *elem) {
         entry = init_entry(elem);
         tab->entries[index] = entry;
         ++(tab->size);
-        return 0;
+        return;
     }
 
     cmp = tab->cmp;
 
     while (entry->next != NULL) {
         if (cmp(elem, entry->elem) == 0)
-            return 0;
+            return;
         entry = entry->next;
     }
     if (cmp(elem, entry->elem) == 0)
-        return 0;
+        return;
 
     entry->next = init_entry(elem);
     ++(tab->size);
 
-    return 0;
+    return;
 }
 
 void *hasht_remove(hasht *tab, void *elem) {
@@ -82,8 +88,8 @@ void *hasht_remove(hasht *tab, void *elem) {
     cmpfn cmp;
     void *found;
 
-    if (tab == NULL || elem == NULL)
-        return NULL;
+    assert(tab != NULL);
+    assert(elem != NULL);
 
     index = tab->hash(elem) % tab->cap;
     entry = tab->entries[index];
@@ -120,8 +126,8 @@ void *hasht_search(hasht *tab, void *elem) {
     size_t index;
     cmpfn cmp;
 
-    if (tab == NULL || elem == NULL)
-        return NULL;
+    assert(tab != NULL);
+    assert(elem != NULL);
 
     index = tab->hash(elem) % tab->cap;
     entry = tab->entries[index];
@@ -136,31 +142,26 @@ void *hasht_search(hasht *tab, void *elem) {
     return NULL;
 }
 
-int hasht_clear(hasht *tab) {
+void hasht_clear(hasht *tab) {
     size_t i;
 
-    if (tab == NULL)
-        return 1;
+    assert(tab != NULL);
 
     for (i = 0; i < tab->cap; ++i)
         destroy_bucket((tab->entries)[i]);
-
-    return 0;
 }
 
-int hasht_trunc(hasht *tab) {
+void hasht_trunc(hasht *tab) {
     size_t newcap;
 
-    if (tab == NULL)
-        return 1;
+    assert(tab != NULL);
 
     newcap = (size_t)(tab->size / tab->loadfactor);
     resize(tab, newcap);
     tab->limit = tab->size;
-    return 0;
 }
 
-static int resize(hasht *tab, size_t newcap) {
+static void resize(hasht *tab, size_t newcap) {
     hashent **entries = tab->entries;
     hashfn hash = tab->hash;
     size_t cap = tab->cap;
@@ -171,8 +172,8 @@ static int resize(hasht *tab, size_t newcap) {
     size_t i;
     size_t newindex;
 
-    if ((newentries = calloc(newcap, sizeof(hashent *))) == NULL)
-        return 1;
+    newentries = calloc(newcap, sizeof(hashent *));
+    assert(newentries != NULL);
 
     for (i = 0; i < cap; ++i) {
         entry = entries[i];
@@ -189,7 +190,6 @@ static int resize(hasht *tab, size_t newcap) {
     tab->cap = newcap;
     tab->limit = (size_t)(tab->loadfactor * newcap);
     free(entries);
-    return 0;
 }
 
 static void destroy_bucket(hashent *entry) {
@@ -203,10 +203,8 @@ static void destroy_bucket(hashent *entry) {
 }
 
 static hashent *init_entry(void *elem) {
-    hashent *entry;
-
-    if ((entry = malloc(sizeof(entry))) == NULL)
-        return NULL;
+    hashent *entry = malloc(sizeof(entry));
+    assert(entry != NULL);
 
     entry->elem = elem;
     entry->next = NULL;
