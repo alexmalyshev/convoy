@@ -108,10 +108,8 @@ static void percolate_down(binaheap *heap) {
 }
 
 static void resize(binaheap *heap, size_t newcap) {
-    void *new;
-
-    new = realloc(heap->elems, newcap * sizeof(void *));
-    assert(new != NULL);
+    heap->elems = realloc(heap->elems, newcap * sizeof(void *));
+    assert(heap->elems != NULL);
 
     heap->cap = newcap;
 }
