@@ -1,12 +1,11 @@
 /** @file vector.h
  *  @brief Header for a dynamic array data structure library.
  *
- *  A <tt>vector</tt> is a dynamic array. Inserts and pushes into the
+ *  A <tt>vector</tt> is a dynamic array. Inserts and pushes into a
  *  <tt>vector</tt> will always succeed provided there is enough memory on the
  *  system. Elements are stored as generic pointers (<tt>void *</tt>), however
  *  <tt>NULL</tt> cannot be stored. Getting a <tt>NULL</tt> back as an element
- *  from the <tt>vector</tt> means that position in the <tt>vector</tt> was
- *  empty.
+ *  from a <tt>vector</tt> means that position in the <tt>vector</tt> is empty.
  *
  *  @author Alexander Malyshev
  */

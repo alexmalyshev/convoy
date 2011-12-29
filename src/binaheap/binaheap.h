@@ -3,8 +3,9 @@
  *
  *  Implementation of a minimum binary heap backed by a dynamic array.
  *  Elements are stored as generic pointers (<tt>void *</tt>), however
- *  <tt>NULL</tt> cannot be stored. Elements are compared using a
- *  generic compare function.
+ *  <tt>NULL</tt> cannot be stored. Elements are compared using a generic
+ *  compare function. Inserting into a <tt>binaheap</tt> will always succeed
+ *  provided there is enough memory on the system.
  *
  *  @author Alexander Malyshev
  */
@@ -52,12 +53,10 @@ void binaheap_destroy(binaheap *heap);
 
 /** @brief Inserts <tt>elem</tt> into <tt>heap</tt>.
  *
- *  Will fail and return <tt>1</tt> if <tt>heap</tt> is <tt>NULL</tt> or
- *  <tt>elem</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>heap</tt> and <tt>elem</tt> are not <tt>NULL</tt>.
  *
- *  @param heap the address of the <tt>binaheap</tt> we want to insert
- *              <tt>elem</tt> into.
- *  @param elem the element we want to insert into <tt>heap</tt>.
+ *  @param heap the address of the <tt>binaheap</tt>.
+ *  @param elem the element.
  */
 void binaheap_insert(binaheap *heap, void *elem);
 

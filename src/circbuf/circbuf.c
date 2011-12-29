@@ -2,10 +2,11 @@
  *  @brief A circular buffer library.
  *
  *  Implemented as an array with two indices to track the front and
- *  back of the circular buffer. We malloc an array with an extra slot so
- *  as to simplify checking for empty and full <tt>circbuf</tt>s. The
+ *  back of the circular buffer. We malloc an array with an extra slot to
+ *  simplify checking if a <tt>circbuf</tt> is empty or full. The
  *  <tt>circbuf</tt> is empty if its front index is equal to its back index,
- *  and it is full if its back index plus one (with wraparound courtesy of mod)  *  is equal to its front index.
+ *  and it is full if its back index plus one (with wraparound courtesy of mod)
+ *  is equal to its front index.
  *
  *  @author Alexander Malyshev
  */
@@ -13,30 +14,27 @@
 #include <stdlib.h>
 #include "circbuf.h"
 
-int circbuf_init(circbuf *cbuf, size_t len) {
-    if (cbuf == NULL || len == MAX_LEN)
-        return 1;
+void circbuf_init(circbuf *cbuf, size_t len) {
+    assert(cbuf != NULL);
 
-    if ((cbuf->elems = malloc((len + 1) * sizeof(void *))) == NULL)
-        return 1;
+    cbuf->elems = malloc((len + 1) * sizeof(void *));
+    assert(cbuf->elems != NULL);
+
     cbuf->front = 0;
     cbuf->back = 0;
     cbuf->len = len + 1;
-    return 0;
 }
 
-int circbuf_destroy(circbuf *cbuf) {
-    if (circbuf_clear(cbuf))
-        return 1;
-
+void circbuf_destroy(circbuf *cbuf) {
+    circbuf_clear(cbuf);
     free(cbuf->elems);
-    return 0;
 }
 
 void *circbuf_dequeue(circbuf *cbuf) {
     void *data;
 
-    if (cbuf == NULL || cbuf->front == cbuf->back)
+    assert(cbuf != NULL);
+    if (cbuf->front == cbuf->back)
         return NULL;
 
     data = cbuf->elems[cbuf->front];
@@ -45,8 +43,8 @@ void *circbuf_dequeue(circbuf *cbuf) {
 }
 
 int circbuf_enqueue(circbuf *cbuf, void *elem) {
-    if (cbuf == NULL || elem == NULL)
-        return 1;
+    assert(cbuf != NULL);
+    assert(elem != NULL);
 
     if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
@@ -56,17 +54,17 @@ int circbuf_enqueue(circbuf *cbuf, void *elem) {
 }
 
 void *circbuf_peek(circbuf *cbuf) {
-    if (cbuf == NULL || cbuf->front == cbuf->back)
+    assert(cbuf != NULL);
+
+    if (cbuf->front == cbuf->back)
         return NULL;
 
     return cbuf->elems[cbuf->front];
 }
 
-int circbuf_clear(circbuf *cbuf) {
-    if (cbuf == NULL)
-        return 1;
+void circbuf_clear(circbuf *cbuf) {
+    assert(cbuf != NULL);
 
     cbuf->front = 0;
     cbuf->back = 0;
-    return 0;
 }

@@ -1,12 +1,15 @@
 /** @file circbuf.h
  *  @brief Header for a circular buffer data structure library.
  *
- *  Implementation of a fixed-size circular buffer. Elements are stored as
- *  generic pointers (<tt>void *</tt>) where <tt>NULL</tt> cannot be stored,
- *  and the circbuf structure allocates an array of <tt>void *</tt>s with one
+ *  A <tt>circbuf</tt> is a fixed-size array. Elements are stored as
+ *  generic pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
+ *  The circbuf structure allocates an array of <tt>void *</tt>s with one
  *  extra as it makes it easy to tell the difference between an empty circbuf
  *  and a full circbuf. However this extra slot will never be used to store an
- *  element.
+ *  element. A <tt>circbuf</tt> will not resize when trying to enqueue on an
+ *  element when it is full, the enqueue will simply fail and return 1. Getting
+ *  a <tt>NULL</tt> back as an element from a <tt>circbuf</tt> means that
+ *  the <tt>circbuf</tt> is empty.
  *
  *  @author Alexander Malyshev
  */
@@ -15,13 +18,6 @@
 #define CIRCBUF_H_
 
 #include <stddef.h>
-
-#ifndef SIZE_MAX
-/** @brief The max number of elements in the circular buffer. */
-#define MAX_LEN ((size_t)(-1) - 1)
-#else
-#define MAX_LEN (SIZE_MAX)
-#endif
 
 /** @brief A circular buffer. */
 typedef struct {
@@ -33,67 +29,59 @@ typedef struct {
 
 /** @brief Initializes a new circbuf.
  *
- *  Will fail and return <tt>1</tt> if <tt>cbuf</tt> is <tt>NULL</tt> or if
- *  <tt>len</tt> is <tt>MAX_LEN</tt>. <tt>cbuf</tt> will be able to store a
- *  max of <tt>len</tt> elements, but the inner array will have size
- *  <tt>len + 1</tt>.
+ *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
+ *  Allocates one slot more than <tt>len</tt> behind the scenes.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to initialize.
- *  @param len the length of <tt>cbuf</tt>.
- *  @return Success status.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
+ *  @param len the desired length..
  */
-int circbuf_init(circbuf *cbuf, size_t len);
+void circbuf_init(circbuf *cbuf, size_t len);
 
 /** @brief Frees the array in <tt>cbuf</tt>.
  *
- *  Will not free the elements stored in the nodes of <tt>cbuf</tt>.
+ *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to deallocate.
- *  @return Success status.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
  */
-int circbuf_destroy(circbuf *cbuf);
+void circbuf_destroy(circbuf *cbuf);
 
-/** @brief Removes the front element of <tt>cbuf</tt> if it exists and returns
- *         it.
+/** @brief Removes the front element of <tt>cbuf</tt>.
  *
- *  Will fail and return <tt>NULL</tt> if <tt>cbuf</tt> is NULL.
+ *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
+ *  Returns <tt>NULL</tt> if <tt>cbuf</tt> is empty.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to remove the
- *              front from.
- *  @return The front element of <tt>cbuf</tt> if it exists, <tt>NULL</tt> if
- *          <tt>cbuf</tt> is empty.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
+ *  @return The front element of <tt>cbuf</tt>.
  */
 void *circbuf_dequeue(circbuf *cbuf);
 
 /** @brief Inserts <tt>elem</tt> as the new back element of <tt>cbuf</tt>.
  *
- *  Will fail and return <tt>1</tt> if <tt>cbuf</tt> is <tt>NULL</tt> or
- *  <tt>elem</tt> is <tt>NULL</tt>, or if <tt>cbuf</tt> is full.
+ *  Asserts that <tt>cbuf</tt> and <tt>elem</tt> are not <tt>NULL</tt>.
+ *  If <tt>cbuf</tt> is full, then this does nothing and returns 1.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to insert
- *              <tt>elem</tt> into.
- *  @param elem the element we want to insert as the new back of <tt>cbuf</tt>.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
+ *  @param elem the element.
  *  @return Success status.
  */
 int circbuf_enqueue(circbuf *cbuf, void *elem);
 
-/** @brief Returns the front element of <tt>cbuf</tt> if it exists.
+/** @brief Returns the front element of <tt>cbuf</tt>.
  *
- *  Will return <tt>NULL</tt> if <tt>cbuf</tt> is <tt>NULL</tt>.
+ *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
+ *  Will return <tt>NULL</tt> if <tt>cbuf</tt> is empty.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to peek into.
- *  @return The front element of <tt>cbuf</tt> if it exists, <tt>NULL</tt>
- *          if <tt>cbuf</tt> is empty.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
+ *  @return The front element of <tt>cbuf</tt>.
  */
 void *circbuf_peek(circbuf *cbuf);
 
 /** @brief Removes all elements from <tt>cbuf</tt>.
  *
- *  Will not free the elements in <tt>cbuf</tt>.
+ *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
  *
- *  @param cbuf the address of the <tt>circbuf</tt> we want to clear out.
- *  @return Success status.
+ *  @param cbuf the address of the <tt>circbuf</tt>.
  */
-int circbuf_clear(circbuf *cbuf);
+void circbuf_clear(circbuf *cbuf);
 
 #endif /* CIRCBUF_H_ */
