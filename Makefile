@@ -1,6 +1,6 @@
 AR = ar
 CC = gcc
-CFLAGS = -std=c99 -pedantic -Wall -Wextra -O3 -I ./include/
+CFLAGS = -std=c89 -pedantic -Wall -Wextra -O3 -I ./include/
 SRCS = $(wildcard src/*.c)
 OBJS = $(patsubst src/%.c, obj/%.o, $(SRCS))
 
