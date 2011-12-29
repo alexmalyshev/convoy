@@ -1,55 +1,58 @@
 /** @file binaheap.c
  *  @brief A binary heap library.
  *
- *  The binary heap is stored as an array, where the element at elems[i]
- *  has its left child at elems[2*i] and its right child at elems[2*i + 1].
- *  We compare elements in the heap using the generic compare function that is
- *  given as an argument to binaheap_init.
+ *  The binary heap is stored as an array, where the element at
+ *  <tt>elems[i]</tt> has its left child at <tt>elems[2*i]</tt> and its right
+ *  child at <tt>elems[2*i + 1]</tt>. We compare elements in the heap using the
+ *  generic compare function that is given as an argument to
+ *  <tt>binaheap_init</tt>.
  *
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include "binaheap.h"
-#include "binaheap-int.h"
 
-int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
-    if (heap == NULL || cmp == NULL || cap == 0)
-        return 1;
+static void percolate_up(binaheap *heap);
+static void percolate_down(binaheap *heap);
+static void resize(binaheap *heap, size_t newcap);
+static void swap(void **elems, size_t i, size_t j);
 
-    if ((heap->elems = malloc(cap * sizeof(void *))) == NULL)
-        return 1;
+void binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
+    assert(heap != NULL);
+    assert(cmp != NULL);
+    assert(cap != 0);
+
+    heap->elems = malloc(cap * sizeof(void *));
+    assert(heap->elems != NULL);
+
     heap->cap = cap;
     heap->size = 0;
     heap->cmp = cmp;
-    return 0;
 }
 
-int binaheap_destroy(binaheap *heap) {
-    if (binaheap_clear(heap))
-        return 1;
-
+void binaheap_destroy(binaheap *heap) {
+    binaheap_clear(heap);
     free(heap->elems);
-    return 0;
 }
 
-int binaheap_insert(binaheap *heap, void *elem) {
-    if (heap == NULL || elem == NULL)
-        return 1;
+void binaheap_insert(binaheap *heap, void *elem) {
+    assert(heap != NULL);
+    assert(elem != NULL);
 
     if (heap->size == heap->cap)
         resize(heap, 2 * heap->cap);
     (heap->elems)[heap->size] = elem;
     ++(heap->size);
     percolate_up(heap);
-    return 0;
 }
 
 void *binaheap_removemin(binaheap *heap) {
     void *min, **elems;
 
-    if (heap == NULL || heap->size <= 0)
-        return NULL;
+    assert(heap != NULL);
+    assert(heap->size > 0);
 
     elems = heap->elems;
     min = elems[0];
@@ -61,29 +64,14 @@ void *binaheap_removemin(binaheap *heap) {
     return min;
 }
 
-int binaheap_clear(binaheap *heap) {
-    if (heap == NULL)
-        return 1;
-
+void binaheap_clear(binaheap *heap) {
+    assert(heap != NULL);
     heap->size = 0;
-    return 0;
 }
 
-int binaheap_trunc(binaheap *heap) {
-    if (heap == NULL)
-        return 1;
-
+void binaheap_trunc(binaheap *heap) {
+    assert(heap != NULL);
     resize(heap, heap->size);
-    return 0;
-}
-
-static int resize(binaheap *heap, size_t newcap) {
-    void *new;
-
-    if ((new = realloc(heap->elems, newcap * sizeof(void *))) == NULL)
-        return 1;
-    heap->cap = newcap;
-    return 0;
 }
 
 static void percolate_up(binaheap *heap) {
@@ -119,7 +107,16 @@ static void percolate_down(binaheap *heap) {
     }
 }
 
-static void swap(void **elems, long i, long j) {
+static void resize(binaheap *heap, size_t newcap) {
+    void *new;
+
+    new = realloc(heap->elems, newcap * sizeof(void *));
+    assert(new != NULL);
+
+    heap->cap = newcap;
+}
+
+static void swap(void **elems, size_t i, size_t j) {
     void *temp;
     temp = elems[i];
     elems[i] = elems[j];
