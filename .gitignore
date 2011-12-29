@@ -4,6 +4,7 @@ test*
 # files that could accidentally get staged+commited
 *.o
 *.a
+*.so
 *.swp
 
 # changes often, and users dont need it
