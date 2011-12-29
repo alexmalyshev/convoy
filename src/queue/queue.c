@@ -8,25 +8,24 @@
  *  @author Alexander Malyshev
  */
 
+#include <assert.h>
 #include <stdlib.h>
 #include "queue.h"
-#include "queue-int.h"
 
-int queue_init(queue *qu) {
-    if (qu == NULL)
-        return 1;
+static qnode *init_node(void *elem);
+
+void queue_init(queue *qu) {
+    assert(qu != NULL);
 
     qu->front = NULL;
     qu->back = NULL;
     qu->len = 0;
-    return 0;
 }
 
-int queue_clear(queue *qu) {
+void queue_clear(queue *qu) {
     qnode *node, *dead;
 
-    if (qu == NULL)
-        return 1;
+    assert(qu != NULL);
 
     node = qu->front;
     while (node != NULL) {
@@ -37,14 +36,15 @@ int queue_clear(queue *qu) {
     qu->front = NULL;
     qu->back = NULL;
     qu->len = 0;
-    return 0;
 }
 
 void *queue_dequeue(queue *qu) {
     qnode *dead;
     void *elem;
 
-    if (qu == NULL || qu->front == NULL)
+    assert(qu != NULL);
+
+    if (qu->front == NULL)
         return NULL;
 
     dead = qu->front;
@@ -57,35 +57,34 @@ void *queue_dequeue(queue *qu) {
     return elem;
 }
 
-int queue_enqueue(queue *qu, void *elem) {
+void queue_enqueue(queue *qu, void *elem) {
     qnode *new;
 
-    if (qu == NULL || elem == NULL)
-        return 1;
+    assert(qu != NULL);
+    assert(elem != NULL);
 
-    if ((new = init_node(elem)) == NULL)
-        return 1;
+    new = init_node(elem);
+
     if (qu->front != NULL)
         qu->back->next = new;
     else
         qu->front = new;
     qu->back = new;
     ++(qu->len);
-    return 0;
 }
 
 void *queue_peek(queue *qu) {
-    if (qu == NULL || qu->front == NULL)
+    assert(qu != NULL);
+
+    if (qu->front == NULL)
         return NULL;
 
     return qu->front->elem;
 }
 
 static qnode *init_node(void *elem) {
-    qnode *node;
-
-    if ((node = malloc(sizeof(qnode))) == NULL)
-        return NULL;
+    qnode *node = malloc(sizeof(qnode));
+    assert(node != NULL);
 
     node->elem = elem;
     node->next = NULL;

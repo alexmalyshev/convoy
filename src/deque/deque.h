@@ -1,12 +1,11 @@
 /** @file deque.h
  *  @brief Header for a deque (double-ended queue) data structure library.
  *
- *  A <tt>deque</tt> is a doubly linked list. The nodes in the linked list
- *  store data as generic pointers (<tt>void *</tt>), however <tt>NULL</tt>
- *  cannot be stored. Inserting an element into a <tt>deque</tt> will always
- *  succeed provided there is enough memory on the system. Getting a
- *  <tt>NULL</tt> back as an element from a <tt>deque</tt> means that the
- *  <tt>deque</tt> is empty.
+ *  A <tt>deque</tt> is a doubly linked list. Elements are stored as generic
+ *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
+ *  Inserting an element into a <tt>deque</tt> will always succeed provided
+ *  there is enough memory on the system. Getting a <tt>NULL</tt> back as an
+ *  element from a <tt>deque</tt> means that the <tt>deque</tt> is empty.
  *
  *  @author Alexander Malyshev
  */
