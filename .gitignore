@@ -1,6 +1,5 @@
-# ignore any of my test files/Makefiles
+# ignore any of my test files
 test*
-Makefile
 
 # files that could accidentally get staged+commited
 *.o
