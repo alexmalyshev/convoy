@@ -3,17 +3,13 @@
 
 This is a collection of data structures/types written in C89.
 
-Every folder in src/ is a separate data structure that will contain a header
-file and a source file of the same name as the folder (e.g. folder rbtree
-contains rbtree.h and rbtree.c).
-
 None of the data structures depend upon each other, so feel free to just pull
-out a folder and use it.
+one out and use it.
 
 Most (if not all) of the functions in this library are not threadsafe.
 You will need locks to use this code in a multithreaded program.
 
-All files in the src/ folder are released under the terms listed in the
-LICENSE file found in the top level convoy folder (3-clause BSD license).
+All files are released under the terms listed in the LICENSE file found in the
+top level convoy folder (3-clause BSD license).
 
 */

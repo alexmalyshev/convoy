@@ -138,6 +138,9 @@ void vector_resize(vector *vec, size_t cap);
  *  Will resize <tt>vec</tt> if either <tt>i</tt> or <tt>j</tt> is
  *  out-of-bounds, but not if both are.
  *
+ *  @param vec the address of the <tt>vector</tt>.
+ *  @param i first index.
+ *  @param j second index.
  */
 void vector_swap(vector *vec, size_t i, size_t j);
 
