@@ -21,10 +21,10 @@
 
 /** @brief A circular buffer. */
 typedef struct {
-    void **elems;   /**< the array of elements in the circular buffer. */
-    size_t front;   /**< the index of the first element in the array. */
-    size_t back;    /**< the index of the last element in the array. */
-    size_t len;     /**< the number of elements in the buffer plus one. */
+    void **elems;   /**< the array of elements. */
+    size_t front;   /**< the index of the first element. */
+    size_t back;    /**< the index of the last element. */
+    size_t len;     /**< the number of elements plus one. */
 } circbuf;
 
 /** @brief Initializes a new circbuf.

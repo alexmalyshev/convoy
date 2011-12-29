@@ -26,9 +26,9 @@ typedef int (*cmpfn)(void *, void *);
 
 /** @brief A binary heap. */
 typedef struct {
-    void **elems;   /**< the array of elements in the binary heap. */
+    void **elems;   /**< the array of elements. */
     cmpfn cmp;      /**< the function for comparing elements. */
-    size_t size;    /**< the number of elements in the binary heap. */
+    size_t size;    /**< the number of elements in the array. */
     size_t cap;     /**< the number of elements the array can hold. */
 } binaheap;
 
