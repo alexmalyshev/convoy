@@ -4,7 +4,7 @@
  *  A <tt>stack</tt> is a singly linked list. Elements are stored as generic
  *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
  *  Inserting into a <tt>stack</tt> will always succeed provided there is
- *  enough memory on the system. Getting a <tt>ULL</tt> back as an element from
+ *  enough memory on the system. Getting a <tt>NULL</tt> back as an element from
  *  a <tt>stack</tt> means that the <tt>stack</tt> is empty.
  *
  *  @author Alexander Malyshev
