@@ -11,9 +11,11 @@
  *  @author Alexander Malyshev
  */
 
+#include "circbuf.h"
+
 #include <assert.h>
 #include <stdlib.h>
-#include "circbuf.h"
+
 
 void circbuf_init(circbuf *cbuf, size_t len) {
     assert(cbuf != NULL);
@@ -22,13 +24,17 @@ void circbuf_init(circbuf *cbuf, size_t len) {
     cbuf->elems = malloc((len + 1) * sizeof(void *));
     assert(cbuf->elems != NULL);
 
+    /* set the circbuf's fields to empty */
     cbuf->front = 0;
     cbuf->back = 0;
+
+    /* length of the buffer is one too many */
     cbuf->len = len + 1;
 }
 
 void circbuf_destroy(circbuf *cbuf) {
     circbuf_clear(cbuf);
+
     free(cbuf->elems);
 }
 
@@ -36,6 +42,7 @@ void *circbuf_dequeue(circbuf *cbuf) {
     void *data;
 
     assert(cbuf != NULL);
+
     if (cbuf->front == cbuf->back)
         return NULL;
 
@@ -51,8 +58,10 @@ int circbuf_enqueue(circbuf *cbuf, void *elem) {
     /* if cbuf is full just return 1 */
     if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
+
     cbuf->elems[cbuf->back] = elem;
     cbuf->back = (cbuf->back + 1) % cbuf->len;
+
     return 0;
 }
 

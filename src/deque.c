@@ -193,9 +193,11 @@ void *deque_removef(deque *deq) {
 }
 
 static dnode *init_node(void *elem) {
+    dnode *node;
+
     assert(elem != NULL);
 
-    dnode *node = malloc(sizeof(dnode));
+    node = malloc(sizeof(dnode));
     assert(node != NULL);
 
     /* initialize the node's element to 'elem' and its prev

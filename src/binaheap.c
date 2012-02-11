@@ -10,14 +10,16 @@
  *  @author Alexander Malyshev
  */
 
+#include "binaheap.h"
+
 #include <assert.h>
 #include <stdlib.h>
-#include "binaheap.h"
 
 static void percolate_up(binaheap *heap);
 static void percolate_down(binaheap *heap);
 static void resize(binaheap *heap, size_t newcap);
 static void swap(void **elems, size_t i, size_t j);
+
 
 void binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
     assert(heap != NULL);
@@ -43,13 +45,16 @@ void binaheap_insert(binaheap *heap, void *elem) {
 
     if (heap->size == heap->cap)
         resize(heap, 2 * heap->cap);
+
     (heap->elems)[heap->size] = elem;
     ++(heap->size);
+
     percolate_up(heap);
 }
 
 void *binaheap_removemin(binaheap *heap) {
-    void *min, **elems;
+    void *min;
+    void **elems;
 
     assert(heap != NULL);
     assert(heap->size > 0);
@@ -57,20 +62,25 @@ void *binaheap_removemin(binaheap *heap) {
     elems = heap->elems;
     min = elems[0];
     --(heap->size);
+
     if (heap->size == 0)
         return min;
+
     elems[0] = elems[heap->size];
     percolate_down(heap);
+
     return min;
 }
 
 void binaheap_clear(binaheap *heap) {
     assert(heap != NULL);
+
     heap->size = 0;
 }
 
 void binaheap_trunc(binaheap *heap) {
     assert(heap != NULL);
+
     resize(heap, heap->size);
 }
 
@@ -90,7 +100,9 @@ static void percolate_down(binaheap *heap) {
     void **elems = heap->elems;
     cmpfn cmp = heap->cmp;
     size_t size = heap->size;
-    size_t i, min, left;
+    size_t i;
+    size_t min;
+    size_t left;
 
     for (i = 0; 2*i + 1 <= size; ) {
         left = 2*i + 1;

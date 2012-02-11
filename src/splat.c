@@ -9,15 +9,17 @@
  *  @author Alexander Malyshev
  */
 
+#include "splat.h"
+
 #include <assert.h>
 #include <stdlib.h>
-#include "splat.h"
 
 static void clear(spnode *node);
 static void splay(splat *tree, void *elem);
 static spnode *rotate_left(spnode *node);
 static spnode *rotate_right(spnode *node);
 static spnode *init_node(void *elem);
+
 
 void splat_init(splat *tree, cmpfn cmp) {
     assert(tree != NULL);
@@ -31,6 +33,7 @@ void splat_clear(splat *tree) {
     assert(tree != NULL);
 
     clear(tree->root);
+
     tree->root = NULL;
 }
 
@@ -40,6 +43,7 @@ static void clear(spnode *node) {
 
     clear(node->left);
     clear(node->right);
+
     free(node);
 }
 
@@ -57,6 +61,7 @@ void splat_insert(splat *tree, void *elem) {
     }
 
     splay(tree, elem);
+
     c = tree->cmp(elem, tree->root->elem);
     if (c == 0)
         return;
@@ -72,11 +77,13 @@ void splat_insert(splat *tree, void *elem) {
         new->left = tree->root;
         tree->root->right = NULL;
     }
+
     tree->root = new;
 }
 
 void *splat_remove(splat *tree, void *elem) {
-    spnode *temp, *dead;
+    spnode *temp;
+    spnode *dead;
     void *removed;
 
     assert(tree != NULL);
@@ -91,6 +98,7 @@ void *splat_remove(splat *tree, void *elem) {
         return NULL;
 
     dead = tree->root;
+
     if (tree->root->left == NULL)
         tree->root = tree->root->right;
     else {
@@ -99,8 +107,11 @@ void *splat_remove(splat *tree, void *elem) {
         splay(tree, elem);
         tree->root->right = temp;
     }
+
     removed = dead->elem;
+
     free(dead);
+
     return removed;
 }
 
@@ -112,8 +123,10 @@ void *splat_search(splat *tree, void *elem) {
         return NULL;
 
     splay(tree, elem);
+
     if (tree->cmp(tree->root->elem, elem) == 0)
         return tree->root->elem;
+
     return NULL;
 }
 
@@ -132,7 +145,7 @@ static void splay(splat *tree, void *elem) {
     right = &assembler;
 
     node = tree->root;
-    for (;;) {
+    while (1) {
         c = cmp(elem, node->elem);
         if (c < 0) {
             if (node->left == NULL)
@@ -168,6 +181,7 @@ static void splay(splat *tree, void *elem) {
     right->left = node->right;
     node->left = assembler.right;
     node->right = assembler.left;
+
     tree->root = node;
 }
 
@@ -186,11 +200,16 @@ static spnode *rotate_right(spnode *node) {
 }
 
 static spnode *init_node(void *elem) {
-    spnode *node = malloc(sizeof(spnode));
+    spnode *node;
+
+    assert(elem != NULL);
+
+    node = malloc(sizeof(spnode));
     assert(node != NULL);
 
     node->elem = elem;
     node->left = NULL;
     node->right = NULL;
+
     return node;
 }

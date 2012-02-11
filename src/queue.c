@@ -115,9 +115,11 @@ void *queue_peek(queue *qu) {
 }
 
 static qnode *init_node(void *elem) {
+    qnode *node;
+
     assert(elem != NULL);
 
-    qnode *node = malloc(sizeof(qnode));
+    node = malloc(sizeof(qnode));
     assert(node != NULL);
 
     /* initialize the node's element to 'elem' and its next pointer to NULL */
