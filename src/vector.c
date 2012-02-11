@@ -11,14 +11,16 @@
  *  @author Alexander Malyshev
  */
 
+#include "vector.h"
+
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
-#include "vector.h"
 
 static size_t find_last(vector *vec, size_t start);
 static void resize(vector *vec, size_t cap);
 static void swap(vector *vec, size_t i, size_t j);
+
 
 void vector_init(vector *vec, size_t cap) {
     assert(vec != NULL);
@@ -26,9 +28,9 @@ void vector_init(vector *vec, size_t cap) {
     if (cap != 0) {
         vec->elems = calloc(cap, sizeof(void *));
         assert(vec->elems != NULL);
-    } else {
-        vec->elems = NULL;
     }
+    else
+        vec->elems = NULL;
 
     vec->last = 0;
     vec->cap = cap;

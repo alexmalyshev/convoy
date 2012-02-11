@@ -10,9 +10,10 @@
  *  @author Alexander Malyshev
  */
 
+#include "rbtree.h"
+
 #include <assert.h>
 #include <stdlib.h>
-#include "rbtree.h"
 
 static void clear(rbnode *node);
 static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
@@ -28,6 +29,7 @@ static rbnode *remove_min(rbnode *node);
 static rbnode *move_red_left(rbnode *node);
 static int flip(int color);
 static rbnode *init_node(void *elem);
+
 
 void rbtree_init(rbtree *tree, cmpfn cmp) {
     assert(tree != NULL);
@@ -53,7 +55,9 @@ static void clear(rbnode *node) {
 
     left = node->left;
     right = node->right;
+
     free(node);
+
     clear(left);
     clear(right);
 }
@@ -68,6 +72,9 @@ void rbtree_insert(rbtree *tree, void *elem) {
 
 static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     int c;
+
+    assert(elem != NULL);
+    assert(cmp != NULL);
 
     if (node == NULL)
         return init_node(elem);
@@ -93,12 +100,19 @@ void *rbtree_remove(rbtree *tree, void *elem) {
         return NULL;
 
     tree->root = remove(tree->root, elem, tree->cmp, &removed);
+
     if (tree->root != NULL)
         tree->root->color = BLACK;
+
     return removed;
 }
 
 static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
+    assert(node != NULL);
+    assert(elem != NULL);
+    assert(cmp != NULL);
+    assert(removed != NULL);
+
     if (cmp(elem, node->elem) < 0) {
         if (node->left == NULL)
             return node;
@@ -125,6 +139,7 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
         } else
             node->right = remove(node->right, elem, cmp, removed);
     }
+
     return fix(node);
 }
 
@@ -147,82 +162,115 @@ void *rbtree_search(rbtree *tree, void *elem) {
         else
             return node->elem;
     }
+
     return NULL;
 }
 
 static void *min(rbnode *node) {
+    assert(node != NULL);
+
     while (node->left != NULL)
         node = node->left;
+
     return node->elem;
 }
 
 static rbnode *fix(rbnode *node) {
+    assert(node != NULL);
+
     if (is_red(node->right))
         node = rotate_left(node);
     if (is_red(node->left) && is_red(node->left->left))
         node = rotate_right(node);
     if (is_red(node->left) && is_red(node->right))
         color_flip(node);
+
     return node;
 }
 
 static int is_red(rbnode *node) {
     if (node == NULL)
         return 0;
+
     return node->color == RED;
 }
 
 static rbnode *rotate_left(rbnode *node) {
-    rbnode *temp = node->right;
+    rbnode *temp;
+
+    assert(node != NULL);
+
+    temp = node->right;
     node->right = temp->left;
     temp->left = node;
     temp->color = node->color;
     node->color = RED;
+
     return temp;
 }
 
 static rbnode *rotate_right(rbnode *node) {
-    rbnode *temp = node->left;
+    rbnode *temp;
+
+    assert(node != NULL);
+
+    temp = node->left;
     node->left = temp->right;
     temp->right = node;
     temp->color = node->color;
     node->color = RED;
+
     return temp;
 }
 
 static void color_flip(rbnode *node) {
+    assert(node != NULL);
+
     node->color = flip(node->color);
     node->left->color = flip(node->left->color);
     node->right->color = flip(node->right->color);
 }
 
 static rbnode *move_red_right(rbnode *node) {
+    assert(node != NULL);
+
     color_flip(node);
+
     if (is_red(node->left->left)) {
         node = rotate_right(node);
         color_flip(node);
     }
+
     return node;
 }
 
 static rbnode *remove_min(rbnode *node) {
+    assert(node != NULL);
+
     if (node->left == NULL) {
         free(node);
         return NULL;
     }
+
     if (!is_red(node->left) && !is_red(node->left->left))
         node = move_red_left(node);
+
     node->left = remove_min(node->left);
+
     return fix(node);
 }
 
 static rbnode *move_red_left(rbnode *node) {
+    assert(node != NULL);
+
     color_flip(node);
+
     if (is_red(node->right->left)) {
         node->right = rotate_right(node->right);
         node = rotate_left(node);
         color_flip(node);
     }
+
     return node;
 }
 
@@ -231,12 +279,17 @@ static int flip(int color) {
 }
 
 static rbnode *init_node(void *elem) {
-    rbnode *node = malloc(sizeof(rbnode));
+    rbnode *node;
+
+    assert(elem != NULL);
+
+    node = malloc(sizeof(rbnode));
     assert(node != NULL);
 
     node->elem = elem;
     node->color = RED;
     node->left = NULL;
     node->right = NULL;
+
     return node;
 }

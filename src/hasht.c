@@ -10,13 +10,15 @@
  *  @author Alexander Malyshev
  */
 
+#include "hasht.h"
+
 #include <assert.h>
 #include <stdlib.h>
-#include "hasht.h"
 
 static void resize(hasht *tab, size_t newcap);
 static void destroy_bucket(hashent *entry);
 static hashent *init_entry(void *elem);
+
 
 void hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
     assert(tab != NULL);
@@ -27,9 +29,9 @@ void hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
     if (cap != 0) {
         tab->entries = calloc(cap, sizeof(hashent *));
         assert(tab->entries != NULL);
-    } else {
-        tab->entries = NULL;
     }
+    else
+        tab->entries = NULL;
 
     tab->hash = hash;
     tab->cmp = cmp;
@@ -40,7 +42,10 @@ void hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap) {
 }
 
 void hasht_destroy(hasht *tab) {
+    assert(tab != NULL);
+
     hasht_clear(tab);
+
     free(tab->entries);
 }
 
@@ -72,10 +77,12 @@ void hasht_insert(hasht *tab, void *elem) {
             return;
         entry = entry->next;
     }
+
     if (cmp(elem, entry->elem) == 0)
         return;
 
     entry->next = init_entry(elem);
+
     ++(tab->size);
 
     return;
@@ -157,7 +164,9 @@ void hasht_trunc(hasht *tab) {
     assert(tab != NULL);
 
     newcap = (size_t)(tab->size / tab->loadfactor);
+
     resize(tab, newcap);
+
     tab->limit = tab->size;
 }
 
@@ -196,11 +205,14 @@ static void resize(hasht *tab, size_t newcap) {
     tab->entries = newentries;
     tab->cap = newcap;
     tab->limit = (size_t)(tab->loadfactor * newcap);
+
     free(entries);
 }
 
 static void destroy_bucket(hashent *entry) {
     hashent *dead;
+
+    assert(entry != NULL);
 
     while (entry != NULL) {
         dead = entry;
@@ -210,10 +222,15 @@ static void destroy_bucket(hashent *entry) {
 }
 
 static hashent *init_entry(void *elem) {
-    hashent *entry = malloc(sizeof(entry));
+    hashent *entry;
+
+    assert(elem != NULL);
+
+    entry = malloc(sizeof(entry));
     assert(entry != NULL);
 
     entry->elem = elem;
     entry->next = NULL;
+
     return entry;
 }
