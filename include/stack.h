@@ -10,66 +10,76 @@
  *  @author Alexander Malyshev
  */
 
-#ifndef STACK_H_
-#define STACK_H_
+
+#ifndef __STACK_H__
+#define __STACK_H__
+
 
 #include <stddef.h>
 
-/** @brief A node in a singly linked list. */
+
+/** @brief A node in a singly linked list */
 typedef struct snode_t {
-    struct snode_t *next;   /**< the next node. */
-    void *elem;             /**< the element. */
+    struct snode_t *next;   /**< the next node */
+    void *elem;             /**< the element */
 } snode;
 
-/** @brief A stack. */
+
+/** @brief A stack */
 typedef struct {
-    snode *top;             /**< the top node. */
-    size_t len;             /**< the number of elements. */
+    snode *top;             /**< the top node */
+    size_t len;             /**< the number of elements */
 } stack;
 
-/** @brief Initializes a new <tt>stack</tt>.
- *
- *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
- *
- *  @param stk the address of the <tt>stack</tt>.
- */
-void stack_init(stack *stk);
 
-/** @brief Removes all elements from <tt>stk</tt>.
+/** @brief Initializes a new <tt>stack</tt>
  *
- *  Asserts that <tt>stack</tt> is not <tt>NULL</tt>.
+ *  @param stk the address of the <tt>stack</tt>
  *
- *  @param stk the address of the <tt>stack</tt>.
+ *  @return Success status
  */
-void stack_clear(stack *stk);
+int stack_init(stack *stk);
 
-/** @brief Returns the top element of <tt>stk</tt>.
+
+/** @brief Removes all elements from <tt>stk</tt>
  *
- *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
- *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty.
+ *  @param stk the address of the <tt>stack</tt>
  *
- *  @param stk the address of the <tt>stack</tt>.
- *  @return The top element of <tt>stk</tt>.
+ *  @return Success status
+ */
+int stack_clear(stack *stk);
+
+
+/** @brief Returns the top element of <tt>stk</tt>
+ *
+ *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty
+ *
+ *  @param stk the address of the <tt>stack</tt>
+ *
+ *  @return The top element of <tt>stk</tt>
  */
 void *stack_peek(stack *stk);
 
-/** @brief Removes the top element of <tt>stk</tt>.
+
+/** @brief Removes the top element of <tt>stk</tt>
  *
- *  Asserts that <tt>stk</tt> is not <tt>NULL</tt>.
- *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty.
+ *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty
  *
- *  @param stk the address of the <tt>stack</tt>.
- *  @return The top element of <tt>stk</tt>.
+ *  @param stk the address of the <tt>stack</tt>
+ *
+ *  @return The top element of <tt>stk</tt>
  */
 void *stack_pop(stack *stk);
 
-/** @brief Inserts <tt>elem</tt> as the new top of <tt>stk</tt>.
- *
- *  Asserts that <tt>stk</tt> and <tt>elem</tt> are not <tt>NULL</tt>.
- *
- *  @param stk the address of the <tt>stack</tt>.
- *  @param elem the element.
- */
-void stack_push(stack *stk, void *elem);
 
-#endif /* STACK_H_ */
+/** @brief Inserts <tt>elem</tt> as the new top of <tt>stk</tt>
+ *
+ *  @param stk the address of the <tt>stack</tt>
+ *  @param elem the element
+ *
+ *  @return Success status
+ */
+int stack_push(stack *stk, void *elem);
+
+
+#endif /* __STACK_H__ */

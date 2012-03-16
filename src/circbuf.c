@@ -17,12 +17,14 @@
 #include <stdlib.h>
 
 
-void circbuf_init(circbuf *cbuf, size_t len) {
-    assert(cbuf != NULL);
+int circbuf_init(circbuf *cbuf, size_t len) {
+    if (cbuf == NULL)
+        return -1;
 
     /* allocate one extra slot */
     cbuf->elems = malloc((len + 1) * sizeof(void *));
-    assert(cbuf->elems != NULL);
+    if (cbuf->elems == NULL)
+        return -1;
 
     /* set the circbuf's fields to empty */
     cbuf->front = 0;
@@ -30,53 +32,79 @@ void circbuf_init(circbuf *cbuf, size_t len) {
 
     /* length of the buffer is one too many */
     cbuf->len = len + 1;
+
+    return 0;
 }
 
-void circbuf_destroy(circbuf *cbuf) {
-    circbuf_clear(cbuf);
+
+int circbuf_destroy(circbuf *cbuf) {
+    if (circbuf_clear(cbuf))
+        return -1;
 
     free(cbuf->elems);
+
+    return 0;
 }
 
+
 void *circbuf_dequeue(circbuf *cbuf) {
-    void *data;
+    void *elem;
 
-    assert(cbuf != NULL);
+    if (cbuf == NULL)
+        return NULL;
 
+    /* if the buffer is empty, just return NULL */
     if (cbuf->front == cbuf->back)
         return NULL;
 
-    data = cbuf->elems[cbuf->front];
+    /* grab the front of the buffer */
+    elem = cbuf->elems[cbuf->front];
+
+    /* update the index of the buffer's front element */
     cbuf->front = (cbuf->front + 1) % cbuf->len;
-    return data;
+
+    return elem;
 }
 
+
 int circbuf_enqueue(circbuf *cbuf, void *elem) {
-    assert(cbuf != NULL);
-    assert(elem != NULL);
+    if (cbuf == NULL || elem == NULL)
+        return -1;
 
     /* if cbuf is full just return 1 */
     if ((cbuf->back + 1) % cbuf->len == cbuf->front)
         return 1;
 
+    /* otherwise insert 'elem' at the back of the buffer */
     cbuf->elems[cbuf->back] = elem;
+
+    /* and update the index where to insert the next element */
     cbuf->back = (cbuf->back + 1) % cbuf->len;
 
     return 0;
 }
 
-void *circbuf_peek(circbuf *cbuf) {
-    assert(cbuf != NULL);
 
+void *circbuf_peek(circbuf *cbuf) {
+    if (cbuf == NULL)
+        return NULL;
+
+    /* if the buffer is empty then just return NULL */
     if (cbuf->front == cbuf->back)
         return NULL;
 
+    /* otherwise return the front element */
     return cbuf->elems[cbuf->front];
 }
 
-void circbuf_clear(circbuf *cbuf) {
-    assert(cbuf != NULL);
 
+int circbuf_clear(circbuf *cbuf) {
+    if (cbuf == NULL)
+        return -1;
+
+    /* reset the front and back indices to zero */
     cbuf->front = 0;
     cbuf->back = 0;
+
+    return 0;
 }

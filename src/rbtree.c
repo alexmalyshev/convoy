@@ -8,12 +8,15 @@
  *  left-leaning red black tree there are fewer cases than usual.
  *
  *  @author Alexander Malyshev
+ *  @bug Does not handle malloc failing properly
  */
+
 
 #include "rbtree.h"
 
 #include <assert.h>
 #include <stdlib.h>
+
 
 static void clear(rbnode *node);
 static rbnode *insert(rbnode *node, void *elem, cmpfn cmp);
@@ -31,44 +34,58 @@ static int flip(int color);
 static rbnode *init_node(void *elem);
 
 
-void rbtree_init(rbtree *tree, cmpfn cmp) {
-    assert(tree != NULL);
-    assert(cmp != NULL);
+int rbtree_init(rbtree *tree, cmpfn cmp) {
+    if (tree == NULL || cmp == NULL)
+        return -1;
 
     tree->root = NULL;
     tree->cmp = cmp;
+
+    return 0;
 }
 
-void rbtree_clear(rbtree *tree) {
-    assert(tree != NULL);
+
+int rbtree_clear(rbtree *tree) {
+    if (tree == NULL)
+        return -1;
 
     clear(tree->root);
     tree->root = NULL;
+
+    return 0;
 }
 
+
 static void clear(rbnode *node) {
-    void *left;
-    void *right;
+    rbnode *left;
+    rbnode *right;
 
     if (node == NULL)
         return;
 
+    /* grab the left and right subtrees */
     left = node->left;
     right = node->right;
 
+    /* free the current node */
     free(node);
 
+    /* and send off two tail calls to clean up the subtrees */
     clear(left);
     clear(right);
 }
 
-void rbtree_insert(rbtree *tree, void *elem) {
-    assert(tree != NULL);
-    assert(elem != NULL);
+
+int rbtree_insert(rbtree *tree, void *elem) {
+    if (tree == NULL || elem == NULL)
+        return -1;
 
     tree->root = insert(tree->root, elem, tree->cmp);
     tree->root->color = BLACK;
+
+    return 0;
 }
+
 
 static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     int c;
@@ -90,6 +107,7 @@ static rbnode *insert(rbnode *node, void *elem, cmpfn cmp) {
     return fix(node);
 }
 
+
 void *rbtree_remove(rbtree *tree, void *elem) {
     void *removed = NULL;
 
@@ -106,6 +124,7 @@ void *rbtree_remove(rbtree *tree, void *elem) {
 
     return removed;
 }
+
 
 static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
     assert(node != NULL);
@@ -143,6 +162,7 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
     return fix(node);
 }
 
+
 void *rbtree_search(rbtree *tree, void *elem) {
     rbnode *node;
     cmpfn cmp;
@@ -166,6 +186,7 @@ void *rbtree_search(rbtree *tree, void *elem) {
     return NULL;
 }
 
+
 static void *min(rbnode *node) {
     assert(node != NULL);
 
@@ -174,6 +195,7 @@ static void *min(rbnode *node) {
 
     return node->elem;
 }
+
 
 static rbnode *fix(rbnode *node) {
     assert(node != NULL);
@@ -188,12 +210,14 @@ static rbnode *fix(rbnode *node) {
     return node;
 }
 
+
 static int is_red(rbnode *node) {
     if (node == NULL)
         return 0;
 
     return node->color == RED;
 }
+
 
 static rbnode *rotate_left(rbnode *node) {
     rbnode *temp;
@@ -209,6 +233,7 @@ static rbnode *rotate_left(rbnode *node) {
     return temp;
 }
 
+
 static rbnode *rotate_right(rbnode *node) {
     rbnode *temp;
 
@@ -223,6 +248,7 @@ static rbnode *rotate_right(rbnode *node) {
     return temp;
 }
 
+
 static void color_flip(rbnode *node) {
     assert(node != NULL);
 
@@ -230,6 +256,7 @@ static void color_flip(rbnode *node) {
     node->left->color = flip(node->left->color);
     node->right->color = flip(node->right->color);
 }
+
 
 static rbnode *move_red_right(rbnode *node) {
     assert(node != NULL);
@@ -243,6 +270,7 @@ static rbnode *move_red_right(rbnode *node) {
 
     return node;
 }
+
 
 static rbnode *remove_min(rbnode *node) {
     assert(node != NULL);
@@ -260,6 +288,7 @@ static rbnode *remove_min(rbnode *node) {
     return fix(node);
 }
 
+
 static rbnode *move_red_left(rbnode *node) {
     assert(node != NULL);
 
@@ -274,9 +303,11 @@ static rbnode *move_red_left(rbnode *node) {
     return node;
 }
 
+
 static int flip(int color) {
     return !color;
 }
+
 
 static rbnode *init_node(void *elem) {
     rbnode *node;
@@ -284,7 +315,8 @@ static rbnode *init_node(void *elem) {
     assert(elem != NULL);
 
     node = malloc(sizeof(rbnode));
-    assert(node != NULL);
+    if (node == NULL)
+        return NULL;
 
     node->elem = elem;
     node->color = RED;

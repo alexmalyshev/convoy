@@ -14,23 +14,29 @@
 #include <assert.h>
 #include <stdlib.h>
 
+
 static dnode *init_node(void *elem);
 
 
-void deque_init(deque *deq) {
-    assert(deq != NULL);
+int deque_init(deque *deq) {
+    if (deq == NULL)
+        return -1;
 
     /* set the deque's fields to be empty */
     deq->front = NULL;
     deq->back = NULL;
     deq->len = 0;
+
+    return 0;
 }
 
-void deque_clear(deque *deq) {
+
+int deque_clear(deque *deq) {
     dnode *dead;
     dnode *node;
 
-    assert(deq != NULL);
+    if (deq == NULL)
+        return -1;
 
     /* loop through all nodes in the deque and free them */
     node = deq->front;
@@ -44,16 +50,21 @@ void deque_clear(deque *deq) {
     deq->len = 0;
     deq->front = NULL;
     deq->back = NULL;
+
+    return 0;
 }
 
-void deque_insertb(deque *deq, void *elem) {
+
+int deque_insertb(deque *deq, void *elem) {
     dnode *new;
 
-    assert(deq != NULL);
-    assert(elem != NULL);
+    if (deq == NULL || elem == NULL)
+        return -1;
 
     /* make our new node */
     new = init_node(elem);
+    if (new == NULL)
+        return -1;
 
     /* set our new node as the new back node of the deque */
     new->prev = deq->back;
@@ -69,16 +80,21 @@ void deque_insertb(deque *deq, void *elem) {
 
     /* update length */
     ++(deq->len);
+
+    return 0;
 }
 
-void deque_insertf(deque *deq, void *elem) {
+
+int deque_insertf(deque *deq, void *elem) {
     dnode *new;
 
-    assert(deq != NULL);
-    assert(elem != NULL);
+    if (deq == NULL || elem == NULL)
+        return -1;
 
     /* make our new node */
     new = init_node(elem);
+    if (new == NULL)
+        return -1;
 
     /* set our new node as the new front node of the deque */
     new->next = deq->front;
@@ -94,45 +110,42 @@ void deque_insertf(deque *deq, void *elem) {
 
     /* update length */
     ++(deq->len);
+
+    return 0;
 }
 
+
 void *deque_peekb(deque *deq) {
-    assert(deq != NULL);
-
-    /* "good" empty deque means we return NULL */
-    if (deq->front == NULL || deq->back == NULL || deq->len == 0) {
-        assert(deq->front == NULL && deq->back == NULL && deq->len == 0);
+    if (deq == NULL)
         return NULL;
-    }
 
-    /* otherwise return the back element */
+    if (deq->front == NULL || deq->back == NULL || deq->len == 0)
+        return NULL;
+
     return deq->back->elem;
 }
 
+
 void *deque_peekf(deque *deq) {
-    assert(deq != NULL);
-
-    /* "good" empty deque means we return NULL */
-    if (deq->front == NULL || deq->back == NULL || deq->len == 0) {
-        assert(deq->front == NULL && deq->back == NULL && deq->len == 0);
+    if (deq == NULL)
         return NULL;
-    }
 
-    /* otherwise return the front element */
+    if (deq->front == NULL || deq->back == NULL || deq->len == 0)
+        return NULL;
+
     return deq->front->elem;
 }
+
 
 void *deque_removeb(deque *deq) {
     dnode *dead;
     void *elem;
 
-    assert(deq != NULL);
-
-    /* "good" empty deque means we return NULL */
-    if (deq->front == NULL || deq->back == NULL || deq->len == 0) {
-        assert(deq->front == NULL && deq->back == NULL && deq->len == 0);
+    if (deq == NULL)
         return NULL;
-    }
+
+    if (deq->front == NULL || deq->back == NULL || deq->len == 0)
+        return NULL;
 
     /* pull out the back node */
     dead = deq->back;
@@ -157,17 +170,16 @@ void *deque_removeb(deque *deq) {
     return elem;
 }
 
+
 void *deque_removef(deque *deq) {
     dnode *dead;
     void *elem;
 
-    assert(deq != NULL);
-
-    /* "good" empty deque means we return NULL */
-    if (deq->front == NULL || deq->back == NULL || deq->len == 0) {
-        assert(deq->front == NULL && deq->back == NULL && deq->len == 0);
+    if (deq == NULL)
         return NULL;
-    }
+
+    if (deq->front == NULL || deq->back == NULL || deq->len == 0)
+        return NULL;
 
     /* pull out the front node */
     dead = deq->front;
@@ -192,13 +204,15 @@ void *deque_removef(deque *deq) {
     return elem;
 }
 
+
 static dnode *init_node(void *elem) {
     dnode *node;
 
     assert(elem != NULL);
 
     node = malloc(sizeof(dnode));
-    assert(node != NULL);
+    if (node == NULL)
+        return NULL;
 
     /* initialize the node's element to 'elem' and its prev
      * and next pointers to NULL */

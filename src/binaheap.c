@@ -10,124 +10,171 @@
  *  @author Alexander Malyshev
  */
 
+
 #include "binaheap.h"
 
 #include <assert.h>
 #include <stdlib.h>
 
+
 static void percolate_up(binaheap *heap);
 static void percolate_down(binaheap *heap);
-static void resize(binaheap *heap, size_t newcap);
+static int resize(binaheap *heap, size_t newcap);
 static void swap(void **elems, size_t i, size_t j);
 
 
-void binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
-    assert(heap != NULL);
-    assert(cmp != NULL);
-    assert(cap != 0);
+int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap) {
+    if (heap == NULL || cmp == NULL || cap == 0)
+        return -1;
 
+    /* allocate a new dynamic array */
     heap->elems = malloc(cap * sizeof(void *));
-    assert(heap->elems != NULL);
+    if (heap->elems == NULL)
+        return -1;
 
+    /* set the heap's fields */
     heap->cap = cap;
     heap->size = 0;
     heap->cmp = cmp;
+
+    return 0;
 }
 
-void binaheap_destroy(binaheap *heap) {
-    binaheap_clear(heap);
+
+int binaheap_destroy(binaheap *heap) {
+    if (binaheap_clear(heap))
+        return -1;
+
     free(heap->elems);
+
+    return 0;
 }
 
-void binaheap_insert(binaheap *heap, void *elem) {
-    assert(heap != NULL);
-    assert(elem != NULL);
 
-    if (heap->size == heap->cap)
-        resize(heap, 2 * heap->cap);
+int binaheap_insert(binaheap *heap, void *elem) {
+    if (heap == NULL || elem == NULL)
+        return -1;
 
+    /* if the size and capacity of the heap are equal, we need to resize before
+     * we can add on 'elem' */
+    if (heap->size == heap->cap && resize(heap, 2 * heap->cap))
+        return -1;
+
+    /* move the 'elem' into the last slot of the binaheap */
     (heap->elems)[heap->size] = elem;
     ++(heap->size);
 
+    /* percolate 'elem' up until 'heap' obeys heap invariants */
     percolate_up(heap);
+
+    return 0;
 }
+
 
 void *binaheap_removemin(binaheap *heap) {
     void *min;
-    void **elems;
 
-    assert(heap != NULL);
-    assert(heap->size > 0);
+    if (heap == NULL || heap->size == 0)
+        return NULL;
 
-    elems = heap->elems;
-    min = elems[0];
+    /* grab the minimum element from 'heap' */
+    min = heap->elems[0];
     --(heap->size);
 
     if (heap->size == 0)
         return min;
 
-    elems[0] = elems[heap->size];
+    /* if there are still elements in 'heap', we need to fix its invariants,
+     * so move its last element into its first slot */
+    heap->elems[0] = heap->elems[heap->size];
+
+    /* and percolate it up until 'heap' obeys heap invariants */
     percolate_down(heap);
 
     return min;
 }
 
-void binaheap_clear(binaheap *heap) {
-    assert(heap != NULL);
+
+int binaheap_clear(binaheap *heap) {
+    if (heap == NULL)
+        return -1;
 
     heap->size = 0;
+
+    return 0;
 }
 
-void binaheap_trunc(binaheap *heap) {
-    assert(heap != NULL);
 
-    resize(heap, heap->size);
+int binaheap_trunc(binaheap *heap) {
+    if (heap == NULL)
+        return -1;
+
+    /* resize the dynamic array to 'heap->size' */
+    return resize(heap, heap->size);
 }
+
 
 static void percolate_up(binaheap *heap) {
-    size_t i = heap->size - 1;
-    void **elems = heap->elems;
-    cmpfn cmp = heap->cmp;
+    size_t i;
+
+    assert(heap != NULL);
+    assert(heap->size != 0);
+
+    i = heap->size - 1;
 
     for (; i > 0; i /= 2) {
-        if (cmp(elems[i], elems[i/2]) >= 0)   
+        if (heap->cmp(heap->elems[i], heap->elems[i/2]) >= 0)
             return;
-        swap(elems, i, i/2);
+        swap(heap->elems, i, i/2);
     }
 }
 
+
 static void percolate_down(binaheap *heap) {
-    void **elems = heap->elems;
-    cmpfn cmp = heap->cmp;
-    size_t size = heap->size;
     size_t i;
     size_t min;
     size_t left;
 
-    for (i = 0; 2*i + 1 <= size; ) {
+    for (i = 0; 2*i + 1 <= heap->size; ) {
         left = 2*i + 1;
-        if (left == size) {
-            if (cmp(elems[i], elems[size]) > 0)
-                swap(elems, i, size);
+
+        if (left == heap->size) {
+            if (heap->cmp(heap->elems[i], heap->elems[heap->size]) > 0)
+                swap(heap->elems, i, heap->size);
             return;
         }
-        min = left + ((cmp(elems[left], elems[left + 1]) < 0) ? 0 : 1);
-        if (cmp(elems[i], elems[min]) <= 0)
+
+        min = left;
+        if (heap->cmp(heap->elems[min], heap->elems[min + 1]) >= 0)
+            ++min;
+
+        if (heap->cmp(heap->elems[i], heap->elems[min]) <= 0)
             return;
-        swap(elems, i, min);
+
+        swap(heap->elems, i, min);
         i = min;
     }
 }
 
-static void resize(binaheap *heap, size_t newcap) {
+
+static int resize(binaheap *heap, size_t newcap) {
+    assert(heap != NULL);
+
     heap->elems = realloc(heap->elems, newcap * sizeof(void *));
-    assert(heap->elems != NULL);
+    if (heap->elems == NULL)
+        return -1;
 
     heap->cap = newcap;
+
+    return 0;
 }
+
 
 static void swap(void **elems, size_t i, size_t j) {
     void *temp;
+
+    assert(elems != NULL);
+
     temp = elems[i];
     elems[i] = elems[j];
     elems[j] = temp;

@@ -9,79 +9,90 @@
  *  <tt>circbuf</tt> will not resize when trying to enqueue on an element when
  *  it is full, the enqueue will simply fail and return 1. Getting a
  *  <tt>NULL</tt> back as an element from a <tt>circbuf</tt> means that the
- *  <tt>circbuf</tt> is empty.
+ *  <tt>circbuf</tt> is empty or that there was an error.
  *
  *  @author Alexander Malyshev
  */
 
-#ifndef CIRCBUF_H_
-#define CIRCBUF_H_
+
+#ifndef __CIRCBUF_H__
+#define __CIRCBUF_H__
+
 
 #include <stddef.h>
 
-/** @brief A circular buffer. */
+
+/** @brief A circular buffer */
 typedef struct {
-    void **elems;   /**< the array of elements. */
-    size_t front;   /**< the index of the first element. */
-    size_t back;    /**< the index of the last element. */
-    size_t len;     /**< the number of elements plus one. */
+    void **elems;   /**< the array of elements */
+    size_t front;   /**< the index of the first element */
+    size_t back;    /**< the index of the last element */
+    size_t len;     /**< the number of elements plus one */
 } circbuf;
 
-/** @brief Initializes a new circbuf.
- *
- *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
- *  Allocates one slot more than <tt>len</tt> behind the scenes.
- *
- *  @param cbuf the address of the <tt>circbuf</tt>.
- *  @param len the desired length..
- */
-void circbuf_init(circbuf *cbuf, size_t len);
 
-/** @brief Frees the array in <tt>cbuf</tt>.
+/** @brief Initializes a new circbuf
  *
- *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
+ *  Allocates one slot more than <tt>len</tt> behind the scenes
  *
- *  @param cbuf the address of the <tt>circbuf</tt>.
+ *  @param cbuf the address of the <tt>circbuf</tt>
+ *  @param len the desired length
+ *
+ *  @return Success status
  */
-void circbuf_destroy(circbuf *cbuf);
+int circbuf_init(circbuf *cbuf, size_t len);
 
-/** @brief Removes the front element of <tt>cbuf</tt>.
+
+/** @brief Frees the array in <tt>cbuf</tt>
  *
- *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
- *  Returns <tt>NULL</tt> if <tt>cbuf</tt> is empty.
+ *  @param cbuf the address of the <tt>circbuf</tt>
  *
- *  @param cbuf the address of the <tt>circbuf</tt>.
- *  @return The front element of <tt>cbuf</tt>.
+ *  @return Success status
+ */
+int circbuf_destroy(circbuf *cbuf);
+
+
+/** @brief Removes the front element of <tt>cbuf</tt>
+ *
+ *  Returns <tt>NULL</tt> if <tt>cbuf</tt> is empty
+ *
+ *  @param cbuf the address of the <tt>circbuf</tt>
+ *
+ *  @return The front element of <tt>cbuf</tt>
  */
 void *circbuf_dequeue(circbuf *cbuf);
 
-/** @brief Inserts <tt>elem</tt> as the new back element of <tt>cbuf</tt>.
+
+/** @brief Inserts <tt>elem</tt> as the new back element of <tt>cbuf</tt>
  *
- *  Asserts that <tt>cbuf</tt> and <tt>elem</tt> are not <tt>NULL</tt>.
- *  If <tt>cbuf</tt> is full, then this does nothing and returns 1.
+ *  If <tt>cbuf</tt> is full, then this function does nothing and returns 1
  *
- *  @param cbuf the address of the <tt>circbuf</tt>.
- *  @param elem the element.
- *  @return Success status.
+ *  @param cbuf the address of the <tt>circbuf</tt>
+ *  @param elem the element
+ *
+ *  @return Success status
  */
 int circbuf_enqueue(circbuf *cbuf, void *elem);
 
-/** @brief Returns the front element of <tt>cbuf</tt>.
+
+/** @brief Returns the front element of <tt>cbuf</tt>
  *
- *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
- *  Will return <tt>NULL</tt> if <tt>cbuf</tt> is empty.
+ *  Will return <tt>NULL</tt> if <tt>cbuf</tt> is empty
  *
- *  @param cbuf the address of the <tt>circbuf</tt>.
- *  @return The front element of <tt>cbuf</tt>.
+ *  @param cbuf the address of the <tt>circbuf</tt>
+ *
+ *  @return The front element of <tt>cbuf</tt>
  */
 void *circbuf_peek(circbuf *cbuf);
 
-/** @brief Removes all elements from <tt>cbuf</tt>.
- *
- *  Asserts that <tt>cbuf</tt> is not <tt>NULL</tt>.
- *
- *  @param cbuf the address of the <tt>circbuf</tt>.
- */
-void circbuf_clear(circbuf *cbuf);
 
-#endif /* CIRCBUF_H_ */
+/** @brief Removes all elements from <tt>cbuf</tt>
+ *
+ *  @param cbuf the address of the <tt>circbuf</tt>
+ *
+ *  @return Success status
+ */
+int circbuf_clear(circbuf *cbuf);
+
+
+#endif /* __CIRCBUF_H__ */

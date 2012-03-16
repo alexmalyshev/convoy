@@ -14,19 +14,24 @@
 #include <stdlib.h>
 
 
-void stack_init(stack *stk) {
-    assert(stk != NULL);
+int stack_init(stack *stk) {
+    if (stk == NULL)
+        return -1;
 
     /* set the stack's fields to be empty */
     stk->top = NULL;
     stk->len = 0;
+
+    return 0;
 }
 
-void stack_clear(stack *stk) {
+
+int stack_clear(stack *stk) {
     snode *node;
     snode *dead;
 
-    assert(stk != NULL);
+    if (stk == NULL)
+        return -1;
 
     /* loop through all the nodes in the stack and free them */
     node = stk->top;
@@ -39,32 +44,31 @@ void stack_clear(stack *stk) {
     /* set the stack's fields to be empty */
     stk->top = NULL;
     stk->len = 0;
+
+    return 0;
 }
+
 
 void *stack_peek(stack *stk) {
-    assert(stk != NULL);
-
-    /* "good" empty stack means we return NULL */
-    if (stk->top == NULL || stk->len == 0) {
-        assert(stk->top == NULL && stk->len == 0);
+    if (stk == NULL)
         return NULL;
-    }
 
-    /* otherwise return the top element */
+    if (stk->top == NULL || stk->len == 0)
+        return NULL;
+
     return stk->top->elem;
 }
+
 
 void *stack_pop(stack *stk) {
     snode *dead;
     void *elem;
 
-    assert(stk != NULL);
-
-    /* "good" empty stack means we return NULL */
-    if (stk->top == NULL || stk->len == 0) {
-        assert(stk->top == NULL && stk->len == 0);
+    if (stk == NULL)
         return NULL;
-    }
+
+    if (stk->top == NULL || stk->len == 0)
+        return NULL;
 
     /* pull out the top node */
     dead = stk->top;
@@ -73,7 +77,7 @@ void *stack_pop(stack *stk) {
     /* get the top element */
     elem = dead->elem;
 
-    /* free the top node */
+    /* free the old top node */
     free(dead);
 
     /* update length */
@@ -82,15 +86,17 @@ void *stack_pop(stack *stk) {
     return elem;
 }
 
-void stack_push(stack *stk, void *elem) {
+
+int stack_push(stack *stk, void *elem) {
     snode *new;
 
-    assert(stk != NULL);
-    assert(elem != NULL);
+    if (stk == NULL || elem == NULL)
+        return -1;
 
     /* make our new node */
     new = malloc(sizeof(snode));
-    assert(new != NULL);
+    if (new == NULL)
+        return -1;
 
     /* initalize its element to 'elem' and its next pointer
      * to the stack's top node */
@@ -102,4 +108,6 @@ void stack_push(stack *stk, void *elem) {
 
     /* update length */
     ++(stk->len);
+
+    return 0;
 }

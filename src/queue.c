@@ -13,23 +13,29 @@
 #include <assert.h>
 #include <stdlib.h>
 
+
 static qnode *init_node(void *elem);
 
 
-void queue_init(queue *qu) {
-    assert(qu != NULL);
+int queue_init(queue *qu) {
+    if (qu == NULL)
+        return -1;
 
     /* set the queue's fields to be empty */
     qu->front = NULL;
     qu->back = NULL;
     qu->len = 0;
+
+    return 0;
 }
 
-void queue_clear(queue *qu) {
+
+int queue_clear(queue *qu) {
     qnode *node;
     qnode *dead;
 
-    assert(qu != NULL);
+    if (qu == NULL)
+        return -1;
 
     /* loop through all nodes in the queue and free them */
     node = qu->front;
@@ -43,19 +49,20 @@ void queue_clear(queue *qu) {
     qu->front = NULL;
     qu->back = NULL;
     qu->len = 0;
+
+    return 0;
 }
+
 
 void *queue_dequeue(queue *qu) {
     qnode *dead;
     void *elem;
 
-    assert(qu != NULL);
-
-    /* "good" empty queue means we return NULL */
-    if (qu->front == NULL || qu->back == NULL || qu->len == 0) {
-        assert(qu->front == NULL && qu->back == NULL && qu->len == 0);
+    if (qu == NULL)
         return NULL;
-    }
+
+    if (qu->front == NULL || qu->back == NULL || qu->len == 0)
+        return NULL;
 
     /* pull out the front node */
     dead = qu->front;
@@ -78,14 +85,17 @@ void *queue_dequeue(queue *qu) {
     return elem;
 }
 
-void queue_enqueue(queue *qu, void *elem) {
+
+int queue_enqueue(queue *qu, void *elem) {
     qnode *new;
 
-    assert(qu != NULL);
-    assert(elem != NULL);
+    if (qu == NULL || elem == NULL)
+        return -1;
 
     /* make our new node */
     new = init_node(elem);
+    if (new == NULL)
+        return -1;
 
     /* if the queue is non-empty, set its back node's next pointer to be our
      * new node. otherwise, set the queue's front pointer to our new node */
@@ -99,32 +109,34 @@ void queue_enqueue(queue *qu, void *elem) {
 
     /* update length */
     ++(qu->len);
+
+    return 0;
 }
 
+
 void *queue_peek(queue *qu) {
-    assert(qu != NULL);
-
-    /* "good" empty queue means we return NULL */
-    if (qu->front == NULL || qu->back == NULL || qu->len == 0) {
-        assert(qu->front == NULL && qu->back == NULL && qu->len == 0);
+    if (qu == NULL)
         return NULL;
-    }
 
-    /* otherwise return the front element */
+    if (qu->front == NULL || qu->back == NULL || qu->len == 0)
+        return NULL;
+
     return qu->front->elem;
 }
 
+
 static qnode *init_node(void *elem) {
-    qnode *node;
+    qnode *new;
 
     assert(elem != NULL);
 
-    node = malloc(sizeof(qnode));
-    assert(node != NULL);
+    new = malloc(sizeof(qnode));
+    if (new == NULL)
+        return NULL;
 
     /* initialize the node's element to 'elem' and its next pointer to NULL */
-    node->elem = elem;
-    node->next = NULL;
+    new->elem = elem;
+    new->next = NULL;
 
-    return node;
+    return new;
 }

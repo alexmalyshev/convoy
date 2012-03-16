@@ -21,73 +21,98 @@ static spnode *rotate_right(spnode *node);
 static spnode *init_node(void *elem);
 
 
-void splat_init(splat *tree, cmpfn cmp) {
-    assert(tree != NULL);
-    assert(cmp != NULL);
+int splat_init(splat *tree, cmpfn cmp) {
+    if (tree == NULL || cmp == NULL)
+        return -1;
 
     tree->cmp = cmp;
     tree->root = NULL;
+
+    return 0;
 }
 
-void splat_clear(splat *tree) {
-    assert(tree != NULL);
+
+int splat_clear(splat *tree) {
+    if (tree == NULL)
+        return -1;
 
     clear(tree->root);
 
     tree->root = NULL;
+
+    return 0;
 }
 
+
 static void clear(spnode *node) {
+    spnode *left;
+    spnode *right;
+
     if (node == NULL)
         return;
 
-    clear(node->left);
-    clear(node->right);
+    left = node->left;
+    right = node->right;
 
     free(node);
+
+    clear(left);
+    clear(right);
 }
 
-void splat_insert(splat *tree, void *elem) {
+
+int splat_insert(splat *tree, void *elem) {
     spnode *new;
     int c;
 
-    assert(tree != NULL);
-    assert(elem != NULL);
+    if (tree == NULL || elem == NULL)
+        return -1;
 
     if (tree->root == NULL) {
         new = init_node(elem);
+        if (new == NULL)
+            return -1;
+
         tree->root = new;
-        return;
+        return 0;
     }
 
     splay(tree, elem);
 
     c = tree->cmp(elem, tree->root->elem);
+
+    /* if the element is already in the tree, just return */
     if (c == 0)
-        return;
+        return 0;
 
     new = init_node(elem);
+    if (new == NULL)
+        return -1;
 
     if (c < 0) {
         new->left = tree->root->left;
         new->right = tree->root;
         tree->root->left = NULL;
-    } else {
+    }
+    else {
         new->right = tree->root->right;
         new->left = tree->root;
         tree->root->right = NULL;
     }
 
     tree->root = new;
+
+    return 0;
 }
+
 
 void *splat_remove(splat *tree, void *elem) {
     spnode *temp;
     spnode *dead;
     void *removed;
 
-    assert(tree != NULL);
-    assert(elem != NULL);
+    if (tree == NULL || elem == NULL)
+        return NULL;
 
     if (tree->root == NULL)
         return NULL;
@@ -115,9 +140,10 @@ void *splat_remove(splat *tree, void *elem) {
     return removed;
 }
 
+
 void *splat_search(splat *tree, void *elem) {
-    assert(tree != NULL);
-    assert(elem != NULL);
+    if (tree == NULL || elem == NULL)
+        return NULL;
 
     if (tree->root == NULL)
         return NULL;
@@ -130,13 +156,16 @@ void *splat_search(splat *tree, void *elem) {
     return NULL;
 }
 
+
 static void splay(splat *tree, void *elem) {
     spnode assembler;
-    spnode *left, *right;
+    spnode *left;
+    spnode *right;
     spnode *node;
     int c;
 
-    cmpfn cmp = tree->cmp;
+    assert(tree != NULL);
+    assert(elem != NULL);
 
     assembler.left = NULL;
     assembler.right = NULL;
@@ -146,11 +175,11 @@ static void splay(splat *tree, void *elem) {
 
     node = tree->root;
     while (1) {
-        c = cmp(elem, node->elem);
+        c = tree->cmp(elem, node->elem);
         if (c < 0) {
             if (node->left == NULL)
                 break;
-            if (cmp(elem, node->left->elem) < 0) {
+            if (tree->cmp(elem, node->left->elem) < 0) {
                 node = rotate_right(node);
                 if (node->left == NULL)
                     break;
@@ -163,7 +192,7 @@ static void splay(splat *tree, void *elem) {
         else if (c > 0) {
             if (node->right == NULL)
                 break;
-            if (cmp(elem, node->right->elem) > 0) {
+            if (tree->cmp(elem, node->right->elem) > 0) {
                 node = rotate_left(node);
                 if (node->right == NULL)
                     break;
@@ -186,30 +215,43 @@ static void splay(splat *tree, void *elem) {
 }
 
 static spnode *rotate_left(spnode *node) {
-    spnode *temp = node->right;
+    spnode *temp;
+
+    assert(node != NULL);
+    assert(node->right != NULL);
+
+    temp = node->right;
     node->right = temp->left;
     temp->left = node;
+
     return temp;
 }
 
 static spnode *rotate_right(spnode *node) {
-    spnode *temp = node->left;
+    spnode *temp;
+
+    assert(node != NULL);
+    assert(node->left != NULL);
+
+    temp = node->left;
     node->left = temp->right;
     temp->right = node;
+
     return temp;
 }
 
 static spnode *init_node(void *elem) {
-    spnode *node;
+    spnode *new;
 
     assert(elem != NULL);
 
-    node = malloc(sizeof(spnode));
-    assert(node != NULL);
+    new = malloc(sizeof(spnode));
+    if (new == NULL)
+        return NULL;
 
-    node->elem = elem;
-    node->left = NULL;
-    node->right = NULL;
+    new->elem = elem;
+    new->left = NULL;
+    new->right = NULL;
 
-    return node;
+    return new;
 }
