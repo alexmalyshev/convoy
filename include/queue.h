@@ -95,21 +95,14 @@
 } while (0)
 
 
-#define CHECK_QUEUE(QU) do {                        \
-    assert((QU) != NULL);                           \
-                                                    \
-    /* check for a valid empty queue */             \
-    if ((QU)->head == NULL || (QU)->tail == NULL) { \
-        assert((QU)->head == NULL);                 \
-        assert((QU)->tail == NULL);                 \
-        assert((QU)->len == 0);                     \
-    }                                               \
-    /* otherwise check for valid non-empty queue */ \
-    else {                                          \
-        assert((QU)->head != NULL);                 \
-        assert((QU)->tail != NULL);                 \
-        assert((QU)->len != 0);                     \
-    }                                               \
+#define CHECK_QUEUE(QU) do {                                            \
+    assert((QU) != NULL);                                               \
+                                                                        \
+    if ((QU)->head == NULL || (QU)->tail == NULL || (QU)->len == 0) {   \
+        assert((QU)->head == NULL);                                     \
+        assert((QU)->tail == NULL);                                     \
+        assert((QU)->len == 0);                                         \
+    }                                                                   \
 } while (0)
 
 
