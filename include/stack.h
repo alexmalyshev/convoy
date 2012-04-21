@@ -12,18 +12,20 @@
 #include <stddef.h>
 
 
-#define STACK_NEW(STK_TYPE, STK_ELEM_TYPE)  \
-    typedef struct STK_TYPE {               \
-        struct STK_ELEM_TYPE *top;          \
-        size_t len;                         \
+#define STACK_NEW(STK_TYPE, ELEM_TYPE)  \
+    typedef struct STK_TYPE {           \
+        struct ELEM_TYPE *top;          \
+        size_t len;                     \
     } STK_TYPE
 
 
-#define STACK_LINK(STK_ELEM_TYPE, NEXT) \
-    struct STK_ELEM_TYPE *NEXT
+#define STACK_LINK(ELEM_TYPE, NEXT) \
+    struct ELEM_TYPE *NEXT
 
 
 #define STACK_INIT(STK) do {    \
+    assert((STK) != NULL);      \
+                                \
     (STK)->top = NULL;          \
     (STK)->len = 0;             \
 } while (0)
@@ -63,6 +65,7 @@
 #define STACK_PUSH(STK, ELEM, NEXT) do {    \
     CHECK_STACK(STK);                       \
     assert((ELEM) != NULL);                 \
+    assert((ELEM)->NEXT == NULL);           \
                                             \
     (ELEM)->NEXT = (STK)->top;              \
                                             \
