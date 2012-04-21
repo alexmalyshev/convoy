@@ -12,6 +12,15 @@
 #include <stddef.h>
 
 
+/** @def STACK_NEW(STK_TYPE, ELEM_TYPE)
+ *
+ *  @brief Declares a new stack type
+ *
+ *  ELEM_TYPE must be the name of a struct type
+ *
+ *  @param STK_TYPE the type of the stack
+ *  @param ELEM_TYPE the type of the stack's elements
+ */
 #define STACK_NEW(STK_TYPE, ELEM_TYPE)  \
     typedef struct STK_TYPE {           \
         struct ELEM_TYPE *top;          \
@@ -19,10 +28,25 @@
     } STK_TYPE
 
 
+/** @def STACK_LINK(ELEM_TYPE, NEXT)
+ *
+ *  @brief Declares a link in a struct for use with a stack
+ *
+ *  ELEM_TYPE must be the name of a struct type
+ *
+ *  @param ELEM_TYPE the type of the element
+ *  @param NEXT the name of the link field
+ */
 #define STACK_LINK(ELEM_TYPE, NEXT) \
     struct ELEM_TYPE *NEXT
 
 
+/** @def STACK_INIT(STK)
+ *
+ *  @brief Initializes a stack
+ *
+ *  @param STK the address of the stack
+ */
 #define STACK_INIT(STK) do {    \
     assert((STK) != NULL);      \
                                 \
@@ -31,12 +55,23 @@
 } while (0)
 
 
+/** @def STACK_STATIC_INIT
+ *
+ *  @brief Statically initializes a stack
+ */
 #define STACK_STATIC_INIT { \
     .top = NULL,            \
     .len = 0                \
 }
 
 
+/** @def STACK_ELEM_INIT(ELEM, NEXT)
+ *
+ *  @brief Initializes the stack link of an element
+ *
+ *  @param ELEM the address of the stack element
+ *  @param NEXT the name of the link field
+ */
 #define STACK_ELEM_INIT(ELEM, NEXT) do {    \
     assert((ELEM) != NULL);                 \
                                             \
@@ -44,6 +79,15 @@
 } while (0)
 
 
+/** @def STACK_PEEP(DEST, STK)
+ *
+ *  @brief Returns the top element in a stack
+ *
+ *  Returns NULL if the stack is empty
+ *
+ *  @param DEST the variable where to store the top reference
+ *  @param STK the address of the stack
+ */
 #define STACK_PEEP(DEST, STK) do {  \
     CHECK_STACK(STK);               \
                                     \
@@ -51,8 +95,23 @@
 } while (0)
 
 
+/** @def STACK_POP(DEST, STK, NEXT)
+ *
+ *  @brief Pops off the top element of a stack
+ *
+ *  Returns NULL if the stack is empty
+ *
+ *  @param DEST the variable where to store the top reference
+ *  @param STK the address of the stack
+ *  @param NEXT the name of the link field
+ */
 #define STACK_POP(DEST, STK, NEXT) do { \
     CHECK_STACK(STK);                   \
+                                        \
+    if ((STK)->len == 0) {              \
+        (DEST) = NULL;                  \
+        break;                          \
+    }                                   \
                                         \
     (DEST) = (STK)->top;                \
                                         \
@@ -62,6 +121,14 @@
 } while (0)
 
 
+/** @def STACK_PUSH(STK, ELEM, NEXT)
+ *
+ *  @brief Pushes an element on a stack
+ *
+ *  @param STK the address of the stack
+ *  @param ELEM the address of the stack element
+ *  @param NEXT the name of the link field
+ */
 #define STACK_PUSH(STK, ELEM, NEXT) do {    \
     CHECK_STACK(STK);                       \
     assert((ELEM) != NULL);                 \
@@ -75,15 +142,21 @@
 } while (0)
 
 
+/** @def CHECK_STACK(STK)
+ *
+ *  @brief Checks the validity of a stack
+ *
+ *  @param STK the address of the stack
+ */
 #define CHECK_STACK(STK) do {                                       \
     /* check that we haven't gotten a NULL stack */                 \
     assert((STK) != NULL);                                          \
                                                                     \
     /* and that our length makes sense with regards to our top */   \
-    if ((STK)->top == NULL)                                         \
+    if ((STK)->top == NULL || (STK)->len == 0) {                    \
+        assert((STK)->top == NULL);                                 \
         assert((STK)->len == 0);                                    \
-    else                                                            \
-        assert((STK)->len != 0);                                    \
+    }                                                               \
 } while (0)
 
 
