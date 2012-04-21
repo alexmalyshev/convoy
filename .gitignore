@@ -1,7 +1,4 @@
-# ignore any of my test files
-test*
-
-# files that could accidentally get staged+commited
+# files that could accidentally get staged + commited
 *.o
 *.a
 *.so

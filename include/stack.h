@@ -1,12 +1,5 @@
 /** @file stack.h
  *  @brief Header for a stack data structure library.
- *
- *  A <tt>stack</tt> is a singly linked list. Elements are stored as generic
- *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored.
- *  Inserting into a <tt>stack</tt> will always succeed provided there is
- *  enough memory on the system. Getting a <tt>NULL</tt> back as an element from
- *  a <tt>stack</tt> means that the <tt>stack</tt> is empty.
- *
  *  @author Alexander Malyshev
  */
 
@@ -15,71 +8,80 @@
 #define __STACK_H__
 
 
+#include <assert.h>
 #include <stddef.h>
 
 
-/** @brief A node in a singly linked list */
-typedef struct snode_t {
-    struct snode_t *next;   /**< the next node */
-    void *elem;             /**< the element */
-} snode;
+#define STACK_NEW(STK_TYPE, STK_ELEM_TYPE)  \
+    typedef struct STK_TYPE {               \
+        struct STK_ELEM_TYPE *top;          \
+        size_t len;                         \
+    } STK_TYPE
 
 
-/** @brief A stack */
-typedef struct {
-    snode *top;             /**< the top node */
-    size_t len;             /**< the number of elements */
-} stack;
+#define STACK_LINK(STK_ELEM_TYPE, NEXT) \
+    struct STK_ELEM_TYPE *NEXT
 
 
-/** @brief Initializes a new <tt>stack</tt>
- *
- *  @param stk the address of the <tt>stack</tt>
- *
- *  @return Success status
- */
-int stack_init(stack *stk);
+#define STACK_INIT(STK) do {    \
+    (STK)->top = NULL;          \
+    (STK)->len = 0;             \
+} while (0)
 
 
-/** @brief Removes all elements from <tt>stk</tt>
- *
- *  @param stk the address of the <tt>stack</tt>
- *
- *  @return Success status
- */
-int stack_clear(stack *stk);
+#define STACK_STATIC_INIT { \
+    .top = NULL,            \
+    .len = 0                \
+}
 
 
-/** @brief Returns the top element of <tt>stk</tt>
- *
- *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty
- *
- *  @param stk the address of the <tt>stack</tt>
- *
- *  @return The top element of <tt>stk</tt>
- */
-void *stack_peek(stack *stk);
+#define STACK_ELEM_INIT(ELEM, NEXT) do {    \
+    assert((ELEM) != NULL);                 \
+                                            \
+    (ELEM)->NEXT = NULL;                    \
+} while (0)
 
 
-/** @brief Removes the top element of <tt>stk</tt>
- *
- *  Returns <tt>NULL</tt> if <tt>stk</tt> is empty
- *
- *  @param stk the address of the <tt>stack</tt>
- *
- *  @return The top element of <tt>stk</tt>
- */
-void *stack_pop(stack *stk);
+#define STACK_PEEP(DEST, STK) do {  \
+    CHECK_STACK(STK);               \
+                                    \
+    (DEST) = (STK)->top;            \
+} while (0)
 
 
-/** @brief Inserts <tt>elem</tt> as the new top of <tt>stk</tt>
- *
- *  @param stk the address of the <tt>stack</tt>
- *  @param elem the element
- *
- *  @return Success status
- */
-int stack_push(stack *stk, void *elem);
+#define STACK_POP(DEST, STK, NEXT) do { \
+    CHECK_STACK(STK);                   \
+                                        \
+    (DEST) = (STK)->top;                \
+                                        \
+    (STK)->top = (STK)->top->NEXT;      \
+                                        \
+    (STK)->len -= 1;                    \
+} while (0)
+
+
+#define STACK_PUSH(STK, ELEM, NEXT) do {    \
+    CHECK_STACK(STK);                       \
+    assert((ELEM) != NULL);                 \
+                                            \
+    (ELEM)->NEXT = (STK)->top;              \
+                                            \
+    (STK)->top = (ELEM);                    \
+                                            \
+    (STK)->len += 1;                        \
+} while (0)
+
+
+#define CHECK_STACK(STK) do {                                       \
+    /* check that we haven't gotten a NULL stack */                 \
+    assert((STK) != NULL);                                          \
+                                                                    \
+    /* and that our length makes sense with regards to our top */   \
+    if ((STK)->top == NULL)                                         \
+        assert((STK)->len == 0);                                    \
+    else                                                            \
+        assert((STK)->len != 0);                                    \
+} while (0)
 
 
 #endif /* __STACK_H__ */
