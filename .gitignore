@@ -4,8 +4,7 @@
 *.so
 *.swp
 
-# changes often, and users dont need it
-TODO
-
 # doxygen
 *.bak
+Doxyfile
+docs
