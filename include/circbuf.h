@@ -1,16 +1,5 @@
 /** @file circbuf.h
- *  @brief Header for a circular buffer data structure library.
- *
- *  A <tt>circbuf</tt> is a fixed-size array. Elements are stored as generic
- *  pointers (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored. The
- *  circbuf structure allocates an array of <tt>void *</tt>s with one extra as
- *  it makes it easy to tell the difference between an empty circbuf and a full
- *  circbuf. However this extra slot will never be used to store an element. A
- *  <tt>circbuf</tt> will not resize when trying to enqueue on an element when
- *  it is full, the enqueue will simply fail and return 1. Getting a
- *  <tt>NULL</tt> back as an element from a <tt>circbuf</tt> means that the
- *  <tt>circbuf</tt> is empty or that there was an error.
- *
+ *  @brief Header for a circular buffer data structure library
  *  @author Alexander Malyshev
  */
 
@@ -19,80 +8,96 @@
 #define __CIRCBUF_H__
 
 
+#include <assert.h>
 #include <stddef.h>
 
 
-/** @brief A circular buffer */
-typedef struct {
-    void **elems;   /**< the array of elements */
-    size_t front;   /**< the index of the first element */
-    size_t back;    /**< the index of the last element */
-    size_t len;     /**< the number of elements plus one */
-} circbuf;
+#define CIRCBUF_NEW(CBUF_TYPE, ELEM_TYPE, LEN)  \
+    typedef struct CBUF_TYPE {                  \
+        ELEM_TYPE elems[LEN];                   \
+        size_t head;                            \
+        size_t tail;                            \
+        size_t len;                             \
+    } CBUF_TYPE
 
 
-/** @brief Initializes a new circbuf
- *
- *  Allocates one slot more than <tt>len</tt> behind the scenes
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *  @param len the desired length
- *
- *  @return Success status
- */
-int circbuf_init(circbuf *cbuf, size_t len);
+#define CIRCBUF_INIT(CBUF, LEN) do {    \
+    assert((CBUF) != NULL);             \
+                                        \
+    (CBUF)->head = 0;                   \
+    (CBUF)->tail = 0;                   \
+                                        \
+    (CBUF)->len = (LEN);                \
+} while (0)
 
 
-/** @brief Frees the array in <tt>cbuf</tt>
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *
- *  @return Success status
- */
-int circbuf_destroy(circbuf *cbuf);
+#define CIRCBUF_STATIC_INIT(LEN) {  \
+    .head = 0,                      \
+    .tail = 0,                      \
+    .len = (LEN)                    \
+}
 
 
-/** @brief Removes the front element of <tt>cbuf</tt>
- *
- *  Returns <tt>NULL</tt> if <tt>cbuf</tt> is empty
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *
- *  @return The front element of <tt>cbuf</tt>
- */
-void *circbuf_dequeue(circbuf *cbuf);
+#define CIRCBUF_DEQUEUE(DEST, CBUF) do {                    \
+    if (CIRCBUF_ISEMPTY(CBUF))                              \
+        break;                                              \
+                                                            \
+    (DEST) = (CBUF)->elems[(CBUF)->head];                   \
+                                                            \
+    (CBUF)->head = ROTATE_RIGHT((CBUF)->head, (CBUF)->len); \
+} while (0)
 
 
-/** @brief Inserts <tt>elem</tt> as the new back element of <tt>cbuf</tt>
- *
- *  If <tt>cbuf</tt> is full, then this function does nothing and returns 1
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *  @param elem the element
- *
- *  @return Success status
- */
-int circbuf_enqueue(circbuf *cbuf, void *elem);
+#define CIRCBUF_ENQUEUE(CBUF, ELEM) do {                    \
+    if (CIRCBUF_ISFULL(CBUF))                               \
+        break;                                              \
+                                                            \
+    (CBUF)->elems[(CBUF)->tail] = (ELEM);                   \
+                                                            \
+    (CBUF)->tail = ROTATE_RIGHT((CBUF)->tail, (CBUF)->len); \
+} while (0)
 
 
-/** @brief Returns the front element of <tt>cbuf</tt>
- *
- *  Will return <tt>NULL</tt> if <tt>cbuf</tt> is empty
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *
- *  @return The front element of <tt>cbuf</tt>
- */
-void *circbuf_peek(circbuf *cbuf);
+#define CIRCBUF_PEEK(DEST, CBUF) do {       \
+    assert(!CIRCBUF_ISEMPTY(CBUF));         \
+                                            \
+    (DEST) = (CBUF)->elems[(CBUF)->head];   \
+} while (0)
 
 
-/** @brief Removes all elements from <tt>cbuf</tt>
- *
- *  @param cbuf the address of the <tt>circbuf</tt>
- *
- *  @return Success status
- */
-int circbuf_clear(circbuf *cbuf);
+#define CIRCBUF_ISEMPTY(CBUF) (     \
+    CHECK_CIRCBUF(CBUF),            \
+                                    \
+    (CBUF)->head == (CBUF)->tail    \
+)
+
+
+#define CIRCBUF_ISFULL(CBUF) (                              \
+    CHECK_CIRCBUF(CBUF),                                    \
+                                                            \
+    (CBUF)->head == ROTATE_RIGHT((CBUF)->tail, (CBUF)->len) \
+)
+
+
+#define CIRCBUF_FOREACH(CURR, INDEX, CBUF)                          \
+    for (CHECK_CIRCBUF(CBUF), (INDEX) = (CBUF)->head;               \
+         (CURR) = &(CBUF)->elems[INDEX], (INDEX) != (CBUF)->tail;   \
+         (INDEX) = ROTATE_RIGHT(INDEX, (CBUF)->len))
+
+
+#define CHECK_CIRCBUF(CBUF) (           \
+    assert((CBUF) != NULL),             \
+    assert((CBUF)->len != 0),           \
+    assert((CBUF)->head < (CBUF)->len), \
+    assert((CBUF)->tail < (CBUF)->len)  \
+)
+
+
+#define ROTATE_RIGHT(VAL, LIMIT) (  \
+    assert((LIMIT) > 0),            \
+                                    \
+    ((VAL) + 1) % (LIMIT)           \
+)
 
 
 #endif /* __CIRCBUF_H__ */

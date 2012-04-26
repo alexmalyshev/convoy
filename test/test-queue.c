@@ -11,7 +11,7 @@ typedef struct block {
 
 QUEUE_NEW(queue, block);
 
-queue qu = QUEUE_STATIC_INIT;
+static queue qu = QUEUE_STATIC_INIT;
 
 
 int main(void) {

@@ -12,7 +12,7 @@ typedef struct block {
 
 STACK_NEW(stack, block);
 
-stack stk = STACK_STATIC_INIT;
+static stack stk = STACK_STATIC_INIT;
 
 
 int main(void ) {

@@ -11,7 +11,7 @@ typedef struct block {
 
 DEQUE_NEW(deque, block);
 
-deque deq = DEQUE_STATIC_INIT;
+static deque deq = DEQUE_STATIC_INIT;
 
 
 int main(void) {
