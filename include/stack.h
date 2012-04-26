@@ -1,5 +1,5 @@
 /** @file stack.h
- *  @brief Header for a stack data structure library.
+ *  @brief Header for a stack data structure library
  *  @author Alexander Malyshev
  */
 
@@ -79,7 +79,7 @@
 } while (0)
 
 
-/** @def STACK_PEEP(DEST, STK)
+/** @def STACK_PEEK(DEST, STK)
  *
  *  @brief Returns the top element in a stack
  *
@@ -88,7 +88,7 @@
  *  @param DEST the variable where to store the top reference
  *  @param STK the address of the stack
  */
-#define STACK_PEEP(DEST, STK) do {  \
+#define STACK_PEEK(DEST, STK) do {  \
     CHECK_STACK(STK);               \
                                     \
     (DEST) = (STK)->top;            \
