@@ -12,9 +12,7 @@
 #include <stddef.h>
 
 
-/** @def QUEUE_NEW(QU_TYPE, ELEM_TYPE)
- *
- *  @brief Declares a new queue type
+/** @brief Declares a new queue type
  *
  *  ELEM_TYPE must be the name of a struct type
  *
@@ -29,9 +27,7 @@
     } QU_TYPE
 
 
-/** @def QUEUE_LINK(ELEM_TYPE, NEXT)
- *
- *  @brief Declares a link in a struct for use with a queue
+/** @brief Declares a link in a struct for use with a queue
  *
  *  ELEM_TYPE must be the name of a struct type
  *
@@ -42,9 +38,7 @@
     struct ELEM_TYPE *NEXT
 
 
-/** @def QUEUE_INIT(QU)
- *
- *  @brief Initializes a queue
+/** @brief Initializes a queue
  *
  *  @param QU the address of the queue
  */
@@ -57,10 +51,7 @@
 } while (0)
 
 
-/** @def QUEUE_STATIC_INIT
- *
- *  @brief Statically initializes a queue
- */
+/** @brief Statically initializes a queue */
 #define QUEUE_STATIC_INIT { \
     .head = NULL,           \
     .tail = NULL,           \
@@ -68,9 +59,7 @@
 }
 
 
-/** @def QUEUE_ELEM_INIT(ELEM, NEXT)
- *
- *  @brief Initializes the queue link of an element
+/** @brief Initializes the queue link of an element
  *
  *  @param ELEM the address of the queue element
  *  @param NEXT the name of the link field
@@ -82,13 +71,11 @@
 } while (0)
 
 
-/** @def QUEUE_DEQUEUE(DEST, QU, NEXT)
- *
- *  @brief Dequeues the front element of a queue
+/** @brief Dequeues the first element of a queue
  *
  *  Sets DEST to NULL if the queue is empty
  *
- *  @param DEST the variable where to store the front reference
+ *  @param DEST the variable where to store the reference to the first element
  *  @param QU the address of the queue
  *  @param NEXT the name of the link field
  */
@@ -101,26 +88,24 @@
         break;                                                      \
     }                                                               \
                                                                     \
-    /* otherwise move the front element into the destination */     \
+    /* otherwise move the first element into the destination */     \
     (DEST) = (QU)->head;                                            \
                                                                     \
-    /* move the front element down */                               \
+    /* move the head reference down */                              \
     (QU)->head = (QU)->head->NEXT;                                  \
                                                                     \
     /* if the queue is now empty, also empty the tail reference */  \
     if ((QU)->head == NULL)                                         \
         (QU)->tail = NULL;                                          \
                                                                     \
-    /* clear out the old front element's next reference */          \
+    /* clear out the old head's next reference */                   \
     (DEST)->NEXT = NULL;                                            \
                                                                     \
     (QU)->len -= 1;                                                 \
 } while (0)
 
 
-/** @def QUEUE_ENQUEUE(QU, ELEM, NEXT)
- *
- *  @brief Enqueues an element onto a queue
+/** @brief Enqueues an element onto a queue
  *
  *  @param QU the address of the queue
  *  @param ELEM the address of the queue element
@@ -144,13 +129,11 @@
 } while (0)
 
 
-/** @def QUEUE_PEEK(DEST, QU)
- *
- *  @brief Returns the front element in a queue
+/** @brief Returns the first element in a queue
  *
  *  Sets DEST to NULL if the queue is empty
  *
- *  @param DEST the variable where to store the front reference
+ *  @param DEST the variable where to store the reference to the first element
  *  @param QU the address of the queue
  */
 #define QUEUE_PEEK(DEST, QU) do {   \
@@ -160,11 +143,9 @@
 } while (0)
 
 
-/** @def QUEUE_FOREACH(CURR, QU, NEXT)
+/** @brief Iterates through all elements of a queue
  *
- *  @brief Iterates through all elements of a queue
- *
- *  @param CURR a reference to the current element in one iteration
+ *  @param CURR the reference to the current element in one iteration
  *  @param QU the address of the queue
  *  @param NEXT the name of the link field
  */
@@ -174,9 +155,7 @@
          (CURR) = (CURR)->NEXT)
 
 
-/** @def CHECK_QUEUE(QU)
- *
- *  @brief Checks the validity of a queue
+/** @brief Checks the validity of a queue
  *
  *  @param QU the address of the queue
  */
@@ -189,6 +168,10 @@
         assert((QU)->head == NULL);                                         \
         assert((QU)->tail == NULL);                                         \
         assert((QU)->len == 0);                                             \
+    }                                                                       \
+    else if ((QU)->head == (QU)->tail || (QU)->len == 1) {                  \
+        assert((QU)->head == (QU)->tail);                                   \
+        assert((QU)->len == 1);                                             \
     }                                                                       \
 } while (0)
 

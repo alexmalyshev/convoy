@@ -12,9 +12,7 @@
 #include <stddef.h>
 
 
-/** @def STACK_NEW(STK_TYPE, ELEM_TYPE)
- *
- *  @brief Declares a new stack type
+/** @brief Declares a new stack type
  *
  *  ELEM_TYPE must be the name of a struct type
  *
@@ -28,9 +26,7 @@
     } STK_TYPE
 
 
-/** @def STACK_LINK(ELEM_TYPE, NEXT)
- *
- *  @brief Declares a link in a struct for use with a stack
+/** @brief Declares a link in a struct for use with a stack
  *
  *  ELEM_TYPE must be the name of a struct type
  *
@@ -41,9 +37,7 @@
     struct ELEM_TYPE *NEXT
 
 
-/** @def STACK_INIT(STK)
- *
- *  @brief Initializes a stack
+/** @brief Initializes a stack
  *
  *  @param STK the address of the stack
  */
@@ -55,19 +49,14 @@
 } while (0)
 
 
-/** @def STACK_STATIC_INIT
- *
- *  @brief Statically initializes a stack
- */
+/** @brief Statically initializes a stack */
 #define STACK_STATIC_INIT { \
     .top = NULL,            \
     .len = 0                \
 }
 
 
-/** @def STACK_ELEM_INIT(ELEM, NEXT)
- *
- *  @brief Initializes the stack link of an element
+/** @brief Initializes the stack link of an element
  *
  *  @param ELEM the address of the stack element
  *  @param NEXT the name of the link field
@@ -79,9 +68,7 @@
 } while (0)
 
 
-/** @def STACK_PEEK(DEST, STK)
- *
- *  @brief Returns the top element in a stack
+/** @brief Returns the top element in a stack
  *
  *  Sets DEST to NULL if the stack is empty
  *
@@ -95,9 +82,7 @@
 } while (0)
 
 
-/** @def STACK_POP(DEST, STK, NEXT)
- *
- *  @brief Pops off the top element of a stack
+/** @brief Pops off the top element of a stack
  *
  *  Sets DEST to NULL if the stack is empty
  *
@@ -127,9 +112,7 @@
 } while (0)
 
 
-/** @def STACK_PUSH(STK, ELEM, NEXT)
- *
- *  @brief Pushes an element on a stack
+/** @brief Pushes an element on a stack
  *
  *  @param STK the address of the stack
  *  @param ELEM the address of the stack element
@@ -150,9 +133,7 @@
 } while (0)
 
 
-/** @def STACK_FOREACH(CURR, STK, NEXT)
- *
- *  @brief Iterates through all the elements of a stack
+/** @brief Iterates through all the elements of a stack
  *
  *  @param CURR a reference to the current element in one iteration
  *  @param STK the address of the stack
@@ -164,9 +145,7 @@
          (CURR) = (CURR)->NEXT)
 
 
-/** @def CHECK_STACK(STK)
- *
- *  @brief Checks the validity of a stack
+/** @brief Checks the validity of a stack
  *
  *  @param STK the address of the stack
  */
