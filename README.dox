@@ -1,4 +1,4 @@
-/** @mainpage Convoy
+/** @mainpage convoy
  *  @author Alexander Malyshev
 
 This is a collection of data structures/types written in C89. None of the data
@@ -14,8 +14,8 @@ it. The current list of data structures is:
  * splat - a splay tree with dictionary operations
  * vector - a dynamic array
 
-Most (if not all) of the functions in this library are not threadsafe.
-You will need locks to use this code in a multithreaded program.
+The older data structures implement generics by using void * elements, whereas
+the newer ones are created via macro definitions for better performance
 
 All files are released under the terms listed in the LICENSE file found in the
 top level convoy folder (3-clause BSD license).
