@@ -57,7 +57,7 @@
 } while (0)
 
 
-/** @def QUEUE_STACK_INIT
+/** @def QUEUE_STATIC_INIT
  *
  *  @brief Statically initializes a queue
  */
