@@ -33,6 +33,10 @@ int main(void) {
 
     block_t *res;
 
+    QUEUE_FOREACH(res, &qu, next) {
+        res->elem += 1;
+    }
+
     printf("[ ");
     QUEUE_DEQUEUE(res, &qu, next);
     printf("%d ", res->elem);
