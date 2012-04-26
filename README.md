@@ -13,10 +13,10 @@ it. The current list of data structures is:
  * splat - a splay tree with dictionary operations
  * vector - a dynamic array
 
-## Multithreading
+## Work In Progress
 
-Most (if not all) of the functions in this library are not threadsafe.
-You will need locks to use this code in a multithreaded program.
+The older data structures implement generics by using void * elements, whereas
+the newer ones are created via macro definitions for better performance
 
 ## License
 
