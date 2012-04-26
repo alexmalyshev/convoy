@@ -34,6 +34,10 @@ int main(void ) {
 
     block_t *res;
 
+    STACK_FOREACH(&stk, res, next) {
+        res->elem += 1;
+    }
+
     printf("[ ");
     STACK_POP(res, &stk, next);
     printf("%d ", res->elem);

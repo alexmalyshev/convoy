@@ -50,7 +50,7 @@
 #define QUEUE_DEQUEUE(DEST, QU, NEXT) do {                          \
     CHECK_QUEUE(QU);                                                \
                                                                     \
-    /* if the queue was empty, then just return NULL */             \
+    /* return NULL if the queue is empty */                         \
     if ((QU)->len == 0) {                                           \
         (DEST) = NULL;                                              \
         break;                                                      \
@@ -65,6 +65,9 @@
     /* if the queue is now empty, also empty the tail reference */  \
     if ((QU)->head == NULL)                                         \
         (QU)->tail = NULL;                                          \
+                                                                    \
+    /* clear out the old front element's next reference */          \
+    (DEST)->NEXT = NULL;                                            \
                                                                     \
     (QU)->len -= 1;                                                 \
 } while (0)
@@ -95,14 +98,16 @@
 } while (0)
 
 
-#define CHECK_QUEUE(QU) do {                                            \
-    assert((QU) != NULL);                                               \
-                                                                        \
-    if ((QU)->head == NULL || (QU)->tail == NULL || (QU)->len == 0) {   \
-        assert((QU)->head == NULL);                                     \
-        assert((QU)->tail == NULL);                                     \
-        assert((QU)->len == 0);                                         \
-    }                                                                   \
+#define CHECK_QUEUE(QU) do {                                                \
+    /* check that we haven't gotten a NULL queue */                         \
+    assert((QU) != NULL);                                                   \
+                                                                            \
+    /* and that our length makes sense with regards to our head and tail */ \
+    if ((QU)->head == NULL || (QU)->tail == NULL || (QU)->len == 0) {       \
+        assert((QU)->head == NULL);                                         \
+        assert((QU)->tail == NULL);                                         \
+        assert((QU)->len == 0);                                             \
+    }                                                                       \
 } while (0)
 
 

@@ -83,7 +83,7 @@
  *
  *  @brief Returns the top element in a stack
  *
- *  Returns NULL if the stack is empty
+ *  Sets DEST to NULL if the stack is empty
  *
  *  @param DEST the variable where to store the top reference
  *  @param STK the address of the stack
@@ -99,25 +99,31 @@
  *
  *  @brief Pops off the top element of a stack
  *
- *  Returns NULL if the stack is empty
+ *  Sets DEST to NULL if the stack is empty
  *
  *  @param DEST the variable where to store the top reference
  *  @param STK the address of the stack
  *  @param NEXT the name of the link field
  */
-#define STACK_POP(DEST, STK, NEXT) do { \
-    CHECK_STACK(STK);                   \
-                                        \
-    if ((STK)->len == 0) {              \
-        (DEST) = NULL;                  \
-        break;                          \
-    }                                   \
-                                        \
-    (DEST) = (STK)->top;                \
-                                        \
-    (STK)->top = (STK)->top->NEXT;      \
-                                        \
-    (STK)->len -= 1;                    \
+#define STACK_POP(DEST, STK, NEXT) do {                     \
+    CHECK_STACK(STK);                                       \
+                                                            \
+    /* return NULL if the stack is empty */                 \
+    if ((STK)->len == 0) {                                  \
+        (DEST) = NULL;                                      \
+        break;                                              \
+    }                                                       \
+                                                            \
+    /* otherwise set our destination as the top element */  \
+    (DEST) = (STK)->top;                                    \
+                                                            \
+    /* the top element is now the old top's next element */ \
+    (STK)->top = (STK)->top->NEXT;                          \
+                                                            \
+    /* clear out the old top's next reference */            \
+    (DEST)->NEXT = NULL;                                    \
+                                                            \
+    (STK)->len -= 1;                                        \
 } while (0)
 
 
@@ -129,17 +135,33 @@
  *  @param ELEM the address of the stack element
  *  @param NEXT the name of the link field
  */
-#define STACK_PUSH(STK, ELEM, NEXT) do {    \
-    CHECK_STACK(STK);                       \
-    assert((ELEM) != NULL);                 \
-    assert((ELEM)->NEXT == NULL);           \
-                                            \
-    (ELEM)->NEXT = (STK)->top;              \
-                                            \
-    (STK)->top = (ELEM);                    \
-                                            \
-    (STK)->len += 1;                        \
+#define STACK_PUSH(STK, ELEM, NEXT) do {            \
+    CHECK_STACK(STK);                               \
+    assert((ELEM) != NULL);                         \
+    assert((ELEM)->NEXT == NULL);                   \
+                                                    \
+    /* our new top points to our old top */         \
+    (ELEM)->NEXT = (STK)->top;                      \
+                                                    \
+    /* the stack's top is now our new element */    \
+    (STK)->top = (ELEM);                            \
+                                                    \
+    (STK)->len += 1;                                \
 } while (0)
+
+
+/** @def STACK_FOREACH(STK, TEMP, NEXT)
+ *
+ *  @brief Iterates through all the elements of a stack
+ *
+ *  @param STK the address of the stack
+ *  @param CURR a reference to the current element in one iteration
+ *  @param NEXT the name of the link field
+ */
+#define STACK_FOREACH(STK, CURR, NEXT)                  \
+    for (assert((STK) != NULL), (CURR) = (STK)->top;    \
+         (CURR) != NULL;                                \
+         (CURR) = (CURR)->NEXT)
 
 
 /** @def CHECK_STACK(STK)
