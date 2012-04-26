@@ -73,6 +73,8 @@ void *vector_at(vector *vec, size_t i);
  *  Will not resize <tt>vec</tt>
  *
  *  @param vec the address of the <tt>vector</tt>
+ *
+ *  @return Success status
  */
 int vector_clear(vector *vec);
 
@@ -82,6 +84,8 @@ int vector_clear(vector *vec);
  *  Will not resize <tt>vec</tt>
  *
  *  @param vec the address of the <tt>vector</tt>
+ *
+ *  @return Success status
  */
 int vector_compact(vector *vec);
 
@@ -147,7 +151,7 @@ void *vector_remove(vector *vec, size_t i);
 int vector_resize(vector *vec, size_t cap);
 
 
-/** @brief Swaps <tt>vec[i]</tt> with <tt>vec[j]</tt
+/** @brief Swaps <tt>vec[i]</tt> with <tt>vec[j]</tt>
  *
  *  Will resize <tt>vec</tt> if either <tt>i</tt> or <tt>j</tt> is
  *  out-of-bounds, but not if both are
