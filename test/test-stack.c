@@ -34,7 +34,7 @@ int main(void ) {
 
     block_t *res;
 
-    STACK_FOREACH(&stk, res, next) {
+    STACK_FOREACH(res, &stk, next) {
         res->elem += 1;
     }
 

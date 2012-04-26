@@ -150,15 +150,15 @@
 } while (0)
 
 
-/** @def STACK_FOREACH(STK, TEMP, NEXT)
+/** @def STACK_FOREACH(CURR, STK, NEXT)
  *
  *  @brief Iterates through all the elements of a stack
  *
- *  @param STK the address of the stack
  *  @param CURR a reference to the current element in one iteration
+ *  @param STK the address of the stack
  *  @param NEXT the name of the link field
  */
-#define STACK_FOREACH(STK, CURR, NEXT)                  \
+#define STACK_FOREACH(CURR, STK, NEXT)                  \
     for (assert((STK) != NULL), (CURR) = (STK)->top;    \
          (CURR) != NULL;                                \
          (CURR) = (CURR)->NEXT)
