@@ -76,7 +76,7 @@
  *  @param STK the address of the stack
  */
 #define STACK_PEEK(DEST, STK) do {  \
-    CHECK_STACK(STK);               \
+    STACK_CHECK(STK);               \
                                     \
     (DEST) = (STK)->top;            \
 } while (0)
@@ -91,7 +91,7 @@
  *  @param NEXT the name of the link field
  */
 #define STACK_POP(DEST, STK, NEXT) do {                     \
-    CHECK_STACK(STK);                                       \
+    STACK_CHECK(STK);                                       \
                                                             \
     /* return NULL if the stack is empty */                 \
     if ((STK)->len == 0) {                                  \
@@ -119,9 +119,8 @@
  *  @param NEXT the name of the link field
  */
 #define STACK_PUSH(STK, ELEM, NEXT) do {            \
-    CHECK_STACK(STK);                               \
-    assert((ELEM) != NULL);                         \
-    assert((ELEM)->NEXT == NULL);                   \
+    STACK_CHECK(STK);                               \
+    STACK_CHECK_NEW_ELEM(ELEM, NEXT);               \
                                                     \
     /* our new top points to our old top */         \
     (ELEM)->NEXT = (STK)->top;                      \
@@ -149,7 +148,7 @@
  *
  *  @param STK the address of the stack
  */
-#define CHECK_STACK(STK) do {                                       \
+#define STACK_CHECK(STK) do {                                       \
     /* check that we haven't gotten a NULL stack */                 \
     assert((STK) != NULL);                                          \
                                                                     \
@@ -158,6 +157,20 @@
         assert((STK)->top == NULL);                                 \
         assert((STK)->len == 0);                                    \
     }                                                               \
+} while (0)
+
+
+/** @brief Checks the validity of a new, uninserted stack element
+ *
+ *  @param ELEM the address of the stack element
+ *  @param NEXT the name of the link field
+ */
+#define STACK_CHECK_NEW_ELEM(ELEM, NEXT) do {           \
+    /* check that we haven't gotten a NULL element */   \
+    assert((ELEM) != NULL);                             \
+                                                        \
+    /* and that it isn't inserted in a stack already */ \
+    assert((ELEM)->NEXT == NULL);                       \
 } while (0)
 
 

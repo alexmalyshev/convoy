@@ -113,7 +113,7 @@
  *  @return Whether a circbuf is empty
  */
 #define CIRCBUF_ISEMPTY(CBUF) (                                             \
-    CHECK_CIRCBUF(CBUF),                                                    \
+    CIRCBUF_CHECK(CBUF),                                                    \
                                                                             \
     /* a circbuf is empty when its head and tail indices are the same */    \
     (CBUF)->head == (CBUF)->tail                                            \
@@ -127,7 +127,7 @@
  *  @return Whether a circbuf is full
  */
 #define CIRCBUF_ISFULL(CBUF) (                                  \
-    CHECK_CIRCBUF(CBUF),                                        \
+    CIRCBUF_CHECK(CBUF),                                        \
                                                                 \
     /* a circbuf is full when inserting another element
      * would make it "empty" */                                 \
@@ -142,7 +142,7 @@
  *  @param CBUF the address of the circbuf
  */
 #define CIRCBUF_FOREACH(CURR, INDEX, CBUF)                          \
-    for (CHECK_CIRCBUF(CBUF), (INDEX) = (CBUF)->head;               \
+    for (CIRCBUF_CHECK(CBUF), (INDEX) = (CBUF)->head;               \
          (CURR) = &(CBUF)->elems[INDEX], (INDEX) != (CBUF)->tail;   \
          (INDEX) = ROTATE_RIGHT(INDEX, (CBUF)->limit))
 
@@ -151,7 +151,7 @@
  *
  *  @param CBUF the address of the circbuf
  */
-#define CHECK_CIRCBUF(CBUF) (                                           \
+#define CIRCBUF_CHECK(CBUF) (                                           \
     /* checks that we haven't gotten a NULL circbuf */                  \
     assert((CBUF) != NULL),                                             \
                                                                         \

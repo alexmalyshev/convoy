@@ -80,7 +80,7 @@
  *  @param NEXT the name of the link field
  */
 #define QUEUE_DEQUEUE(DEST, QU, NEXT) do {                          \
-    CHECK_QUEUE(QU);                                                \
+    QUEUE_CHECK(QU);                                                \
                                                                     \
     /* return NULL if the queue is empty */                         \
     if ((QU)->len == 0) {                                           \
@@ -112,9 +112,8 @@
  *  @param NEXT the name of the link field
  */
 #define QUEUE_ENQUEUE(QU, ELEM, NEXT) do {          \
-    CHECK_QUEUE(QU);                                \
-    assert((ELEM) != NULL);                         \
-    assert((ELEM)->NEXT == NULL);                   \
+    QUEUE_CHECK(QU);                                \
+    QUEUE_CHECK_NEW_ELEM(ELEM, NEXT);               \
                                                     \
     /* add the element to the end of the queue */   \
     if ((QU)->len != 0)                             \
@@ -137,7 +136,7 @@
  *  @param QU the address of the queue
  */
 #define QUEUE_PEEK(DEST, QU) do {   \
-    CHECK_QUEUE(QU);                \
+    QUEUE_CHECK(QU);                \
                                     \
     (DEST) = (QU)->head;            \
 } while (0)
@@ -159,7 +158,7 @@
  *
  *  @param QU the address of the queue
  */
-#define CHECK_QUEUE(QU) do {                                                \
+#define QUEUE_CHECK(QU) do {                                                \
     /* check that we haven't gotten a NULL queue */                         \
     assert((QU) != NULL);                                                   \
                                                                             \
@@ -173,6 +172,20 @@
         assert((QU)->head == (QU)->tail);                                   \
         assert((QU)->len == 1);                                             \
     }                                                                       \
+} while (0)
+
+
+/** @brief Checks the validity of a new, uninserted element
+ *
+ *  @param ELEM the address of the queue element
+ *  @param NEXT the name of the link field
+ */
+#define QUEUE_CHECK_NEW_ELEM(ELEM, NEXT) do {               \
+    /* check that we haven't gotten a NULL element */       \
+    assert((ELEM) != NULL);                                 \
+                                                            \
+    /* and that it isn't inserted into a queue already */   \
+    assert((ELEM)->NEXT == NULL);                           \
 } while (0)
 
 

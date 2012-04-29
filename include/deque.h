@@ -83,7 +83,7 @@
  *  @param DEQ the address of the deque
  */
 #define DEQUE_PEEK_HEAD(DEST, DEQ) do { \
-    CHECK_DEQUE(DEQ);                   \
+    DEQUE_CHECK(DEQ);                   \
                                         \
     (DEST) = (DEQ)->head;               \
 } while (0)
@@ -97,7 +97,7 @@
  *  @param DEQ the address of the deque
  */
 #define DEQUE_PEEK_TAIL(DEST, DEQ) do { \
-    CHECK_DEQUE(DEQ);                   \
+    DEQUE_CHECK(DEQ);                   \
                                         \
     (DEST) = (DEQ)->tail;               \
 } while (0)
@@ -110,8 +110,8 @@
  *  @param LINK the name of the link field
  */
 #define DEQUE_PUSH_HEAD(DEQ, ELEM, LINK) do {                               \
-    CHECK_DEQUE(DEQ);                                                       \
-    CHECK_NEW_ELEM(ELEM, LINK);                                             \
+    DEQUE_CHECK(DEQ);                                                       \
+    DEQUE_CHECK_NEW_ELEM(ELEM, LINK);                                       \
                                                                             \
     /* the element's next points to the old head of the deque */            \
     (ELEM)->LINK.next = (DEQ)->head;                                        \
@@ -137,8 +137,8 @@
  *  @param LINK the name of the link field
  */
 #define DEQUE_PUSH_TAIL(DEQ, ELEM, LINK) do {                               \
-    CHECK_DEQUE(DEQ);                                                       \
-    CHECK_NEW_ELEM(ELEM, LINK);                                             \
+    DEQUE_CHECK(DEQ);                                                       \
+    DEQUE_CHECK_NEW_ELEM(ELEM, LINK);                                       \
                                                                             \
     /* the element's prev points to the old tail of the deque */            \
     (ELEM)->LINK.prev = (DEQ)->tail;                                        \
@@ -166,7 +166,7 @@
  *  @param LINK the name of the link field
  */
 #define DEQUE_POP_HEAD(DEST, DEQ, LINK) do {            \
-    CHECK_DEQUE(DEQ);                                   \
+    DEQUE_CHECK(DEQ);                                   \
                                                         \
     /* return NULL if the deque is empty */             \
     if ((DEQ)->head == NULL) {                          \
@@ -191,7 +191,7 @@
  *  @param LINK the name of the link field
  */
 #define DEQUE_POP_TAIL(DEST, DEQ, LINK) do {            \
-    CHECK_DEQUE(DEQ);                                   \
+    DEQUE_CHECK(DEQ);                                   \
                                                         \
     /* return NULL if the deque is empty */             \
     if ((DEQ)->tail == NULL) {                          \
@@ -214,8 +214,8 @@
  *  @param LINK the name of the link field
  */
 #define DEQUE_REMOVE(DEQ, ELEM, LINK) do {                                  \
-    CHECK_DEQUE(DEQ);                                                       \
-    CHECK_INSERTED_ELEM(ELEM, DEQ, LINK);                                   \
+    DEQUE_CHECK(DEQ);                                                       \
+    DEQUE_CHECK_INSERTED_ELEM(ELEM, DEQ, LINK);                             \
                                                                             \
     /* cannot remove an element from an empty deque */                      \
     assert((DEQ)->len != 0);                                                \
@@ -259,7 +259,7 @@
  *
  *  @param DEQ the address of the deque
  */
-#define CHECK_DEQUE(DEQ) do {                                               \
+#define DEQUE_CHECK(DEQ) do {                                               \
     /* check that we haven't gotten a NULL deque */                         \
     assert((DEQ) != NULL);                                                  \
                                                                             \
@@ -281,7 +281,7 @@
  *  @param ELEM the address of the deque element
  *  @param LINK the name of the link field
  */
-#define CHECK_NEW_ELEM(ELEM, LINK) do {                             \
+#define DEQUE_CHECK_NEW_ELEM(ELEM, LINK) do {                       \
     /* check that we haven't gotten a NULL element */               \
     assert((ELEM) != NULL);                                         \
                                                                     \
@@ -299,7 +299,7 @@
  *  @param DEQ the address of the deque
  *  @param LINK the name of the link field
  */
-#define CHECK_INSERTED_ELEM(ELEM, DEQ, LINK) do {                       \
+#define DEQUE_CHECK_INSERTED_ELEM(ELEM, DEQ, LINK) do {                 \
     /* can't have inserted a NULL element */                            \
     assert((ELEM) != NULL);                                             \
                                                                         \
