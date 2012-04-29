@@ -9,15 +9,20 @@
  *  @author Alexander Malyshev
  */
 
+
 #include "splat.h"
 
 #include <assert.h>
 #include <stdlib.h>
 
+
 static void clear(spnode *node);
+
 static void splay(splat *tree, void *elem);
+
 static spnode *rotate_left(spnode *node);
 static spnode *rotate_right(spnode *node);
+
 static spnode *init_node(void *elem);
 
 
@@ -159,19 +164,16 @@ void *splat_search(splat *tree, void *elem) {
 
 static void splay(splat *tree, void *elem) {
     spnode assembler;
-    spnode *left;
-    spnode *right;
+    spnode *left = &assembler;
+    spnode *right = &assembler;
     spnode *node;
     int c;
-
-    assert(tree != NULL);
-    assert(elem != NULL);
 
     assembler.left = NULL;
     assembler.right = NULL;
 
-    left = &assembler;
-    right = &assembler;
+    assert(tree != NULL);
+    assert(elem != NULL);
 
     node = tree->root;
     while (1) {

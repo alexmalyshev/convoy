@@ -88,7 +88,8 @@ int vector_compact(vector *vec) {
         if (vec->elems[i] == NULL) {
             if (empty == vec->cap)
                 empty = i;
-        } else if (empty != vec->cap) {
+        }
+        else if (empty != vec->cap) {
             /* move element into our last empty slot */
             swap(vec, empty, i);
             /* find new empty */
@@ -256,6 +257,8 @@ static void swap(vector *vec, size_t i, size_t j) {
     void *temp;
 
     assert(vec != NULL);
+    assert(i < vec->cap);
+    assert(j < vec->cap);
 
     temp = vec->elems[i];
     vec->elems[i] = vec->elems[j];

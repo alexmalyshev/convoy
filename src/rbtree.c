@@ -138,7 +138,8 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
         if (!is_red(node->left) && !is_red(node->left->left))
             node = move_red_left(node);
         node->left = remove(node->left, elem, cmp, removed);
-    } else {
+    }
+    else {
         if (is_red(node->left))
             node = rotate_right(node);
         if (node->right == NULL) {
@@ -155,7 +156,8 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
             *removed = node->elem;
             node->elem = min(node->right);
             node->right = remove_min(node->right);
-        } else
+        }
+        else
             node->right = remove(node->right, elem, cmp, removed);
     }
 
@@ -165,16 +167,14 @@ static rbnode *remove(rbnode *node, void *elem, cmpfn cmp, void **removed) {
 
 void *rbtree_search(rbtree *tree, void *elem) {
     rbnode *node;
-    cmpfn cmp;
     int c;
 
     assert(tree != NULL);
     assert(elem != NULL);
 
     node = tree->root;
-    cmp = tree->cmp;
     while (node != NULL) {
-        c = cmp(elem, node->elem);
+        c = tree->cmp(elem, node->elem);
         if (c < 0)
             node = node->left;
         else if (c > 0)
@@ -223,6 +223,7 @@ static rbnode *rotate_left(rbnode *node) {
     rbnode *temp;
 
     assert(node != NULL);
+    assert(node->right != NULL);
 
     temp = node->right;
     node->right = temp->left;
@@ -238,6 +239,7 @@ static rbnode *rotate_right(rbnode *node) {
     rbnode *temp;
 
     assert(node != NULL);
+    assert(node->left != NULL);
 
     temp = node->left;
     node->left = temp->right;
