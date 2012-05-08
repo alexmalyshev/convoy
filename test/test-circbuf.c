@@ -12,9 +12,9 @@ static circbuf cbuf = CIRCBUF_STATIC_INIT(CBUF_LEN);
 
 
 int main(void) {
-    CIRCBUF_ENQUEUE(&cbuf, 0);
-    CIRCBUF_ENQUEUE(&cbuf, 1);
-    CIRCBUF_ENQUEUE(&cbuf, 2);
+    CIRCBUF_PUSH_HEAD(&cbuf, 0);
+    CIRCBUF_PUSH_HEAD(&cbuf, 1);
+    CIRCBUF_PUSH_TAIL(&cbuf, 2);
 
     int *ref;
     size_t i;
@@ -25,11 +25,11 @@ int main(void) {
     int res;
 
     printf("[ ");
-    CIRCBUF_DEQUEUE(res, &cbuf);
+    CIRCBUF_POP_HEAD(res, &cbuf);
     printf("%d ", res);
-    CIRCBUF_DEQUEUE(res, &cbuf);
+    CIRCBUF_POP_TAIL(res, &cbuf);
     printf("%d ", res);
-    CIRCBUF_DEQUEUE(res, &cbuf);
+    CIRCBUF_POP_HEAD(res, &cbuf);
     printf("%d ", res);
     printf("]\n");
 
