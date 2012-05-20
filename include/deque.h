@@ -1,5 +1,6 @@
 /** @file deque.h
  *  @brief Header for a deque (double-ended queue) data structure library
+ *
  *  @author Alexander Malyshev
  */
 

@@ -1,5 +1,6 @@
 /** @file circbuf.h
  *  @brief Header for a circular buffer data structure library
+ *
  *  @author Alexander Malyshev
  */
 

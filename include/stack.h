@@ -1,5 +1,6 @@
 /** @file stack.h
  *  @brief Header for a stack data structure library
+ *
  *  @author Alexander Malyshev
  */
 
@@ -31,10 +32,10 @@
  *  ELEM_TYPE must be the name of a struct type
  *
  *  @param ELEM_TYPE the type of the element
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_LINK(ELEM_TYPE, NEXT) \
-    struct ELEM_TYPE *NEXT
+#define STACK_LINK(ELEM_TYPE, LINK) \
+    struct ELEM_TYPE *LINK
 
 
 /** @brief Initializes a stack
@@ -59,12 +60,12 @@
 /** @brief Initializes the stack link of an element
  *
  *  @param ELEM the address of the stack element
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_ELEM_INIT(ELEM, NEXT) do {    \
+#define STACK_ELEM_INIT(ELEM, LINK) do {    \
     assert((ELEM) != NULL);                 \
                                             \
-    (ELEM)->NEXT = NULL;                    \
+    (ELEM)->LINK = NULL;                    \
 } while (0)
 
 
@@ -88,9 +89,9 @@
  *
  *  @param DEST the variable where to store the top reference
  *  @param STK the address of the stack
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_POP(DEST, STK, NEXT) do {                     \
+#define STACK_POP(DEST, STK, LINK) do {                     \
     STACK_CHECK(STK);                                       \
                                                             \
     /* return NULL if the stack is empty */                 \
@@ -103,10 +104,10 @@
     (DEST) = (STK)->top;                                    \
                                                             \
     /* the top element is now the old top's next element */ \
-    (STK)->top = (STK)->top->NEXT;                          \
+    (STK)->top = (STK)->top->LINK;                          \
                                                             \
     /* clear out the old top's next reference */            \
-    (DEST)->NEXT = NULL;                                    \
+    (DEST)->LINK = NULL;                                    \
                                                             \
     (STK)->len -= 1;                                        \
 } while (0)
@@ -116,14 +117,14 @@
  *
  *  @param STK the address of the stack
  *  @param ELEM the address of the stack element
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_PUSH(STK, ELEM, NEXT) do {            \
+#define STACK_PUSH(STK, ELEM, LINK) do {            \
     STACK_CHECK(STK);                               \
-    STACK_CHECK_NEW_ELEM(ELEM, NEXT);               \
+    STACK_CHECK_NEW_ELEM(ELEM, LINK);               \
                                                     \
     /* our new top points to our old top */         \
-    (ELEM)->NEXT = (STK)->top;                      \
+    (ELEM)->LINK = (STK)->top;                      \
                                                     \
     /* the stack's top is now our new element */    \
     (STK)->top = (ELEM);                            \
@@ -136,12 +137,12 @@
  *
  *  @param CURR a reference to the current element in one iteration
  *  @param STK the address of the stack
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_FOREACH(CURR, STK, NEXT)                  \
+#define STACK_FOREACH(CURR, STK, LINK)                  \
     for (assert((STK) != NULL), (CURR) = (STK)->top;    \
          (CURR) != NULL;                                \
-         (CURR) = (CURR)->NEXT)
+         (CURR) = (CURR)->LINK)
 
 
 /** @brief Checks the validity of a stack
@@ -163,14 +164,14 @@
 /** @brief Checks the validity of a new, uninserted stack element
  *
  *  @param ELEM the address of the stack element
- *  @param NEXT the name of the link field
+ *  @param LINK the name of the link field
  */
-#define STACK_CHECK_NEW_ELEM(ELEM, NEXT) do {           \
+#define STACK_CHECK_NEW_ELEM(ELEM, LINK) do {           \
     /* check that we haven't gotten a NULL element */   \
     assert((ELEM) != NULL);                             \
                                                         \
     /* and that it isn't inserted in a stack already */ \
-    assert((ELEM)->NEXT == NULL);                       \
+    assert((ELEM)->LINK == NULL);                       \
 } while (0)
 
 

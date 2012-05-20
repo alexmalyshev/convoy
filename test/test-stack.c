@@ -47,5 +47,8 @@ int main(void ) {
     printf("%d ", res->elem);
     printf("]\n");
 
+    STACK_POP(res, &stk, next);
+    assert(res == NULL);
+
     return 0;
 }

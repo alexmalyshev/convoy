@@ -33,5 +33,14 @@ int main(void) {
     printf("%d ", res);
     printf("]\n");
 
+    res = -13;
+    assert(CIRCBUF_ISEMPTY(&cbuf));
+    CIRCBUF_POP_HEAD(res, &cbuf);
+    assert(res == -13);
+    assert(CIRCBUF_ISEMPTY(&cbuf));
+    CIRCBUF_POP_TAIL(res, &cbuf);
+    assert(res == -13);
+    assert(CIRCBUF_ISEMPTY(&cbuf));
+
     return 0;
 }
