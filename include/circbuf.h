@@ -192,7 +192,7 @@
 /** @brief Iterates through all elements of a circular buffer
  *
  *  @param CURR the current element in one iteration
- *  @param INDEX the current index of the current element
+ *  @param INDEX the index of the current element
  *  @param CBUF the address of the circbuf
  */
 #define CIRCBUF_FOREACH(CURR, INDEX, CBUF)                          \
