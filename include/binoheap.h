@@ -56,9 +56,8 @@
 
 
 #define BINOHEAP_MERGE(DEST, SOURCE, LESS, LINK) do {                       \
-    /* FIXME replace with check */                                          \
-    assert((DEST) != NULL);                                                 \
-    assert((SOURCE) != NULL);                                               \
+    BINOHEAP_CHECK(DEST);                                                   \
+    BINOHEAP_CHECK(SOURCE);                                                 \
                                                                             \
     /* shouldn't be attempting to merge a heap with itself */               \
     assert((DEST)->min != (SOURCE)->head || (DEST)->head == NULL);          \
@@ -90,9 +89,8 @@
 
 
 #define BINOHEAP_INSERT(HEAP, ELEM, LESS, LINK) do {    \
-    /* FIXME replace with check */                      \
-    assert((HEAP) != NULL);                             \
-    assert((ELEM) != NULL);                             \
+    BINOHEAP_CHECK(HEAP);                               \
+    BINOHEAP_CHECK_NEW_ELEM(ELEM, LINK);                \
                                                         \
     if ((HEAP)->min == NULL) {                          \
         (HEAP)->min = (ELEM);                           \
@@ -113,13 +111,12 @@
     /* allocate a NULLed buffer of size 'bitlen(size_t) + 1' */             \
     struct ELEM_TYPE *buf[sizeof(size_t) * CHAR_BIT + 1] = { NULL };        \
                                                                             \
-    struct ELEM_TYPE *rem;                                                  \
-    struct ELEM_TYPE *min;                                                  \
-    struct ELEM_TYPE *children;                                             \
+    struct ELEM_TYPE *rem = NULL;                                           \
+    struct ELEM_TYPE *min = NULL;                                           \
                                                                             \
     size_t i;                                                               \
                                                                             \
-    assert((HEAP) != NULL);                                                 \
+    BINOHEAP_CHECK(HEAP);                                                   \
                                                                             \
     /* return NULL if the heap is empty */                                  \
     if ((HEAP)->min == NULL) {                                              \
@@ -184,8 +181,9 @@
                                                                             \
             child = child->LINK.right;                                      \
         } while (child != (HEAP)->min->LINK.child);                         \
-                                                                                        /* then merge them into our heap */                                 \
-        MERGE_LISTS(heap, (HEAP)->min->LINK.child, LINK);                   \
+                                                                            \
+        /* then merge them into our heap */                                 \
+        MERGE_LISTS(heap, child, LINK);                                     \
     }                                                                       \
                                                                             \
     /* clear out the children list from the old minimum */                  \
@@ -196,23 +194,63 @@
 } while (0)
 
 
+#define BINOHEAP_CHECK(HEAP) do {                       \
+    assert((HEAP) != NULL);                             \
+                                                        \
+    if ((HEAP)->min == NULL || (HEAP)->nelems == 0) {   \
+        assert((HEAP)->min == NULL);                    \
+        assert((HEAP)->nelems == 0);                    \
+    }                                                   \
+} while (0)
+
+
+#define BINOHEAP_CHECK_ELEM(ELEM, LINK) do {                            \
+    assert((ELEM) != NULL);                                             \
+                                                                        \
+    if ((ELEM)->LINK.left == (ELEM) || (ELEM)->LINK.right == (ELEM)) {  \
+        assert((ELEM)->LINK.left == (ELEM));                            \
+        assert((ELEM)->LINK.right == (ELEM));                           \
+    }                                                                   \
+                                                                        \
+    if ((ELEM)->LINK.rank == 0 || (ELEM)->LINK.child == NULL) {         \
+        assert((ELEM)->LINK.rank == 0);                                 \
+        assert((ELEM)->LINK.child == NULL);                             \
+    }                                                                   \
+} while (0)
+
+
+#define BINOHEAP_CHECK_NEW_ELEM(ELEM, LINK) do {            \
+    BINOHEAP_CHECK_ELEM(ELEM, LINK);                        \
+                                                            \
+    /* new element should not have a parent or children */  \
+    assert((ELEM)->LINK.parent == NULL);                    \
+    assert((ELEM)->LINK.child == NULL);                     \
+    assert((ELEM)->LINK.rank == 0);                         \
+                                                            \
+    /* shouldn't have siblings either */                    \
+    assert((ELEM)->LINK.left == (ELEM));                    \
+    assert((ELEM)->LINK.right == (ELEM));                   \
+} while (0)
+
+
+#define BINOHEAP_CHECK_ROOT(ELEM, LINK) do {        \
+    BINOHEAP_CHECK_ELEM(ELEM, LINK);                \
+                                                    \
+    /* roots don't have parents */                  \
+    assert((ELEM)->LINK.parent == NULL);            \
+                                                    \
+    /* the roots of trees must not have siblings */ \
+    assert((ELEM)->LINK.left == (ELEM));            \
+    assert((ELEM)->LINK.right == (ELEM));           \
+} while (0)
+
+
 #define LINK_TREES(DEST, SOURCE, LESS, LINK) do {                           \
-    /* FIXME replace with check */                                          \
-    assert((DEST) != NULL);                                                 \
-    assert((SOURCE) != NULL);                                               \
+    BINOHEAP_CHECK_ROOT(DEST, LINK);                                        \
+    BINOHEAP_CHECK_ROOT(SOURCE, LINK);                                      \
                                                                             \
     /* can only link two binomial trees of the same rank */                 \
     assert((DEST)->LINK.rank == (SOURCE)->LINK.rank);                       \
-                                                                            \
-    /* the roots of trees must not have siblings */                         \
-    assert((DEST)->LINK.left == (DEST));                                    \
-    assert((DEST)->LINK.right == (DEST));                                   \
-    assert((SOURCE)->LINK.left == (SOURCE));                                \
-    assert((SOURCE)->LINK.right == (SOURCE));                               \
-                                                                            \
-    /* can't link trees with parents, one of them would be overwritten */   \
-    assert((DEST)->LINK.parent == NULL);                                    \
-    assert((SOURCE)->LINK.parent == NULL);                                  \
                                                                             \
     if (LESS((DEST)->LINK.key, (SOURCE)->LINK.key)) {                       \
         (SOURCE)->LINK.parent = (DEST);                                     \
@@ -230,8 +268,7 @@
 
 
 #define REMOVE_ELEM(ELEM, LINK) do {                                    \
-    /* FIXME replace with check */                                      \
-    assert((ELEM) != NULL);                                             \
+    BINOHEAP_CHECK_ELEM(ELEM, LINK);                                    \
                                                                         \
     /* should only be removing a root element from its sibling list */  \
     assert((ELEM)->LINK.parent == NULL);                                \
@@ -249,21 +286,20 @@
 } while (0)
 
 
-#define MERGE_LISTS(LIST1, LIST2, LINK) do {        \
+#define MERGE_LISTS(ELEM1, ELEM2, LINK) do {        \
     /* abusing the C type system to its fullest */  \
     void *left1;                                    \
                                                     \
-    /* FIXME replace with check */                  \
-    assert((LIST1) != NULL);                        \
-    assert((LIST2) != NULL);                        \
+    BINOHEAP_CHECK_ELEM(ELEM1, LINK);               \
+    BINOHEAP_CHECK_ELEM(ELEM2, LINK);               \
                                                     \
-    (LIST1)->LINK.left->LINK.right = (LIST2);       \
-    (LIST2)->LINK.left->LINK.right = (LIST1);       \
+    (ELEM1)->LINK.left->LINK.right = (ELEM2);       \
+    (ELEM2)->LINK.left->LINK.right = (ELEM1);       \
                                                     \
-    left1 = (LIST1)->LINK.left;                     \
+    left1 = (ELEM1)->LINK.left;                     \
                                                     \
-    (LIST1)->LINK.left = (LIST2)->LINK.left;        \
-    (LIST2)->LINK.left = left1;                     \
+    (ELEM1)->LINK.left = (ELEM2)->LINK.left;        \
+    (ELEM2)->LINK.left = left1;                     \
 } while (0)
 
 

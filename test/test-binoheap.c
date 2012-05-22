@@ -13,35 +13,56 @@ typedef struct block {
 
 BINOHEAP_NEW(binoheap, block);
 
-static binoheap heap = BINOHEAP_STATIC_INIT;
 
-#define LESS(a, b) ((a) < (b))
+static void elem_init(block_t *blk, int key, int val);
+static void insert(binoheap *heap, block_t *blk);
+static block_t *removemin(binoheap *heap);
+
 
 int main(void) {
+    binoheap heap = BINOHEAP_STATIC_INIT;
+
     block_t b0;
-    b0.key = 3;
-    b0.val = 4;
-    BINOHEAP_ELEM_INIT(&b0, b0.key, link);
+    elem_init(&b0, 3, 4);
 
     block_t b1;
-    b1.key = 2;
-    b1.val = 3;
-    BINOHEAP_ELEM_INIT(&b1, b1.key, link);
+    elem_init(&b1, 2, 3);
 
     block_t b2;
-    b2.key = 1;
-    b2.val = 2;
-    BINOHEAP_ELEM_INIT(&b2, b2.key, link);
+    elem_init(&b2, 1, 2);
 
-    BINOHEAP_INSERT(&heap, &b0, LESS, link);
-    BINOHEAP_INSERT(&heap, &b1, LESS, link);
-    BINOHEAP_INSERT(&heap, &b2, LESS, link);
+    insert(&heap, &b0);
+    insert(&heap, &b1);
+    insert(&heap, &b2);
 
-    block_t *res = NULL;
-
-    BINOHEAP_REMOVEMIN(res, &heap, LESS, block, link);
+    block_t *res = removemin(&heap);
 
     printf("(%d,%d)", res->key, res->val);
 
-    return 0;
+    return res->key;
+}
+
+
+static int less(int a, int b) {
+    return a < b;
+}
+
+static void elem_init(block_t *blk, int key, int val) {
+    blk->key = key;
+    blk->val = val;
+
+    BINOHEAP_ELEM_INIT(blk, blk->key, link);
+}
+
+static void insert(binoheap *heap, block_t *blk) {
+    BINOHEAP_INSERT(heap, blk, less, link);
+}
+
+
+static block_t *removemin(binoheap *heap) {
+    block_t *res = NULL;
+
+    BINOHEAP_REMOVEMIN(res, heap, less, block, link);
+
+    return res;
 }
