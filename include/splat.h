@@ -1,93 +1,203 @@
 /** @file splat.h
- *  @brief Header for a splay tree data structure library.
- *
- *  A <tt>splat</tt> is a binary tree. Elements are stored as generic pointers
- *  (<tt>void *</tt>), however <tt>NULL</tt> cannot be stored. Elements are
- *  compared using a generic compare function. Getting a <tt>NULL</tt> back as
- *  an element from a <tt>splat</tt> means that key has no mapped value in the
- *  tree.
+ *  @brief Header for a splay tree data structure
  *
  *  @author Alexander Malyshev
  */
 
 
 #ifndef __SPLAT_H__
-#define __SPLAT_H__
 
 
-#ifndef CMPFN
-#define CMPFN
-/** @brief A generic compare function */
-typedef int (*cmpfn)(void *, void *);
-#endif /* CMPFN */
+#include <assert.h>
+#include <stddef.h>
 
 
-/** @brief A node in a binary tree */
-typedef struct spnode_t {
-    struct spnode_t *left;  /**< the left child */
-    struct spnode_t *right; /**< the right child */
-    void *elem;             /**< the element */
-} spnode;
+#define SPLAT_NEW(SPLAT_TYPE, ELEM_TYPE)    \
+    typedef struct SPLAT_TYPE {             \
+        struct ELEM_TYPE *root;             \
+    } SPLAT_TYPE
 
 
-/** @brief A splay tree */
-typedef struct splat_t {
-    spnode *root;           /**< the root node */
-    cmpfn cmp;              /**< the function for comparing elements */
-} splat;
+#define SPLAT_LINK(ELEM_TYPE, LINK) \
+    struct {                        \
+        struct ELEM_TYPE *left;     \
+        struct ELEM_TYPE *right;    \
+    } LINK
 
 
-/** @brief Initializes a new <tt>splat</tt>
- *
- *  @param tree the address of the <tt>splat</tt>
- *  @param cmp the compare function for <tt>tree</tt>
- *
- *  @return Success status
- */
-int splat_init(splat *tree, cmpfn cmp);
+#define SPLAT_INIT(TREE) do {   \
+    assert((TREE) != NULL);     \
+                                \
+    (TREE)->root = NULL;        \
+} while (0)
 
 
-/** @brief Removes all elements from <tt>tree</tt>
- *
- *  @param tree the address of the <tt>splat</tt>
- *
- *  @return Success status
- */
-int splat_clear(splat *tree);
+#define SPLAT_STATIC_INIT { .root = NULL }
 
 
-/** @brief Inserts <tt>elem</tt> into <tt>tree</tt>
- *
- *  @param tree the address of the <tt>splat</tt>
- *  @param elem the element
- *
- *  @return Success status
- */
-int splat_insert(splat *tree, void *elem);
+#define SPLAT_ELEM_INIT(ELEM, LINK) do {    \
+    assert((ELEM) != NULL);                 \
+                                            \
+    (ELEM)->LINK.left = NULL;               \
+    (ELEM)->LINK.right = NULL;              \
+} while (0)
 
 
-/** @brief Removes <tt>elem</tt> from <tt>tree</tt>
- *
- *  Returns <tt>NULL</tt> if <tt>elem</tt> is not in <tt>tree</tt>
- *
- *  @param tree the address of the <tt>splat</tt>
- *  @param elem the element
- *
- *  @return The element equal to <tt>elem</tt> in <tt>tree</tt>
- */
-void *splat_remove(splat *tree, void *elem);
+#define SPLAT_LIB(SPLAT_TYPE, ELEM_TYPE, KEY_TYPE, CMP, LINK, KEY)          \
+                                                                            \
+                                                                            \
+static void SPLAT_TYPE##_splay(SPLAT_TYPE *tree, KEY_TYPE key);             \
+static struct ELEM_TYPE *SPLAT_TYPE##_rotate_left(struct ELEM_TYPE *node);  \
+static struct ELEM_TYPE *SPLAT_TYPE##_rotate_right(struct ELEM_TYPE *node); \
+                                                                            \
+                                                                            \
+void splat_insert(SPLAT_TYPE *tree, struct ELEM_TYPE *new) {                \
+    int c;                                                                  \
+                                                                            \
+    assert(tree != NULL);                                                   \
+    assert(new != NULL);                                                    \
+                                                                            \
+    if (tree->root == NULL) {                                               \
+        tree->root = new;                                                   \
+        return;                                                             \
+    }                                                                       \
+                                                                            \
+    SPLAT_TYPE##_splay(tree, new->KEY);                                     \
+                                                                            \
+    c = CMP(new->KEY, tree->root->KEY);                                     \
+                                                                            \
+    if (c == 0)                                                             \
+        return;                                                             \
+                                                                            \
+    if (c < 0) {                                                            \
+        new->LINK.left = tree->root->LINK.left;                             \
+        new->LINK.right = tree->root;                                       \
+        tree->root->LINK.left = NULL;                                       \
+    }                                                                       \
+    else {                                                                  \
+        new->LINK.right = tree->root->LINK.right;                           \
+        new->LINK.left = tree->root;                                        \
+        tree->root->LINK.right = NULL;                                      \
+    }                                                                       \
+                                                                            \
+    tree->root = new;                                                       \
+}                                                                           \
+                                                                            \
+                                                                            \
+struct ELEM_TYPE *SPLAT_TYPE##_search(SPLAT_TYPE *tree, KEY_TYPE key) {     \
+    assert(tree != NULL);                                                   \
+                                                                            \
+    if (tree->root == NULL)                                                 \
+        return NULL;                                                        \
+                                                                            \
+    SPLAT_TYPE##_splay(tree, key);                                          \
+                                                                            \
+    if (CMP(key, tree->root->KEY) == 0)                                     \
+        return tree->root;                                                  \
+                                                                            \
+    return NULL;                                                            \
+}                                                                           \
+                                                                            \
+                                                                            \
+struct ELEM_TYPE *SPLAT_TYPE##_remove(SPLAT_TYPE *tree, KEY_TYPE key) {     \
+    struct ELEM_TYPE *temp;                                                 \
+    struct ELEM_TYPE *removed = SPLAT_TYPE##_search(tree, key);             \
+                                                                            \
+    if (removed == NULL)                                                    \
+        return NULL;                                                        \
+                                                                            \
+    if (tree->root->LINK.left == NULL)                                      \
+        tree->root = tree->root->LINK.right;                                \
+    else {                                                                  \
+        temp = tree->root->LINK.right;                                      \
+        tree->root = tree->root->LINK.left;                                 \
+        SPLAT_TYPE##_splay(tree, key);                                      \
+        tree->root->LINK.right = temp;                                      \
+    }                                                                       \
+                                                                            \
+    return removed;                                                         \
+}                                                                           \
+                                                                            \
+                                                                            \
+static void SPLAT_TYPE##_splay(SPLAT_TYPE *tree, KEY_TYPE key) {            \
+    struct ELEM_TYPE assembler;                                             \
+    struct ELEM_TYPE *left = &assembler;                                    \
+    struct ELEM_TYPE *right = &assembler;                                   \
+    struct ELEM_TYPE *node;                                                 \
+    int c;                                                                  \
+                                                                            \
+    assert(tree != NULL);                                                   \
+                                                                            \
+    assembler.LINK.left = NULL;                                             \
+    assembler.LINK.right = NULL;                                            \
+                                                                            \
+    node = tree->root;                                                      \
+    while (1) {                                                             \
+        c = CMP(key, node->KEY);                                            \
+        if (c < 0) {                                                        \
+            if (node->LINK.left == NULL)                                    \
+                break;                                                      \
+            if (CMP(key, node->LINK.left->KEY) < 0) {                       \
+                node = SPLAT_TYPE##_rotate_right(node);                     \
+                if (node->LINK.left == NULL)                                \
+                    break;                                                  \
+            }                                                               \
+            /* link right */                                                \
+            right->LINK.left = node;                                        \
+            right = node;                                                   \
+            node = node->LINK.left;                                         \
+        }                                                                   \
+        else if (c > 0) {                                                   \
+            if (node->LINK.right == NULL)                                   \
+                break;                                                      \
+            if (CMP(key, node->LINK.right->KEY) > 0) {                      \
+                node = SPLAT_TYPE##_rotate_left(node);                      \
+                if (node->LINK.right == NULL)                               \
+                    break;                                                  \
+            }                                                               \
+            /* link left */                                                 \
+            left->LINK.right = node;                                        \
+            left = node;                                                    \
+            node = node->LINK.right;                                        \
+        }                                                                   \
+        else                                                                \
+            break;                                                          \
+    }                                                                       \
+    /* assemble */                                                          \
+    left->LINK.right = node->LINK.left;                                     \
+    right->LINK.left = node->LINK.right;                                    \
+    node->LINK.left = assembler.LINK.right;                                 \
+    node->LINK.right = assembler.LINK.left;                                 \
+                                                                            \
+    tree->root = node;                                                      \
+}                                                                           \
+                                                                            \
+static struct ELEM_TYPE *SPLAT_TYPE##_rotate_left(struct ELEM_TYPE *node) { \
+    struct ELEM_TYPE *temp;                                                 \
+                                                                            \
+    assert(node != NULL);                                                   \
+    assert(node->LINK.right != NULL);                                       \
+                                                                            \
+    temp = node->LINK.right;                                                \
+    node->LINK.right = temp->LINK.left;                                     \
+    temp->LINK.left = node;                                                 \
+                                                                            \
+    return temp;                                                            \
+}                                                                           \
+                                                                            \
+static struct ELEM_TYPE *                                                   \
+SPLAT_TYPE##_rotate_right(struct ELEM_TYPE *node) {                         \
+    struct ELEM_TYPE *temp;                                                 \
+                                                                            \
+    assert(node != NULL);                                                   \
+    assert(node->LINK.left != NULL);                                        \
+                                                                            \
+    temp = node->LINK.left;                                                 \
+    node->LINK.left = temp->LINK.right;                                     \
+    temp->LINK.right = node;                                                \
+                                                                            \
+    return temp;                                                            \
+}
 
 
-/** @brief Searches <tt>tree</tt> for <tt>elem</tt>
- *
- *  Returns <tt>NULL</tt> if <tt>elem</tt> is not in <tt>tree</tt>
- *
- *  @param tree the address of the <tt>splat</tt>
- *  @param elem the element
- *
- *  @return The element equal to <tt>elem</tt> in <tt>tree</tt>
- */
-void *splat_search(splat *tree, void *elem);
-
-
-#endif /* __SPLAT_H__ */
+#endif // __SPLAT_H__
