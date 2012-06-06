@@ -86,7 +86,7 @@ static struct ELEM_TYPE *SPLAT_TYPE##_rotate_left(struct ELEM_TYPE *node);  \
 static struct ELEM_TYPE *SPLAT_TYPE##_rotate_right(struct ELEM_TYPE *node); \
                                                                             \
                                                                             \
-void splat_insert(SPLAT_TYPE *tree, struct ELEM_TYPE *new) {                \
+void SPLAT_TYPE##_insert(SPLAT_TYPE *tree, struct ELEM_TYPE *new) {         \
     int c;                                                                  \
                                                                             \
     assert(tree != NULL);                                                   \
