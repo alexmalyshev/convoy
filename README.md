@@ -1,6 +1,6 @@
 # Convoy
 
-This is a collection of data structures/types written in C89. None of the data
+This is a collection of data structures/types written in C99. None of the data
 structures depend upon each other, so feel free to just pull one out and use
 it. The current list of data structures is:
 
