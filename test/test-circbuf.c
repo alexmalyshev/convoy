@@ -18,11 +18,10 @@ int main(void) {
 
     int *ref;
     size_t i;
-    CIRCBUF_FOREACH(ref, i, &cbuf) {
+    CIRCBUF_FOREACH(ref, i, &cbuf)
         *ref += 1;
-    }
 
-    int res;
+    int res = -1;
 
     printf("[ ");
     CIRCBUF_POP_HEAD(res, &cbuf);

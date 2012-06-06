@@ -1,5 +1,6 @@
 #include "../include/binoheap.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 

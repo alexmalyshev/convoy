@@ -1,5 +1,5 @@
 /** @file circbuf.h
- *  @brief Header for a circular buffer data structure library
+ *  @brief Header for a circular buffer data structure
  *
  *  @author Alexander Malyshev
  */
@@ -248,4 +248,4 @@
 )
 
 
-#endif /* __CIRCBUF_H__ */
+#endif // __CIRCBUF_H__

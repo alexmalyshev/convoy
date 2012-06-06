@@ -1,5 +1,6 @@
 #include "../include/stack.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 
@@ -15,28 +16,31 @@ STACK_NEW(stack, block);
 static stack stk = STACK_STATIC_INIT;
 
 
+static void block_init(block_t *blk, int elem) {
+    assert(blk != NULL);
+
+    blk->elem = elem;
+    STACK_ELEM_INIT(blk, next);
+}
+
+
 int main(void ) {
     block_t b0;
-    b0.elem = 0;
-    STACK_ELEM_INIT(&b0, next);
+    block_init(&b0, 0);
 
     block_t b1;
-    b1.elem = 1;
-    STACK_ELEM_INIT(&b1, next);
+    block_init(&b1, 1);
 
     block_t b2;
-    b2.elem = 2;
-    STACK_ELEM_INIT(&b2, next);
+    block_init(&b2, 2);
 
     STACK_PUSH(&stk, &b0, next);
     STACK_PUSH(&stk, &b1, next);
     STACK_PUSH(&stk, &b2, next);
 
-    block_t *res;
-
-    STACK_FOREACH(res, &stk, next) {
+    block_t *res = NULL;
+    STACK_FOREACH(res, &stk, next)
         res->elem += 1;
-    }
 
     printf("[ ");
     STACK_POP(res, &stk, next);

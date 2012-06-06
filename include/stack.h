@@ -1,5 +1,5 @@
 /** @file stack.h
- *  @brief Header for a stack data structure library
+ *  @brief Header for a stack data structure
  *
  *  @author Alexander Malyshev
  */
@@ -50,7 +50,7 @@
 } while (0)
 
 
-/** @brief Statically initializes a stack */
+/// @brief Statically initializes a stack
 #define STACK_STATIC_INIT { \
     .top = NULL,            \
     .len = 0                \
@@ -175,4 +175,4 @@
 } while (0)
 
 
-#endif /* __STACK_H__ */
+#endif // __STACK_H__

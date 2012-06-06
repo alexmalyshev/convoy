@@ -55,7 +55,7 @@
 } while (0)
 
 
-/** @brief Statically initializes a deque */
+/// @brief Statically initializes a deque
 #define DEQUE_STATIC_INIT { \
     .head = NULL,           \
     .tail = NULL,           \
@@ -319,4 +319,4 @@
 } while (0)
 
 
-#endif /* __DEQUE_H__ */
+#endif // __DEQUE_H__

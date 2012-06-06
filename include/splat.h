@@ -51,7 +51,9 @@
 
 
 /// @brief Statically initializes a splay tree
-#define SPLAT_STATIC_INIT { .root = NULL }
+#define SPLAT_STATIC_INIT { \
+    .root = NULL            \
+}
 
 
 /** @brief Initializes the splay tree link of an element

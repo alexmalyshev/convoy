@@ -1,5 +1,6 @@
 #include "../include/splat.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 
@@ -58,10 +59,12 @@ int main(void) {
     splat_insert(&tree, &b2);
     print(tree.root, 0, 4);
 
-    block_t *res = splat_search(&tree, 3);
+    res = splat_search(&tree, 3);
 
     assert(res == NULL);
     print(tree.root, 0, 4);
+
+    block_t *res = NULL;
 
     printf("[ ");
     res = splat_remove(&tree, 0);

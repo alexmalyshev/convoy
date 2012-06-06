@@ -1,5 +1,6 @@
 #include "../include/queue.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 
@@ -14,28 +15,31 @@ QUEUE_NEW(queue, block);
 static queue qu = QUEUE_STATIC_INIT;
 
 
+static void block_init(block_t *blk, int elem) {
+    assert(blk != NULL);
+
+    blk->elem = elem;
+    QUEUE_ELEM_INIT(blk, next);
+}
+
+
 int main(void) {
     block_t b0;
-    b0.elem = 0;
-    QUEUE_ELEM_INIT(&b0, next);
+    block_init(&b0, 0);
 
     block_t b1;
-    b1.elem = 1;
-    QUEUE_ELEM_INIT(&b1, next);
+    block_init(&b1, 1);
 
     block_t b2;
-    b2.elem = 2;
-    QUEUE_ELEM_INIT(&b2, next);
+    block_init(&b2, 2);
 
     QUEUE_ENQUEUE(&qu, &b0, next);
     QUEUE_ENQUEUE(&qu, &b1, next);
     QUEUE_ENQUEUE(&qu, &b2, next);
 
-    block_t *res;
-
-    QUEUE_FOREACH(res, &qu, next) {
+    block_t *res = NULL;
+    QUEUE_FOREACH(res, &qu, next)
         res->elem += 1;
-    }
 
     printf("[ ");
     QUEUE_DEQUEUE(res, &qu, next);

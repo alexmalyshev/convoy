@@ -1,5 +1,6 @@
 /** @file queue.h
- *  @brief Header for a queue data structure library
+ *  @brief Header for a queue data structure
+ *
  *  @author Alexander Malyshev
  */
 
@@ -51,7 +52,7 @@
 } while (0)
 
 
-/** @brief Statically initializes a queue */
+/// @brief Statically initializes a queue
 #define QUEUE_STATIC_INIT { \
     .head = NULL,           \
     .tail = NULL,           \
@@ -189,4 +190,4 @@
 } while (0)
 
 
-#endif /* __QUEUE_H__ */
+#endif // __QUEUE_H__
