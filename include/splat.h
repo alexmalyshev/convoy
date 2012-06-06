@@ -12,12 +12,26 @@
 #include <stddef.h>
 
 
+/** @brief Declares a new splay tree type
+ *
+ *  ELEM_TYPE must be the name of a struct type
+ *
+ *  @param SPLAT_TYPE the type of the splay tree
+ *  @param ELEM_TYPE the type of the tree's elements
+ */
 #define SPLAT_NEW(SPLAT_TYPE, ELEM_TYPE)    \
     typedef struct SPLAT_TYPE {             \
         struct ELEM_TYPE *root;             \
     } SPLAT_TYPE
 
 
+/** @brief Declares a link in a struct for use with a splay tree
+ *
+ *  ELEM_TYPE must be the name of a struct type
+ *
+ *  @param ELEM_TYPE the type of the element
+ *  @param LINK the name of the link field
+ */
 #define SPLAT_LINK(ELEM_TYPE, LINK) \
     struct {                        \
         struct ELEM_TYPE *left;     \
@@ -25,6 +39,10 @@
     } LINK
 
 
+/** @brief Initializes a splay tree
+ *
+ *  @param TREE the address of the splay tree
+ */
 #define SPLAT_INIT(TREE) do {   \
     assert((TREE) != NULL);     \
                                 \
@@ -32,9 +50,15 @@
 } while (0)
 
 
+/// @brief Statically initializes a splay tree
 #define SPLAT_STATIC_INIT { .root = NULL }
 
 
+/** @brief Initializes the splay tree link of an element
+ *
+ *  @param ELEM the address of the element
+ *  @param LINK the name of the link field
+ */
 #define SPLAT_ELEM_INIT(ELEM, LINK) do {    \
     assert((ELEM) != NULL);                 \
                                             \
@@ -43,6 +67,15 @@
 } while (0)
 
 
+/** @brief Defines a new splay tree library
+ *
+ *  @param SPLAT_TYPE the type of the splay tree
+ *  @param ELEM_TYPE the type of the tree's elements
+ *  @param KEY_TYPE the type of the elements' keys
+ *  @param CMP a compare function/macro that works on keys
+ *  @param LINK the name of the link field
+ *  @param KEY the name of the key field
+ */
 #define SPLAT_LIB(SPLAT_TYPE, ELEM_TYPE, KEY_TYPE, CMP, LINK, KEY)          \
                                                                             \
                                                                             \
