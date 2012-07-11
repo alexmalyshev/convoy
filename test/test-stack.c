@@ -13,8 +13,6 @@ typedef struct block {
 
 STACK_NEW(stack, block);
 
-static stack stk = STACK_STATIC_INIT;
-
 
 static void block_init(block_t *blk, int elem) {
     assert(blk != NULL);
@@ -23,8 +21,28 @@ static void block_init(block_t *blk, int elem) {
     STACK_ELEM_INIT(blk, next);
 }
 
+static void push(stack *stk, block_t *blk) {
+    STACK_PUSH(stk, blk, next);
+}
 
-int main(void ) {
+static block_t *peek(stack *stk) {
+    block_t *res = NULL;
+    STACK_PEEK(res, stk);
+    return res;
+}
+
+static block_t *pop(stack *stk) {
+    block_t *res = NULL;
+    STACK_POP(res, stk, next);
+    return res;
+}
+
+void run(stack *stk) {
+    assert(peek(stk) == NULL);
+    assert(stk->len == 0);
+    assert(pop(stk) == NULL);
+    assert(stk->len == 0);
+
     block_t b0;
     block_init(&b0, 0);
 
@@ -34,25 +52,60 @@ int main(void ) {
     block_t b2;
     block_init(&b2, 2);
 
-    STACK_PUSH(&stk, &b0, next);
-    STACK_PUSH(&stk, &b1, next);
-    STACK_PUSH(&stk, &b2, next);
+    push(stk, &b0);
+    assert(peek(stk) == &b0);
+    assert(stk->len == 1);
+
+    push(stk, &b1);
+    assert(peek(stk) == &b1);
+    assert(stk->len == 2);
+
+    push(stk, &b2);
+    assert(peek(stk) == &b2);
+    assert(stk->len == 3);
 
     block_t *res = NULL;
-    STACK_FOREACH(res, &stk, next)
+    block_t *peekr = NULL;
+
+    STACK_FOREACH(res, stk, next)
         res->elem += 1;
 
     printf("[ ");
-    STACK_POP(res, &stk, next);
+    peekr = peek(stk);
+    res = pop(stk);
+    assert(res == &b2);
+    assert(res == peekr);
+    assert(peek(stk) == &b1);
+    assert(stk->len == 2);
     printf("%d ", res->elem);
-    STACK_POP(res, &stk, next);
-    printf("%d ", res->elem);
-    STACK_POP(res, &stk, next);
-    printf("%d ", res->elem);
-    printf("]\n");
 
-    STACK_POP(res, &stk, next);
-    assert(res == NULL);
+    peekr = peek(stk);
+    res = pop(stk);
+    assert(res == &b1);
+    assert(res == peekr);
+    assert(peek(stk) == &b0);
+    assert(stk->len == 1);
+    printf("%d ", res->elem);
 
+    peekr = peek(stk);
+    res = pop(stk);
+    assert(res == &b0);
+    assert(res == peekr);
+    assert(peek(stk) == NULL);
+    assert(stk->len == 0);
+    printf("%d ", res->elem);
+
+    puts("]");
+
+    assert(stk->len == 0);
+    assert(peek(stk) == NULL);
+    assert(pop(stk) == NULL);
+    assert(stk->len == 0);
+}
+
+int main(void) {
+    stack stk;
+    STACK_INIT(&stk);
+    run(&stk);
     return 0;
 }
