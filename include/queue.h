@@ -1,9 +1,9 @@
-/** @file queue.h
- *  @brief Header for a queue data structure
+/**
+ * @file queue.h
+ * @brief Header for a queue data structure
  *
- *  @author Alexander Malyshev
+ * @author Alexander Malyshev
  */
-
 
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
@@ -13,12 +13,13 @@
 #include <stddef.h>
 
 
-/** @brief Declares a new queue type
+/**
+ * @brief Declares a new queue type
  *
- *  ELEM_TYPE must be the name of a struct type
+ * ELEM_TYPE must be the name of a struct type
  *
- *  @param QU_TYPE the type of the queue
- *  @param ELEM_TYPE the type of the queue's elements
+ * @param QU_TYPE the type of the queue
+ * @param ELEM_TYPE the type of the queue's elements
  */
 #define QUEUE_NEW(QU_TYPE, ELEM_TYPE)   \
     typedef struct QU_TYPE {            \
@@ -27,21 +28,21 @@
         size_t len;                     \
     } QU_TYPE
 
-
-/** @brief Declares a link in a struct for use with a queue
+/**
+ * @brief Declares a link in a struct for use with a queue
  *
- *  ELEM_TYPE must be the name of a struct type
+ * ELEM_TYPE must be the name of a struct type
  *
- *  @param ELEM_TYPE the type of the element
- *  @param NEXT the name of the link field
+ * @param ELEM_TYPE the type of the element
+ * @param NEXT the name of the link field
  */
 #define QUEUE_LINK(ELEM_TYPE, NEXT) \
     struct ELEM_TYPE *NEXT
 
-
-/** @brief Initializes a queue
+/**
+ * @brief Initializes a queue
  *
- *  @param QU the address of the queue
+ * @param QU the address of the queue
  */
 #define QUEUE_INIT(QU) do { \
     assert((QU) != NULL);   \
@@ -51,7 +52,6 @@
     (QU)->len = 0;          \
 } while (0)
 
-
 /// @brief Statically initializes a queue
 #define QUEUE_STATIC_INIT { \
     .head = NULL,           \
@@ -59,11 +59,11 @@
     .len = 0                \
 }
 
-
-/** @brief Initializes the queue link of an element
+/**
+ * @brief Initializes the queue link of an element
  *
- *  @param ELEM the address of the queue element
- *  @param NEXT the name of the link field
+ * @param ELEM the address of the queue element
+ * @param NEXT the name of the link field
  */
 #define QUEUE_ELEM_INIT(ELEM, NEXT) do {    \
     assert((ELEM) != NULL);                 \
@@ -71,14 +71,14 @@
     (ELEM)->NEXT = NULL;                    \
 } while (0)
 
-
-/** @brief Dequeues the first element of a queue
+/**
+ * @brief Dequeues the first element of a queue
  *
- *  Sets DEST to NULL if the queue is empty
+ * Sets DEST to NULL if the queue is empty
  *
- *  @param DEST the variable where to store the reference to the first element
- *  @param QU the address of the queue
- *  @param NEXT the name of the link field
+ * @param DEST the variable where to store the reference to the first element
+ * @param QU the address of the queue
+ * @param NEXT the name of the link field
  */
 #define QUEUE_DEQUEUE(DEST, QU, NEXT) do {                          \
     QUEUE_CHECK(QU);                                                \
@@ -105,12 +105,12 @@
     (QU)->len -= 1;                                                 \
 } while (0)
 
-
-/** @brief Enqueues an element onto a queue
+/**
+ * @brief Enqueues an element onto a queue
  *
- *  @param QU the address of the queue
- *  @param ELEM the address of the queue element
- *  @param NEXT the name of the link field
+ * @param QU the address of the queue
+ * @param ELEM the address of the queue element
+ * @param NEXT the name of the link field
  */
 #define QUEUE_ENQUEUE(QU, ELEM, NEXT) do {          \
     QUEUE_CHECK(QU);                                \
@@ -128,13 +128,13 @@
     (QU)->len += 1;                                 \
 } while (0)
 
-
-/** @brief Returns the first element in a queue
+/**
+ * @brief Returns the first element in a queue
  *
- *  Sets DEST to NULL if the queue is empty
+ * Sets DEST to NULL if the queue is empty
  *
- *  @param DEST the variable where to store the reference to the first element
- *  @param QU the address of the queue
+ * @param DEST the variable where to store the reference to the first element
+ * @param QU the address of the queue
  */
 #define QUEUE_PEEK(DEST, QU) do {   \
     QUEUE_CHECK(QU);                \
@@ -142,22 +142,22 @@
     (DEST) = (QU)->head;            \
 } while (0)
 
-
-/** @brief Iterates through all elements of a queue
+/**
+ * @brief Iterates through all elements of a queue
  *
- *  @param CURR the reference to the current element in one iteration
- *  @param QU the address of the queue
- *  @param NEXT the name of the link field
+ * @param CURR the reference to the current element in one iteration
+ * @param QU the address of the queue
+ * @param NEXT the name of the link field
  */
 #define QUEUE_FOREACH(CURR, QU, NEXT)               \
     for (assert((QU) != NULL), (CURR) = (QU)->head; \
          (CURR) != NULL;                            \
          (CURR) = (CURR)->NEXT)
 
-
-/** @brief Checks the validity of a queue
+/**
+ * @brief Checks the validity of a queue
  *
- *  @param QU the address of the queue
+ * @param QU the address of the queue
  */
 #define QUEUE_CHECK(QU) do {                                                \
     /* check that we haven't gotten a NULL queue */                         \
@@ -175,11 +175,11 @@
     }                                                                       \
 } while (0)
 
-
-/** @brief Checks the validity of a new, uninserted element
+/**
+ * @brief Checks the validity of a new, uninserted element
  *
- *  @param ELEM the address of the queue element
- *  @param NEXT the name of the link field
+ * @param ELEM the address of the queue element
+ * @param NEXT the name of the link field
  */
 #define QUEUE_CHECK_NEW_ELEM(ELEM, NEXT) do {               \
     /* check that we haven't gotten a NULL element */       \

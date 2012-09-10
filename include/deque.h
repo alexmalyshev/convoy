@@ -1,9 +1,9 @@
-/** @file deque.h
- *  @brief Header for a deque (double-ended queue) data structure library
+/**
+ * @file deque.h
+ * @brief Header for a deque (double-ended queue) data structure library
  *
- *  @author Alexander Malyshev
+ * @author Alexander Malyshev
  */
-
 
 #ifndef __DEQUE_H__
 #define __DEQUE_H__
@@ -13,12 +13,13 @@
 #include <stddef.h>
 
 
-/** @brief Declares a new deque type
+/**
+ * @brief Declares a new deque type
  *
- *  ELEM_TYPE must be the name of a struct type
+ * ELEM_TYPE must be the name of a struct type
  *
- *  @param DEQ_TYPE the type of the deque
- *  @param ELEM_TYPE the type of the deque's elements
+ * @param DEQ_TYPE the type of the deque
+ * @param ELEM_TYPE the type of the deque's elements
  */
 #define DEQUE_NEW(DEQ_TYPE, ELEM_TYPE)  \
     typedef struct DEQ_TYPE {           \
@@ -27,13 +28,13 @@
         size_t len;                     \
     } DEQ_TYPE
 
-
-/** @brief Declares a link in a struct for use with a deque
+/**
+ * @brief Declares a link in a struct for use with a deque
  *
- *  ELEM_TYPE must be the name of a struct type
+ * ELEM_TYPE must be the name of a struct type
  *
- *  @param ELEM_TYPE the type of the element
- *  @param LINK the name of the link field
+ * @param ELEM_TYPE the type of the element
+ * @param LINK the name of the link field
  */
 #define DEQUE_LINK(ELEM_TYPE, LINK) \
     struct {                        \
@@ -41,10 +42,10 @@
         struct ELEM_TYPE *prev;     \
     } LINK
 
-
-/** @brief Initializes a deque
+/**
+ * @brief Initializes a deque
  *
- *  @param DEQ the address of the deque
+ * @param DEQ the address of the deque
  */
 #define DEQUE_INIT(DEQ) do {    \
     assert((DEQ) != NULL);      \
@@ -54,7 +55,6 @@
     (DEQ)->len = 0;             \
 } while (0)
 
-
 /// @brief Statically initializes a deque
 #define DEQUE_STATIC_INIT { \
     .head = NULL,           \
@@ -62,11 +62,11 @@
     .len = 0                \
 }
 
-
-/** @brief Initializes the deque link of an element
+/**
+ * @brief Initializes the deque link of an element
  *
- *  @param ELEM the address of the deque element
- *  @param LINK the name of the link field
+ * @param ELEM the address of the deque element
+ * @param LINK the name of the link field
  */
 #define DEQUE_ELEM_INIT(ELEM, LINK) do {    \
     assert((ELEM) != NULL);                 \
@@ -75,13 +75,13 @@
     (ELEM)->LINK.prev = NULL;               \
 } while (0)
 
-
-/** @brief Returns the first element in a deque
+/**
+ * @brief Returns the first element in a deque
  *
- *  Sets DEST to NULL if the deque is empty
+ * Sets DEST to NULL if the deque is empty
  *
- *  @param DEST the variable where to store the reference to the first element
- *  @param DEQ the address of the deque
+ * @param DEST the variable where to store the reference to the first element
+ * @param DEQ the address of the deque
  */
 #define DEQUE_PEEK_HEAD(DEST, DEQ) do { \
     DEQUE_CHECK(DEQ);                   \
@@ -89,13 +89,13 @@
     (DEST) = (DEQ)->head;               \
 } while (0)
 
-
-/** @brief Returns the last element in a deque
+/**
+ * @brief Returns the last element in a deque
  *
- *  Sets DEST to NULL if the deque is empty
+ * Sets DEST to NULL if the deque is empty
  *
- *  @param DEST the variable where to store the reference to the last element
- *  @param DEQ the address of the deque
+ * @param DEST the variable where to store the reference to the last element
+ * @param DEQ the address of the deque
  */
 #define DEQUE_PEEK_TAIL(DEST, DEQ) do { \
     DEQUE_CHECK(DEQ);                   \
@@ -103,12 +103,12 @@
     (DEST) = (DEQ)->tail;               \
 } while (0)
 
-
-/** @brief Inserts an element at the front of a deque
+/**
+ * @brief Inserts an element at the front of a deque
  *
- *  @param DEQ the address of the deque
- *  @param ELEM the address of the deque element
- *  @param LINK the name of the link field
+ * @param DEQ the address of the deque
+ * @param ELEM the address of the deque element
+ * @param LINK the name of the link field
  */
 #define DEQUE_PUSH_HEAD(DEQ, ELEM, LINK) do {                               \
     DEQUE_CHECK(DEQ);                                                       \
@@ -130,12 +130,12 @@
     (DEQ)->len += 1;                                                        \
 } while (0)
 
-
-/** @brief Inserts an element at the back of a deque
+/**
+ * @brief Inserts an element at the back of a deque
  *
- *  @param DEQ the address of the deque
- *  @param ELEM the address of the deque element
- *  @param LINK the name of the link field
+ * @param DEQ the address of the deque
+ * @param ELEM the address of the deque element
+ * @param LINK the name of the link field
  */
 #define DEQUE_PUSH_TAIL(DEQ, ELEM, LINK) do {                               \
     DEQUE_CHECK(DEQ);                                                       \
@@ -157,14 +157,14 @@
     (DEQ)->len += 1;                                                        \
 } while (0)
 
-
-/** @brief Removes the first element in a deque
+/**
+ * @brief Removes the first element in a deque
  *
- *  Sets DEST to NULL if the deque is empty
+ * Sets DEST to NULL if the deque is empty
  *
- *  @param DEST the variable where to store the reference to the first element
- *  @param DEQ the address of the deque
- *  @param LINK the name of the link field
+ * @param DEST the variable where to store the reference to the first element
+ * @param DEQ the address of the deque
+ * @param LINK the name of the link field
  */
 #define DEQUE_POP_HEAD(DEST, DEQ, LINK) do {            \
     DEQUE_CHECK(DEQ);                                   \
@@ -182,14 +182,14 @@
     DEQUE_REMOVE(DEQ, DEST, LINK);                      \
 } while (0)
 
-
-/** @brief Removes the last element in a deque
+/**
+ * @brief Removes the last element in a deque
  *
- *  Sets DEST to NULL if the deque is empty
+ * Sets DEST to NULL if the deque is empty
  *
- *  @param DEST the variable where to store the reference to the last element
- *  @param DEQ the address of the deque
- *  @param LINK the name of the link field
+ * @param DEST the variable where to store the reference to the last element
+ * @param DEQ the address of the deque
+ * @param LINK the name of the link field
  */
 #define DEQUE_POP_TAIL(DEST, DEQ, LINK) do {            \
     DEQUE_CHECK(DEQ);                                   \
@@ -208,11 +208,12 @@
 } while (0)
 
 
-/** @brief Removes an element from a deque
+/**
+ * @brief Removes an element from a deque
  *
- *  @param DEQ the address of the deque
- *  @param ELEM the address of the inserted element
- *  @param LINK the name of the link field
+ * @param DEQ the address of the deque
+ * @param ELEM the address of the inserted element
+ * @param LINK the name of the link field
  */
 #define DEQUE_REMOVE(DEQ, ELEM, LINK) do {                                  \
     DEQUE_CHECK(DEQ);                                                       \
@@ -243,22 +244,22 @@
     (DEQ)->len -= 1;                                                        \
 } while (0)
 
-
-/** @brief Iterates through all elements of a deque
+/**
+ * @brief Iterates through all elements of a deque
  *
- *  @param CURR the reference to the current element in one iteration
- *  @param DEQ the address of the deque
- *  @param LINK the name of the link field
+ * @param CURR the reference to the current element in one iteration
+ * @param DEQ the address of the deque
+ * @param LINK the name of the link field
  */
 #define DEQUE_FOREACH(CURR, DEQ, LINK)                  \
     for (assert((DEQ) != NULL), (CURR) = (DEQ)->head;   \
          (CURR) != NULL;                                \
          (CURR) = (CURR)->LINK.next)
 
-
-/** @brief Checks the validity of a deque
+/**
+ * @brief Checks the validity of a deque
  *
- *  @param DEQ the address of the deque
+ * @param DEQ the address of the deque
  */
 #define DEQUE_CHECK(DEQ) do {                                               \
     /* check that we haven't gotten a NULL deque */                         \
@@ -276,11 +277,11 @@
     }                                                                       \
 } while (0)
 
-
-/** @brief Checks the validity of a new, uninserted deque element
+/**
+ * @brief Checks the validity of a new, uninserted deque element
  *
- *  @param ELEM the address of the deque element
- *  @param LINK the name of the link field
+ * @param ELEM the address of the deque element
+ * @param LINK the name of the link field
  */
 #define DEQUE_CHECK_NEW_ELEM(ELEM, LINK) do {                       \
     /* check that we haven't gotten a NULL element */               \
@@ -291,14 +292,14 @@
     assert((ELEM)->LINK.prev == NULL);                              \
 } while (0)
 
-
-/** @brief Checks the validity of an already-inserted deque element
+/**
+ * @brief Checks the validity of an already-inserted deque element
  *
- *  Assumes that DEQ has already been checked for validity
+ * Assumes that DEQ has already been checked for validity
  *
- *  @param ELEM the address of the deque element
- *  @param DEQ the address of the deque
- *  @param LINK the name of the link field
+ * @param ELEM the address of the deque element
+ * @param DEQ the address of the deque
+ * @param LINK the name of the link field
  */
 #define DEQUE_CHECK_INSERTED_ELEM(ELEM, DEQ, LINK) do {                 \
     /* can't have inserted a NULL element */                            \
