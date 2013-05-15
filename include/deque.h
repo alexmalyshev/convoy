@@ -75,6 +75,74 @@
 } while (0)
 
 /**
+ * @brief Inserts an element after an existing deque element
+ *
+ * @param DEQ the address of the deque
+ * @param INS the address of the element already in the deque
+ * @param NEW the address of the new element to insert
+ * @param LINK the name of the link field
+ */
+#define DEQUE_INSERT_NEXT(DEQ, INS, NEW, LINK) do {                         \
+    DEQUE_CHECK(DEQ);                                                       \
+    DEQUE_CHECK_INSERTED_ELEM((INS), (DEQ), LINK);                          \
+    DEQUE_CHECK_NEW_ELEM((NEW), LINK);                                      \
+                                                                            \
+    /* deque is supposed to be non-empty */                                 \
+    assert((DEQ)->len != 0);                                                \
+                                                                            \
+    /* have the new element point to its new neighbors */                   \
+    (NEW)->LINK.left = (INS);                                               \
+    (NEW)->LINK.right = (INS)->LINK.right;                                  \
+                                                                            \
+    /* if the inserted element is not the tail, then we want to have the
+     * inserted element's next's prev reference point to the new element */ \
+    if ((INS) != (DEQ)->tail)                                               \
+        (INS)->LINK.right->LINK.left = (NEW);                               \
+    /* otherwise we need to update the deque's tail reference */            \
+    else                                                                    \
+        (DEQ)->tail = (NEW);                                                \
+                                                                            \
+    /* splice in the new element into the queue */                          \
+    (INS)->LINK.left = (NEW);                                               \
+                                                                            \
+    (DEQ)->len += 1;                                                        \
+} while (0)
+
+/**
+ * @brief Inserts an element before an existing deque element
+ *
+ * @param DEQ the address of the deque
+ * @param INS the address of the element already in the deque
+ * @param NEW the address of the new element to insert
+ * @param LINK the name of the link field
+ */
+#define DEQUE_INSERT_PREV(DEQ, INS, NEW, LINK) do {                         \
+    DEQUE_CHECK(DEQ);                                                       \
+    DEQUE_CHECK_INSERTED_ELEM((INS), (DEQ), LINK);                          \
+    DEQUE_CHECK_NEW_ELEM((NEW), LINK);                                      \
+                                                                            \
+    /* deque is supposed to be non-empty */                                 \
+    assert((DEQ)->len != 0);                                                \
+                                                                            \
+    /* have the new element point to its new neighbors */                   \
+    (NEW)->LINK.left = (INS)->LINK.left;                                    \
+    (NEW)->LINK.right = (INS);                                              \
+                                                                            \
+    /* if the inserted element is not the head, then we want to have the
+     * inserted element's prev's next reference point to the new element */ \
+    if ((INS) != (DEQ)->head)                                               \
+        (INS)->LINK.left->LINK.right = (NEW);                               \
+    /* otherwise we need to update the deque's head reference */            \
+    else                                                                    \
+        (DEQ)->head = (NEW);                                                \
+                                                                            \
+    /* splice in the new element into the queue */                          \
+    (INS)->LINK.left = (NEW);                                               \
+                                                                            \
+    (DEQ)->len += 1;                                                        \
+} while (0)
+
+/**
  * @brief Returns the first element in a deque
  *
  * @param DEQ the address of the deque
