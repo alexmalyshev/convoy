@@ -39,8 +39,14 @@ int main(void) {
 
     block_t *res = NULL;
 
-    DEQUE_FOREACH(res, &deq, link)
+    DEQUE_FOREACH(res, &deq, link) {
+        block_t *head = DEQUE_PEEK_HEAD(&deq);
+        block_t *tail = DEQUE_PEEK_TAIL(&deq);
+        (void)head;
+        (void)tail;
+
         res->elem += 1;
+    }
 
     printf("[ ");
     DEQUE_POP_TAIL(res, &deq, link);

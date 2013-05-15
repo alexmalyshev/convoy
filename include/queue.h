@@ -8,7 +8,6 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
-
 #include <assert.h>
 #include <stddef.h>
 
@@ -131,16 +130,13 @@
 /**
  * @brief Returns the first element in a queue
  *
- * Sets DEST to NULL if the queue is empty
- *
- * @param DEST the variable where to store the reference to the first element
  * @param QU the address of the queue
  */
-#define QUEUE_PEEK(DEST, QU) do {   \
-    QUEUE_CHECK(QU);                \
-                                    \
-    (DEST) = (QU)->head;            \
-} while (0)
+#define QUEUE_PEEK(QU) (    \
+    assert((QU) != NULL),   \
+                            \
+    (QU)->head              \
+)
 
 /**
  * @brief Iterates through all elements of a queue
@@ -190,4 +186,4 @@
 } while (0)
 
 
-#endif // __QUEUE_H__
+#endif

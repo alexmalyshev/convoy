@@ -4,9 +4,8 @@
  *  @author Alexander Malyshev
  */
 
-
 #ifndef __SPLAT_H__
-
+#define __SPLAT_H__
 
 #include <assert.h>
 #include <stddef.h>
@@ -24,7 +23,6 @@
         struct ELEM_TYPE *root;             \
     } SPLAT_TYPE
 
-
 /** @brief Declares a link in a struct for use with a splay tree
  *
  *  ELEM_TYPE must be the name of a struct type
@@ -38,7 +36,6 @@
         struct ELEM_TYPE *right;    \
     } LINK
 
-
 /** @brief Initializes a splay tree
  *
  *  @param TREE the address of the splay tree
@@ -49,12 +46,10 @@
     (TREE)->root = NULL;        \
 } while (0)
 
-
 /// @brief Statically initializes a splay tree
 #define SPLAT_STATIC_INIT { \
     .root = NULL            \
 }
-
 
 /** @brief Initializes the splay tree link of an element
  *
@@ -79,7 +74,6 @@
  *  @param KEY the name of the key field
  */
 #define SPLAT_LIB(SPLAT_TYPE, ELEM_TYPE, KEY_TYPE, CMP, LINK, KEY)          \
-                                                                            \
                                                                             \
 static void SPLAT_TYPE##_splay(SPLAT_TYPE *tree, KEY_TYPE key);             \
 static struct ELEM_TYPE *SPLAT_TYPE##_rotate_left(struct ELEM_TYPE *node);  \
@@ -118,7 +112,6 @@ void SPLAT_TYPE##_insert(SPLAT_TYPE *tree, struct ELEM_TYPE *new) {         \
     tree->root = new;                                                       \
 }                                                                           \
                                                                             \
-                                                                            \
 struct ELEM_TYPE *SPLAT_TYPE##_search(SPLAT_TYPE *tree, KEY_TYPE key) {     \
     assert(tree != NULL);                                                   \
                                                                             \
@@ -132,7 +125,6 @@ struct ELEM_TYPE *SPLAT_TYPE##_search(SPLAT_TYPE *tree, KEY_TYPE key) {     \
                                                                             \
     return NULL;                                                            \
 }                                                                           \
-                                                                            \
                                                                             \
 struct ELEM_TYPE *SPLAT_TYPE##_remove(SPLAT_TYPE *tree, KEY_TYPE key) {     \
     struct ELEM_TYPE *temp;                                                 \
@@ -152,7 +144,6 @@ struct ELEM_TYPE *SPLAT_TYPE##_remove(SPLAT_TYPE *tree, KEY_TYPE key) {     \
                                                                             \
     return removed;                                                         \
 }                                                                           \
-                                                                            \
                                                                             \
 static void SPLAT_TYPE##_splay(SPLAT_TYPE *tree, KEY_TYPE key) {            \
     struct ELEM_TYPE assembler;                                             \
@@ -235,4 +226,4 @@ SPLAT_TYPE##_rotate_right(struct ELEM_TYPE *node) {                         \
 }
 
 
-#endif // __SPLAT_H__
+#endif

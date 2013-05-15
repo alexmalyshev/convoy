@@ -8,7 +8,6 @@
 #ifndef __DEQUE_H__
 #define __DEQUE_H__
 
-
 #include <assert.h>
 #include <stddef.h>
 
@@ -78,30 +77,24 @@
 /**
  * @brief Returns the first element in a deque
  *
- * Sets DEST to NULL if the deque is empty
- *
- * @param DEST the variable where to store the reference to the first element
  * @param DEQ the address of the deque
  */
-#define DEQUE_PEEK_HEAD(DEST, DEQ) do { \
-    DEQUE_CHECK(DEQ);                   \
-                                        \
-    (DEST) = (DEQ)->head;               \
-} while (0)
+#define DEQUE_PEEK_HEAD(DEQ) (  \
+    assert((DEQ) != NULL),      \
+                                \
+    (DEQ)->head                 \
+)
 
 /**
  * @brief Returns the last element in a deque
  *
- * Sets DEST to NULL if the deque is empty
- *
- * @param DEST the variable where to store the reference to the last element
  * @param DEQ the address of the deque
  */
-#define DEQUE_PEEK_TAIL(DEST, DEQ) do { \
-    DEQUE_CHECK(DEQ);                   \
-                                        \
-    (DEST) = (DEQ)->tail;               \
-} while (0)
+#define DEQUE_PEEK_TAIL(DEQ) (  \
+    assert((DEQ) != NULL),      \
+                                \
+    (DEQ)->tail                 \
+)
 
 /**
  * @brief Inserts an element at the front of a deque
@@ -206,7 +199,6 @@
     /* and remove it */                                 \
     DEQUE_REMOVE(DEQ, DEST, LINK);                      \
 } while (0)
-
 
 /**
  * @brief Removes an element from a deque
@@ -320,4 +312,4 @@
 } while (0)
 
 
-#endif // __DEQUE_H__
+#endif

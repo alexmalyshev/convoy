@@ -15,6 +15,7 @@
 
 #include <stddef.h>
 
+
 /** @brief The default number of elements a new <tt>binaheap</tt> can store */
 #define BINAHEAP_DEFAULT_CAPACITY 32
 
@@ -43,7 +44,6 @@ typedef struct {
  */
 int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap);
 
-
 /** @brief Frees the dynamic array in <tt>heap</tt>
  *
  *  @param heap the address of the <tt>binaheap</tt>
@@ -51,7 +51,6 @@ int binaheap_init(binaheap *heap, cmpfn cmp, size_t cap);
  *  @return Success status
  */
 int binaheap_destroy(binaheap *heap);
-
 
 /** @brief Inserts <tt>elem</tt> into <tt>heap</tt>
  *
@@ -61,7 +60,6 @@ int binaheap_destroy(binaheap *heap);
  *  @return Success status
  */
 int binaheap_insert(binaheap *heap, void *elem);
-
 
 /** @brief Removes the minimum element in <tt>heap</tt>
  *
@@ -73,7 +71,6 @@ int binaheap_insert(binaheap *heap, void *elem);
  */
 void *binaheap_removemin(binaheap *heap);
 
-
 /** @brief Removes all elements from <tt>heap</tt>
  *
  *  Asserts that <tt>heap</tt> is not <tt>NULL</tt>
@@ -84,7 +81,6 @@ void *binaheap_removemin(binaheap *heap);
  *  @return Success status
  */
 int binaheap_clear(binaheap *heap);
-
 
 /** @brief Shrinks the capacity of the dynamic array in <tt>heap</tt>
  *
@@ -98,4 +94,4 @@ int binaheap_clear(binaheap *heap);
 int binaheap_trunc(binaheap *heap);
 
 
-#endif /* __BINAHEAP_H__ */
+#endif

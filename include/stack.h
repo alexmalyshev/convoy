@@ -8,7 +8,6 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
-
 #include <assert.h>
 #include <stddef.h>
 
@@ -71,16 +70,13 @@
 /**
  * @brief Returns the top element in a stack
  *
- * Sets DEST to NULL if the stack is empty
- *
- * @param DEST the variable where to store the top reference
  * @param STK the address of the stack
  */
-#define STACK_PEEK(DEST, STK) do {  \
-    STACK_CHECK(STK);               \
-                                    \
-    (DEST) = (STK)->top;            \
-} while (0)
+#define STACK_PEEK(STK) (   \
+    assert((STK) != NULL),  \
+                            \
+    (STK)->top              \
+)
 
 /**
  * @brief Pops off the top element of a stack
@@ -175,4 +171,4 @@
 } while (0)
 
 
-#endif // __STACK_H__
+#endif

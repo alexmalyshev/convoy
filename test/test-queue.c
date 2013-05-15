@@ -38,8 +38,12 @@ int main(void) {
     QUEUE_ENQUEUE(&qu, &b2, next);
 
     block_t *res = NULL;
-    QUEUE_FOREACH(res, &qu, next)
+    QUEUE_FOREACH(res, &qu, next) {
+        block_t *head = QUEUE_PEEK(&qu);
+        (void)head;
+
         res->elem += 1;
+    }
 
     printf("[ ");
     QUEUE_DEQUEUE(res, &qu, next);

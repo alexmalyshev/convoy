@@ -13,10 +13,8 @@
  *  @author Alexander Malyshev
  */
 
-
 #ifndef __HASHT_H__
 #define __HASHT_H__
-
 
 #include <stddef.h>
 
@@ -72,7 +70,6 @@ typedef struct {
  */
 int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap);
 
-
 /** @brief Frees the dynamic array in <tt>tab</tt>
  *
  *  @param tab the address of the <tt>hasht</tt>
@@ -80,7 +77,6 @@ int hasht_init(hasht *tab, hashfn hash, cmpfn cmp, double lf, size_t cap);
  *  @return Success status
  */
 int hasht_destroy(hasht *tab);
-
 
 /** @brief Inserts <tt>elem</tt> into <tt>tab</tt>
  *
@@ -94,7 +90,6 @@ int hasht_destroy(hasht *tab);
  */
 int hasht_insert(hasht *tab, void *elem);
 
-
 /** @brief Removes elem from <tt>tab</tt>
  *
  *  Returns <tt>NULL</tt> if <tt>elem</tt> is not in <tt>tab</tt>
@@ -105,7 +100,6 @@ int hasht_insert(hasht *tab, void *elem);
  *  @return The element equal to <tt>elem</tt> in <tt>tab</tt>
  */
 void *hasht_remove(hasht *tab, void *elem);
-
 
 /** @brief Searches <tt>tab</tt> for <tt>elem</tt>
  *
@@ -118,7 +112,6 @@ void *hasht_remove(hasht *tab, void *elem);
  */
 void *hasht_search(hasht *tab, void *elem);
 
-
 /** @brief Removes all elements from <tt>tab</tt>
  *
  *  @param tab the address of the <tt>hasht</tt>
@@ -126,7 +119,6 @@ void *hasht_search(hasht *tab, void *elem);
  *  @return Success status
  */
 int hasht_clear(hasht *tab);
-
 
 /** @brief Shrinks the capacity of the dynamic array in <tt>tab</tt>
  *
@@ -140,4 +132,4 @@ int hasht_clear(hasht *tab);
 int hasht_trunc(hasht *tab);
 
 
-#endif /* __HASHT_H__ */
+#endif

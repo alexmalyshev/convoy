@@ -26,9 +26,7 @@ static void push(stack *stk, block_t *blk) {
 }
 
 static block_t *peek(stack *stk) {
-    block_t *res = NULL;
-    STACK_PEEK(res, stk);
-    return res;
+    return STACK_PEEK(stk);
 }
 
 static block_t *pop(stack *stk) {

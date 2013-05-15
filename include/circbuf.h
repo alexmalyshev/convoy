@@ -8,7 +8,6 @@
 #ifndef __CIRCBUF_H__
 #define __CIRCBUF_H__
 
-
 #include <assert.h>
 #include <stddef.h>
 
@@ -249,4 +248,4 @@
 )
 
 
-#endif // __CIRCBUF_H__
+#endif
