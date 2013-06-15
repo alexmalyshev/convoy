@@ -1,25 +1,25 @@
-#include "../include/deque.h"
+#include "../include/dlist.h"
 
 #include <assert.h>
 #include <stdio.h>
 
 
 typedef struct block {
-    DEQUE_LINK(block, link);
+    DLIST_DECLARE_LINK(block, link);
 
     int elem;
 } block_t;
 
-DEQUE_NEW(deque, block);
+DLIST_DECLARE(deque, block);
 
-static deque deq = DEQUE_STATIC_INIT;
+static deque deq = DLIST_STATIC_INIT;
 
 
 static void block_init(block_t *blk, int elem) {
     assert(blk != NULL);
 
     blk->elem = elem;
-    DEQUE_ELEM_INIT(blk, link);
+    DLIST_ELEM_INIT(blk, link);
 }
 
 
@@ -33,15 +33,15 @@ int main(void) {
     block_t b2;
     block_init(&b2, 2);
 
-    DEQUE_PUSH_HEAD(&deq, &b0, link);
-    DEQUE_PUSH_HEAD(&deq, &b1, link);
-    DEQUE_PUSH_HEAD(&deq, &b2, link);
+    DLIST_PUSH_HEAD(&deq, &b0, link);
+    DLIST_PUSH_HEAD(&deq, &b1, link);
+    DLIST_PUSH_HEAD(&deq, &b2, link);
 
     block_t *res = NULL;
 
-    DEQUE_FOREACH(res, &deq, link) {
-        block_t *head = DEQUE_PEEK_HEAD(&deq);
-        block_t *tail = DEQUE_PEEK_TAIL(&deq);
+    DLIST_FOREACH(res, &deq, link) {
+        block_t *head = DLIST_PEEK_HEAD(&deq, link);
+        block_t *tail = DLIST_PEEK_TAIL(&deq, link);
         (void)head;
         (void)tail;
 
@@ -49,11 +49,11 @@ int main(void) {
     }
 
     printf("[ ");
-    DEQUE_POP_TAIL(res, &deq, link);
+    res = DLIST_POP_TAIL(&deq, link);
     printf("%d ", res->elem);
-    DEQUE_POP_TAIL(res, &deq, link);
+    res = DLIST_POP_TAIL(&deq, link);
     printf("%d ", res->elem);
-    DEQUE_POP_TAIL(res, &deq, link);
+    res = DLIST_POP_TAIL(&deq, link);
     printf("%d ", res->elem);
     printf("]\n");
 

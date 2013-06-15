@@ -1,54 +1,35 @@
-#include "../include/stack.h"
+#include "../include/slist.h"
 
 #include <assert.h>
 #include <stdio.h>
 
 
 typedef struct block {
-    STACK_LINK(block, next);
+    SLIST_DECLARE_LINK(block, next);
 
     int elem;
 } block_t;
 
 
-STACK_NEW(stack, block);
+SLIST_DECLARE(stack, block);
 
 
-static void block_init(block_t *blk, int elem) {
-    assert(blk != NULL);
+static void push(stack *stk, block_t *blk) { SLIST_PUSH_HEAD(stk, blk, next); }
+static block_t *peek(stack *stk) { return SLIST_PEEK_HEAD(stk, next); }
+static block_t *pop(stack *stk) { return SLIST_POP_HEAD(stk, next); }
 
-    blk->elem = elem;
-    STACK_ELEM_INIT(blk, next);
-}
+int main(void) {
+    stack s = SLIST_STATIC_INIT;
+    stack *stk = &s;
 
-static void push(stack *stk, block_t *blk) {
-    STACK_PUSH(stk, blk, next);
-}
-
-static block_t *peek(stack *stk) {
-    return STACK_PEEK(stk);
-}
-
-static block_t *pop(stack *stk) {
-    block_t *res = NULL;
-    STACK_POP(res, stk, next);
-    return res;
-}
-
-void run(stack *stk) {
     assert(peek(stk) == NULL);
     assert(stk->len == 0);
     assert(pop(stk) == NULL);
     assert(stk->len == 0);
 
-    block_t b0;
-    block_init(&b0, 0);
-
-    block_t b1;
-    block_init(&b1, 1);
-
-    block_t b2;
-    block_init(&b2, 2);
+    block_t b0 = { .next = SLIST_LINK_STATIC_INIT, .elem = 0 };
+    block_t b1 = { .next = SLIST_LINK_STATIC_INIT, .elem = 1 };
+    block_t b2 = { .next = SLIST_LINK_STATIC_INIT, .elem = 2 };
 
     push(stk, &b0);
     assert(peek(stk) == &b0);
@@ -65,7 +46,7 @@ void run(stack *stk) {
     block_t *res = NULL;
     block_t *peekr = NULL;
 
-    STACK_FOREACH(res, stk, next)
+    SLIST_FOREACH(res, stk, next)
         res->elem += 1;
 
     printf("[ ");
@@ -99,11 +80,4 @@ void run(stack *stk) {
     assert(peek(stk) == NULL);
     assert(pop(stk) == NULL);
     assert(stk->len == 0);
-}
-
-int main(void) {
-    stack stk;
-    STACK_INIT(&stk);
-    run(&stk);
-    return 0;
 }

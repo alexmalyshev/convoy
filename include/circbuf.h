@@ -9,6 +9,7 @@
 #define __CIRCBUF_H__
 
 #include <assert.h>
+#include <stdbool.h>
 #include <stddef.h>
 
 
@@ -19,12 +20,12 @@
  * @param ELEM_TYPE the type of the circbuf's elements
  * @param LIMIT the length of the circbuf (exclusive)
  */
-#define CIRCBUF_NEW(CBUF_TYPE, ELEM_TYPE, LIMIT)    \
-    typedef struct CBUF_TYPE {                      \
-        ELEM_TYPE elems[LIMIT];                     \
-        size_t head;                                \
-        size_t tail;                                \
-        size_t limit;                               \
+#define CIRCBUF_DECLARE(CBUF_TYPE, ELEM_TYPE, LIMIT)    \
+    typedef struct CBUF_TYPE {                          \
+        ELEM_TYPE elems[LIMIT];                         \
+        size_t head;                                    \
+        size_t tail;                                    \
+        size_t limit;                                   \
     } CBUF_TYPE
 
 /**
@@ -56,108 +57,127 @@
 /**
  * @brief Returns the first element in a circular buffer
  *
- * Does nothing if the circbuf is empty
+ * If the buffer is non-empty, then this will set *DEST equal to the first
+ * element of the buffer and return true, otherwise just return false.
  *
- * @param DEST the variable where to store the first element
+ * @param DEST the address where to store the first element, if it exists
  * @param CBUF the address of the circbuf
+ * @return Whether the first element was stored in DEST
  */
-#define CIRCBUF_PEEK_HEAD(DEST, CBUF) do {  \
-    if (CIRCBUF_ISEMPTY(CBUF))              \
-        break;                              \
-                                            \
-    (DEST) = (CBUF)->elems[(CBUF)->head];   \
-} while (0)
+#define CIRCBUF_PEEK_HEAD(DEST, CBUF) (         \
+    (CIRCBUF_ISEMPTY(CBUF))?(                   \
+        false                                   \
+    ):(                                         \
+        *(DEST) = (CBUF)->elems[(CBUF)->head],  \
+        true                                    \
+    )                                           \
+)
 
 /**
  * @brief Returns the last element in a circular buffer
  *
- * Does nothing if the circbuf is empty
+ * If the buffer is non-empty, then this will set *DEST equal to the last
+ * element of the buffer and return true, otherwise just return false.
  *
- * @param DEST the variable where to store the last element
+ * @param DEST the address where to store the last element, if it exists
  * @param CBUF the address of the circbuf
  */
-#define CIRCBUF_PEEK_TAIL(DEST, CBUF) do {                              \
-    if (CIRCBUF_ISEMPTY(CBUF))                                          \
-        break;                                                          \
-                                                                        \
-    (DEST) = (CBUF)->elems[ROTATE_LEFT((CBUF)->tail, (CBUF)->limit)];   \
-} while (0)
+#define CIRCBUF_PEEK_TAIL(DEST, CBUF) (                                     \
+    (CIRCBUF_ISEMPTY(CBUF))?(                                               \
+        false                                                               \
+    ):(                                                                     \
+        (DEST) = (CBUF)->elems[ROTATE_LEFT((CBUF)->tail, (CBUF)->limit)],   \
+        true                                                                \
+    )                                                                       \
+)
 
 /**
  * @brief Removes the first element of a circular buffer
  *
- * Does nothing if the circbuf is empty
+ * Same behavior as CIRCBUF_PEEK_HEAD, except CIRCBUF_POP_HEAD also removes
+ * the first element from the buffer if it exists
  *
- * @param DEST the variable where to store the first element
+ * @param DEST the address where to store the first element, if it exists
  * @param CBUF the address of the circbuf
  */
-#define CIRCBUF_POP_HEAD(DEST, CBUF) do {                       \
-    if (CIRCBUF_ISEMPTY(CBUF))                                  \
-        break;                                                  \
-                                                                \
-    /* move the first element into the destination */           \
-    (DEST) = (CBUF)->elems[(CBUF)->head];                       \
-                                                                \
-    /* rotate the first element's index over to the right */    \
-    (CBUF)->head = ROTATE_RIGHT((CBUF)->head, (CBUF)->limit);   \
-} while (0)
+#define CIRCBUF_POP_HEAD(DEST, CBUF) (                              \
+    (CIRCBUF_ISEMPTY(CBUF))?(                                       \
+        false                                                       \
+    ):(                                                             \
+        /* move the first element into the destination */           \
+        *(DEST) = (CBUF)->elems[(CBUF)->head],                      \
+                                                                    \
+        /* rotate the first element's index over to the right */    \
+        (CBUF)->head = ROTATE_RIGHT((CBUF)->head, (CBUF)->limit),   \
+                                                                    \
+        true                                                        \
+    )                                                               \
+)
 
 /**
  * @brief Removes the last element of a circular buffer
  *
- * Does nothing if the circbuf is empty
+ * Same behavior as CIRCBUF_PEEK_TAIL, except CIRCBUF_POP_TAIL also removes
+ * the last element from the buffer if it exists
  *
- * @param DEST the variable where to store the last element
+ * @param DEST the address where to store the first element, if it exists
  * @param CBUF the address of the circbuf
  */
-#define CIRCBUF_POP_TAIL(DEST, CBUF) do {                               \
-    if (CIRCBUF_ISEMPTY(CBUF))                                          \
-        break;                                                          \
-                                                                        \
-    /* move the last element into the destination */                    \
-    (DEST) = (CBUF)->elems[ROTATE_LEFT((CBUF)->tail, (CBUF)->limit)];   \
-                                                                        \
-    /* rotate the exclusive last index over to the left */              \
-    (CBUF)->tail = ROTATE_LEFT((CBUF)->tail, (CBUF)->limit);            \
-} while (0)
+#define CIRCBUF_POP_TAIL(DEST, CBUF) (                                      \
+    (CIRCBUF_ISEMPTY(CBUF))?(                                               \
+        false                                                               \
+    ):(                                                                     \
+        /* move the last element into the destination */                    \
+        *(DEST) = (CBUF)->elems[ROTATE_LEFT((CBUF)->tail, (CBUF)->limit)],  \
+                                                                            \
+        /* rotate the exclusive last index over to the left */              \
+        (CBUF)->tail = ROTATE_LEFT((CBUF)->tail, (CBUF)->limit),            \
+                                                                            \
+        true                                                                \
+    )                                                                       \
+)
 
 /**
  * @brief Inserts an element at the front of a circular buffer
  *
- * Does nothing if the circbuf is full
- *
  * @param CBUF the address of the circular buffer
  * @param ELEM the element
+ * @return True iff an element was inserted
  */
-#define CIRCBUF_PUSH_HEAD(CBUF, ELEM) do {                                  \
-    if (CIRCBUF_ISFULL(CBUF))                                               \
-        break;                                                              \
-                                                                            \
-    /* move the new element to the front of the circbuf */                  \
-    (CBUF)->elems[ROTATE_LEFT((CBUF)->head, (CBUF)->limit)] = (ELEM);       \
-                                                                            \
-    /* rotate the front index of the circular buffer over to the left */    \
-    (CBUF)->head = ROTATE_LEFT((CBUF)->head, (CBUF)->limit);                \
-} while (0)
+#define CIRCBUF_PUSH_HEAD(CBUF, ELEM) (                                         \
+    (CIRCBUF_ISFULL(CBUF))?(                                                    \
+        false                                                                   \
+    ):(                                                                         \
+        /* move the new element to the front of the circbuf */                  \
+        (CBUF)->elems[ROTATE_LEFT((CBUF)->head, (CBUF)->limit)] = (ELEM),       \
+                                                                                \
+        /* rotate the front index of the circular buffer over to the left */    \
+        (CBUF)->head = ROTATE_LEFT((CBUF)->head, (CBUF)->limit),                \
+                                                                                \
+        true                                                                    \
+    )                                                                           \
+)
 
 /**
  * @brief Inserts an element at the back of a circular buffer
  *
- * Does nothing if the circbuf is full
- *
  * @param CBUF the address of the circular buffer
  * @param ELEM the element
+ * @return True iff an element was inserted
  */
-#define CIRCBUF_PUSH_TAIL(CBUF, ELEM) do {                          \
-    if (CIRCBUF_ISFULL(CBUF))                                       \
-        break;                                                      \
-                                                                    \
-    /* move the new element to the rear of the circbuf */           \
-    (CBUF)->elems[(CBUF)->tail] = (ELEM);                           \
-                                                                    \
-    /* rotate the last index of the circular buffer to the right */ \
-    (CBUF)->tail = ROTATE_RIGHT((CBUF)->tail, (CBUF)->limit);       \
-} while (0)
+#define CIRCBUF_PUSH_TAIL(CBUF, ELEM) (                                 \
+    (CIRCBUF_ISFULL(CBUF))?(                                            \
+        false                                                           \
+    ):(                                                                 \
+        /* move the new element to the rear of the circbuf */           \
+        (CBUF)->elems[(CBUF)->tail] = (ELEM),                           \
+                                                                        \
+        /* rotate the last index of the circular buffer to the right */ \
+        (CBUF)->tail = ROTATE_RIGHT((CBUF)->tail, (CBUF)->limit),       \
+                                                                        \
+        true                                                            \
+    )                                                                   \
+)
 
 /**
  * @brief Returns whether a circular buffer is empty

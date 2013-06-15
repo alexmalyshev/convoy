@@ -2,44 +2,77 @@
 
 #include <stdio.h>
 
+#define INTBUF_LEN 4
 
-#define CBUF_LEN 32
-
-
-CIRCBUF_NEW(circbuf, int, CBUF_LEN);
-
-static circbuf cbuf = CIRCBUF_STATIC_INIT(CBUF_LEN);
+CIRCBUF_DECLARE(intbuf, int, INTBUF_LEN);
 
 
 int main(void) {
-    CIRCBUF_PUSH_HEAD(&cbuf, 0);
-    CIRCBUF_PUSH_HEAD(&cbuf, 1);
-    CIRCBUF_PUSH_TAIL(&cbuf, 2);
+    intbuf cbuf = CIRCBUF_STATIC_INIT(INTBUF_LEN);
+    bool status = false;
 
-    int *ref;
-    size_t i;
+    assert(CIRCBUF_ISEMPTY(&cbuf));
+    assert(!CIRCBUF_ISFULL(&cbuf));
+
+    status = CIRCBUF_PUSH_HEAD(&cbuf, 0);
+    assert(status);
+    assert(!CIRCBUF_ISEMPTY(&cbuf));
+    assert(!CIRCBUF_ISFULL(&cbuf));
+
+    status = CIRCBUF_PUSH_HEAD(&cbuf, 1);
+    assert(status);
+    assert(!CIRCBUF_ISEMPTY(&cbuf));
+    assert(!CIRCBUF_ISFULL(&cbuf));
+
+    status = CIRCBUF_PUSH_TAIL(&cbuf, 2);
+    assert(status);
+    assert(!CIRCBUF_ISEMPTY(&cbuf));
+    assert(CIRCBUF_ISFULL(&cbuf));
+
+    status = CIRCBUF_PUSH_HEAD(&cbuf, 3);
+    assert(!status);
+    assert(!CIRCBUF_ISEMPTY(&cbuf));
+    assert(CIRCBUF_ISFULL(&cbuf));
+
+    status = CIRCBUF_PUSH_TAIL(&cbuf, 3);
+    assert(!status);
+    assert(!CIRCBUF_ISEMPTY(&cbuf));
+    assert(CIRCBUF_ISFULL(&cbuf));
+
+    int *ref = NULL;
+    size_t i = 0;
     CIRCBUF_FOREACH(ref, i, &cbuf)
         *ref += 1;
 
     int res = -1;
 
     printf("[ ");
-    CIRCBUF_POP_HEAD(res, &cbuf);
+    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    assert(status);
     printf("%d ", res);
-    CIRCBUF_POP_TAIL(res, &cbuf);
+
+    status = CIRCBUF_POP_TAIL(&res, &cbuf);
+    assert(status);
     printf("%d ", res);
-    CIRCBUF_POP_HEAD(res, &cbuf);
+
+    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    assert(status);
     printf("%d ", res);
-    printf("]\n");
 
     res = -13;
+    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    assert(!status);
     assert(CIRCBUF_ISEMPTY(&cbuf));
-    CIRCBUF_POP_HEAD(res, &cbuf);
+    assert(!CIRCBUF_ISFULL(&cbuf));
     assert(res == -13);
+
+    status = CIRCBUF_POP_TAIL(&res, &cbuf);
+    assert(!status);
     assert(CIRCBUF_ISEMPTY(&cbuf));
-    CIRCBUF_POP_TAIL(res, &cbuf);
+    assert(!CIRCBUF_ISFULL(&cbuf));
     assert(res == -13);
-    assert(CIRCBUF_ISEMPTY(&cbuf));
+
+    printf("]\n");
 
     return 0;
 }

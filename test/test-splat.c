@@ -37,8 +37,8 @@ static void print(block_t *tree, int depth, int indent) {
 
     printf("key: %d, val: %d\n", tree->key, tree->val);
 
-    print(tree->link.left, depth + indent, indent);
-    print(tree->link.right, depth + indent, indent);
+    print(tree->link.prev, depth + indent, indent);
+    print(tree->link.next, depth + indent, indent);
 }
 
 
