@@ -5,7 +5,7 @@ the data structures depend upon each other, so feel free to just pull one out
 and use it. The current list of data structures is:
 
  * circbuf - a fixed-size circular buffer
- * dlist - a doubly linked list
+ * dlist - a circular, doubly linked list
  * slist - a circular, singly-linked list
  * splat - a splay tree
 
