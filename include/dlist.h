@@ -27,12 +27,12 @@
  * @param LIST_TYPE The type of the list
  * @param ELEM_TYPE The type of the list's elements
  */
-#define DLIST_DECLARE(LIST_TYPE, ELEM_TYPE) \
-    typedef struct LIST_TYPE {              \
-        struct ELEM_TYPE *head;             \
-        struct ELEM_TYPE *tail;             \
-        struct ELEM_TYPE *temp;             \
-        size_t len;                         \
+#define DLIST_DECLARE(LIST_TYPE, ELEM_TYPE)                                 \
+    typedef struct LIST_TYPE {                                              \
+        struct ELEM_TYPE *head; /**< the first element in the list */       \
+        struct ELEM_TYPE *tail; /**< the last element in the list */        \
+        struct ELEM_TYPE *temp; /**< hacky "local" variable for macros */   \
+        size_t len;             /**< the length of the list */              \
     } LIST_TYPE
 
 /**
