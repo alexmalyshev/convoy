@@ -113,6 +113,20 @@
 #define DLIST_LEN(LIST, LINK) (DLIST_CHECK(LIST, LINK), (LIST)->len)
 
 /**
+ * @brief Returns true iff an element is inserted into a list
+ *
+ * Does not search any lists
+ *
+ * @param ELEM The address of the element
+ * @return True iff the element is inserted into a list
+ */
+#define DLIST_IS_ELEM_INSERTED(ELEM, LINK) (                    \
+    DLIST_CHECK_ELEM(ELEM, LINK),                               \
+                                                                \
+    ((ELEM)->LINK.next != NULL) && ((ELEM)->LINK.prev != NULL)  \
+)
+
+/**
  * @brief Returns the first element in a list
  *
  * @param LIST The address of the list
@@ -139,16 +153,18 @@
  */
 #define DLIST_PUSH_FRONT(LIST, ELEM, LINK) (                                \
     DLIST_CHECK(LIST, LINK),                                                \
-    DLIST_CHECK_NEW_ELEM(ELEM, LINK),                                       \
+    assert(!DLIST_IS_ELEM_INSERTED(ELEM, LINK)),                            \
                                                                             \
-    /* the element's next points to the old front of the list */            \
-    (ELEM)->LINK.next = (LIST)->front,                                      \
+    ((LIST)->len != 0)?(                                                    \
+        (LIST)->front->LINK.prev = (ELEM),                                  \
+        (LIST)->back->LINK.next = (ELEM),                                   \
                                                                             \
-    /* the old front's prev points to our new element if it exists,
-     * otherwise the list is empty and needs its back reference updated */  \
-    ((LIST)->front != NULL)?(                                               \
-        (LIST)->front->LINK.prev = (ELEM)                                   \
+        (ELEM)->LINK.next = (LIST)->front,                                  \
+        (ELEM)->LINK.prev = (LIST)->back                                    \
     ):(                                                                     \
+        (ELEM)->LINK.next = (ELEM),                                         \
+        (ELEM)->LINK.prev = (ELEM),                                         \
+                                                                            \
         (LIST)->back = (ELEM)                                               \
     ),                                                                      \
                                                                             \
@@ -169,16 +185,18 @@
  */
 #define DLIST_PUSH_BACK(LIST, ELEM, LINK) (                                 \
     DLIST_CHECK(LIST, LINK),                                                \
-    DLIST_CHECK_NEW_ELEM(ELEM, LINK),                                       \
+    assert(!DLIST_IS_ELEM_INSERTED(ELEM, LINK)),                            \
                                                                             \
-    /* the element's prev points to the old back of the list */             \
-    (ELEM)->LINK.prev = (LIST)->back,                                       \
+    ((LIST)->len != 0)?(                                                    \
+        (LIST)->front->LINK.prev = (ELEM),                                  \
+        (LIST)->back->LINK.next = (ELEM),                                   \
                                                                             \
-    /* the old back's next points to our new element if it exists,
-     * otherwise the list is empty and needs its front reference updated */ \
-    ((LIST)->back != NULL)?(                                                \
-        (LIST)->back->LINK.next = (ELEM)                                    \
+        (ELEM)->LINK.next = (LIST)->front,                                  \
+        (ELEM)->LINK.prev = (LIST)->back                                    \
     ):(                                                                     \
+        (ELEM)->LINK.next = (ELEM),                                         \
+        (ELEM)->LINK.prev = (ELEM),                                         \
+                                                                            \
         (LIST)->front = (ELEM)                                              \
     ),                                                                      \
                                                                             \
@@ -200,8 +218,8 @@
  */
 #define DLIST_INSERT_NEXT(LIST, INS, NEW, LINK) (                           \
     DLIST_CHECK(LIST, LINK),                                                \
-    DLIST_CHECK_INSERTED_ELEM(INS, LIST, LINK),                             \
-    DLIST_CHECK_NEW_ELEM(NEW, LINK),                                        \
+    assert(DLIST_IS_ELEM_INSERTED(INS, LINK)),                              \
+    assert(!DLIST_IS_ELEM_INSERTED(NEW, LINK)),                             \
                                                                             \
     /* list is supposed to be non-empty */                                  \
     assert((LIST)->len != 0),                                               \
@@ -210,17 +228,16 @@
     (NEW)->LINK.prev = (INS),                                               \
     (NEW)->LINK.next = (INS)->LINK.next,                                    \
                                                                             \
-    /* if the inserted element is not the back, then we want to have the
-     * inserted element's next's prev reference point to the new element */ \
-    ((INS) != (LIST)->back)?(                                               \
-        (INS)->LINK.next->LINK.prev = (NEW)                                 \
-    /* otherwise we need to update the list's back reference */             \
-    ):(                                                                     \
+    /* update the back of the list if we inserted after the old back */     \
+    ((INS) == (LIST)->back)?(                                               \
         (LIST)->back = (NEW)                                                \
+    ):(                                                                     \
+        NULL                                                                \
     ),                                                                      \
                                                                             \
     /* splice in the new element into the list */                           \
-    (INS)->LINK.prev = (NEW),                                               \
+    (INS)->LINK.next->LINK.prev = (NEW),                                    \
+    (INS)->LINK.next = (NEW),                                               \
                                                                             \
     (LIST)->len += 1,                                                       \
                                                                             \
@@ -237,8 +254,8 @@
  */
 #define DLIST_INSERT_PREV(LIST, INS, NEW, LINK) (                           \
     DLIST_CHECK(LIST, LINK),                                                \
-    DLIST_CHECK_INSERTED_ELEM(INS, LIST, LINK),                             \
-    DLIST_CHECK_NEW_ELEM((NEW), LINK),                                      \
+    assert(DLIST_IS_ELEM_INSERTED(INS, LINK)),                              \
+    assert(!DLIST_IS_ELEM_INSERTED(NEW, LINK)),                             \
                                                                             \
     /* list is supposed to be non-empty */                                  \
     assert((LIST)->len != 0),                                               \
@@ -247,16 +264,15 @@
     (NEW)->LINK.prev = (INS)->LINK.prev,                                    \
     (NEW)->LINK.next = (INS),                                               \
                                                                             \
-    /* if the inserted element is not the front, then we want to have the
-     * inserted element's prev's next reference point to the new element */ \
-    ((INS) != (LIST)->front)?(                                              \
-        (INS)->LINK.prev->LINK.next = (NEW)                                 \
-    /* otherwise we need to update the list's front reference */            \
-    ):(                                                                     \
+    /* update the front of the list if we inserted before the old front */  \
+    ((INS) == (LIST)->front)?(                                              \
         (LIST)->front = (NEW)                                               \
+    ):(                                                                     \
+        NULL                                                                \
     ),                                                                      \
                                                                             \
     /* splice in the new element into the list */                           \
+    (INS)->LINK.prev->LINK.next = (NEW)                                     \
     (INS)->LINK.prev = (NEW),                                               \
                                                                             \
     (LIST)->len += 1,                                                       \
@@ -286,7 +302,8 @@
                                                                     \
         /* update the new front of the list */                      \
         (LIST)->front = (LIST)->front->LINK.next,                   \
-        (LIST)->front->LINK.prev = NULL                             \
+        (LIST)->front->LINK.prev = (LIST)->back,                    \
+        (LIST)->back->LINK.next = (LIST)->front                     \
     ),                                                              \
                                                                     \
     ((LIST)->temp == NULL)?(                                        \
@@ -323,7 +340,8 @@
                                                                     \
         /* update the new back of the list */                       \
         (LIST)->back = (LIST)->back->LINK.prev,                     \
-        (LIST)->back->LINK.next = NULL                              \
+        (LIST)->front->LINK.prev = (LIST)->back,                    \
+        (LIST)->back->LINK.next = (LIST)->front                     \
     ),                                                              \
                                                                     \
     ((LIST)->temp == NULL)?(                                        \
@@ -347,7 +365,7 @@
  */
 #define DLIST_REMOVE(LIST, ELEM, LINK) (                                    \
     DLIST_CHECK(LIST, LINK),                                                \
-    DLIST_CHECK_INSERTED_ELEM(ELEM, LIST, LINK),                            \
+    assert(DLIST_IS_INSERTED_ELEM(INS, LINK)),                              \
                                                                             \
     /* cannot remove an element from an empty list */                       \
     assert((LIST)->len != 0),                                               \
@@ -369,9 +387,16 @@
         (ELEM)->LINK.next->LINK.prev = (ELEM)->LINK.prev                    \
     ),                                                                      \
                                                                             \
+    ((LIST)->len != 1)?(                                                    \
+        (LIST)->front->LINK.prev = (LIST)->back,                            \
+        (LIST)->back->LINK.next = (LIST)->front                             \
+    ):(                                                                     \
+        (LIST)->front = NULL,                                               \
+        (LIST)->back = NULL                                                 \
+    ),                                                                      \
+                                                                            \
     /* the element is no longer inserted in the list */                     \
-    (ELEM)->LINK.next = NULL,                                               \
-    (ELEM)->LINK.prev = NULL,                                               \
+    DLIST_ELEM_INIT(ELEM, LINK),                                            \
                                                                             \
     (LIST)->len -= 1,                                                       \
                                                                             \
@@ -385,10 +410,10 @@
  * @param LIST The address of the list
  * @param LINK The name of the link field
  */
-#define DLIST_FOREACH(CURR, LIST, LINK)                     \
-    for (DLIST_CHECK(LIST, LINK), (CURR) = (LIST)->front;   \
-         (CURR) != NULL;                                    \
-         (CURR) = (CURR)->LINK.next)
+#define DLIST_FOREACH(CURR, LIST, LINK)                                       \
+    for ((CURR) = (LIST)->front, (LIST)->temp = (LIST)->front;                \
+         (CURR) != NULL && ((CURR) != (LIST)->front || (LIST)->temp != NULL); \
+         (LIST)->temp = NULL, (CURR) = (CURR)->LINK.next)
 
 /**
  * @brief Checks the validity of a list
@@ -404,53 +429,39 @@
         assert((LIST)->front == NULL),                                      \
         assert((LIST)->back == NULL),                                       \
         assert((LIST)->len == 0)                                            \
-    ):((LIST)->front == (LIST)->back || (LIST)->len == 1)?(                 \
-        assert((LIST)->front != NULL && (LIST)->front == (LIST)->back),     \
-        assert((LIST)->len == 1)                                            \
+    ):((LIST)->front == (LIST)->back ||                                     \
+       (LIST)->len == 1 ||                                                  \
+       (LIST)->front->LINK.prev == (LIST)->front ||                         \
+       (LIST)->front->LINK.next == (LIST)->front ||                         \
+       (LIST)->back->LINK.prev == (LIST)->back ||                           \
+       (LIST)->back->LINK.next == (LIST)->back)?(                           \
+        assert((LIST)->front == (LIST)->back),                              \
+        assert((LIST)->len == 1),                                           \
+        assert((LIST)->front->LINK.prev == (LIST)->front),                  \
+        assert((LIST)->front->LINK.next == (LIST)->front),                  \
+        assert((LIST)->back->LINK.prev == (LIST)->back),                    \
+        assert((LIST)->back->LINK.next == (LIST)->back)                     \
     ):(                                                                     \
         DLIST_VOID                                                          \
     )                                                                       \
 )
 
 /**
- * @brief Checks the validity of a new, uninserted list element
+ * @brief Checks the validity of a list element
  *
  * @param ELEM The address of the element
  * @param LINK The name of the link field
  */
-#define DLIST_CHECK_NEW_ELEM(ELEM, LINK) (  \
-    assert((ELEM) != NULL),                 \
-                                            \
-    assert((ELEM)->LINK.next == NULL),      \
-    assert((ELEM)->LINK.prev == NULL)       \
-)
-
-/**
- * @brief Checks the validity of an already-inserted list element
- *
- * Assumes that LIST has already been checked for validity
- *
- * @param ELEM The address of the element
- * @param LIST The address of the list
- * @param LINK The name of the link field
- */
-#define DLIST_CHECK_INSERTED_ELEM(ELEM, LIST, LINK) (                   \
-    assert((ELEM) != NULL),                                             \
-                                                                        \
-    /* element should have a valid prev reference if it is not the front,
-     * otherwise its prev reference should be NULL */                   \
-    ((LIST)->front != (ELEM))?(                                         \
-        assert((ELEM)->LINK.prev != NULL)                               \
-    ):(                                                                 \
-        assert((ELEM)->LINK.prev == NULL)                               \
-    ),                                                                  \
-                                                                        \
-    /* ditto with the element's next reference and the back */          \
-    ((LIST)->back != (ELEM))?(                                          \
-        assert((ELEM)->LINK.next != NULL)                               \
-    ):(                                                                 \
-        assert((ELEM)->LINK.next == NULL)                               \
-    )                                                                   \
+#define DLIST_CHECK_ELEM(ELEM, LINK) (                          \
+    assert((ELEM) != NULL),                                     \
+                                                                \
+    ((ELEM)->LINK.next == NULL || (ELEM)->LINK.prev == NULL)?(  \
+        assert((ELEM)->LINK.next == NULL),                      \
+        assert((ELEM)->LINK.prev == NULL)                       \
+    ):(                                                         \
+        assert((ELEM)->LINK.next != NULL),                      \
+        assert((ELEM)->LINK.prev != NULL)                       \
+    )                                                           \
 )
 
 

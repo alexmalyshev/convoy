@@ -188,8 +188,7 @@
  */
 #define SLIST_PUSH_FRONT(LIST, ELEM, LINK) (        \
     SLIST_CHECK(LIST, LINK),                        \
-    assert((ELEM) != NULL),                         \
-    assert((ELEM)->LINK == NULL),                   \
+    assert(!SLIST_IS_ELEM_INSERTED(ELEM, LINK)),    \
                                                     \
     /* add the element to the front of the list */  \
     ((LIST)->len != 0)?(                            \
@@ -217,8 +216,7 @@
  */
 #define SLIST_PUSH_BACK(LIST, ELEM, LINK) (         \
     SLIST_CHECK(LIST, LINK),                        \
-    assert((ELEM) != NULL),                         \
-    assert((ELEM)->LINK == NULL),                   \
+    assert(!SLIST_IS_ELEM_INSERTED(ELEM, LINK)),    \
                                                     \
     /* add the element to the end of the list */    \
     ((LIST)->len != 0)?(                            \
