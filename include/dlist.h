@@ -272,7 +272,7 @@
     ),                                                                      \
                                                                             \
     /* splice in the new element into the list */                           \
-    (INS)->LINK.prev->LINK.next = (NEW)                                     \
+    (INS)->LINK.prev->LINK.next = (NEW),                                    \
     (INS)->LINK.prev = (NEW),                                               \
                                                                             \
     (LIST)->len += 1,                                                       \
@@ -365,7 +365,7 @@
  */
 #define DLIST_REMOVE(LIST, ELEM, LINK) (                                    \
     DLIST_CHECK(LIST, LINK),                                                \
-    assert(DLIST_IS_INSERTED_ELEM(INS, LINK)),                              \
+    assert(DLIST_IS_ELEM_INSERTED(ELEM, LINK)),                             \
                                                                             \
     /* cannot remove an element from an empty list */                       \
     assert((LIST)->len != 0),                                               \

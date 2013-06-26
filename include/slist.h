@@ -114,12 +114,13 @@
  * Does not search any lists
  *
  * @param ELEM The address of the element
+ * @param LINK The name of the link field
  * @return True iff the element is inserted into a list
  */
-#define SLIST_IS_ELEM_INSERTED(ELEM) (  \
-    assert((ELEM) != NULL),             \
-                                        \
-    (ELEM)->LINK != NULL                \
+#define SLIST_IS_ELEM_INSERTED(ELEM, LINK) (    \
+    assert((ELEM) != NULL),                     \
+                                                \
+    (ELEM)->LINK != NULL                        \
 )
 
 /**
