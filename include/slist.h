@@ -33,10 +33,10 @@
  */
 #define SLIST_DECLARE(LIST_TYPE, ELEM_TYPE)                                 \
     typedef struct LIST_TYPE {                                              \
-        struct ELEM_TYPE *head; /**< the first element in the list */       \
-        struct ELEM_TYPE *tail; /**< the last element in the list */        \
-        struct ELEM_TYPE *temp; /**< hacky "local" variable for macros */   \
-        size_t len;             /**< the length of the list */              \
+        struct ELEM_TYPE *front; /**< the first element in the list */      \
+        struct ELEM_TYPE *back;  /**< the last element in the list */       \
+        struct ELEM_TYPE *temp;  /**< hacky "local" variable for macros */  \
+        size_t len;              /**< the length of the list */             \
     } LIST_TYPE
 
 /**
@@ -66,8 +66,8 @@
 #define SLIST_INIT(LIST) (  \
     assert((LIST) != NULL), \
                             \
-    (LIST)->head = NULL,    \
-    (LIST)->tail = NULL,    \
+    (LIST)->front = NULL,   \
+    (LIST)->back = NULL,    \
     (LIST)->temp = NULL,    \
     (LIST)->len = 0,        \
                             \
@@ -76,8 +76,8 @@
 
 /// @brief Statically initializes a list
 #define SLIST_STATIC_INIT { \
-    .head = NULL,           \
-    .tail = NULL,           \
+    .front = NULL,          \
+    .back = NULL,           \
     .temp = NULL,           \
     .len = 0                \
 }
@@ -106,7 +106,7 @@
  * @param LINK The name of the link field
  * @return The number of elements in the list
  */
-#define SLIST_LEN(LIST, LINK) ( SLIST_CHECK(LIST, LINK), (LIST)->len)
+#define SLIST_LEN(LIST, LINK) (SLIST_CHECK(LIST, LINK), (LIST)->len)
 
 /**
  * @brief Returns true iff an element is inserted into a list
@@ -129,7 +129,7 @@
  * @param LINK The name of the link field
  * @return The address of the first element, NULL if the list is empty
  */
-#define SLIST_PEEK_HEAD(LIST, LINK) (SLIST_CHECK(LIST, LINK), (LIST)->head)
+#define SLIST_PEEK_FRONT(LIST, LINK) (SLIST_CHECK(LIST, LINK), (LIST)->front)
 
 /**
  * @brief Returns the last element in a list
@@ -138,7 +138,7 @@
  * @param LINK The name of the link field
  * @return The address of the last element, NULL if the list is empty
  */
-#define SLIST_PEEK_TAIL(LIST, LINK) (SLIST_CHECK(LIST, LINK), (LIST)->tail)
+#define SLIST_PEEK_BACK(LIST, LINK) (SLIST_CHECK(LIST, LINK), (LIST)->back)
 
 /**
  * @brief Pops the first element off of a list
@@ -147,33 +147,33 @@
  * @param LINK The name of the link field
  * @return The address of the first element, NULL if the list is empty
  */
-#define SLIST_POP_HEAD(LIST, LINK) (                                \
+#define SLIST_POP_FRONT(LIST, LINK) (                               \
     SLIST_CHECK(LIST, LINK),                                        \
                                                                     \
     ((LIST)->len == 0)?(                                            \
         (LIST)->temp = NULL                                         \
     ):((LIST)->len == 1)?(                                          \
-        (LIST)->temp = (LIST)->head,                                \
+        (LIST)->temp = (LIST)->front,                               \
                                                                     \
-        (LIST)->head = NULL,                                        \
-        (LIST)->tail = NULL                                         \
+        (LIST)->front = NULL,                                       \
+        (LIST)->back = NULL                                         \
     ):(                                                             \
-        (LIST)->temp = (LIST)->head,                                \
+        (LIST)->temp = (LIST)->front,                               \
                                                                     \
-        /* update the new head of the list */                       \
-        (LIST)->head = (LIST)->head->LINK,                          \
+        /* update the new front of the list */                      \
+        (LIST)->front = (LIST)->front->LINK,                        \
                                                                     \
-        /* make the tail point to the new head */                   \
-        (LIST)->tail->LINK = (LIST)->head                           \
+        /* make the back point to the new front */                  \
+        (LIST)->back->LINK = (LIST)->front                          \
     ),                                                              \
                                                                     \
     ((LIST)->temp == NULL)?(                                        \
         NULL                                                        \
     ):(                                                             \
-        /* mark the old head as not being inserted in a list */     \
+        /* mark the old front as not being inserted in a list */    \
         (LIST)->temp->LINK = NULL,                                  \
                                                                     \
-        /* update the list's length, and return the old head */     \
+        /* update the list's length, and return the old front */    \
         (LIST)->len -= 1,                                           \
         (LIST)->temp                                                \
     )                                                               \
@@ -186,24 +186,24 @@
  * @param ELEM The address of the element
  * @param LINK The name of the link field
  */
-#define SLIST_PUSH_HEAD(LIST, ELEM, LINK) (         \
+#define SLIST_PUSH_FRONT(LIST, ELEM, LINK) (        \
     SLIST_CHECK(LIST, LINK),                        \
     assert((ELEM) != NULL),                         \
     assert((ELEM)->LINK == NULL),                   \
                                                     \
     /* add the element to the front of the list */  \
     ((LIST)->len != 0)?(                            \
-        (ELEM)->LINK = (LIST)->head                 \
+        (ELEM)->LINK = (LIST)->front                \
     ):(                                             \
-        (LIST)->tail = (ELEM)                       \
+        (LIST)->back = (ELEM)                       \
     ),                                              \
                                                     \
-    /* update the list's head and length */         \
-    (LIST)->head = (ELEM),                          \
+    /* update the list's front and length */        \
+    (LIST)->front = (ELEM),                         \
     (LIST)->len += 1,                               \
                                                     \
-    /* update the tail to point to the new head */  \
-    (LIST)->tail->LINK = (LIST)->head,              \
+    /* update the back to point to the new front */ \
+    (LIST)->back->LINK = (LIST)->front,             \
                                                     \
     SLIST_VOID                                      \
 )
@@ -215,24 +215,24 @@
  * @param ELEM The address of the element
  * @param LINK The name of the link field
  */
-#define SLIST_PUSH_TAIL(LIST, ELEM, LINK) (         \
+#define SLIST_PUSH_BACK(LIST, ELEM, LINK) (         \
     SLIST_CHECK(LIST, LINK),                        \
     assert((ELEM) != NULL),                         \
     assert((ELEM)->LINK == NULL),                   \
                                                     \
     /* add the element to the end of the list */    \
     ((LIST)->len != 0)?(                            \
-        (LIST)->tail->LINK = (ELEM)                 \
+        (LIST)->back->LINK = (ELEM)                 \
     ):(                                             \
-        (LIST)->head = (ELEM)                       \
+        (LIST)->front = (ELEM)                      \
     ),                                              \
                                                     \
-    /* update the list's tail and length */         \
-    (LIST)->tail = (ELEM),                          \
+    /* update the list's back and length */         \
+    (LIST)->back = (ELEM),                          \
     (LIST)->len += 1,                               \
                                                     \
-    /* update the new tail to point to the head */  \
-    (LIST)->tail->LINK = (LIST)->head,              \
+    /* update the new back to point to the front */ \
+    (LIST)->back->LINK = (LIST)->front,             \
                                                     \
     SLIST_VOID                                      \
 )
@@ -244,9 +244,9 @@
  * @param LIST The address of the list
  * @param LINK The name of the link field
  */
-#define SLIST_FOREACH(CURR, LIST, LINK)                                     \
-    for ((CURR) = (LIST)->head, (LIST)->temp = (LIST)->head;                \
-         (CURR) != NULL && ((CURR) != (LIST)->head || (LIST)->temp != NULL);\
+#define SLIST_FOREACH(CURR, LIST, LINK)                                       \
+    for ((CURR) = (LIST)->front, (LIST)->temp = (LIST)->front;                \
+         (CURR) != NULL && ((CURR) != (LIST)->front || (LIST)->temp != NULL); \
          (LIST)->temp = NULL, (CURR) = (CURR)->LINK)
 
 /**
@@ -257,16 +257,16 @@
 #define SLIST_CHECK(LIST, LINK) (                                           \
     assert((LIST) != NULL),                                                 \
                                                                             \
-    ((LIST)->head == NULL || (LIST)->tail == NULL || (LIST)->len == 0)?(    \
-        assert((LIST)->head == NULL),                                       \
-        assert((LIST)->tail == NULL),                                       \
+    ((LIST)->front == NULL || (LIST)->back == NULL || (LIST)->len == 0)?(   \
+        assert((LIST)->front == NULL),                                      \
+        assert((LIST)->back == NULL),                                       \
         assert((LIST)->len == 0)                                            \
-    ):((LIST)->head == (LIST)->tail ||                                      \
-       (LIST)->head->LINK == (LIST)->head ||                                \
-       (LIST)->tail->LINK == (LIST)->tail ||                                \
+    ):((LIST)->front == (LIST)->back ||                                     \
+       (LIST)->front->LINK == (LIST)->front ||                              \
+       (LIST)->back->LINK == (LIST)->back ||                                \
        (LIST)->len == 1)?(                                                  \
-        assert((LIST)->head == (LIST)->tail),                               \
-        assert((LIST)->head->LINK == (LIST)->head),                         \
+        assert((LIST)->front == (LIST)->back),                              \
+        assert((LIST)->front->LINK == (LIST)->front),                       \
         assert((LIST)->len == 1)                                            \
     ):(                                                                     \
         SLIST_VOID                                                          \

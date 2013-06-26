@@ -14,9 +14,9 @@ typedef struct block {
 SLIST_DECLARE(stack, block);
 
 
-static void push(stack *stk, block_t *blk) { SLIST_PUSH_HEAD(stk, blk, next); }
-static block_t *peek(stack *stk) { return SLIST_PEEK_HEAD(stk, next); }
-static block_t *pop(stack *stk) { return SLIST_POP_HEAD(stk, next); }
+static void push(stack *stk, block_t *blk) { SLIST_PUSH_FRONT(stk, blk, next); }
+static block_t *peek(stack *stk) { return SLIST_PEEK_FRONT(stk, next); }
+static block_t *pop(stack *stk) { return SLIST_POP_FRONT(stk, next); }
 
 int main(void) {
     stack s = SLIST_STATIC_INIT;
