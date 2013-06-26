@@ -33,15 +33,15 @@ int main(void) {
     block_t b2;
     block_init(&b2, 2);
 
-    DLIST_PUSH_HEAD(&deq, &b0, link);
-    DLIST_PUSH_HEAD(&deq, &b1, link);
-    DLIST_PUSH_HEAD(&deq, &b2, link);
+    DLIST_PUSH_FRONT(&deq, &b0, link);
+    DLIST_PUSH_FRONT(&deq, &b1, link);
+    DLIST_PUSH_FRONT(&deq, &b2, link);
 
     block_t *res = NULL;
 
     DLIST_FOREACH(res, &deq, link) {
-        block_t *head = DLIST_PEEK_HEAD(&deq, link);
-        block_t *tail = DLIST_PEEK_TAIL(&deq, link);
+        block_t *head = DLIST_PEEK_FRONT(&deq, link);
+        block_t *tail = DLIST_PEEK_BACK(&deq, link);
         (void)head;
         (void)tail;
 
@@ -49,11 +49,11 @@ int main(void) {
     }
 
     printf("[ ");
-    res = DLIST_POP_TAIL(&deq, link);
+    res = DLIST_POP_BACK(&deq, link);
     printf("%d ", res->elem);
-    res = DLIST_POP_TAIL(&deq, link);
+    res = DLIST_POP_BACK(&deq, link);
     printf("%d ", res->elem);
-    res = DLIST_POP_TAIL(&deq, link);
+    res = DLIST_POP_BACK(&deq, link);
     printf("%d ", res->elem);
     printf("]\n");
 
