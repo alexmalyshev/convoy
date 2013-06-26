@@ -10,50 +10,59 @@ typedef struct block {
     int elem;
 } block_t;
 
+#define BLOCK_STATIC_INIT(ELEM) {   \
+    .link = DLIST_LINK_STATIC_INIT, \
+    .elem = (ELEM)                  \
+}
+
 DLIST_DECLARE(deque, block);
 
-static deque deq = DLIST_STATIC_INIT;
-
-
-static void block_init(block_t *blk, int elem) {
-    assert(blk != NULL);
-
-    blk->elem = elem;
-    DLIST_ELEM_INIT(blk, link);
+static size_t len(deque *deq) { return DLIST_LEN(deq, link); }
+static void pushf(deque *deq, block_t *blk) {
+    DLIST_PUSH_FRONT(deq, blk, link);
 }
+static void pushb(deque *deq, block_t *blk) { DLIST_PUSH_BACK(deq, blk, link); }
+static block_t *peekf(deque *deq) { return DLIST_PEEK_FRONT(deq, link); }
+static block_t *peekb(deque *deq) { return DLIST_PEEK_BACK(deq, link); }
+
+static block_t *popf(deque *deq) { return DLIST_POP_FRONT(deq, link); }
+static block_t *popb(deque *deq) { return DLIST_POP_BACK(deq, link); }
 
 
 int main(void) {
-    block_t b0;
-    block_init(&b0, 0);
+    deque deq = DLIST_STATIC_INIT;
+    assert(len(&deq) == 0);
 
-    block_t b1;
-    block_init(&b1, 1);
+    block_t b0 = BLOCK_STATIC_INIT(0);
+    block_t b1 = BLOCK_STATIC_INIT(1);
+    block_t b2 = BLOCK_STATIC_INIT(2);
 
-    block_t b2;
-    block_init(&b2, 2);
-
-    DLIST_PUSH_FRONT(&deq, &b0, link);
-    DLIST_PUSH_FRONT(&deq, &b1, link);
-    DLIST_PUSH_FRONT(&deq, &b2, link);
+    pushf(&deq, &b0);
+    assert(len(&deq) == 1);
+    pushf(&deq, &b1);
+    assert(len(&deq) == 2);
+    pushb(&deq, &b2);
+    assert(len(&deq) == 3);
 
     block_t *res = NULL;
 
     DLIST_FOREACH(res, &deq, link) {
-        block_t *head = DLIST_PEEK_FRONT(&deq, link);
-        block_t *tail = DLIST_PEEK_BACK(&deq, link);
-        (void)head;
-        (void)tail;
+        block_t *_ = peekf(&deq);
+        _ = peekb(&deq);
+        (void)_;
 
         res->elem += 1;
     }
 
     printf("[ ");
-    res = DLIST_POP_BACK(&deq, link);
+    res = popb(&deq);
+    assert(len(&deq) == 2);
     printf("%d ", res->elem);
-    res = DLIST_POP_BACK(&deq, link);
+    res = popb(&deq);
+    assert(len(&deq) == 1);
     printf("%d ", res->elem);
-    res = DLIST_POP_BACK(&deq, link);
+    res = popf(&deq);
+    assert(len(&deq) == 0);
     printf("%d ", res->elem);
     printf("]\n");
 

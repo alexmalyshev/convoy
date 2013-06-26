@@ -104,6 +104,15 @@
 #define DLIST_LINK_STATIC_INIT { .next = NULL, .prev = NULL }
 
 /**
+ * @brief Returns the number of elements in a list
+ *
+ * @param LIST The address of the list
+ * @param LINK The name of the link field
+ * @return The number of elements in the list
+ */
+#define DLIST_LEN(LIST, LINK) (DLIST_CHECK(LIST, LINK), (LIST)->len)
+
+/**
  * @brief Returns the first element in a list
  *
  * @param LIST The address of the list
@@ -276,8 +285,8 @@
         (LIST)->temp = (LIST)->front,                               \
                                                                     \
         /* update the new front of the list */                      \
-        (LIST)->front = (LIST)->front->LINK,                        \
-        (LIST)->front->LINK.prev = NULL,                            \
+        (LIST)->front = (LIST)->front->LINK.next,                   \
+        (LIST)->front->LINK.prev = NULL                             \
     ),                                                              \
                                                                     \
     ((LIST)->temp == NULL)?(                                        \
@@ -377,7 +386,7 @@
  * @param LINK The name of the link field
  */
 #define DLIST_FOREACH(CURR, LIST, LINK)                     \
-    for (DLIST_CHECK(LIST,LINK), (CURR) = (LIST)->front;    \
+    for (DLIST_CHECK(LIST, LINK), (CURR) = (LIST)->front;   \
          (CURR) != NULL;                                    \
          (CURR) = (CURR)->LINK.next)
 
