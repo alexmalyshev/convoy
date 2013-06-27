@@ -7,37 +7,47 @@
 CIRCBUF_DECLARE(intbuf, int, INTBUF_LEN);
 
 
+static bool empty(intbuf *buf) { return CIRCBUF_ISEMPTY(buf); }
+static bool full(intbuf *buf) { return CIRCBUF_ISFULL(buf); }
+static bool pushf(intbuf *buf, int n) { return CIRCBUF_PUSH_FRONT(buf, n); }
+static bool pushb(intbuf *buf, int n) { return CIRCBUF_PUSH_BACK(buf, n); }
+static bool peekf(int *n, intbuf *buf) { return CIRCBUF_PEEK_FRONT(n, buf); }
+static bool peekb(int *n, intbuf *buf) { return CIRCBUF_PEEK_BACK(n, buf); }
+static bool popf(int *n, intbuf *buf) { return CIRCBUF_POP_FRONT(n, buf); }
+static bool popb(int *n, intbuf *buf) { return CIRCBUF_POP_BACK(n, buf); }
+
+
 int main(void) {
     intbuf cbuf = CIRCBUF_STATIC_INIT(INTBUF_LEN);
     bool status = false;
 
-    assert(CIRCBUF_ISEMPTY(&cbuf));
-    assert(!CIRCBUF_ISFULL(&cbuf));
+    assert(empty(&cbuf));
+    assert(!full(&cbuf));
 
-    status = CIRCBUF_PUSH_HEAD(&cbuf, 0);
+    status = pushf(&cbuf, 0);
     assert(status);
-    assert(!CIRCBUF_ISEMPTY(&cbuf));
-    assert(!CIRCBUF_ISFULL(&cbuf));
+    assert(!empty(&cbuf));
+    assert(!full(&cbuf));
 
-    status = CIRCBUF_PUSH_HEAD(&cbuf, 1);
+    status = pushf(&cbuf, 1);
     assert(status);
-    assert(!CIRCBUF_ISEMPTY(&cbuf));
-    assert(!CIRCBUF_ISFULL(&cbuf));
+    assert(!empty(&cbuf));
+    assert(!full(&cbuf));
 
-    status = CIRCBUF_PUSH_TAIL(&cbuf, 2);
+    status = pushb(&cbuf, 2);
     assert(status);
-    assert(!CIRCBUF_ISEMPTY(&cbuf));
-    assert(CIRCBUF_ISFULL(&cbuf));
+    assert(!empty(&cbuf));
+    assert(full(&cbuf));
 
-    status = CIRCBUF_PUSH_HEAD(&cbuf, 3);
+    status = pushf(&cbuf, 3);
     assert(!status);
-    assert(!CIRCBUF_ISEMPTY(&cbuf));
-    assert(CIRCBUF_ISFULL(&cbuf));
+    assert(!empty(&cbuf));
+    assert(full(&cbuf));
 
-    status = CIRCBUF_PUSH_TAIL(&cbuf, 3);
+    status = pushb(&cbuf, 3);
     assert(!status);
-    assert(!CIRCBUF_ISEMPTY(&cbuf));
-    assert(CIRCBUF_ISFULL(&cbuf));
+    assert(!empty(&cbuf));
+    assert(full(&cbuf));
 
     int *ref = NULL;
     size_t i = 0;
@@ -47,29 +57,41 @@ int main(void) {
     int res = -1;
 
     printf("[ ");
-    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    status = popf(&res, &cbuf);
     assert(status);
     printf("%d ", res);
 
-    status = CIRCBUF_POP_TAIL(&res, &cbuf);
+    status = popb(&res, &cbuf);
     assert(status);
     printf("%d ", res);
 
-    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    status = popf(&res, &cbuf);
     assert(status);
     printf("%d ", res);
 
     res = -13;
-    status = CIRCBUF_POP_HEAD(&res, &cbuf);
+    status = popf(&res, &cbuf);
     assert(!status);
-    assert(CIRCBUF_ISEMPTY(&cbuf));
-    assert(!CIRCBUF_ISFULL(&cbuf));
+    assert(empty(&cbuf));
+    assert(!full(&cbuf));
     assert(res == -13);
 
-    status = CIRCBUF_POP_TAIL(&res, &cbuf);
+    status = popb(&res, &cbuf);
     assert(!status);
-    assert(CIRCBUF_ISEMPTY(&cbuf));
-    assert(!CIRCBUF_ISFULL(&cbuf));
+    assert(empty(&cbuf));
+    assert(!full(&cbuf));
+    assert(res == -13);
+
+    status = peekf(&res, &cbuf);
+    assert(!status);
+    assert(empty(&cbuf));
+    assert(!full(&cbuf));
+    assert(res == -13);
+
+    status = peekb(&res, &cbuf);
+    assert(!status);
+    assert(empty(&cbuf));
+    assert(!full(&cbuf));
     assert(res == -13);
 
     printf("]\n");
