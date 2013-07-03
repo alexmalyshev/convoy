@@ -19,6 +19,8 @@ static bool popb(int *n, intbuf *buf) { return CIRCBUF_POP_BACK(n, buf); }
 
 int main(void) {
     intbuf cbuf = CIRCBUF_STATIC_INIT(INTBUF_LEN);
+    CIRCBUF_INIT(&cbuf, INTBUF_LEN);
+
     bool status = false;
 
     assert(empty(&cbuf));

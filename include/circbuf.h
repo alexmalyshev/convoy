@@ -34,14 +34,17 @@
  * @param CBUF the address of the circbuf
  * @param LIMIT the length of the circbuf (exclusive)
  */
-#define CIRCBUF_INIT(CBUF, LIMIT) do {  \
-    assert((CBUF) != NULL);             \
-                                        \
-    (CBUF)->front = 0;                  \
-    (CBUF)->back = 0;                   \
-                                        \
-    (CBUF)->limit = (LIMIT);            \
-} while (0)
+#define CIRCBUF_INIT(CBUF, LIMIT) ( \
+    assert((CBUF) != NULL),         \
+                                    \
+    (CBUF)->front = 0,              \
+    (CBUF)->back = 0,               \
+                                    \
+    (CBUF)->limit = (LIMIT),        \
+                                    \
+    /* for void return type */      \
+    (void)NULL                      \
+)
 
 /**
  * @brief Statically initializes a circular buffer
@@ -49,7 +52,7 @@
  * @param LIMIT the length of the circbuf (exclusive)
  */
 #define CIRCBUF_STATIC_INIT(LIMIT) {    \
-    .front = 0,                          \
+    .front = 0,                         \
     .back = 0,                          \
     .limit = (LIMIT)                    \
 }
