@@ -1,7 +1,10 @@
-# files that could accidentally get staged + commited
+# Random build files.
+a.out
 *.o
 *.a
 *.so
+
+# vim swap files.
 *.swp
 
 # doxygen
