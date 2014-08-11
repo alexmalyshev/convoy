@@ -21,7 +21,7 @@ static block_t* pop(stack* stk) {
 
 int main(void) {
   stack s = SLIST_STATIC_INIT;
-  stack *stk = &s;
+  stack* stk = &s;
 
   assert(peek(stk) == NULL);
   assert(pop(stk) == NULL);

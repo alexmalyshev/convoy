@@ -172,7 +172,9 @@
   SLIST_CHECK(LIST, LINK),                                    \
                                                               \
   (SLIST_IS_EMPTY(LIST))?(                                    \
-    (DEST) = NULL                                             \
+    (DEST) = NULL,                                            \
+                                                              \
+    SLIST_VOID                                                \
   ):(SLIST_IS_SINGLE(LIST))?(                                 \
     (DEST) = (LIST)->front,                                   \
                                                               \
@@ -180,7 +182,7 @@
     (LIST)->back = NULL,                                      \
                                                               \
     /* Clean up the old node's link. */                       \
-    (DEST)->LINK = NULL                                       \
+    SLIST_ELEM_INIT(DEST, LINK)                               \
   ):(                                                         \
     (DEST) = (LIST)->front,                                   \
                                                               \
@@ -191,10 +193,8 @@
     (LIST)->back->LINK = (LIST)->front,                       \
                                                               \
     /* Clean up the old node's link. */                       \
-    (DEST)->LINK = NULL                                       \
-  ),                                                          \
-                                                              \
-  SLIST_VOID                                                  \
+    SLIST_ELEM_INIT(DEST, LINK)                               \
+  )                                                           \
 )
 
 /**
