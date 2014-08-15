@@ -21,6 +21,9 @@ static void pushf(deque* deq, block_t* blk) {
 static void pushb(deque* deq, block_t* blk) { DLIST_PUSH_BACK(deq, blk, link); }
 static block_t* peekf(deque* deq) { return DLIST_PEEK_FRONT(deq, link); }
 static block_t* peekb(deque* deq) { return DLIST_PEEK_BACK(deq, link); }
+static void rem(deque* deq, block_t* blk) {
+  DLIST_REMOVE(deq, blk, link);
+}
 
 static block_t* popf(deque* deq) {
   block_t* blk;
@@ -79,19 +82,16 @@ int main(void) {
 
   printf("[ ");
 
-  peekr = peekb(deq);
-  res = popb(deq);
-  assert(res == &b2);
-  assert(res == peekr);
+  rem(deq, &b0);
   assert(peekf(deq) == &b1);
-  assert(peekb(deq) == &b0);
+  assert(peekb(deq) == &b2);
   assert(!DLIST_IS_EMPTY(deq));
   assert(!DLIST_IS_SINGLE(deq));
-  printf("%d ", res->elem);
+  printf("%d ", b0.elem);
 
   peekr = peekb(deq);
   res = popb(deq);
-  assert(res == &b0);
+  assert(res == &b2);
   assert(res == peekr);
   assert(peekf(deq) == &b1);
   assert(peekb(deq) == &b1);

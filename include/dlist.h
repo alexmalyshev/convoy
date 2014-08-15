@@ -376,7 +376,7 @@
   assert(DLIST_IS_ELEM_INSERTED(ELEM, LINK)),                          \
                                                                        \
   /* Cannot remove an element from an empty list. */                   \
-  assert(!DIST_IS_EMPTY(LIST)),                                        \
+  assert(!DLIST_IS_EMPTY(LIST)),                                       \
                                                                        \
   /*
    * If we're removing the front element, then we need to update the
@@ -399,7 +399,7 @@
     (ELEM)->LINK.next->LINK.prev = (ELEM)->LINK.prev                   \
   ),                                                                   \
                                                                        \
-  (DLIST_IS_SINGLE(LIST))?(                                            \
+  (!DLIST_IS_SINGLE(LIST))?(                                           \
     (LIST)->front->LINK.prev = (LIST)->back,                           \
     (LIST)->back->LINK.next = (LIST)->front                            \
   ):(                                                                  \
