@@ -18,9 +18,19 @@ DLIST_DECLARE(deque, block);
 static void pushf(deque* deq, block_t* blk) {
   DLIST_PUSH_FRONT(deq, blk, link);
 }
-static void pushb(deque* deq, block_t* blk) { DLIST_PUSH_BACK(deq, blk, link); }
-static block_t* peekf(deque* deq) { return DLIST_PEEK_FRONT(deq, link); }
-static block_t* peekb(deque* deq) { return DLIST_PEEK_BACK(deq, link); }
+
+static void pushb(deque* deq, block_t* blk) {
+  DLIST_PUSH_BACK(deq, blk, link);
+}
+
+static block_t* peekf(deque* deq) {
+  return DLIST_PEEK_FRONT(deq, link);
+}
+
+static block_t* peekb(deque* deq) {
+  return DLIST_PEEK_BACK(deq, link);
+}
+
 static void rem(deque* deq, block_t* blk) {
   DLIST_REMOVE(deq, blk, link);
 }
@@ -30,6 +40,7 @@ static block_t* popf(deque* deq) {
   DLIST_POP_FRONT(deq, blk, link);
   return blk;
 }
+
 static block_t* popb(deque* deq) {
   block_t* blk;
   DLIST_POP_BACK(deq, blk, link);

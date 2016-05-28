@@ -19,7 +19,3 @@ functions.
 
 All files are released under the terms listed in the LICENSE file found in the
 top level convoy folder (3-clause BSD license).
-
-## Documentation
-
-All files have doxygen documentation.

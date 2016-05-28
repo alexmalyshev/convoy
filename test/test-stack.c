@@ -10,8 +10,13 @@ typedef struct block {
 
 SLIST_DECLARE(stack, block);
 
-static void push(stack* stk, block_t* blk) { SLIST_PUSH_FRONT(stk, blk, next); }
-static block_t* peek(stack* stk) { return SLIST_PEEK_FRONT(stk, next); }
+static void push(stack* stk, block_t* blk) {
+  SLIST_PUSH_FRONT(stk, blk, next);
+}
+
+static block_t* peek(stack* stk) {
+  return SLIST_PEEK_FRONT(stk, next);
+}
 
 static block_t* pop(stack* stk) {
   block_t* blk;
