@@ -1,3 +1,5 @@
+#define DLIST_ASSERTS
+
 #include "../include/dlist.h"
 
 #include <assert.h>

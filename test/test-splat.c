@@ -1,3 +1,5 @@
+#define SPLAT_ASSERTS
+
 #include "../include/splat.h"
 
 #include <assert.h>

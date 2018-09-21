@@ -1,5 +1,8 @@
+#define CIRCBUF_ASSERTS
+
 #include "../include/circbuf.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 #define INTBUF_LEN 4
@@ -15,7 +18,6 @@ static bool peekf(int *n, intbuf *buf) { return CIRCBUF_PEEK_FRONT(n, buf); }
 static bool peekb(int *n, intbuf *buf) { return CIRCBUF_PEEK_BACK(n, buf); }
 static bool popf(int *n, intbuf *buf) { return CIRCBUF_POP_FRONT(n, buf); }
 static bool popb(int *n, intbuf *buf) { return CIRCBUF_POP_BACK(n, buf); }
-
 
 int main(void) {
     intbuf cbuf = CIRCBUF_STATIC_INIT(INTBUF_LEN);

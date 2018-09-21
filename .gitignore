@@ -1,13 +1,7 @@
-# Random build files.
+build
 a.out
 *.o
 *.a
 *.so
-
-# vim swap files.
 *.swp
-
-# doxygen
 *.bak
-Doxyfile
-docs
