@@ -86,7 +86,7 @@
   ((LIST)->front != NULL && (LIST)->front == (LIST)->back)
 
 /*
- * Checks if an element is inserted into an list.
+ * Checks if an element is inserted into a list.
  *
  * Does not search any lists, runs in constant time.
  */
