@@ -1,6 +1,6 @@
 #define SLIST_ASSERTS
 
-#include "../include/slist.h"
+#include "slist.h"
 
 #include <assert.h>
 #include <stdio.h>

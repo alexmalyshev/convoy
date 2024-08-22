@@ -1,6 +1,6 @@
 #define CIRCBUF_ASSERTS
 
-#include "../include/circbuf.h"
+#include "circbuf.h"
 
 #include <assert.h>
 #include <stdio.h>

@@ -1,6 +1,6 @@
 #define DLIST_ASSERTS
 
-#include "../include/dlist.h"
+#include "dlist.h"
 
 #include <assert.h>
 #include <stdio.h>

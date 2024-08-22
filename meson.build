@@ -1,10 +1,27 @@
-project('convoy', 'c')
+project(
+  'convoy',
+  'c',
+  default_options : [
+    'buildtype=debug',
+    'c_std=c99',
+    'debug=true',
+    'warning_level=3',
+    'werror=true',
+  ]
+)
 
-required_args = ['-std=c99', '-pedantic', '-Wall', '-Wextra', '-g']
-add_project_arguments(required_args, language : 'c')
+inc = include_directories('include')
 
-test('test-circbuf', executable('test-circbuf', 'test/test-circbuf.c'))
-test('test-deque', executable('test-deque', 'test/test-deque.c'))
-test('test-queue', executable('test-queue', 'test/test-queue.c'))
-test('test-splat', executable('test-splat', 'test/test-splat.c'))
-test('test-stack', executable('test-stack', 'test/test-stack.c'))
+tests = [
+  'circbuf',
+  'deque',
+  'queue',
+  'splat',
+  'stack',
+]
+
+foreach item : tests
+  name = 'test-' + item
+  binary = executable(name, 'test/' + name + '.c', include_directories : inc)
+  test(name, binary)
+endforeach
